@@ -1,0 +1,7 @@
+
+
+@pytest.fixture(scope='function')
+def $$%%API_OBJ%%$$(config_obj, ext_info):
+    """ $$%%API_NAME%%$$ API """
+    host = "config_obj.xxxxxx.Service"
+    return $$%%CLASS_NAME%%$$SwaggerBusiness(host, config_obj=config_obj,  ext_info=ext_info)

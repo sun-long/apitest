@@ -1,0 +1,42 @@
+# ras-manager
+device,https://gitlab.sz.sensetime.com/belt/crd/ras-protocols/ras-device/-/raw/master/gen/swagger/cloud_device.swagger.json
+rasManager,https://gitlab.sz.sensetime.com/belt/crd/ras-protocols/ras-manager/-/raw/master/gen/swagger/ras_manager.swagger.json
+botManager,https://gitlab.sz.sensetime.com/belt/crd/ras-protocols/ras-bot-manager/-/raw/master/gen/swagger/ras_bot_manager.swagger.json
+ctidService,https://gitlab.sz.sensetime.com/gaojunjie/ids-face-service/-/blob/master/pb/gen/swagger/belt/crd/ids-face-service/pb/ctid-service.swagger.json
+rasCluster,https://gitlab.sz.sensetime.com/belt/crd/ras-protocols/cluster-registry/-/raw/master/gen/swagger/cluster_registry.swagger.json
+deviceIotCenter,https://gitlab.sz.sensetime.com/belt/crd/ras-protocols/ras-device-iot/-/raw/master/gen/swagger/center.swagger.json
+
+# ids
+face,https://gitlab.sz.sensetime.com/belt/crd/ras-protocols/ids-wrapper-service/-/raw/master/gen/swagger/ids-face-service.swagger.json
+identity,https://gitlab.sz.sensetime.com/belt/crd/ras-protocols/ids-wrapper-service/-/raw/master/gen/swagger/ids-identity-service.swagger.json
+ocr,https://gitlab.sz.sensetime.com/belt/crd/ras-protocols/ids-wrapper-service/-/raw/master/gen/swagger/ids-ocr-service.swagger.json
+# ras-runtime-proxy
+#ipsApplet,https://confluence.sensetime.com/download/attachments/472875642/engine-image-algo-service.swagger.json
+#ipsOcr,https://confluence.sensetime.com/download/attachments/472875598/engine-ocr-extract-service.swagger.json
+#viperOcr,https://gitlab.sz.sensetime.com/viper/engine-image-process-service/-/raw/ocr/2.5.0-dev/pb/engine-ocr-extract-service.swagger.json
+# viperApplet,https://gitlab.sz.sensetime.com/viper/engine-image-process-service/-/raw/v5.0/pb/engine-image-algo-service.swagger.json
+#ctid
+# sfd,https://confluence.sensetime.com/download/attachments/472875660/static-feature-db.swagger.json
+# aide
+adapter,https://confluence.sensetime.com/download/attachments/469414047/swagger.json
+# console
+auth,https://gitlab.sz.sensetime.com/belt/crd/console-user-service/-/raw/master/api/swagger/auth.swagger.json
+authInternalAuth,https://gitlab.sz.sensetime.com/belt/crd/console-user-service/-/raw/master/api/swagger/internalAuth.swagger.json
+notification,https://gitlab.sz.sensetime.com/belt/crd/console-notification-service/-/raw/master/api/swagger/notification.swagger.json
+notificationInternal,https://gitlab.sz.sensetime.com/belt/crd/console-notification-service/-/raw/master/api/swagger/notification_internal.swagger.json
+user,https://gitlab.sz.sensetime.com/belt/crd/console-user-service/-/raw/master/api/swagger/user.swagger.json
+order,https://gitlab.sz.sensetime.com/belt/crd/console-subscribe-service/-/raw/master/api/swagger/order.swagger.json
+orderInternal,https://gitlab.sz.sensetime.com/belt/crd/console-subscribe-service/-/raw/master/api/swagger/order_internal.swagger.json
+product,https://gitlab.sz.sensetime.com/belt/crd/console-subscribe-service/-/raw/master/api/swagger/product.swagger.json
+oplog,https://gitlab.sz.sensetime.com/belt/crd/console-oplog-service/-/raw/master/api/swagger/oplog.swagger.json
+bill,https://gitlab.sz.sensetime.com/belt/crd/console-subscribe-service/-/raw/master/api/swagger/bill.swagger.json
+billInternal,https://gitlab.sz.sensetime.com/belt/crd/console-subscribe-service/-/raw/master/api/swagger/bill_internal.swagger.json
+rechargeLog,https://gitlab.sz.sensetime.com/belt/crd/console-subscribe-service/-/raw/master/api/swagger/rechargelog.swagger.json
+spuop,https://gitlab.sz.sensetime.com/belt/crd/console-productop-service/-/raw/master/api/swagger/spuop.swagger.json
+# iam auth
+authIam,https://gitlab.sz.sensetime.com/belt/cre/identity-access-management-service/-/raw/master/docs/swagger.json
+# lottery
+lottery,https://gitlab.sz.sensetime.com/belt/crd/bot-lottery/-/raw/master/pb/gen/swagger/lottery_service.swagger.json
+videoManager,https://gitlab.sz.sensetime.com/belt/crd/ras-protocols/video-manager/-/raw/master/gen/swagger/video_center.swagger.json
+# road
+roadInspection,https://gitlab.sz.sensetime.com/belt/crd/sensetraffic/road-inspection-pro/protocols/bot-road/-/raw/master/gen/swagger/cloud_service.swagger.json

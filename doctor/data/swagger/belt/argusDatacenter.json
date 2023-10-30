@@ -1,0 +1,196 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "datacenter service.",
+        "title": "datacenter service API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "paths": {
+        "/sensego/datacenter/unicron/meta/origin_meta_info": {
+            "get": {
+                "summary": "查看识别结果 X-Belt-Action:GetOriginMetaInfo, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "origin_meta_info API",
+                "operationId":"DC_GetOriginMetaInfo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ak",
+                        "name": "ak",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "store_id",
+                        "name": "store_id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "device_id",
+                        "name": "device_id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "camera_id",
+                        "name": "camera_id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "person_id",
+                        "name": "person_id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "request_id",
+                        "name": "request_id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "起始时间",
+                        "name": "start_time",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "终止时间",
+                        "name": "end_time",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "从第几页开始取",
+                        "name": "page_number",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "取多少个",
+                        "name": "page_size",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "csv",
+                        "description": "这些requestid的数据不会被查出来",
+                        "name": "mis_request_ids",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.OriginMetaInfoResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "data.OriginMetaInfoResponse": {
+            "type": "object",
+            "properties": {
+                "error_code": {
+                    "type": "integer"
+                },
+                "error_msg": {
+                    "type": "string"
+                },
+                "results": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/data.UnicronInfo"
+                    }
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
+        "data.UnicronInfo": {
+            "type": "object",
+            "properties": {
+                "age": {
+                    "type": "integer"
+                },
+                "body_id": {
+                    "type": "string"
+                },
+                "camera_id": {
+                    "type": "string"
+                },
+                "camera_name": {
+                    "type": "string"
+                },
+                "device_id": {
+                    "type": "string"
+                },
+                "face_id": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "group_id": {
+                    "type": "string"
+                },
+                "person_id": {
+                    "type": "string"
+                },
+                "plate_image_bucket": {
+                    "type": "string"
+                },
+                "plate_image_url": {
+                    "type": "string"
+                },
+                "product_line": {
+                    "type": "string"
+                },
+                "request_id": {
+                    "type": "string"
+                },
+                "result_type": {
+                    "type": "string"
+                },
+                "snap_image_bucket": {
+                    "type": "string"
+                },
+                "snap_image_url": {
+                    "type": "string"
+                },
+                "source_group": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

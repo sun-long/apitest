@@ -1,0 +1,848 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/v1/authorize": {
+            "get": {
+                "description": "sso单点登录授权\n完成登录(存在 iam.sensebelt.com session)则签发jwt并重定向业务界面\n未登录则重定向至登录界面",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "授权",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "必填,授权成功后重定向路径",
+                        "name": "redirect_uri",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "选填,默认token",
+                        "name": "response_type",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "client_id",
+                        "name": "client_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "scope",
+                        "name": "scope",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "state",
+                        "name": "state",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "必填,jwt过期时间,单位[s]",
+                        "name": "expires_after",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "301": {
+                        "description": "Moved Permanently"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.GenericResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/captcha": {
+            "get": {
+                "description": "获取图片验证码.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "图片验证码",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "必填,验证码宽度像素",
+                        "name": "width",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "选填,验证码高度像素",
+                        "name": "height",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.CaptchaResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.GenericResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/change-password": {
+            "post": {
+                "description": "修改用户密码\nAuthorization格式:\nHeader,Authorization: Bearer {jwt}\n若body中source未填写,则从Header X-Sensebelt-Source填写\nHeader,X-Sensebelt-Source: {source}",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "修改密码",
+                "parameters": [
+                    {
+                        "description": "验证码",
+                        "name": "captcha",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.Captcha"
+                        }
+                    },
+                    {
+                        "description": "旧密码",
+                        "name": "password",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "新密码1",
+                        "name": "new_password_1",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "新密码2",
+                        "name": "new_password_2",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "用户隔离源,必填",
+                        "name": "source",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.ChangePasswordResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.GenericResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/model.GenericResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/email-find-password": {
+            "post": {
+                "description": "邮箱找回密码\n若body中source未填写,则从Header X-Sensebelt-Source填写\nHeader,X-Sensebelt-Source: {source}",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "邮箱找回密码",
+                "parameters": [
+                    {
+                        "description": "必填,邮箱地址",
+                        "name": "email",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "必填,新密码1",
+                        "name": "new_password_1",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "必填,新密码2",
+                        "name": "new_password_2",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "必填,验证码",
+                        "name": "verification_code",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "用户隔离源,必填",
+                        "name": "source",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.EmailFindPasswordResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.GenericResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/login": {
+            "post": {
+                "description": "用户登录\n支持用户名密码/手机验证码/邮箱验证码登录\n直接登录,直接返回jwt信息\n单点登录,登录成功设置(iam.sensebelt.com session),并重定向 /v1/authorize\n若body中source未填写,则从Header X-Sensebelt-Source填写\nHeader,X-Sensebelt-Source: {source}",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "登录",
+                "parameters": [
+                    {
+                        "description": "验证码",
+                        "name": "captcha",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.Captcha"
+                        }
+                    },
+                    {
+                        "description": "client_id",
+                        "name": "client_id",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "jwt有效时间,直接登录,必填",
+                        "name": "expires_after",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "邮箱地址,邮箱登录,必填",
+                        "name": "email",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "手机号目前仅指出+86,手机登录,必填",
+                        "name": "phone",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "验证码,手机/邮箱登录,必填",
+                        "name": "verification_code",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "用户名,用户名登录,必填",
+                        "name": "username",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "密码,md5,用户名登录,必填",
+                        "name": "password",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "用户隔离源,必填",
+                        "name": "source",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.LoginResponse"
+                        }
+                    },
+                    "301": {
+                        "description": "Moved Permanently"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.GenericResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/logout": {
+            "get": {
+                "description": "登出,登出成功后重定向回redirect_uri",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "登出",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "必填,登出成功后重定向路径",
+                        "name": "redirect_uri",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "301": {
+                        "description": "Moved Permanently"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.GenericResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/sensetime-login": {
+            "get": {
+                "description": "商汤sso登录地,[https://7x24.sensetime.com/sso/integration-jwt.html]\n若body中source未填写,则从Header X-Sensebelt-Source填写\nHeader,X-Sensebelt-Source: {source}",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "商汤sso登录地址",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "必填,sensetime sso 签发jwt",
+                        "name": "id_token",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "用户隔离源,必填",
+                        "name": "source",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "301": {
+                        "description": "Moved Permanently",
+                        "schema": {
+                            "$ref": "#/definitions/model.SensetimeLoginResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.SensetimeLoginResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/token": {
+            "post": {
+                "description": "jwt刷新\n若body中source未填写,则从Header X-Sensebelt-Source填写\nHeader,X-Sensebelt-Source: {source}",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "刷新token",
+                "parameters": [
+                    {
+                        "description": "选填",
+                        "name": "grant_type",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "必填,refresh_token",
+                        "name": "refresh_token",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "必填,jwt有效时间,单位[s]",
+                        "name": "expires_after",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "用户隔离源,必填",
+                        "name": "source",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.LoginResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.GenericResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/model.GenericResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/verification-code": {
+            "post": {
+                "description": "发送手机/邮箱验证码",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "发送验证码",
+                "parameters": [
+                    {
+                        "description": "邮箱,邮箱验证码必填",
+                        "name": "email",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/model.Email"
+                        }
+                    },
+                    {
+                        "description": "手机号,手机验证码必填",
+                        "name": "phone",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/model.Phone"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.VerificationCodeResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.GenericResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/verify": {
+            "get": {
+                "description": "验签jwt,并返回用户信息\nAuthorization格式:\nHeader,Authorization: Bearer {jwt}",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "认证",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.VerifyResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.GenericResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/model.GenericResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "model.Captcha": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "string"
+                },
+                "digits": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.CaptchaResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "data": {
+                    "type": "string"
+                },
+                "digits": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.ChangePasswordResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.Email": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.EmailFindPasswordResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.GenericResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.LoginResponse": {
+            "type": "object",
+            "properties": {
+                "access_token": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "integer"
+                },
+                "expires_in": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "refresh_token": {
+                    "type": "string"
+                },
+                "token_type": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.Phone": {
+            "type": "object",
+            "properties": {
+                "number": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.SensetimeLoginResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.UserInfo": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "description": "详细地址",
+                    "type": "string"
+                },
+                "attributes": {
+                    "description": "自定义属性值",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "blocked": {
+                    "description": "是否禁用",
+                    "type": "boolean"
+                },
+                "cellphone": {
+                    "description": "用于联系电话, 全局唯一",
+                    "type": "string"
+                },
+                "company": {
+                    "description": "公司名称",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "创建时间",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "描述",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "用户邮箱, 全局唯一",
+                    "type": "string"
+                },
+                "first_login": {
+                    "description": "是否首次登录标记,首次修改密码成功后置false.",
+                    "type": "boolean"
+                },
+                "nick_name": {
+                    "description": "显示用名称",
+                    "type": "string"
+                },
+                "profile_photo_id": {
+                    "description": "用户头像，图片id",
+                    "type": "integer"
+                },
+                "source": {
+                    "description": "注册域",
+                    "type": "string"
+                },
+                "source_registry": {
+                    "description": "用户注册来源,用于第三方SSO登录",
+                    "type": "integer"
+                },
+                "st_ladp_name": {
+                    "description": "sensetime LDAP sso name, 全局唯一",
+                    "type": "string"
+                },
+                "updated_at": {
+                    "description": "最后修改时间",
+                    "type": "string"
+                },
+                "user_id": {
+                    "description": "用户id",
+                    "type": "integer"
+                },
+                "user_name": {
+                    "description": "注册用户名, 全局唯一",
+                    "type": "string"
+                }
+            }
+        },
+        "model.VerificationCodeResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "cooling_interval": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.VerifyResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "user_info": {
+                    "$ref": "#/definitions/model.UserInfo"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,93 @@
+[Common]
+
+[SpecInfo]
+    [SpecInfo.Domain]
+        Ak = "l1-29302104-y0517d31514b"
+        Sk = "bfe448417442d3e2ad78209b21d736c6"
+        Service = "http://staging.argus.sensetime.com:80"
+    [SpecInfo.Landfill]
+        Ak = "l1-29302104-y0517d31514b"
+        Service = "http://meister-landfill.argus-staging:11001"
+    [SpecInfo.DeviceApi]
+        Ak = "l1-29302104-y0517d31514b"
+        Sk = "1f7d918c87f2e9469e296a3816e8fa87"
+        Service = "http://db-strategy.argus-staging:20000"
+    [SpecInfo.Auth]
+        Service = "http://auth.senserealty:8082"
+    [SpecInfo.ArgusConSole]
+        Service = 'http://argus-console.argus-staging:10026'
+        Ak = 'l1-29302104-y0517d31514b'
+        SupName = "superAdmin"
+	    SupPass  = "T2mksense!Go"
+        AdminName = "newAdminRealty"
+	    UserName  = "newUserRealty"
+	    Password  = "App12345678"
+    [SpecInfo.deviceManager]
+#        Service = 'http://staging.argus.sensetime.com'
+#        Ak = 'l1-29302104-y0517d31514b'
+        Service = 'http://device-manager-gateway.argus-staging'
+        Ak = 'l1-1b95a511-9gdf967c949a'
+
+        Real_AK = 'l1-f37b7f8c-w0f55aa0948a'
+
+        # device id
+        Real_sn = '479572b9436a00006' #  测试用
+        Real_sn_ec = '479572b9436a00006'
+        Real_sn_x86 = 'd0:94:66:65:03:b6'
+        Real_sn_cpu = '00:2f:5c:68:18:3f'
+
+        Client = 'http://10.4.10.62:3001'
+        Client_username = 'admin'
+        Client_password = 'sensetime'
+        Client_file = 'file://root/emmc/zhixingcheng.h264'
+
+        Client17 = 'https://10.4.10.17:3001'
+        Client_username17 = 'admin'
+        Client_password17 = 'SenseTime202011'
+
+        # 抓拍机配置 用于修改配置
+        Real_ip = '10.4.10.15'
+        Real_port = '80'
+        Real_username = 'admin'
+        Real_password = 'ADMIN1234'
+        Client_rtsp = 'rtsp://admin:ADMIN1234@10.4.10.15:554'
+
+        # 摄像头配置 用于修改配置
+        Real_ip2 = '10.4.10.47'
+        Real_port2 = '80'
+        Real_username2 = 'admin'
+        Real_password2 = 't2mksense'
+        Client_rtsp2 = 'rtsp://admin:t2mksense@10.4.10.47:554'
+
+        # 抓拍机配置 用于测试任务
+        Real_ip3 = '10.4.10.20'
+        Real_port3 = '80'
+        Real_username3 = 'admin'
+        Real_password3 = 'ADMIN1234'
+        Client_rtsp3 = 'rtsp://admin:ADMIN1234@10.4.10.20:554'
+
+        # 抓拍机配置 用于测试cpu任务
+        Client_rtsp4 = 'file:/11111/admin:ADMIN1234@10.4.10.20'
+        Task_type4 = 'DLC'
+
+    [SpecInfo.Suning]
+        LandfillService = 'http://meister-landfill.argus-staging:11001'
+        Service = 'http://db-strategy.argus-staging:20000'
+        Ak = 'l1-1b95a511-9gdf967c949a'
+        Sk = 'bfe448417442d3e2ad78209b21d736c6'
+        StoreID = 'testSuningID'
+        # 静态库
+        BeijingStatic = '6ca84b8984'
+        ShanghaiStatic = '05634722d9'
+        # 动态门店
+        BeijingStore = '675b074743'
+        ShanghaiStore = 'c23e4f868c'
+    [SpecInfo.Resource]
+        face_resource = 'face'
+        face_resource_host = 'argus-sfd-sg-sfd-proxy-headless.argus-staging'
+        pedestrian_resource = 'pedestrian1'
+        pedestrian_resource_host = 'argus-sfd-sg-sfd-proxy-headless.argus-staging'
+        dest_face_resource = 'wangan_test_2'
+        dest_face_resource_host = 'argus-sg-sfd-face-proxy-headless.argus-test'
+        dest_pedestrian_resource = 'pedestrian1'
+        dest_pedestrian_resource_host = 'argus-sfd-sg-sfd-proxy-headless.argus-staging'

@@ -1,0 +1,1095 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "console-subscribe-service",
+    "version": "v1.0.0"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/console-internal/v1/all_bill": {
+      "get": {
+        "summary": "获取所有账单\nroute: prefix=console-internal action=GetInternalAllBill version=v1",
+        "operationId": "ConsoleInternalBillService_GetInternalAllBill",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeGetInternalAllBillResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "create_at",
+            "description": "账期 用该时间的年月查询账单，可选.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "account_id",
+            "description": "账户筛选，可选.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "user_id",
+            "description": "主用户ID筛选，可选.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "user_name",
+            "description": "主用户筛选，可选.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "enterprise_name",
+            "description": "认证主体，可选.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pay_status",
+            "description": "月账单状态，可选（ga版本新增，TODO可能会修改成bss定义的状态）.\n\n - NONE: 无效状态，未确认的账单会是这个状态\n - NOT_PAY: 未支付\n - PAY: 已支付",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "NONE",
+              "NOT_PAY",
+              "PAY"
+            ],
+            "default": "NONE"
+          },
+          {
+            "name": "page_request.limit",
+            "description": "分页大小.\n[EN] Page size, range [10, 100].",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.marker",
+            "description": "分页标志, 第一页传空. 默认为空.\n[EN] Page marker, first page is empty. Empty by default.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ConsoleInternalBillService"
+        ]
+      }
+    },
+    "/console-internal/v1/bill": {
+      "get": {
+        "summary": "获取单个账单详情\nroute: prefix=console-internal action=GetInternalOneBill version=v1",
+        "operationId": "ConsoleInternalBillService_GetInternalOneBill",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeGetInternalOneBillResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "create_at",
+            "description": "账期 用该时间的年月查询账单.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "account_id",
+            "description": "AccountID.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "op_user",
+            "description": "账单发送人.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ConsoleInternalBillService"
+        ]
+      },
+      "post": {
+        "summary": "更新账单状态\nroute: prefix=console-internal action=UpdateInternalBillStatus version=v1",
+        "operationId": "ConsoleInternalBillService_UpdateInternalBillStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeUpdateInternalBillStatusResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/subscribeUpdateInternalBillStatusRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleInternalBillService"
+        ]
+      }
+    },
+    "/console-internal/v1/download": {
+      "post": {
+        "summary": "账单明细\nroute: prefix=console-internal action=DownloadBillDetail version=v1",
+        "operationId": "ConsoleInternalBillService_DownloadBillDetail",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/subscribeDownloadBillDetailResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/runtimeStreamError"
+                }
+              },
+              "title": "Stream result of subscribeDownloadBillDetailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/subscribeDownloadBillDetailRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleInternalBillService"
+        ]
+      }
+    },
+    "/console-internal/v1/send_bill": {
+      "post": {
+        "summary": "发送账单\nroute: prefix=console-internal action=SendInternalBill version=v1",
+        "operationId": "ConsoleInternalBillService_SendInternalBill",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeSendInternalBillResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/subscribeSendInternalBillRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleInternalBillService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "PriceUnit": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "价格描述"
+        },
+        "factor": {
+          "type": "string",
+          "format": "uint64",
+          "title": "价格单位系数，比如图片是以千张为单位计费，那么系数就是1000；\n资源包是按个卖的，个的大小在SKU规格里定义"
+        }
+      },
+      "title": "价格单位描述"
+    },
+    "ProductSKUGroupInfoProductSKUGroupUnit": {
+      "type": "object",
+      "properties": {
+        "spu_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "商品SPU id"
+        },
+        "sku_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "商品SKU id"
+        }
+      }
+    },
+    "billAccountBillStatus": {
+      "type": "string",
+      "enum": [
+        "STATUS_UNLIMITED",
+        "STATUS_UNCONFIRMED",
+        "STATUS_CONFIRMED",
+        "STATUS_DOUBT",
+        "STATUS_DOUBT_CONFIRMED",
+        "STATUS_NONE"
+      ],
+      "default": "STATUS_UNLIMITED",
+      "description": "- STATUS_UNLIMITED: 不限制，只是用来筛选状态用\n - STATUS_UNCONFIRMED: 未确认\n - STATUS_CONFIRMED: 确认\n - STATUS_DOUBT: 存疑\n - STATUS_DOUBT_CONFIRMED: 存疑已确认\n - STATUS_NONE: 占位符，用于判断最大值，这个值会随时间改变",
+      "title": "规格值的状态枚举\nunconfirmed -\u003e confirmed\nunconfirmed -\u003e doubt\ndoubt -\u003e doubt_confirmed"
+    },
+    "commonPageMarker": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "description": "分页大小.\n[EN] Page size, range [10, 100]."
+        },
+        "marker": {
+          "type": "string",
+          "description": "分页标志, 第一页传空. 默认为空.\n[EN] Page marker, first page is empty. Empty by default."
+        }
+      }
+    },
+    "commonPayMeans": {
+      "type": "string",
+      "enum": [
+        "PAY_MEANS_UNKNOWN",
+        "PAY_MEANS_BANK_CARD",
+        "PAY_MEANS_ALIPAY",
+        "PAY_MEANS_WECHAT",
+        "PAY_MEANS_OFFLINE",
+        "PAY_MEANS_E_WALLET"
+      ],
+      "default": "PAY_MEANS_UNKNOWN",
+      "title": "- PAY_MEANS_UNKNOWN: 未知模式\n - PAY_MEANS_BANK_CARD: 银行卡(借记卡、信用卡等）\n - PAY_MEANS_ALIPAY: 支付宝\n - PAY_MEANS_WECHAT: 微信\n - PAY_MEANS_OFFLINE: 线下支付\n - PAY_MEANS_E_WALLET: 电子钱包"
+    },
+    "commonPayType": {
+      "type": "string",
+      "enum": [
+        "PAY_TYPE_UNKNOWN",
+        "PAY_TYPE_PRE",
+        "PAY_TYPE_POST",
+        "PAY_TYPE_PRE_FREE"
+      ],
+      "default": "PAY_TYPE_UNKNOWN",
+      "title": "- PAY_TYPE_UNKNOWN: 未知模式\n - PAY_TYPE_PRE: 预付费(前向付费)模式\n - PAY_TYPE_POST: 后付费模式\n - PAY_TYPE_PRE_FREE: 预付费(免费/赠送)模式"
+    },
+    "consolesubscribeAccountInfo": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户id"
+        },
+        "account_name": {
+          "type": "string",
+          "title": "账户名称"
+        },
+        "account_type": {
+          "$ref": "#/definitions/iamAccountType",
+          "title": "认证身份"
+        },
+        "enterprise_name": {
+          "type": "string",
+          "title": "认证主体"
+        },
+        "business_user": {
+          "type": "string",
+          "title": "商务"
+        }
+      }
+    },
+    "iamAccountType": {
+      "type": "string",
+      "enum": [
+        "ACCOUNT_TYPE_UNSPECIFIED",
+        "ACCOUNT_TYPE_PERSON",
+        "ACCOUNT_TYPE_ENTERPRISE",
+        "ACCOUNT_TYPE_UNKNOW"
+      ],
+      "default": "ACCOUNT_TYPE_UNSPECIFIED",
+      "title": "- ACCOUNT_TYPE_UNSPECIFIED: 未指定\n - ACCOUNT_TYPE_PERSON: 个人账户\n - ACCOUNT_TYPE_ENTERPRISE: 企业账户\n - ACCOUNT_TYPE_UNKNOW: 未知类型"
+    },
+    "ordersOrderStatus": {
+      "type": "string",
+      "enum": [
+        "UNLIMITED",
+        "AUDITING",
+        "AUDIT_APPROVED",
+        "AUDIT_REJECTED",
+        "TO_BE_PAID",
+        "PAID",
+        "CANCEL_PAID",
+        "DELETED",
+        "UNSUBSCRIBED",
+        "FREEZED"
+      ],
+      "default": "UNLIMITED",
+      "title": "- UNLIMITED: 不限制，只是用来筛选状态用\n - AUDITING: 后付费订单待审核状态\n - AUDIT_APPROVED: 后付费订单审核通过状态\n - AUDIT_REJECTED: 后付费订单审核不通过状态\n - TO_BE_PAID: 预付费订单待支付状态\n - PAID: 预付费订单已支付状态\n - CANCEL_PAID: 预付费订单取消支付状态\n - DELETED: 订单已删除（内部用）\n - UNSUBSCRIBED: 退订（后付费订单终止服务）\n - FREEZED: 账户禁用: 1)已购后付费服务全部失效，后付费订单作废 2) 预付费订单冻结，无法使用 3)不能新增购买"
+    },
+    "productPrice": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "价格编号"
+        },
+        "sku_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "SKU编号"
+        },
+        "site_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "地区编号"
+        },
+        "scale": {
+          "type": "integer",
+          "format": "int64",
+          "title": "针对这种商品：按设备接入路数*循环保存时间*使用时长计费 来算费用，这里的scale是循环保存时间，普通商品默认这个值就是1"
+        },
+        "type": {
+          "$ref": "#/definitions/productPriceType",
+          "title": "价格类型"
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/productPriceRule"
+          },
+          "title": "阶梯定价规则"
+        },
+        "status": {
+          "$ref": "#/definitions/productPriceStatus",
+          "title": "price 状态"
+        },
+        "unit": {
+          "$ref": "#/definitions/PriceUnit",
+          "title": "价格单位描述"
+        },
+        "start_time": {
+          "type": "string",
+          "format": "date-time",
+          "title": "计费项开始时间"
+        },
+        "end_time": {
+          "type": "string",
+          "format": "date-time",
+          "title": "计费项结束时间"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间, 系统自动生成.\n[EN] Creation time, automatically generated by system."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "修改时间, 系统自动生成.\n[EN] Updated time, automatically generated by system."
+        }
+      },
+      "title": "Discount在价格模型和order都需要\n价格信息"
+    },
+    "productPriceRule": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "integer",
+          "format": "int64",
+          "title": "该阶梯开始量"
+        },
+        "end": {
+          "type": "integer",
+          "format": "int64",
+          "title": "该阶梯结束量  //如果end=0则没有阶梯，单价固定，不随使用量变化,资源包价格用"
+        },
+        "unit_price": {
+          "type": "string",
+          "format": "uint64",
+          "title": "该阶梯单价"
+        },
+        "unit_discount": {
+          "type": "number",
+          "format": "double",
+          "title": "该阶梯的折扣；不能为负数"
+        },
+        "description": {
+          "type": "string",
+          "title": "阶梯价格的描述"
+        }
+      },
+      "title": "阶梯定价项"
+    },
+    "productPriceStatus": {
+      "type": "string",
+      "enum": [
+        "STATUS_UNLIMITED",
+        "STATUS_VALID",
+        "STATUS_DELETED",
+        "STATUS_NONE"
+      ],
+      "default": "STATUS_UNLIMITED",
+      "description": "- STATUS_UNLIMITED: 不限制，只是用来筛选状态用\n - STATUS_VALID: 有效\n - STATUS_DELETED: 删除\n - STATUS_NONE: 占位符，用于判断最大值，这个值会随时间改变",
+      "title": "price 的状态枚举"
+    },
+    "productPriceType": {
+      "type": "string",
+      "enum": [
+        "TYPE_TIERED",
+        "TYPE_VOLUME",
+        "TYPE_STAIR_STEP"
+      ],
+      "default": "TYPE_TIERED",
+      "description": "- TYPE_TIERED: Tiered分层定价 // 总价为 unit_price1 * end1 + unit_price2 * end2 + unit_price3 * (total - end2)\n - TYPE_VOLUME: Volume（批量定价）计价 // 在(star, end]区间，单价固定为 unit_price,总价为 unit_price * total\n - TYPE_STAIR_STEP: Stair-Step阶梯定价 // 在(star, end]区间，一口价, 总价就是这个区间的 unit_price",
+      "title": "价格类型"
+    },
+    "productopProductBaseInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "商品ID"
+        },
+        "code": {
+          "type": "string",
+          "title": "产品定义的商品编号"
+        },
+        "name": {
+          "type": "string",
+          "title": "商品名称"
+        },
+        "descriptoin": {
+          "type": "string",
+          "title": "商品具体描述"
+        },
+        "notice": {
+          "type": "string",
+          "title": "商品购买须知"
+        },
+        "detailed_charging": {
+          "type": "string",
+          "title": "计费详情特殊描述"
+        }
+      }
+    },
+    "productopProductSKUGroupInfo": {
+      "type": "object",
+      "properties": {
+        "all_units": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductSKUGroupInfoProductSKUGroupUnit"
+          },
+          "title": "商品SKU Group组合"
+        }
+      }
+    },
+    "productopProductSPUGroupInfo": {
+      "type": "object",
+      "properties": {
+        "info": {
+          "$ref": "#/definitions/productopProductBaseInfo",
+          "title": "商品基础信息"
+        },
+        "all_sku_groups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/productopProductSKUGroupInfo"
+          },
+          "title": "商品附带的SKU Group列表数据"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string",
+          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+        },
+        "value": {
+          "type": "string",
+          "format": "byte",
+          "description": "Must be a valid serialized protocol buffer of the above specified type."
+        }
+      },
+      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\nExample 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\nExample 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := \u0026pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "runtimeStreamError": {
+      "type": "object",
+      "properties": {
+        "grpc_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "http_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "http_status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "subscribeBillGroupInfo": {
+      "type": "object",
+      "properties": {
+        "create_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "账期"
+        },
+        "fee": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账单金额"
+        },
+        "due_fee": {
+          "type": "string",
+          "format": "uint64",
+          "title": "欠款金额"
+        },
+        "send_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "出账时间（发送时间）"
+        },
+        "status": {
+          "$ref": "#/definitions/subscribeBillSendStatus",
+          "title": "账单发送状态"
+        },
+        "account_status": {
+          "$ref": "#/definitions/billAccountBillStatus",
+          "title": "账单用户存疑状态"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "最后更新时间（ga版本新增，如果是已确认状态，就是确认账单的时间）"
+        },
+        "pay_status": {
+          "$ref": "#/definitions/subscribeBillPayStatus",
+          "title": "支付状态（ga版本新增，TODO可能会修改成bss定义的状态）"
+        },
+        "build_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "账单创建时间"
+        }
+      }
+    },
+    "subscribeBillOneInfo": {
+      "type": "object",
+      "properties": {
+        "bill_id": {
+          "type": "string",
+          "title": "账单编号"
+        },
+        "all_bill_subs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/subscribeBillOneSubInfo"
+          },
+          "title": "账单子项（一个订单下的多个sku，每个sku会有个账单子项，主要是针对spu group）"
+        },
+        "order_info": {
+          "$ref": "#/definitions/subscribeOrderInfo",
+          "title": "关联订单"
+        }
+      }
+    },
+    "subscribeBillOneSubInfo": {
+      "type": "object",
+      "properties": {
+        "spu_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "子项对应的spu_id"
+        },
+        "fee": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账单金额"
+        },
+        "due_fee": {
+          "type": "string",
+          "format": "uint64",
+          "title": "欠款金额"
+        },
+        "create_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "账期"
+        },
+        "bill_mode": {
+          "$ref": "#/definitions/commonPayType",
+          "title": "付费方式"
+        },
+        "pay_status": {
+          "$ref": "#/definitions/subscribeBillPayStatus",
+          "title": "支付状态（ga版本新增，TODO可能会修改成bss定义的状态）"
+        },
+        "start_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "生效起始时间"
+        },
+        "end_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "生效结束时间"
+        }
+      }
+    },
+    "subscribeBillPayStatus": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "NOT_PAY",
+        "PAY"
+      ],
+      "default": "NONE",
+      "title": "- NONE: 无效状态，未确认的账单会是这个状态\n - NOT_PAY: 未支付\n - PAY: 已支付"
+    },
+    "subscribeBillSendStatus": {
+      "type": "string",
+      "enum": [
+        "UNKOWN",
+        "NOT_SEND",
+        "SEND"
+      ],
+      "default": "UNKOWN",
+      "title": "- UNKOWN: 未知无效状态\n - NOT_SEND: 未发送\n - SEND: 已发送"
+    },
+    "subscribeDownloadBillDetailRequest": {
+      "type": "object",
+      "properties": {
+        "create_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "账期"
+        },
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "AccountID"
+        }
+      }
+    },
+    "subscribeDownloadBillDetailResponse": {
+      "type": "object",
+      "properties": {
+        "buffer": {
+          "type": "string",
+          "format": "byte",
+          "title": "明细数据二进制流"
+        }
+      }
+    },
+    "subscribeGetInternalAllBillResponse": {
+      "type": "object",
+      "properties": {
+        "all_bills": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/subscribeInternalBillGroupInfo"
+          }
+        },
+        "page_response": {
+          "$ref": "#/definitions/commonPageMarker",
+          "title": "list返回对应的翻页：offset, total"
+        }
+      }
+    },
+    "subscribeGetInternalOneBillResponse": {
+      "type": "object",
+      "properties": {
+        "all_bills": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/subscribeBillOneInfo"
+          },
+          "title": "账单数据"
+        },
+        "account_info": {
+          "$ref": "#/definitions/consolesubscribeAccountInfo",
+          "title": "关联账号信息"
+        },
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "主用户ID"
+        },
+        "user_name": {
+          "type": "string",
+          "title": "主用户账户ID"
+        },
+        "create_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "账期"
+        },
+        "send_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "出账时间（发送时间）"
+        },
+        "status": {
+          "$ref": "#/definitions/subscribeBillSendStatus",
+          "title": "账单发送状态"
+        },
+        "op_user": {
+          "type": "string",
+          "title": "账单发送人"
+        }
+      }
+    },
+    "subscribeInternalBillGroupInfo": {
+      "type": "object",
+      "properties": {
+        "bill_group_info": {
+          "$ref": "#/definitions/subscribeBillGroupInfo",
+          "title": "账单信息"
+        },
+        "account_info": {
+          "$ref": "#/definitions/consolesubscribeAccountInfo",
+          "title": "关联账号信息"
+        },
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "主用户ID"
+        },
+        "user_name": {
+          "type": "string",
+          "title": "主用户账户ID"
+        }
+      }
+    },
+    "subscribeOrderInfo": {
+      "type": "object",
+      "properties": {
+        "order_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "订单信息"
+        },
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "AccountID"
+        },
+        "before_fee": {
+          "type": "string",
+          "format": "uint64",
+          "title": "预付费订单折扣之前的费用，单位：0.001分, 预付费orderitem"
+        },
+        "fee": {
+          "type": "string",
+          "format": "uint64",
+          "title": "预付费订单折扣之后的费用，单位：0.001分, 预付费oderitem"
+        },
+        "status": {
+          "$ref": "#/definitions/ordersOrderStatus",
+          "title": "订单状态"
+        },
+        "result": {
+          "type": "string",
+          "title": "订单失败原因(订单审核不过时，需要展示这个信息)"
+        },
+        "audit_user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "订单审核人"
+        },
+        "audit_user_name": {
+          "type": "string",
+          "title": "订单审核人昵称"
+        },
+        "pay_means": {
+          "$ref": "#/definitions/commonPayMeans",
+          "title": "支付方式：支付宝、微信、银行卡"
+        },
+        "bill_mode": {
+          "$ref": "#/definitions/commonPayType",
+          "title": "付费方式"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "付费、审核全在order里，不在单个orderitem付费、审核\n订单创建时间, 系统自动产生"
+        },
+        "checked_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "订单审核时间, 系统自动产生"
+        },
+        "paid_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "订单支付时间, 系统自动产生"
+        },
+        "product_info": {
+          "$ref": "#/definitions/subscribeProductInfo",
+          "title": "关联商品信息"
+        }
+      }
+    },
+    "subscribeProductInfo": {
+      "type": "object",
+      "properties": {
+        "spu_group": {
+          "$ref": "#/definitions/productopProductSPUGroupInfo",
+          "title": "商品对应的SPU Group信息，如果该商品不是SPU Group，则此项为空"
+        },
+        "all_spus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/subscribeProductSPUInfo"
+          },
+          "title": "商品对应的SPU信息，如果该商品是SPU Group，这里则是其关联SPU的列表，否则就是一个单独的SPU"
+        }
+      }
+    },
+    "subscribeProductSKUInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "商品SKU id"
+        },
+        "count": {
+          "type": "string",
+          "format": "int64",
+          "title": "SKU数量"
+        },
+        "bill_mode": {
+          "$ref": "#/definitions/commonPayType",
+          "title": "付费模式"
+        },
+        "free_trial": {
+          "type": "boolean",
+          "title": "是否免费试用"
+        },
+        "spec_values": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "SKU规格列表，e.g. {计费模式：按调用量}"
+        },
+        "sites": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/subscribeProductSite"
+          },
+          "title": "商品所属的计算节点"
+        },
+        "start_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "生效起始时间"
+        },
+        "end_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "生效结束时间"
+        },
+        "status": {
+          "$ref": "#/definitions/subscribeProductSKUInfoStatus",
+          "title": "生效状态"
+        },
+        "all_prices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/productPrice"
+          },
+          "title": "价格列表，同一个SKU，不同计算节点Site，价格可能不同，价格信息只有在ListProduct时会带下去，查看订单时不会有价格信息"
+        }
+      }
+    },
+    "subscribeProductSKUInfoStatus": {
+      "type": "string",
+      "enum": [
+        "UNLIMITED",
+        "TO_BE_VALID",
+        "VALID",
+        "UNVALID",
+        "DELETED"
+      ],
+      "default": "UNLIMITED",
+      "title": "- UNLIMITED: 不限制，只是用来筛选状态用\n - TO_BE_VALID: 未生效\n - VALID: 生效中\n - UNVALID: 已失效invalid\n - DELETED: 订单item已删除（内部用）"
+    },
+    "subscribeProductSPUInfo": {
+      "type": "object",
+      "properties": {
+        "info": {
+          "$ref": "#/definitions/productopProductBaseInfo",
+          "title": "商品基础信息"
+        },
+        "all_skus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/subscribeProductSKUInfo"
+          },
+          "title": "商品附带的SKU列表数据"
+        }
+      }
+    },
+    "subscribeProductSite": {
+      "type": "object",
+      "properties": {
+        "site_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "计算节点ID"
+        },
+        "name": {
+          "type": "string",
+          "title": "计算节点名称"
+        }
+      }
+    },
+    "subscribeSendInternalBillRequest": {
+      "type": "object",
+      "properties": {
+        "create_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "账期git"
+        },
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "AccountID"
+        }
+      }
+    },
+    "subscribeSendInternalBillResponse": {
+      "type": "object"
+    },
+    "subscribeUpdateInternalBillStatusRequest": {
+      "type": "object",
+      "properties": {
+        "create_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "账期"
+        },
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "AccountID"
+        },
+        "account_status": {
+          "$ref": "#/definitions/billAccountBillStatus",
+          "title": "账单用户存疑状态"
+        }
+      }
+    },
+    "subscribeUpdateInternalBillStatusResponse": {
+      "type": "object"
+    }
+  }
+}

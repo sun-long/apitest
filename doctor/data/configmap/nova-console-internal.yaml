@@ -1,0 +1,947 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: '{{ include "nova-ingress-internal-kong.fullname" . }}'
+  labels:
+    '{{- include "nova-ingress-internal-kong.labels" . | nindent 4 }}'
+data:
+  kong.yml:
+    _format_version: "3.0"
+    _transform: true
+
+    services:
+      - name: iam-proxy
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://identity-access-management-service-auth.iam.svc.cluster.local:8080"
+        routes:
+          - name: iam-route
+            methods:
+              - POST
+              - GET
+            strip_path: true
+            paths:
+              - /iam
+      - name: internal-console-AuditCSV-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/AuditCSV"
+        routes:
+          - name: internal-console-AuditCSV-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["AuditCSV"]}
+            paths:
+              - /internal
+      - name: internal-console-Audit-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/InternalAudit"
+        routes:
+          - name: internal-console-Audit-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["InternalAudit"]}
+            paths:
+              - /internal
+      - name: internal-console-ListPendingAuditInfoCSV-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/ListPendingAuditInfoCSV"
+        routes:
+          - name: internal-console-ListPendingAuditInfoCSV-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ListPendingAuditInfoCSV"]}
+            paths:
+              - /internal
+      - name: internal-console-AdminGetAccountUserList-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/AdminGetAccountUserList"
+        routes:
+          - name: internal-console-AdminGetAccountUserList-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["AdminGetAccountUserList"]}
+            paths:
+              - /internal
+      - name: internal-console-AdminGetUserPageRoleList-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/AdminGetUserPageRoleList"
+        routes:
+          - name: internal-console-AdminGetUserPageRoleList-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["AdminGetUserPageRoleList"]}
+            paths:
+              - /internal
+      - name: internal-console-AdminUpdateUserPageRole-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/AdminUpdateUserPageRole"
+        routes:
+          - name: internal-console-AdminUpdateUserPageRole-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["AdminUpdateUserPageRole"]}
+            paths:
+              - /internal
+      - name: internal-console-DeleteAccount-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/DeleteAccount"
+        routes:
+          - name: internal-console-DeleteAccount-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["DeleteAccount"]}
+            paths:
+              - /internal
+      - name: internal-console-GetAccountDetail-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/GetAccountDetail"
+        routes:
+          - name: internal-console-GetAccountDetail-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["GetAccountDetail"]}
+            paths:
+              - /internal
+      - name: internal-console-GetAccountSubscription-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/GetAccountSubscription"
+        routes:
+          - name: internal-console-GetAccountSubscription-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["GetAccountSubscription"]}
+            paths:
+              - /internal
+      - name: internal-console-GetStatApiOptions-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/GetStatApiOptions"
+        routes:
+          - name: internal-console-GetStatApiOptions-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["GetStatApiOptions"]}
+            paths:
+              - /internal
+      - name: internal-console-GetUserBaseInfo-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/GetUserBaseInfo"
+        routes:
+          - name: internal-console-GetUserBaseInfo-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["GetUserBaseInfo"]}
+            paths:
+              - /internal
+      - name: internal-console-ListAccount-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/ListAccount"
+        routes:
+          - name: internal-console-ListAccount-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ListAccount"]}
+            paths:
+              - /internal
+      - name: internal-console-StatChatCompletion-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/StatChatCompletion"
+        routes:
+          - name: internal-console-StatChatCompletion-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["StatChatCompletion"]}
+            paths:
+              - /internal
+      - name: internal-console-StatChatCompletionExport-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/StatChatCompletionExport"
+        routes:
+          - name: internal-console-StatChatCompletionExport-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["StatChatCompletionExport"]}
+            paths:
+              - /internal
+      - name: internal-console-StatChatCompletionTopN-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/StatChatCompletionTopN"
+        routes:
+          - name: internal-console-StatChatCompletionTopN-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["StatChatCompletionTopN"]}
+            paths:
+              - /internal
+      - name: internal-console-StatFinetune-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/StatFinetune"
+        routes:
+          - name: internal-console-StatFinetune-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["StatFinetune"]}
+            paths:
+              - /internal
+      - name: internal-console-StatFinetuneExport-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/StatFinetuneExport"
+        routes:
+          - name: internal-console-StatFinetuneExport-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["StatFinetuneExport"]}
+            paths:
+              - /internal
+      - name: internal-console-StatFinetuneTopN-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/StatFinetuneTopN"
+        routes:
+          - name: internal-console-StatFinetuneTopN-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["StatFinetuneTopN"]}
+            paths:
+              - /internal
+      - name: internal-console-StatUser-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/StatUser"
+        routes:
+          - name: internal-console-StatUser-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["StatUser"]}
+            paths:
+              - /internal
+      - name: internal-console-StatUserExport-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/StatUserExport"
+        routes:
+          - name: internal-console-StatUserExport-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["StatUserExport"]}
+            paths:
+              - /internal
+      - name: internal-console-UpdateAccountDetail-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/UpdateAccountDetail"
+        routes:
+          - name: internal-console-UpdateAccountDetail-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["UpdateAccountDetail"]}
+            paths:
+              - /internal
+      - name: internal-console-UpdateAccountSubscription-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/UpdateAccountSubscription"
+        routes:
+          - name: internal-console-UpdateAccountSubscription-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["UpdateAccountSubscription"]}
+            paths:
+              - /internal
+      - name: internal-console-ListModel-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/ListModel"
+        routes:
+          - name: internal-console-ListModel-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ListModel"]}
+            paths:
+              - /internal
+      - name: internal-console-CreateModel-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/CreateModel"
+        routes:
+          - name: internal-console-CreateModel-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["CreateModel"]}
+            paths:
+              - /internal
+      - name: internal-console-UpdateModel-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/UpdateModel"
+        routes:
+          - name: internal-console-UpdateModel-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["UpdateModel"]}
+            paths:
+              - /internal
+      - name: internal-console-GetModelAccess-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/GetModelAccess"
+        routes:
+          - name: internal-console-GetModelAccess-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["GetModelAccess"]}
+            paths:
+              - /internal
+      - name: internal-console-AuthModelWhitelist-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/AuthModelWhitelist"
+        routes:
+          - name: internal-console-AuthModelWhitelist-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["AuthModelWhitelist"]}
+            paths:
+              - /internal
+      - name: internal-console-ListDistinctModel-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/ListDistinctModel"
+        routes:
+          - name: internal-console-ListDistinctModel-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ListDistinctModel"]}
+            paths:
+              - /internal
+      - name: internal-console-DeleteModel-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/DeleteModel"
+        routes:
+          - name: internal-console-DeleteModel-Route
+            methods:
+              - DELETE
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["DeleteModel"]}
+            paths:
+              - /internal
+      - name: internal-console-ListModelRoutes-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/ListModelRoutes"
+        routes:
+          - name: internal-console-ListModelRoutes-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ListModelRoutes"]}
+            paths:
+              - /internal
+      - name: internal-console-UpdateModelRoute-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/UpdateModelRoute"
+        routes:
+          - name: internal-console-UpdateModelRoute-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["UpdateModelRoute"]}
+            paths:
+              - /internal
+      - name: internal-console-ListInternalModel-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/ListInternalModel"
+        routes:
+          - name: internal-console-ListInternalModel-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ListInternalModel"]}
+            paths:
+              - /internal
+      - name: internal-console-CreateInternalModel-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/CreateInternalModel"
+        routes:
+          - name: internal-console-CreateInternalModel-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["CreateInternalModel"]}
+            paths:
+              - /internal
+      - name: internal-console-GetInternalModel-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/GetInternalModel"
+        routes:
+          - name: internal-console-GetInternalModel-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["GetInternalModel"]}
+            paths:
+              - /internal
+      - name: internal-console-UpdateInternalModel-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/UpdateInternalModel"
+        routes:
+          - name: internal-console-UpdateInternalModel-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["UpdateInternalModel"]}
+            paths:
+              - /internal
+      - name: internal-console-DeleteInternalModel-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/DeleteInternalModel"
+        routes:
+          - name: internal-console-DeleteInternalModel-Route
+            methods:
+              - DELETE
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["DeleteInternalModel"]}
+            paths:
+              - /internal
+      - name: internal-console-GetAllModelPermissions-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/GetAllModelPermissions"
+        routes:
+          - name: internal-console-GetAllModelPermissions-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["GetAllModelPermissions"]}
+            paths:
+              - /internal
+      - name: internal-console-CheckAccountList-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/CheckAccountList"
+        routes:
+          - name: internal-console-CheckAccountList-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["CheckAccountList"]}
+            paths:
+              - /internal
+      - name: internal-console-StatFinetuneTopNExport-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/StatFinetuneTopNExport"
+        routes:
+          - name: internal-console-StatFinetuneTopNExport-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["StatFinetuneTopNExport"]}
+            paths:
+              - /internal
+      - name: internal-console-StatChatCompletionTopNExport-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/StatChatCompletionTopNExport"
+        routes:
+          - name: internal-console-StatChatCompletionTopNExport-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["StatChatCompletionTopNExport"]}
+            paths:
+              - /internal
+      - name: internal-console-StatImageGeneration-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/StatImageGeneration"
+        routes:
+          - name: internal-console-StatImageGeneration-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["StatImageGeneration"]}
+            paths:
+              - /internal
+      - name: internal-console-StatImageGenerationExport-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/StatImageGenerationExport"
+        routes:
+          - name: internal-console-StatImageGenerationExport-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["StatImageGenerationExport"]}
+            paths:
+              - /internal
+      - name: internal-console-StatImageGenerationTopN-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/StatImageGenerationTopN"
+        routes:
+          - name: internal-console-StatImageGenerationTopN-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["StatImageGenerationTopN"]}
+            paths:
+              - /internal
+      - name: internal-console-StatImageGenerationTopNExport-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/StatImageGenerationTopNExport"
+        routes:
+          - name: internal-console-StatImageGenerationTopNExport-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["StatImageGenerationTopNExport"]}
+            paths:
+              - /internal
+      - name: internal-console-ListAccountCSV-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/ListAccountCSV"
+        routes:
+          - name: internal-console-ListAccountCSV-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ListAccountCSV"]}
+            paths:
+              - /internal
+      - name: internal-console-order-GetAllSPU-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/console-internal/v1/all_spu"
+        routes:
+          - name: internal-console-order-GetAllSPU-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["GetAllSPU"]}
+            paths:
+              - /internal
+      - name: internal-console-order-GetAllValuePoint-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/console-internal/v1/all_vp"
+        routes:
+          - name: internal-console-order-GetAllValuePoint-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["GetAllValuePoint"]}
+            paths:
+              - /internal
+      - name: internal-console-order-GetValuePointModifyRecord-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/console-internal/v1/modify_vp"
+        routes:
+          - name: internal-console-order-GetValuePointModifyRecord-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["GetValuePointModifyRecord"]}
+            paths:
+              - /internal
+      - name: internal-console-order-ModifyValuePoint-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/console-internal/v1/modify_vp"
+        routes:
+          - name: internal-console-order-ModifyValuePoint-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ModifyValuePoint"]}
+            paths:
+              - /internal
+      - name: internal-console-wallet-GetAllCreditLimit-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/console-internal/v1/all_credit"
+        routes:
+          - name: internal-console-wallet-GetAllCreditLimit-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["GetAllCreditLimit"]}
+            paths:
+              - /internal
+      - name: internal-console-wallet-ModifyCreditLimit-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/console-internal/v1/modify_credit"
+        routes:
+          - name: internal-console-wallet-ModifyCreditLimit-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ModifyCreditLimit"]}
+            paths:
+              - /internal
+      - name: internal-console-ListMonthlyBill-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/ListMonthlyBill"
+        routes:
+          - name: internal-console-ListMonthlyBill-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ListMonthlyBill"]}
+            paths:
+              - /internal
+      - name: internal-console-ReduceMonthlyBillFee-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/ReduceMonthlyBillFee"
+        routes:
+          - name: internal-console-ReduceMonthlyBillFee-Route
+            methods:
+              - PUT
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ReduceMonthlyBillFee"]}
+            paths:
+              - /internal
+      - name: internal-console-UpdateMonthlyBillPaid-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/UpdateMonthlyBillPaid"
+        routes:
+          - name: internal-console-UpdateMonthlyBillPaid-Route
+            methods:
+              - PUT
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["UpdateMonthlyBillPaid"]}
+            paths:
+              - /internal
+      - name: internal-console-ListDailyBill-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/ListDailyBill"
+        routes:
+          - name: internal-console-ListDailyBill-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ListDailyBill"]}
+            paths:
+              - /internal
+      - name: internal-console-GetCouponList-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/console-internal/v1/coupon"
+        routes:
+          - name: internal-console-GetCouponList-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["GetCouponList"]}
+            paths:
+              - /internal
+      - name: internal-console-AddCoupon-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/console-internal/v1/add_coupon"
+        routes:
+          - name: internal-console-AddCoupon-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["AddCoupon"]}
+            paths:
+              - /internal
+      - name: internal-console-DeleteCoupon-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/console-internal/v1/delete_coupon"
+        routes:
+          - name: internal-console-DeleteCoupon-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["DeleteCoupon"]}
+            paths:
+              - /internal
+      - name: internal-console-ExportMonthlyBill-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/ExportMonthlyBill"
+        routes:
+          - name: internal-console-ExportMonthlyBill-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ExportMonthlyBill"]}
+            paths:
+              - /internal
+      - name: internal-console-ExportDailyBill-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/ExportDailyBill"
+        routes:
+          - name: internal-console-ExportDailyBill-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ExportDailyBill"]}
+            paths:
+              - /internal
+      - name: internal-console-AddDefaultKnowledgeBaseConfig-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/AddDefaultKnowledgeBaseConfig"
+        routes:
+          - name: internal-console-AddDefaultKnowledgeBaseConfig-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["AddDefaultKnowledgeBaseConfig"]}
+            paths:
+              - /internal
+      - name: internal-console-UpdateDefaultKnowledgeBaseConfig-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/UpdateDefaultKnowledgeBaseConfig"
+        routes:
+          - name: internal-console-UpdateDefaultKnowledgeBaseConfig-Route
+            methods:
+              - PUT
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["UpdateDefaultKnowledgeBaseConfig"]}
+            paths:
+              - /internal
+      - name: internal-console-DeleteDefaultKnowledgeBaseConfig-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/DeleteDefaultKnowledgeBaseConfig"
+        routes:
+          - name: internal-console-DeleteDefaultKnowledgeBaseConfig-Route
+            methods:
+              - DELETE
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["DeleteDefaultKnowledgeBaseConfig"]}
+            paths:
+              - /internal
+      - name: internal-console-ListAllDefaultKnowledgeBaseConfigs-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/ListAllDefaultKnowledgeBaseConfigs"
+        routes:
+          - name: internal-console-ListAllDefaultKnowledgeBaseConfigs-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ListAllDefaultKnowledgeBaseConfigs"]}
+            paths:
+              - /internal
+      - name: internal-console-ListDefaultCharacterAndSecurityKBS-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/ListDefaultCharacterAndSecurityKBS"
+        routes:
+          - name: internal-console-ListDefaultCharacterAndSecurityKBS-Route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ListDefaultCharacterAndSecurityKBS"]}
+            paths:
+              - /internal
+      - name: content-censor-GetSafetyQueue-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://content-censor-service:8051/console-internal/v1/all_safety_queue"
+        routes:
+          - name: content-censor-safety-GetSafetyQueue-route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["GetSafetyQueue"]}
+            paths:
+              - /internal
+      - name: content-censor-GetSafetyContent-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://content-censor-service:8051/console-internal/v1/all_safety_content"
+        routes:
+          - name: content-censor-safety-GetSafetyContent-route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["GetSafetyContent"]}
+            paths:
+              - /internal
+      - name: content-censor-OpSafetyContent-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://content-censor-service:8051/console-internal/v1/op_safety_content"
+        routes:
+          - name: content-censor-safety-OpSafetyContent-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["OpSafetyContent"]}
+            paths:
+              - /internal
+      - name: content-censor-CancelOpSafetyContent-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://content-censor-service:8051/console-internal/v1/cancel_op_safety_content"
+        routes:
+          - name: content-censor-safety-CancelOpSafetyContent-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["CancelOpSafetyContent"]}
+            paths:
+              - /internal
+      - name: content-censor-GetOpReason-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://content-censor-service:8051/console-internal/v1/get_op_reason"
+        routes:
+          - name: content-censor-safety-GetOpReason-route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["GetOpReason"]}
+            paths:
+              - /internal
+
+    plugins:
+      - name: authentication
+        enabled: true
+      - name: prometheus
+        enabled: true
+        config:
+          status_code_metrics: true
+          latency_metrics: true
+          upstream_health_metrics: true
+          bandwidth_metrics: true
+          per_consumer: true

@@ -1,0 +1,14 @@
+FROM python:3.8.16-slim-bullseye
+#timezone config
+RUN cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN mkdir /home/apitest
+# create virtual env
+RUN python3 -m venv /home/apitest/venv
+ENV VIRTUAL_ENV=/home/apitest/venv
+ENV PATH="/home/apitest/venv/bin:$PATH"
+# install opencv requeirements
+RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
+# install requirements
+RUN python3 -m pip install pycryptodomex
+ENV PYTHONIOENCODING=utf-8
+# ENTRYPOINT ["pytest","-sv"]

@@ -1,0 +1,1439 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "console-subscribe-service",
+    "version": "v1.0.0"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/console-internal/v1/cur_recharge": {
+      "get": {
+        "summary": "后台获取当前待二次确认的充值记录详情\nroute: prefix=console-internal action=GetCurRechargeLog version=v1",
+        "operationId": "ConsoleRechargelogService_GetCurRechargeLog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeGetCurRechargeLogResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_id",
+            "description": "账号ID.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "ConsoleRechargelogService"
+        ]
+      }
+    },
+    "/console-internal/v1/last_three_month_bill_amount/all": {
+      "get": {
+        "summary": "根据多个accountID查找对应的最近三月账单金额\nroute: prefix=console-internal action=GetLatestRechargelogsByAccountIDList version=v1",
+        "operationId": "ConsoleRechargelogService_GetLastThreeMonthBillAmountsByAccountIDList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeGetLastThreeMonthBillAmountsByAccountIDListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_ids",
+            "description": "多个账户id 至少一个，最多100个.",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uint64"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "ConsoleRechargelogService"
+        ]
+      }
+    },
+    "/console-internal/v1/recharge": {
+      "post": {
+        "summary": "后台充值\nroute: prefix=console-internal action=Recharge version=v1",
+        "operationId": "ConsoleRechargelogService_Recharge",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/consolesubscribeRechargeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/consolesubscribeRechargeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleRechargelogService"
+        ]
+      }
+    },
+    "/console-internal/v1/recharge/account_amount": {
+      "post": {
+        "summary": "后台更新账户等级 最近三月金额 账户余额低于阈值\nroute: prefix=console-internal action=UpdateAccountAmountInfo version=v1",
+        "operationId": "ConsoleRechargelogService_UpdateAccountAmountInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeUpdateAccountAmountInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/subscribeUpdateAccountAmountInfoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleRechargelogService"
+        ]
+      }
+    },
+    "/console-internal/v1/recharge/account_amount_info": {
+      "get": {
+        "summary": "后台获取账户余额的账户信息\nroute: prefix=console-internal action=GetAccountAmountInfo version=v1",
+        "operationId": "ConsoleRechargelogService_GetAccountAmountInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeGetAccountAmountInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_id",
+            "description": "账号ID.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "ConsoleRechargelogService"
+        ]
+      }
+    },
+    "/console-internal/v1/recharge/accounts/second_confirm/count": {
+      "get": {
+        "summary": "获取多个accountID对应的待更新充值申请记录(也就是待二次确认的充值申请记录)数目\nroute: prefix=console-internal action=CountSecondConfirmRechargeLogByAccountIDs version=v1",
+        "operationId": "ConsoleRechargelogService_CountSecondConfirmRechargeLogByAccountIDs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeCountSecondConfirmRechargeLogByAccountIDsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_ids",
+            "description": "多个账户id 至少一个，最多100个.",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uint64"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "ConsoleRechargelogService"
+        ]
+      }
+    },
+    "/console-internal/v1/recharge/accounts/unprocessed/count": {
+      "get": {
+        "summary": "获取多个accountID对应的未处理充值申请记录数目\nroute: prefix=console-internal action=CountUnprocessedRechargelogByAccountIDs version=v1",
+        "operationId": "ConsoleRechargelogService_CountUnprocessedRechargelogByAccountIDs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeCountUnprocessedRechargelogByAccountIDsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_ids",
+            "description": "多个账户id 至少一个，最多100个.",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uint64"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "ConsoleRechargelogService"
+        ]
+      }
+    },
+    "/console-internal/v1/recharge/all": {
+      "get": {
+        "summary": "后台获取所有充值记录\nroute: prefix=console-internal action=GetAllRechargeLog version=v1",
+        "operationId": "ConsoleRechargelogService_GetAllRechargeLog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeGetAllRechargeLogResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_id",
+            "description": "账号ID.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "page_request.offset",
+            "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条; 默认值为0.\n返回本次请求返回的第一条记录实际位置(一般与输入一致).\n[EN] Optional, start position, value: \u003e = 0, 0 is the first line; the\ndefault value is 0. In response, actual offset of the first returned record\nis returned (generally equals to the offset in request).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.limit",
+            "description": "长度, 取值范围[1,100], 如果超出范围, 则返回失败;\n在某些接口中limit范围可能会重新定义, 请以其接口的补充说明为准. [EN] Length,\ndefault value range [1,100], if it is out of the range, error will be\nreturned; as the limit range may be redefined in some APIs, please refer to\nthe supplementary description of these APIs.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.total",
+            "description": "可选, 总数, 请求无须填此参数, 响应时填写.\n[EN] Optional, this parameter is not required for request, but will be\nfilled in response.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ConsoleRechargelogService"
+        ]
+      }
+    },
+    "/console-internal/v1/recharge/amount": {
+      "get": {
+        "summary": "后台获取用户账户余额\nroute: prefix=console-internal action=GetInternalAmount version=v1",
+        "operationId": "ConsoleRechargelogService_GetInternalAmount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeGetInternalAmountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_id",
+            "description": "账号ID.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "ConsoleRechargelogService"
+        ]
+      }
+    },
+    "/console-internal/v1/recharge/balance_logs": {
+      "get": {
+        "summary": "获取余额变更记录列表 GetBalancelogs\nroute: prefix=console-internal action=GetBalancelogs version=v1",
+        "operationId": "ConsoleRechargelogService_GetBalancelogs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeGetBalancelogsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_id",
+            "description": "账户ID.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "page_request.offset",
+            "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条; 默认值为0.\n返回本次请求返回的第一条记录实际位置(一般与输入一致).\n[EN] Optional, start position, value: \u003e = 0, 0 is the first line; the\ndefault value is 0. In response, actual offset of the first returned record\nis returned (generally equals to the offset in request).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.limit",
+            "description": "长度, 取值范围[1,100], 如果超出范围, 则返回失败;\n在某些接口中limit范围可能会重新定义, 请以其接口的补充说明为准. [EN] Length,\ndefault value range [1,100], if it is out of the range, error will be\nreturned; as the limit range may be redefined in some APIs, please refer to\nthe supplementary description of these APIs.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.total",
+            "description": "可选, 总数, 请求无须填此参数, 响应时填写.\n[EN] Optional, this parameter is not required for request, but will be\nfilled in response.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ConsoleRechargelogService"
+        ]
+      }
+    },
+    "/console-internal/v1/recharge/cancel": {
+      "post": {
+        "summary": "后台取消充值\nroute: prefix=console-internal action=CancelRecharge version=v1",
+        "operationId": "ConsoleRechargelogService_CancelRecharge",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeCancelRechargeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/subscribeCancelRechargeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleRechargelogService"
+        ]
+      }
+    },
+    "/console-internal/v1/recharge/create": {
+      "post": {
+        "summary": "后台直接充值\nroute: prefix=console-internal action=CreateRecharge version=v1",
+        "operationId": "ConsoleRechargelogService_CreateRecharge",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeCreateRechargeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/subscribeCreateRechargeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleRechargelogService"
+        ]
+      }
+    },
+    "/console-internal/v1/recharge/latest/all": {
+      "get": {
+        "summary": "根据多个accountID查找最新的充值申请记录\nroute: prefix=console-internal action=GetLatestRechargelogsByAccountIDList version=v1",
+        "operationId": "ConsoleRechargelogService_GetLatestRechargelogsByAccountIDList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeGetLatestRechargelogsByAccountIDListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_ids",
+            "description": "多个账户id 至少一个，最多100个.",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uint64"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "ConsoleRechargelogService"
+        ]
+      }
+    },
+    "/console-internal/v1/recharge/owed_amount": {
+      "post": {
+        "summary": "后台确认修改欠款金额\nroute: prefix=console-internal action=UpdateOwedAmount version=v1",
+        "operationId": "ConsoleRechargelogService_UpdateOwedAmount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeUpdateOwedAmountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/subscribeUpdateOwedAmountRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleRechargelogService"
+        ]
+      }
+    },
+    "/console-internal/v1/recharge/reject": {
+      "post": {
+        "summary": "后台驳回充值\nroute: prefix=console-internal action=RejectRecharge version=v1",
+        "operationId": "ConsoleRechargelogService_RejectRecharge",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeRejectRechargeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/subscribeRejectRechargeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleRechargelogService"
+        ]
+      }
+    },
+    "/console-internal/v1/recharge/second_confirm": {
+      "post": {
+        "summary": "后台二次确认充值\nroute: prefix=console-internal action=SecondConfirmationRecharge version=v1",
+        "operationId": "ConsoleRechargelogService_SecondConfirmationRecharge",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeSecondConfirmationRechargeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/subscribeSecondConfirmationRechargeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleRechargelogService"
+        ]
+      }
+    },
+    "/console-internal/v1/recharge/second_confirm/all": {
+      "get": {
+        "summary": "后台获取待二次确认状态下的所有充值记录\nroute: prefix=console-internal action=GetSecondConfirmationRechargelogList version=v1",
+        "operationId": "ConsoleRechargelogService_GetSecondConfirmationRechargelogList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeGetSecondConfirmationRechargelogListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page_request.offset",
+            "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条; 默认值为0.\n返回本次请求返回的第一条记录实际位置(一般与输入一致).\n[EN] Optional, start position, value: \u003e = 0, 0 is the first line; the\ndefault value is 0. In response, actual offset of the first returned record\nis returned (generally equals to the offset in request).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.limit",
+            "description": "长度, 取值范围[1,100], 如果超出范围, 则返回失败;\n在某些接口中limit范围可能会重新定义, 请以其接口的补充说明为准. [EN] Length,\ndefault value range [1,100], if it is out of the range, error will be\nreturned; as the limit range may be redefined in some APIs, please refer to\nthe supplementary description of these APIs.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.total",
+            "description": "可选, 总数, 请求无须填此参数, 响应时填写.\n[EN] Optional, this parameter is not required for request, but will be\nfilled in response.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ConsoleRechargelogService"
+        ]
+      }
+    },
+    "/console-internal/v1/recharge/unprocessed/all": {
+      "get": {
+        "summary": "后台获取有未处理充值申请记录的账户 未处理完成包括的状态有：待处理、待二次确认、驳回\nroute: prefix=console-internal action=GetUnprocessedRechargelogList version=v1",
+        "operationId": "ConsoleRechargelogService_GetUnprocessedRechargelogList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeGetUnprocessedRechargelogListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "recharge_at_list_order",
+            "description": "提交充值申请时间排列方式  0:降序排列  1:升序排列.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "page_request.offset",
+            "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条; 默认值为0.\n返回本次请求返回的第一条记录实际位置(一般与输入一致).\n[EN] Optional, start position, value: \u003e = 0, 0 is the first line; the\ndefault value is 0. In response, actual offset of the first returned record\nis returned (generally equals to the offset in request).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.limit",
+            "description": "长度, 取值范围[1,100], 如果超出范围, 则返回失败;\n在某些接口中limit范围可能会重新定义, 请以其接口的补充说明为准. [EN] Length,\ndefault value range [1,100], if it is out of the range, error will be\nreturned; as the limit range may be redefined in some APIs, please refer to\nthe supplementary description of these APIs.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.total",
+            "description": "可选, 总数, 请求无须填此参数, 响应时填写.\n[EN] Optional, this parameter is not required for request, but will be\nfilled in response.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ConsoleRechargelogService"
+        ]
+      }
+    },
+    "/console/v1/recharge/amount": {
+      "get": {
+        "summary": "获取账户余额\nroute: prefix=console action=GetAmount version=v1",
+        "operationId": "ConsoleRechargelogService_GetAmount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeGetAmountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "ConsoleRechargelogService"
+        ]
+      }
+    },
+    "/console/v1/recharge/apply": {
+      "post": {
+        "summary": "申请充值\nroute: prefix=console action=ApplyRecharge version=v1",
+        "operationId": "ConsoleRechargelogService_ApplyRecharge",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeApplyRechargeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/subscribeApplyRechargeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleRechargelogService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "commonListPage": {
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条; 默认值为0.\n返回本次请求返回的第一条记录实际位置(一般与输入一致).\n[EN] Optional, start position, value: \u003e = 0, 0 is the first line; the\ndefault value is 0. In response, actual offset of the first returned record\nis returned (generally equals to the offset in request)."
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "description": "长度, 取值范围[1,100], 如果超出范围, 则返回失败;\n在某些接口中limit范围可能会重新定义, 请以其接口的补充说明为准. [EN] Length,\ndefault value range [1,100], if it is out of the range, error will be\nreturned; as the limit range may be redefined in some APIs, please refer to\nthe supplementary description of these APIs."
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32",
+          "description": "可选, 总数, 请求无须填此参数, 响应时填写.\n[EN] Optional, this parameter is not required for request, but will be\nfilled in response."
+        }
+      }
+    },
+    "consolesubscribeRechargeRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "记录ID"
+        },
+        "money": {
+          "type": "string",
+          "format": "uint64",
+          "title": "金额"
+        },
+        "remark": {
+          "type": "string",
+          "title": "备注"
+        }
+      }
+    },
+    "consolesubscribeRechargeResponse": {
+      "type": "object"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string",
+          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+        },
+        "value": {
+          "type": "string",
+          "format": "byte",
+          "description": "Must be a valid serialized protocol buffer of the above specified type."
+        }
+      },
+      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\nExample 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\nExample 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := \u0026pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "subscribeAccountBssExtraInfo": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户id"
+        },
+        "last_three_month_bill_money": {
+          "type": "string",
+          "format": "uint64",
+          "title": "最近三月账单金额"
+        },
+        "empty_status": {
+          "type": "integer",
+          "format": "int64",
+          "title": "最近三月账单金额记录是否为空 0:不为空 1:为空"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "创建"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "更新时间"
+        }
+      }
+    },
+    "subscribeAccountLevel": {
+      "type": "string",
+      "enum": [
+        "ACCOUNT_LEVEL_UNDEFINED",
+        "ACCOUNT_LEVEL_A",
+        "ACCOUNT_LEVEL_C",
+        "ACCOUNT_LEVEL_D",
+        "ACCOUNT_LEVEL_N"
+      ],
+      "default": "ACCOUNT_LEVEL_UNDEFINED",
+      "description": "- ACCOUNT_LEVEL_A: A级客户 合作超过一年（含），无超过90天（含）逾期应收的公司现有全部客户\n - ACCOUNT_LEVEL_C: C级客户 合作超过一年（含），有超过90天（不含含）逾期、但未超过360天（含）的客户\n - ACCOUNT_LEVEL_D: D级客户 合作超过一年（含），有超过360天（不含）逾期的客户\n - ACCOUNT_LEVEL_N: N级客户 合作不到一年的新客户",
+      "title": "账户等级定义,具体定义见注释.\n[since] 2023-03-06,应crd需求添加.enum\nhttps://ones.ainewera.com/project/#/team/JNwe8qUX/task/BSFvCGGdbDSADlv8"
+    },
+    "subscribeApplyRechargeRequest": {
+      "type": "object",
+      "properties": {
+        "money": {
+          "type": "string",
+          "format": "uint64",
+          "title": "金额"
+        }
+      }
+    },
+    "subscribeApplyRechargeResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "申请记录id"
+        }
+      }
+    },
+    "subscribeBalancelogInfo": {
+      "type": "object",
+      "properties": {
+        "transaction_detail": {
+          "$ref": "#/definitions/walletTransactionDetail",
+          "title": "余额变更记录"
+        },
+        "user_name": {
+          "type": "string",
+          "title": "用户名称"
+        },
+        "nick_name": {
+          "type": "string",
+          "title": "nickname"
+        }
+      }
+    },
+    "subscribeCancelRechargeRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "记录ID"
+        }
+      }
+    },
+    "subscribeCancelRechargeResponse": {
+      "type": "object"
+    },
+    "subscribeCountSecondConfirmRechargeLogByAccountIDsResponse": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/subscribeSecondConfirmRechargeLogCountInfo"
+          },
+          "title": "多个accountID对应的待更新充值申请记录数目"
+        }
+      }
+    },
+    "subscribeCountUnprocessedRechargelogByAccountIDsResponse": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/subscribeUnprocessedRechargeLogCountInfo"
+          },
+          "title": "多个accountID对应的未处理充值申请记录数目"
+        }
+      }
+    },
+    "subscribeCreateRechargeRequest": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账号ID"
+        },
+        "money": {
+          "type": "string",
+          "format": "uint64",
+          "title": "金额"
+        },
+        "remark": {
+          "type": "string",
+          "title": "备注"
+        }
+      }
+    },
+    "subscribeCreateRechargeResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "申请记录id"
+        }
+      }
+    },
+    "subscribeGetAccountAmountInfoResponse": {
+      "type": "object",
+      "properties": {
+        "enterprise_name": {
+          "type": "string",
+          "title": "认证主体"
+        },
+        "the_last_three_months_bill_amount": {
+          "type": "string",
+          "format": "uint64",
+          "title": "最近三个月的账单金额"
+        },
+        "empty_status": {
+          "type": "integer",
+          "format": "int64",
+          "title": "最近三月账单金额记录是否为空 0:不为空 1:为空"
+        },
+        "account_amount_less_than": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户余额低于这个值的时候会发送消息,跟网吧一样,钱少了会提醒"
+        },
+        "account_level": {
+          "$ref": "#/definitions/subscribeAccountLevel",
+          "description": "账户等级.\n[since] 2023-03-06."
+        },
+        "account_amount": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户余额"
+        }
+      }
+    },
+    "subscribeGetAllRechargeLogResponse": {
+      "type": "object",
+      "properties": {
+        "all_infos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/subscribeRechargeLogInfo"
+          },
+          "title": "所有申请记录"
+        },
+        "page_response": {
+          "$ref": "#/definitions/commonListPage",
+          "title": "list返回对应的翻页：offset, total"
+        }
+      }
+    },
+    "subscribeGetAmountResponse": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户余额"
+        }
+      }
+    },
+    "subscribeGetBalancelogsResponse": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/subscribeBalancelogInfo"
+          },
+          "title": "余额变更记录"
+        },
+        "page_response": {
+          "$ref": "#/definitions/commonListPage",
+          "title": "list返回对应的翻页：offset, total"
+        }
+      }
+    },
+    "subscribeGetCurRechargeLogResponse": {
+      "type": "object",
+      "properties": {
+        "info": {
+          "$ref": "#/definitions/subscribeRechargeLogInfo",
+          "title": "申请记录"
+        },
+        "current_amount": {
+          "type": "string",
+          "format": "uint64",
+          "title": "当前账户余额"
+        }
+      }
+    },
+    "subscribeGetInternalAmountResponse": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户余额"
+        }
+      }
+    },
+    "subscribeGetLastThreeMonthBillAmountsByAccountIDListResponse": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/subscribeAccountBssExtraInfo"
+          },
+          "title": "最近三月账单金额列表"
+        },
+        "page_response": {
+          "$ref": "#/definitions/commonListPage",
+          "title": "list返回对应的翻页：offset, total"
+        }
+      }
+    },
+    "subscribeGetLatestRechargelogsByAccountIDListResponse": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/subscribeRechargeLogInfo"
+          },
+          "title": "所有申请记录"
+        },
+        "page_response": {
+          "$ref": "#/definitions/commonListPage",
+          "title": "list返回对应的翻页：offset, total"
+        }
+      }
+    },
+    "subscribeGetSecondConfirmationRechargelogListResponse": {
+      "type": "object",
+      "properties": {
+        "all_infos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/subscribeRechargeLogInfo"
+          },
+          "title": "所有申请记录"
+        },
+        "page_response": {
+          "$ref": "#/definitions/commonListPage",
+          "title": "list返回对应的翻页：offset, total"
+        }
+      }
+    },
+    "subscribeGetUnprocessedRechargelogListResponse": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/subscribeRechargeLogInfo"
+          },
+          "title": "所有申请记录"
+        },
+        "page_response": {
+          "$ref": "#/definitions/commonListPage",
+          "title": "list返回对应的翻页：offset, total"
+        }
+      }
+    },
+    "subscribeRechargeLogInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "记录id"
+        },
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户id"
+        },
+        "money": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户填写金额"
+        },
+        "realy_money": {
+          "type": "string",
+          "format": "uint64",
+          "title": "后台填写实际充值金额"
+        },
+        "status": {
+          "$ref": "#/definitions/subscribeRechargeLogStatus",
+          "title": "状态"
+        },
+        "mode": {
+          "$ref": "#/definitions/subscribeRechargeMode",
+          "title": "充值模式"
+        },
+        "remark": {
+          "type": "string",
+          "title": "备注"
+        },
+        "op_user": {
+          "type": "string",
+          "format": "uint64",
+          "title": "操作人id"
+        },
+        "user_name": {
+          "type": "string",
+          "title": "操作人name"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "用户提交时间"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "记录更新时间"
+        }
+      }
+    },
+    "subscribeRechargeLogStatus": {
+      "type": "string",
+      "enum": [
+        "RECHARGE_LOG_STATUS_NONE",
+        "RECHARGE_LOG_STATUS_WAIT",
+        "RECHARGE_LOG_STATUS_WAITCONFIRM",
+        "RECHARGE_LOG_STATUS_CONFIRM",
+        "RECHARGE_LOG_STATUS_REJECT",
+        "RECHARGE_LOG_STATUS_CANCEL"
+      ],
+      "default": "RECHARGE_LOG_STATUS_NONE",
+      "title": "- RECHARGE_LOG_STATUS_NONE: 未初始化状态，主要用于查询，无实际意义\n - RECHARGE_LOG_STATUS_WAIT: 待处理\n - RECHARGE_LOG_STATUS_WAITCONFIRM: 待二次确认\n - RECHARGE_LOG_STATUS_CONFIRM: 充值成功\n - RECHARGE_LOG_STATUS_REJECT: 驳回\n - RECHARGE_LOG_STATUS_CANCEL: 已取消"
+    },
+    "subscribeRechargeMode": {
+      "type": "string",
+      "enum": [
+        "RECHARGE_MODE_UNKOWN",
+        "RECHARGE_MODE_USER",
+        "RECHARGE_MODE_INTERNAL",
+        "RECHARGE_MODE_UPDATE"
+      ],
+      "default": "RECHARGE_MODE_UNKOWN",
+      "title": "- RECHARGE_MODE_UNKOWN: 未知模式，无实际意义\n - RECHARGE_MODE_USER: 用户申请\n - RECHARGE_MODE_INTERNAL: 后台直接充值\n - RECHARGE_MODE_UPDATE: 后台更新充值"
+    },
+    "subscribeRejectRechargeRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "记录ID"
+        }
+      }
+    },
+    "subscribeRejectRechargeResponse": {
+      "type": "object"
+    },
+    "subscribeSecondConfirmRechargeLogCountInfo": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户id"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "title": "accountID对应的待更新充值申请记录数目"
+        }
+      }
+    },
+    "subscribeSecondConfirmationRechargeRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "记录ID"
+        },
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户ID"
+        }
+      }
+    },
+    "subscribeSecondConfirmationRechargeResponse": {
+      "type": "object"
+    },
+    "subscribeUnprocessedRechargeLogCountInfo": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户id"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "title": "accountID对应的未处理充值申请记录数目"
+        }
+      }
+    },
+    "subscribeUpdateAccountAmountInfoRequest": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账号ID"
+        },
+        "account_level": {
+          "$ref": "#/definitions/subscribeAccountLevel",
+          "description": "账户等级."
+        },
+        "the_last_three_months_bill_amount": {
+          "type": "string",
+          "format": "uint64",
+          "title": "最近三个月的账单金额"
+        },
+        "empty_status": {
+          "type": "integer",
+          "format": "int64",
+          "title": "最近三月账单金额记录是否为空 0:不为空 1:为空"
+        },
+        "account_amount_less_than": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户余额低于这个值的时候会发送消息,跟网吧一样,钱少了会提醒"
+        }
+      }
+    },
+    "subscribeUpdateAccountAmountInfoResponse": {
+      "type": "object"
+    },
+    "subscribeUpdateOwedAmountRequest": {
+      "type": "object",
+      "properties": {
+        "bill_id": {
+          "type": "string",
+          "title": "账单编号"
+        },
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账号ID"
+        }
+      }
+    },
+    "subscribeUpdateOwedAmountResponse": {
+      "type": "object"
+    },
+    "walletAmount": {
+      "type": "object",
+      "properties": {
+        "cash_amount": {
+          "type": "string",
+          "format": "uint64",
+          "title": "现金金额"
+        }
+      },
+      "title": "金额"
+    },
+    "walletBalance": {
+      "type": "object",
+      "properties": {
+        "cash_balance": {
+          "type": "string",
+          "format": "uint64",
+          "title": "现金余额"
+        }
+      },
+      "title": "余额"
+    },
+    "walletTransactionAction": {
+      "type": "string",
+      "enum": [
+        "ACTION_RECHARGE_MANUAL",
+        "ACTION_RESET",
+        "ACTION_WITHDRAW",
+        "ACTION_DEDUCTION_MANUAL",
+        "ACTION_DEDUCTION_MANUAL_BILL",
+        "ACTION_DEDUCTION_MANUAL_ORDER",
+        "ACTION_DEDUCTION_AUTO_BILL",
+        "ACTION_DEDUCTION_AUTO_ORDER",
+        "ACTION_DEDUCTION_NONE"
+      ],
+      "default": "ACTION_RECHARGE_MANUAL",
+      "description": "- ACTION_RECHARGE_MANUAL: 充值 (手动)\n - ACTION_RESET: 回退\n - ACTION_WITHDRAW: 提现\n - ACTION_DEDUCTION_MANUAL: 扣费（手动）；同时也是扣费类型的最小值（这是规定）\n - ACTION_DEDUCTION_MANUAL_BILL: 账单扣费（手动）\n - ACTION_DEDUCTION_MANUAL_ORDER: 订单扣费（手动）\n - ACTION_DEDUCTION_AUTO_BILL: 账单扣减 (自动)\n - ACTION_DEDUCTION_AUTO_ORDER: 订单扣减 (自动)\n - ACTION_DEDUCTION_NONE: 占位符，用于判断扣费的最大值，这个值会随时间改变",
+      "title": "交易动作类型"
+    },
+    "walletTransactionDetail": {
+      "type": "object",
+      "properties": {
+        "transaction_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "交易id"
+        },
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户id"
+        },
+        "operator_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "操作人id"
+        },
+        "amount": {
+          "$ref": "#/definitions/walletAmount",
+          "title": "交易金额"
+        },
+        "balance": {
+          "$ref": "#/definitions/walletBalance",
+          "title": "交易后余额"
+        },
+        "charge_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "扣费id"
+        },
+        "action": {
+          "$ref": "#/definitions/walletTransactionAction",
+          "title": "交易动作类型"
+        },
+        "description": {
+          "type": "string",
+          "title": "流水描述（ json 格式 即 充值描述/ 回退描述）"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间, 系统自动生成.\n[EN] Creation time, automatically generated by system."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "修改时间, 系统自动生成.\n[EN] Updated time, automatically generated by system."
+        }
+      },
+      "title": "交易明细"
+    }
+  }
+}

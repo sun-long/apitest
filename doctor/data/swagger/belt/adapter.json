@@ -1,0 +1,3501 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "aide adapter apis",
+    "description": "海目适配器接口",
+    "contact": {}
+  },
+  "host": "xxx-staging.com",
+  "basePath": "/",
+  "securityDefinitions": {},
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/face/new_db": {
+      "post": {
+        "description": "创建一个静态库（需要对入库图片进行存储时调用）",
+        "summary": "NewDB",
+        "tags": [
+          "NewDB"
+        ],
+        "operationId": "NewDB",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "创建静态库消息体",
+            "schema": {
+              "$ref": "#/definitions/NewDBRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sucessfull response",
+            "schema": {
+              "$ref": "#/definitions/NewDBResponse"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/v1/face/delete_db": {
+      "post": {
+        "description": "删除指定静态库（需要对相应库中所有图片一并删除时调用）",
+        "summary": "DeleteDB",
+        "tags": [
+          "DeleteDB"
+        ],
+        "operationId": "DeleteDB",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "删除静态库消息体",
+            "schema": {
+              "$ref": "#/definitions/DeleteDBRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sucessfull response",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/v1/face/batch_add_image_to_db": {
+      "post": {
+        "description": "批量图片解析并入静态库",
+        "summary": "BatchAddImageToDB",
+        "tags": [
+          "BatchAddImageToDB"
+        ],
+        "operationId": "BatchAddImageToDB",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "批量图片解析并入静态库消息体",
+            "schema": {
+              "$ref": "#/definitions/BatchAddImageToDBRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sucessfull response",
+            "schema": {
+              "$ref": "#/definitions/BatchAddImageToDBResponse"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/v1/face/delete_image_from_db": {
+      "post": {
+        "description": "从指定静态库中删除指定特征并删除相应的图片.",
+        "summary": "DeleteImageFromDB",
+        "tags": [
+          "DeleteImageFromDB"
+        ],
+        "operationId": "DeleteImageFromDB",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "从指定静态库中删除指定特征并删除相应的图片库消息体",
+            "schema": {
+              "$ref": "#/definitions/DeleteImageFromDBRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sucessfull response",
+            "schema": {
+              "$ref": "#/definitions/DeleteImageFromDBResponse"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/{db_type}-feature/v1/databases/{col_id}/batch_add": {
+      "post": {
+        "description": "将批量特征入指定静态库.",
+        "summary": "FeatureBatchAdd",
+        "tags": [
+          "FeatureBatchAdd"
+        ],
+        "operationId": "FeatureBatchAdd",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "db_type",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "库类型，取值为alert或static, alert为布控库, static为静态大库, identification为身份置信库."
+          },
+          {
+            "name": "col_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "库ID, 范围:UUIDv4格式."
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "将批量特征入指定静态库消息体",
+            "schema": {
+              "$ref": "#/definitions/FeatureBatchAddRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sucessfull response",
+            "schema": {
+              "$ref": "#/definitions/FeatureBatchAddResponse"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/v1/face/detect_and_extract": {
+      "post": {
+        "description": "单张图片，提取人脸特征及属性.",
+        "summary": "DetectAndExtract",
+        "tags": [
+          "DetectAndExtract"
+        ],
+        "operationId": "DetectAndExtract",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "单张图片，提取人脸特征及属性消息体",
+            "schema": {
+              "$ref": "#/definitions/DetectAndExtractRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sucessfull response",
+            "schema": {
+              "$ref": "#/definitions/DetectAndExtractResponse"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/v1/face/compare_one_to_one": {
+      "post": {
+        "description": "图片1：1比对.",
+        "summary": "CompareOneToOne",
+        "tags": [
+          "CompareOneToOne"
+        ],
+        "operationId": "CompareOneToOne",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "图片1：1比对消息体",
+            "schema": {
+              "$ref": "#/definitions/CompareOneToOneRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sucessfull response",
+            "schema": {
+              "$ref": "#/definitions/CompareOneToOneResponse"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/v1/face/search_image_in_dbs": {
+      "post": {
+        "description": "针对指定静态库进行图片1：N比对.",
+        "summary": "SearchImageInDBs",
+        "tags": [
+          "SearchImageInDBs"
+        ],
+        "operationId": "SearchImageInDBs",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "针对指定静态库进行图片1：N比对消息体",
+            "schema": {
+              "$ref": "#/definitions/SearchImageInDBsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sucessfull response",
+            "schema": {
+              "$ref": "#/definitions/SearchImageInDBsResponse"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/{db_type}-feature/v1/databases/{col_id}/batch_search": {
+      "post": {
+        "description": "在指定静态库（单库）中进行特征1：N检索, 置信身份库模式下该接口不可用.",
+        "summary": "FeatureBatchSearch",
+        "tags": [
+          "FeatureBatchSearch"
+        ],
+        "operationId": "FeatureBatchSearch",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "db_type",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "库类型，取值为alert或static, alert为布控库, static为静态大库, identification为身份置信库."
+          },
+          {
+            "name": "col_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "库ID, 范围:UUIDv4格式."
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "消息体",
+            "schema": {
+              "$ref": "#/definitions/FeatureBatchSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sucessfull response",
+            "schema": {
+              "$ref": "#/definitions/FeatureBatchSearchResponse"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/{db_type}-feature/v1/databases/{col_id}/batch_get_by_key": {
+      "post": {
+        "description": "通过用户自定义key在指定静态库中批量获取特征.",
+        "summary": "FeatureBatchGetByKey",
+        "tags": [
+          "FeatureBatchGetByKey"
+        ],
+        "operationId": "FeatureBatchGetByKey",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "db_type",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "库类型，取值为alert或static, alert为布控库, static为静态大库, identification为身份置信库."
+          },
+          {
+            "name": "col_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "库ID, 范围:UUIDv4格式."
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "消息体",
+            "schema": {
+              "$ref": "#/definitions/FeatureBatchGetByKeyRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sucessfull response",
+            "schema": {
+              "$ref": "#/definitions/FeatureBatchGetByKeyResponse"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/v1/tasks": {
+      "post": {
+        "description": "新建任务",
+        "summary": "TaskNew",
+        "tags": [
+          "TaskNew"
+        ],
+        "operationId": "TaskNew",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "消息体",
+            "schema": {
+              "$ref": "#/definitions/TaskNewRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sucessfull response",
+            "schema": {
+              "$ref": "#/definitions/TaskNewResponse"
+            },
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "查询任务列表请求. 输入参数page_response.limit 取值范围[1,100000], 如果超出范围, 则返回失败.建议实际使用中不要设置很大的值, 项目中实测10000条记录的返回时间大约为2分钟.",
+        "summary": "TaskList",
+        "tags": [
+          "TaskList"
+        ],
+        "operationId": "TaskList",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page_request.offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "description": "可选, 开始位置, 取值:>=0, 0为第一条; 默认值为0. 返回本次请求返回的第一条记录实际位置(一般与输入一致)."
+          },
+          {
+            "name": "page_request.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "description": "长度, 取值范围[1,100], 如果超出范围, 则返回失败; 在某些接口中limit范围可能会重新定义, 请以其接口的补充说明为准."
+          },
+          {
+            "name": "page_request.total",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "description": "可选, 总任务数, 请求无须填此参数, 响应时填写."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sucessfull response",
+            "schema": {
+              "$ref": "#/definitions/TaskListResponse"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/v1/tasks/{task_id}": {
+      "delete": {
+        "description": "删除任务请求.",
+        "summary": "TaskDelete",
+        "tags": [
+          "TaskDelete"
+        ],
+        "operationId": "TaskDelete",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": "任务ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sucessfull response",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/v1/compare_feature": {
+      "post": {
+        "description": "特征1：1比对.",
+        "summary": "CompareFeature",
+        "tags": [
+          "CompareFeature"
+        ],
+        "operationId": "CompareFeature",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "消息体",
+            "schema": {
+              "$ref": "#/definitions/CompareFeatureRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sucessfull response",
+            "schema": {
+              "$ref": "#/definitions/CompareFeatureResponse"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/_/{bucket_name}/{object_key}": {
+      "get": {
+        "description": "以二进制形式下载 Object 数据.",
+        "summary": "DownloadObject",
+        "tags": [
+          "DownloadObject"
+        ],
+        "operationId": "DownloadObject",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "bucket_name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "object_key",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sucessfull response",
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "NewDBRequest": {
+      "title": "NewDBRequest",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "特征库名称",
+          "type": "string"
+        },
+        "feature_version": {
+          "description": "特征版本",
+          "type": "integer",
+          "format": "int32"
+        },
+        "description": {
+          "description": "特征库描述",
+          "type": "string"
+        },
+        "db_size": {
+          "description": "预估的特征库大小",
+          "type": "string"
+        },
+        "create_bucket": {
+          "description": "创建与该特征库对应的OSG bucket, 默认是否.",
+          "type": "boolean",
+          "default": "false"
+        },
+        "type": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Type"
+            },
+            {
+              "description": "特征库类型",
+              "default": "STATIC_FEATURE_DB"
+            }
+          ]
+        },
+        "extra_db_type": {
+          "description": "当type为EXTRA_FEATURE_DB时需指定",
+          "type": "string"
+        },
+        "bucket_flattened": {
+          "description": "OSG bucket中的文件是否展开.",
+          "type": "boolean"
+        },
+        "bucket_encrypt": {
+          "description": "OSG bucket是否加密.",
+          "type": "boolean"
+        },
+        "enable_isolated_feature_table": {
+          "description": "特征库单独创建特征表选项.当前只有特征库的cassandra模式支持, 且只有超过1000W特征的库才建议设置 [SINCE v4.1.0].",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "feature_version",
+        "description",
+        "db_size",
+        "create_bucket",
+        "type"
+      ]
+    },
+    "NewDBResponse": {
+      "title": "NewDBResponse",
+      "type": "object",
+      "properties": {
+        "db_id": {
+          "description": "特征库ID",
+          "type": "string"
+        }
+      }
+    },
+    "DeleteDBRequest": {
+      "title": "DeleteDBRequest",
+      "type": "object",
+      "properties": {
+        "db_id": {
+          "description": "特征库ID",
+          "type": "string"
+        },
+        "delete_bucket": {
+          "description": "同时删除与该 DB 对应的 OSG bucket, 默认是否",
+          "type": "boolean",
+          "default": "false"
+        },
+        "type": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Type"
+            },
+            {
+              "description": "特征库类型",
+              "default": "STATIC_FEATURE_DB"
+            }
+          ]
+        },
+        "extra_db_type": {
+          "description": "当type为EXTRA_FEATURE_DB时需指定",
+          "type": "string"
+        }
+      },
+      "required": [
+        "db_id",
+        "delete_bucket",
+        "type"
+      ]
+    },
+    "BatchAddImageToDBRequest": {
+      "title": "BatchAddImageToDBRequest",
+      "type": "object",
+      "properties": {
+        "db_id": {
+          "description": "特征库ID",
+          "type": "string"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
+        },
+        "save_images": {
+          "description": "可选, 是否存储图片到OSG, 默认为否. 如果为false, 则需要在 commonapis.Image 中同时填入 data 和 url.",
+          "type": "boolean",
+          "default": "false"
+        },
+        "type": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Type"
+            },
+            {
+              "description": "特征库类型",
+              "default": "STATIC_FEATURE_DB"
+            }
+          ]
+        },
+        "extra_db_type": {
+          "description": "当type为EXTRA_FEATURE_DB时需指定",
+          "type": "string"
+        },
+        "auto_rotation": {
+          "description": "是否开启图片旋转纠正功能. [SINCE V4.0.0].",
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "db_id",
+        "images",
+        "save_images",
+        "type"
+      ]
+    },
+    "Image": {
+      "title": "Image",
+      "type": "object",
+      "properties": {
+        "image": {
+          "$ref": "#/definitions/ImageCell"
+        },
+        "key": {
+          "description": "可选, 静态库用户自定义key.",
+          "type": "string"
+        },
+        "extra_info": {
+          "type": "string"
+        },
+        "quality_threshold": {
+          "description": "输入图片质量分数低于该阈值则报错. 只在使用 FaceSelectionMode 时起作用.",
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "ImageCell": {
+      "title": "ImageCell",
+      "type": "object",
+      "properties": {
+        "image": {
+          "$ref": "#/definitions/BasicImage"
+        },
+        "bounding": {
+          "$ref": "#/definitions/Vertices"
+        },
+        "face_selection": {
+          "description": "可选, 自动人脸选择模式, 默认为LargestFace.",
+          "type": "string",
+          "default": "LargestFace"
+        }
+      }
+    },
+    "BasicImage": {
+      "title": "BasicImage",
+      "type": "object",
+      "properties": {
+        "format": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Format"
+            },
+            {
+              "description": "可选, 图片格式, 一般情况下不需要填写, 系统自动解析."
+            }
+          ]
+        },
+        "data": {
+          "description": "可选, 原始图片数据, 使用JSON编码是传入图片内容的Base64编码字符串.",
+          "type": "string"
+        },
+        "url": {
+          "description": "可选, 图片id, 用于标识图片 [SINCE v4.2.0].",
+          "type": "string"
+        },
+        "image_id": {
+          "type": "string"
+        },
+        "cache_url": {
+          "description": "可选，图片缓存url [SINCE v4.2.0].",
+          "type": "string"
+        }
+      }
+    },
+    "Vertices": {
+      "title": "Vertices",
+      "type": "object",
+      "properties": {
+        "vertices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Vertex"
+          }
+        }
+      }
+    },
+    "Vertex": {
+      "title": "Vertex",
+      "type": "object",
+      "properties": {
+        "X": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Y": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "X",
+        "Y"
+      ]
+    },
+    "BatchAddImageToDBResponse": {
+      "title": "BatchAddImageToDBResponse",
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonApiResults"
+          }
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/batchAddImageToDBResponseItem"
+          }
+        }
+      },
+      "required": [
+        "results",
+        "items"
+      ]
+    },
+    "batchAddImageToDBResponseItem": {
+      "title": "batchAddImageToDBResponseItem",
+      "type": "object",
+      "properties": {
+        "feature_id": {
+          "description": "特征库特征id",
+          "type": "string"
+        },
+        "image_url": {
+          "description": "入库OSG图片路径. 如save_images为false的话, 返回用户输入的图片url.",
+          "type": "string"
+        },
+        "face_info": {
+          "$ref": "#/definitions/imageProcessObjectAnnotation"
+        },
+        "orientation_type": {
+          "$ref": "#/definitions/OrientationType"
+        }
+      }
+    },
+    "DeleteImageFromDBRequest": {
+      "title": "DeleteImageFromDBRequest",
+      "type": "object",
+      "properties": {
+        "db_id": {
+          "description": "特征库ID",
+          "type": "string"
+        },
+        "key": {
+          "description": "可选, 与feature_id二选一, 用户自定义key优先级较高, 通过用户自定义key指定需要删除的记录（可能多个）. 用用户自定义key删除时不能保证原子性",
+          "type": "string"
+        },
+        "feature_id": {
+          "description": "可选, 与key二选一, 使用系统返回的特征id来指定需要删除的记录.",
+          "type": "string"
+        },
+        "delete_image": {
+          "description": "从特征库删除记录之后, 是否从OSG删除其对应的图片, 默认是否.",
+          "type": "boolean",
+          "default": "false"
+        },
+        "type": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Type"
+            },
+            {
+              "description": "特征库类型",
+              "default": "STATIC_FEATURE_DB"
+            }
+          ]
+        },
+        "extra_db_type": {
+          "description": "当type为EXTRA_FEATURE_DB时需指定",
+          "type": "string"
+        }
+      },
+      "required": [
+        "db_id",
+        "delete_image",
+        "type"
+      ]
+    },
+    "DeleteImageFromDBResponse": {
+      "title": "DeleteImageFromDBResponse",
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonApiResults"
+          }
+        },
+        "key": {
+          "description": "特征库中删除的用户自定义key.",
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/wrapperDeleteImageFromDBResponseItem"
+          }
+        }
+      }
+    },
+    "imageProcessObjectAnnotation": {
+      "title": "imageProcessObjectAnnotation",
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/Type3"
+        },
+        "face": {
+          "$ref": "#/definitions/Face"
+        },
+        "pedestrian": {
+          "$ref": "#/definitions/Pedestrian"
+        },
+        "automobile": {
+          "$ref": "#/definitions/basicAttributes"
+        },
+        "human_powered_vehicle": {
+          "$ref": "#/definitions/basicAttributes"
+        },
+        "cyclist": {
+          "$ref": "#/definitions/basicAttributes"
+        },
+        "crowd": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Crowd"
+            },
+            {
+              "description": "人群识别信息 [SINCE v2.0.0]."
+            }
+          ]
+        },
+        "event": {
+          "$ref": "#/definitions/Event"
+        },
+        "portrait_image_location": {
+          "$ref": "#/definitions/PortraitImageLocation"
+        },
+        "object_id": {
+          "description": "全局唯一对象ID, 同一个对象的多个部分(如人脸和对应的行人) 并且在同一个跟踪过程的不同图片, 共享同一个object_id [SINCE v1.3.0].",
+          "type": "string"
+        },
+        "associations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Association"
+          }
+        },
+        "algo": {
+          "$ref": "#/definitions/Algo"
+        },
+        "diagnosis": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Diagnosis"
+            },
+            {
+              "description": "视频源诊断信息 [EXPERIMENTAL]."
+            }
+          ]
+        },
+        "diagnose_summaries": {
+          "description": "诊断结果汇总.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DiagnoseSummary"
+          }
+        },
+        "carplate": {
+          "$ref": "#/definitions/Carplate"
+        },
+        "watercraft": {
+          "$ref": "#/definitions/Watercraft"
+        },
+        "trajectory": {
+          "$ref": "#/definitions/Trajectory"
+        },
+        "other": {
+          "$ref": "#/definitions/Other"
+        }
+      }
+    },
+    "associatedObjectInfo": {
+      "title": "associatedObjectInfo",
+      "type": "object",
+      "properties": {
+        "portrait_image": {
+          "$ref": "#/definitions/BasicImage"
+        },
+        "feature": {
+          "$ref": "#/definitions/commonapisObjectFeature"
+        },
+        "object": {
+          "type": "object"
+        },
+        "camera_info": {
+          "$ref": "#/definitions/commonapisCameraInfo"
+        },
+        "panoramic_image": {
+          "$ref": "#/definitions/BasicImage"
+        },
+        "captured_time": {
+          "description": "抓拍时间戳, 实时视频流或抓拍机图片流可用.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "received_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "接收时间戳, 实时视频流或抓拍机图片流可用."
+        },
+        "object_index_in_frame": {
+          "type": "integer",
+          "description": "当前目标在全图中的序号."
+        },
+        "extra_info": {
+          "type": "string",
+          "description": "附加信息."
+        },
+        "track_event": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TrackEvent"
+            },
+            {
+              "description": "目标跟踪状态."
+            }
+          ]
+        },
+        "relative_time": {
+          "type": "string",
+          "description": "物体出现时间相对视频开始的时间戳, 单位为秒, 离线视频流可用, 格式:xxx.yyys, 如\"40.321s\" [SINCE v2.0.0]."
+        },
+        "ns_id": {
+          "type": "string",
+          "description": "可选, 名字空间标识, 范围:^[0-9a-z]{5-14}$ [SINCE v3.0.0]."
+        },
+        "extra_fields": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "producer_annotation": {
+          "$ref": "#/definitions/ProducerAnnotation"
+        }
+      }
+    },
+    "processCrowdIncident": {
+      "title": "processCrowdIncident",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "告警事件ID. 注意：该字段在后续版本弃用，请减少对此字段的依赖，UUID字段替换此字段.",
+          "type": "string"
+        },
+        "type": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Type5"
+            },
+            {
+              "description": "告警事件类型."
+            }
+          ]
+        },
+        "status": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Status1"
+            },
+            {
+              "description": "告警事件状态."
+            }
+          ]
+        },
+        "start_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "告警事件开始时间."
+        },
+        "stop_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "告警事件结束时间."
+        },
+        "update_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "告警事件最近一次更新的时间."
+        },
+        "uuid": {
+          "type": "string",
+          "description": "告警事件UUID."
+        }
+      }
+    },
+    "basicAttributes": {
+      "title": "basicAttributes",
+      "type": "object",
+      "properties": {
+        "quality": {
+          "description": "特征质量(注:如对象不含特征则返回0) [DEPRECATED].",
+          "type": "number",
+          "format": "double"
+        },
+        "rectangle": {
+          "$ref": "#/definitions/Vertices"
+        },
+        "track_id": {
+          "description": "物体跟踪ID, 仅保证本次视频源连接中递增, 全局或重连后不唯一 [DEPRECATED].",
+          "type": "integer",
+          "format": "int64"
+        },
+        "attributes_with_score": {
+          "description": "人脸属性信息, 带属性分数 [SINCE v1.3.0].",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/attributesWithScore1"
+          }
+        }
+      }
+    },
+    "attributesWithScore1": {
+      "title": "attributesWithScore1",
+      "description": "带分数的属性类型.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Type4"
+            },
+            {
+              "description": "属性类型."
+            }
+          ]
+        },
+        "category": {
+          "description": "属性分类取值.",
+          "type": "string"
+        },
+        "value": {
+          "description": "属性置信度或回归问题取值.",
+          "type": "number",
+          "format": "double"
+        },
+        "roi": {
+          "$ref": "#/definitions/Vertices"
+        }
+      }
+    },
+    "wrapperDeleteImageFromDBResponseItem": {
+      "title": "wrapperDeleteImageFromDBResponseItem",
+      "type": "object",
+      "properties": {
+        "feature_id": {
+          "description": "特征库中删除的特征id.",
+          "type": "string"
+        },
+        "image_url": {
+          "description": "删除的OSG图片路径, 如果没有保存在OSG中, 则返回用户之前在图片入库时输入的url.",
+          "type": "string"
+        }
+      }
+    },
+    "FeatureBatchAddRequest": {
+      "title": "FeatureBatchAddRequest",
+      "type": "object",
+      "properties": {
+        "col_id": {
+          "description": "库ID, 范围:UUIDv4格式.",
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dbFeatureItem"
+          }
+        }
+      }
+    },
+    "FeatureBatchAddResponse": {
+      "title": "FeatureBatchAddResponse",
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonApiResults"
+          }
+        },
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "dbFeatureItem": {
+      "title": "dbFeatureItem",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "可选(入库作为输入时), 特征唯一标识, 范围：^[0-9a-z]{48}$."
+        },
+        "seq_id": {
+          "type": "string",
+          "description": "可选(入库作为输入时), 特征序列号."
+        },
+        "feature": {
+          "$ref": "#/definitions/commonapisObjectFeature"
+        },
+        "image_id": {
+          "type": "string",
+          "description": "特征对应图片的ID."
+        },
+        "extra_info": {
+          "type": "string",
+          "description": "可选, 业务附带额外信息, 不超过1KB. 该字段明文存储数据, 建议不要存储敏感数据, 如有必要可自行加密后提供密文数据."
+        },
+        "meta_data": {
+          "type": "string",
+          "description": "可选, 图片信息, 如俯仰角, 黑白等信息."
+        },
+        "key": {
+          "type": "string",
+          "description": "可选, 用户自定义key. 该字段明文存储数据, 建议不要存储敏感数据, 如有必要可自行加密后提供密文数据."
+        }
+      }
+    },
+    "DetectAndExtractRequest": {
+      "title": "DetectAndExtractRequest",
+      "type": "object",
+      "properties": {
+        "image": {
+          "$ref": "#/definitions/Image1"
+        },
+        "feature_version": {
+          "description": "integer <int32> (可选, 特征版本, 默认使用配置中的特征版本 [SINCE v3.0.0]",
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "DetectAndExtractResponse": {
+      "title": "DetectAndExtractResponse",
+      "type": "object",
+      "properties": {
+        "annotation": {
+          "$ref": "#/definitions/imageProcessObjectAnnotation"
+        },
+        "feature": {
+          "$ref": "#/definitions/commonapisObjectFeature"
+        }
+      }
+    },
+    "CompareOneToOneRequest": {
+      "title": "CompareOneToOneRequest",
+      "type": "object",
+      "properties": {
+        "one": {
+          "$ref": "#/definitions/ImageCell"
+        },
+        "other": {
+          "$ref": "#/definitions/ImageCell"
+        },
+        "feature_version": {
+          "description": "integer <int32> (可选, 特征版本, 默认使用配置中的特征版本 [SINCE v3.0.0]",
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "CompareOneToOneResponse": {
+      "title": "CompareOneToOneResponse",
+      "type": "object",
+      "properties": {
+        "score": {
+          "description": "图片1:1比对",
+          "type": "integer",
+          "format": "int32"
+        },
+        "one": {
+          "$ref": "#/definitions/imageProcessObjectAnnotation"
+        },
+        "other": {
+          "$ref": "#/definitions/imageProcessObjectAnnotation"
+        }
+      }
+    },
+    "SearchImageInDBsRequest": {
+      "title": "SearchImageInDBsRequest",
+      "type": "object",
+      "properties": {
+        "image": {
+          "$ref": "#/definitions/ImageCell"
+        },
+        "dbs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Db"
+          }
+        },
+        "type": {
+          "type": "string"
+        },
+        "dropped_fields": {
+          "description": "可选, 丢弃一部分搜索响应字段的信息 [SINCE v2.2.0].",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DroppedField"
+          }
+        },
+        "extra_db_type": {
+          "description": "可选, 当type为EXTRA_FEATURE_DB时需指定 [SINCE v3.0.0].",
+          "type": "string"
+        }
+      }
+    },
+    "SearchImageInDBsResponse": {
+      "title": "SearchImageInDBsResponse",
+      "type": "object",
+      "properties": {
+        "results": {
+          "$ref": "#/definitions/commonApiResults"
+        },
+        "search_results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SearchResult"
+          }
+        },
+        "query_face_info": {
+          "$ref": "#/definitions/imageProcessObjectAnnotation"
+        }
+      }
+    },
+    "FeatureBatchSearchRequest": {
+      "title": "FeatureBatchSearchRequest",
+      "type": "object",
+      "properties": {
+        "col_id": {
+          "description": "库ID, 范围:UUIDv4格式.",
+          "type": "string"
+        },
+        "feature": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonapisObjectFeature"
+          }
+        },
+        "consistency": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Consistency"
+            },
+            {
+              "description": "可选, 读取策略, 范围:[READ_ANY, READ_MASTER_ONLY, READ_SLAVE_ONLY]."
+            }
+          ]
+        },
+        "top_k": {
+          "description": "需要top_k个最相似的结果, 范围:(0, 1024].",
+          "type": "integer",
+          "format": "int32"
+        },
+        "min_score": {
+          "description": "可选, 结果需要满足的最低相似度. 范围:[0.0, 1.0], (默认为0.0).",
+          "type": "number",
+          "default": 0,
+          "format": "double"
+        },
+        "return_raw_feature": {
+          "description": "可选, 是否返回原始feature向量.",
+          "type": "boolean"
+        },
+        "dropped_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "FeatureBatchSearchResponse": {
+      "title": "FeatureBatchSearchResponse",
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonApiResults"
+          }
+        },
+        "feature_results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/innerFeatureBatchSearchResponseSimilarResult"
+          }
+        },
+        "col_id": {
+          "description": "库ID, 范围:UUIDv4格式.",
+          "type": "string"
+        },
+        "is_refined": {
+          "description": "可选, 是否已经精搜过, 范围:[true, false].",
+          "type": "boolean"
+        }
+      }
+    },
+    "innerFeatureBatchSearchResponseSimilarResult": {
+      "title": "innerFeatureBatchSearchResponseSimilarResult",
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "FeatureBatchGetByKeyRequest": {
+      "title": "FeatureBatchGetByKeyRequest",
+      "type": "object",
+      "properties": {
+        "col_id": {
+          "description": "库ID, 范围:UUIDv4格式.",
+          "type": "string"
+        },
+        "consistency": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Consistency"
+            },
+            {
+              "description": "可选, 读取策略, 范围:[READ_ANY, READ_MASTER_ONLY, READ_SLAVE_ONLY]."
+            }
+          ]
+        },
+        "ignore_details": {
+          "description": "可选, 为True时只返回id、seqid以及key.",
+          "type": "boolean"
+        },
+        "keys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "FeatureBatchGetByKeyResponse": {
+      "title": "FeatureBatchGetByKeyResponse",
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonApiResults"
+          }
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Item"
+          }
+        }
+      },
+      "required": [
+        "results",
+        "items"
+      ]
+    },
+    "TaskNewRequest": {
+      "title": "TaskNewRequest",
+      "type": "object",
+      "properties": {
+        "task": {
+          "$ref": "#/definitions/taskItem"
+        }
+      }
+    },
+    "TaskNewResponse": {
+      "title": "TaskNewResponse",
+      "type": "object",
+      "properties": {
+        "task": {
+          "$ref": "#/definitions/taskItem"
+        }
+      }
+    },
+    "TaskListResponse": {
+      "title": "TaskListResponse",
+      "type": "object",
+      "properties": {
+        "page_response": {
+          "$ref": "#/definitions/PageResponse"
+        },
+        "tasks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Task"
+          }
+        }
+      }
+    },
+    "CompareFeatureRequest": {
+      "title": "CompareFeatureRequest",
+      "type": "object",
+      "properties": {
+        "one": {
+          "$ref": "#/definitions/commonapisObjectFeature"
+        },
+        "other": {
+          "$ref": "#/definitions/commonapisObjectFeature"
+        }
+      }
+    },
+    "CompareFeatureResponse": {
+      "title": "CompareFeatureResponse",
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "taskItem": {
+      "title": "taskItem",
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string",
+          "description": "可选, 任务id, 长度为23字节, 包含manager id(4位) + timestamp(17位) + sequence(2位). TaskNewRequest里面不用填写,vps manager分配ID并填写到响应报文TaskNewResponse, 如:10002016061718222627096."
+        },
+        "object_type": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ObjectType"
+            },
+            {
+              "description": "VIPER平台支持物体对象类型.",
+              "default": "OBJECT_UNKNOWN"
+            }
+          ]
+        },
+        "source_address": {
+          "description": "视频流rtsp地址(格式见engine-video-ingress-service.proto的说明). 地址必须以\"rtsp://\"开头.",
+          "type": "string"
+        },
+        "camera_info": {
+          "$ref": "#/definitions/commonapisCameraInfo"
+        },
+        "creation_time": {
+          "description": "可选, 任务创建时间(响应时填写).",
+          "type": "string"
+        },
+        "feature_version": {
+          "description": "可选, [暂未实现], 任务输出特征版本, 如不填写则为系统默认版本.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "task_object_config": {
+          "$ref": "#/definitions/TaskObjectConfig"
+        },
+        "video_parameter": {
+          "$ref": "#/definitions/VideoParameter"
+        },
+        "storage_policy": {
+          "$ref": "#/definitions/StoragePolicy"
+        },
+        "ns_id": {
+          "description": "可选, 名字空间标识, 范围:^[0-9a-z]{5-14}$ [SINCE v3.0.0].",
+          "type": "string"
+        },
+        "schedule_config": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ScheduleConfig"
+            },
+            {
+              "description": "可选, 任务调度相关配置 [SINCE v3.0.0]."
+            }
+          ]
+        },
+        "task_user_data": {
+          "description": "可选, 任务用户数据 [SINCE v4.2.0].",
+          "type": "string"
+        },
+        "config_udpate_time": {
+          "description": "可选, 更新task相关配置 [SINCE v4.5.0].",
+          "type": "string"
+        }
+      }
+    },
+    "storageConfig": {
+      "title": "storageConfig",
+      "type": "object",
+      "properties": {
+        "kafka": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Kafka"
+            },
+            {
+              "description": "kafka存储配置."
+            }
+          ]
+        },
+        "osg": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Osg"
+            },
+            {
+              "description": "OSG存储配置."
+            }
+          ]
+        },
+        "gat1400": {
+          "$ref": "#/definitions/Gat1400"
+        }
+      }
+    },
+    "crowdConfigV2": {
+      "title": "crowdConfigV2",
+      "description": "人群分析配置, 任务object_type为OBJECT_CROWD有效 [SINCE v3.2.0].",
+      "type": "object",
+      "properties": {
+        "realtime_analysis_config": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/RealtimeAnalysisConfig"
+            },
+            {
+              "description": "人群实时分析配置 [SINCE v3.2.0]."
+            }
+          ]
+        },
+        "head_target_config": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/HeadTargetConfig"
+            },
+            {
+              "description": "人头点实时分析 [SINCE v3.2.0]."
+            }
+          ]
+        },
+        "density_map_config": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/DensityMapConfig"
+            },
+            {
+              "description": "实时密度图分析 [SINCE v3.2.0]."
+            }
+          ]
+        }
+      }
+    },
+    "crowdConfig": {
+      "title": "crowdConfig",
+      "description": "人群配置实时分析配置, 任务object_type为OBJECT_CROWD有效, 此字段废弃, 推荐使用 \"crowd_v2\" 字段 [DEPRECATED]. 当object_type为OBJECT_CROWD且crowd_config为空时, 人群ROI为全屏检测, 过密告警阈值较高, 一般不会触发.",
+      "type": "object",
+      "properties": {
+        "roi": {
+          "$ref": "#/definitions/Vertices"
+        },
+        "scene_area": {
+          "description": "人群过密告警ROI区域面积, 推荐使用density_rules字段, scene_area若不填或者填0, 人群过密人数阈值使用total_crowd_thresh, 此字段将在v3.3删除, 删除后人群过密分析将默认关闭 [DEPRECATED].",
+          "type": "number",
+          "format": "double"
+        },
+        "crowd_thresh": {
+          "description": "人群过密告警单位面积人数阈值, 推荐使用density_rules字段, crowd_thresh若不填或者填0, 人群过密人数阈值使用total_crowd_thresh 此字段将在v3.3删除, 删除后人群过密分析将默认关闭 [DEPRECATED].",
+          "type": "number",
+          "format": "double"
+        },
+        "enable_density_map": {
+          "description": "可选, 默认值为false. 为false时, 密度图不输出, 为true时, 密度图输出模式CrowdOutputMode与全景图一致 此字段将在v3.3删除, 删除后人群过密分析将默认关闭 [DEPRECATED]. 注意:当值为'OutputOnAlarm', 密度图只会在告警状态为Start时输出.",
+          "type": "boolean",
+          "default": false
+        },
+        "panoramic_mode": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/PanoramicMode"
+            },
+            {
+              "description": "可选, 默认值为'OutputOnAlarm'. 全景图输出模式. 告警时输出全景图的意思为只要存在密度告警或者滞留告警, 都会输出全景图 [DEPRECATED]. 注意:当值为'OutputOnAlarm', 全景图只会在告警状态为Start时输出"
+            }
+          ]
+        },
+        "enable_strand_analyze": {
+          "description": "是否开启滞留分析 [DEPRECATED].",
+          "type": "boolean",
+          "default": false
+        },
+        "stand_roi": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Vertices"
+          }
+        },
+        "labeled_person": {
+          "$ref": "#/definitions/Vertices"
+        },
+        "strand_thresh": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "enable_strand_map": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "pathConfig": {
+      "title": "pathConfig",
+      "type": "object",
+      "properties": {
+        "target_select_config": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/processTargetSelectConfig"
+            }
+          ]
+        },
+        "roi_filter_config": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/RoiFilterConfig"
+            }
+          ]
+        },
+        "target_track_config": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/processTargetTrackConfig"
+          }
+        }
+      }
+    },
+    "facePedConfig": {
+      "title": "facePedConfig",
+      "type": "object",
+      "properties": {
+        "target_select_config": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/processTargetSelectConfig"
+          }
+        },
+        "roi": {
+          "$ref": "#/definitions/Vertices"
+        },
+        "target_track_config": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/processTargetTrackConfig"
+          }
+        },
+        "roi_filter_config": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/RoiFilterConfig"
+            }
+          ]
+        }
+      }
+    },
+    "faceConfig": {
+      "title": "faceConfig",
+      "type": "object",
+      "properties": {
+        "target_select_config": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/processTargetSelectConfig"
+            }
+          ]
+        },
+        "target_track_config": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/processTargetTrackConfig"
+            }
+          ]
+        },
+        "roi_filter_config": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/RoiFilterConfig"
+            }
+          ]
+        }
+      }
+    },
+    "processTargetSelectConfig": {
+      "title": "processTargetSelectConfig",
+      "type": "object",
+      "properties": {
+        "set_quick_response_time": {
+          "type": "boolean"
+        },
+        "quick_response_time": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "set_time_interval": {
+          "type": "boolean"
+        },
+        "time_interval": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "set_max_track_time": {
+          "type": "boolean"
+        },
+        "max_track_time": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "disable_select": {
+          "type": "boolean"
+        }
+      }
+    },
+    "processTargetTrackConfig": {
+      "title": "processTargetTrackConfig",
+      "type": "object",
+      "properties": {
+        "min_pixel": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "max_pixel": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "algoConfig": {
+      "title": "algoConfig",
+      "type": "object",
+      "properties": {
+        "app_name": {
+          "type": "string"
+        },
+        "app_version": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Data1"
+            }
+          ]
+        }
+      }
+    },
+    "commonapisEventRule": {
+      "title": "commonapisEventRule",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Type9"
+            }
+          ]
+        },
+        "rule_id": {
+          "type": "string"
+        },
+        "roi": {
+          "$ref": "#/definitions/Vertices"
+        },
+        "duration": {
+          "type": "string"
+        },
+        "deriction": {
+          "$ref": "#/definitions/Vertex"
+        }
+      }
+    },
+    "commonapisCameraInfo": {
+      "title": "commonapisCameraInfo",
+      "type": "object",
+      "properties": {
+        "camera_id": {
+          "type": "string"
+        },
+        "device_id": {
+          "type": "string"
+        },
+        "device_type": {
+          "type": "string"
+        },
+        "place_code": {
+          "type": "string"
+        },
+        "place_name": {
+          "type": "string"
+        },
+        "tollgate_id": {
+          "type": "string"
+        },
+        "tollgate_name": {
+          "type": "string"
+        },
+        "source_id": {
+          "type": "string"
+        },
+        "internal_id": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/InternalId"
+            }
+          ]
+        },
+        "zone_id": {
+          "type": "string"
+        },
+        "platform_id": {
+          "type": "string"
+        }
+      }
+    },
+    "commonapisObjectFeature": {
+      "title": "commonapisObjectFeature",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "version": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "blob": {
+          "type": "string"
+        }
+      }
+    },
+    "commonApiResults": {
+      "title": "commonApiResults",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "error": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/Status"
+        }
+      }
+    },
+    "Algo": {
+      "title": "Algo",
+      "type": "object",
+      "properties": {
+        "app_name": {
+          "type": "string"
+        },
+        "app_version": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "object_type": {
+          "type": "string"
+        },
+        "object_version": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Data"
+            }
+          ]
+        },
+        "rectangle": {
+          "$ref": "#/definitions/Vertices"
+        }
+      }
+    },
+    "Angle": {
+      "title": "Angle",
+      "type": "object",
+      "properties": {
+        "yaw": {
+          "type": "number",
+          "format": "double"
+        },
+        "pitch": {
+          "type": "number",
+          "format": "double"
+        },
+        "roll": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "Association": {
+      "title": "Association",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Type7"
+            }
+          ]
+        },
+        "object_id": {
+          "type": "string"
+        },
+        "association_type": {
+          "type": "string"
+        },
+        "associated_object_info": {
+          "$ref": "#/definitions/associatedObjectInfo"
+        }
+      }
+    },
+    "BitRateType": {
+      "title": "BitRateType",
+      "type": "string",
+      "enum": [
+        "BRT_UNKNOWN",
+        "CBR",
+        "VBR"
+      ]
+    },
+    "Carplate": {
+      "title": "Carplate",
+      "type": "object",
+      "properties": {
+        "rectangle": {
+          "$ref": "#/definitions/Vertices"
+        },
+        "attributes_with_score": {
+          "description": "人脸属性信息, 带属性分数 [SINCE v1.3.0].",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/attributesWithScore1"
+          }
+        }
+      }
+    },
+    "Consistency": {
+      "title": "Consistency",
+      "description": "可选, 读取策略, 范围:[READ_ANY, READ_MASTER_ONLY, READ_SLAVE_ONLY].",
+      "type": "string",
+      "enum": [
+        "READ_ANY",
+        "READ_MASTER_ONLY",
+        "READ_SLAVE_ONLY"
+      ]
+    },
+    "Crowd": {
+      "title": "Crowd",
+      "description": "人群识别信息 [SINCE v2.0.0].",
+      "type": "object",
+      "properties": {
+        "quantity": {
+          "description": "行人数量.",
+          "type": "integer",
+          "format": "int64"
+        },
+        "incident": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/processCrowdIncident"
+          }
+        },
+        "density_size": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/DensitySize"
+            },
+            {
+              "description": "可选，是否输出由下发任务的配置决定(由CrowdConfig.density_map_mode决定).密度图长宽尺寸 [SINCE v2.2.0]."
+            }
+          ]
+        },
+        "density_map": {
+          "type": "string"
+        },
+        "strand_map": {
+          "$ref": "#/definitions/BasicImage"
+        },
+        "full_head_targets": {
+          "$ref": "#/definitions/FullHeadTargets"
+        }
+      }
+    },
+    "Data": {
+      "title": "Data",
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "Data1": {
+      "title": "Data1",
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "Db": {
+      "title": "Db",
+      "type": "object",
+      "properties": {
+        "db_id": {
+          "description": "特征库ID.",
+          "type": "string"
+        },
+        "top_k": {
+          "description": "需要top_k个最相似的结果, 范围:(0, 1024].",
+          "type": "integer",
+          "format": "int32"
+        },
+        "min_score": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "DecoderConfig": {
+      "title": "DecoderConfig",
+      "type": "object",
+      "properties": {
+        "set_skip_frame_num": {
+          "type": "boolean"
+        },
+        "skip_frame_num": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "DensityMapConfig": {
+      "title": "DensityMapConfig",
+      "description": "实时密度图分析 [SINCE v3.2.0].",
+      "type": "object",
+      "properties": {
+        "enable": {
+          "type": "boolean"
+        }
+      }
+    },
+    "DensitySize": {
+      "title": "DensitySize",
+      "description": "可选，是否输出由下发任务的配置决定(由CrowdConfig.density_map_mode决定).密度图长宽尺寸 [SINCE v2.2.0].",
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "height": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "DiagnoseSummary": {
+      "title": "DiagnoseSummary",
+      "type": "object",
+      "properties": {
+        "diagnosis_item": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/DiagnosisItem"
+            }
+          ]
+        },
+        "type_item": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TypeItem"
+            }
+          ]
+        },
+        "score": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "Diagnosis": {
+      "title": "Diagnosis",
+      "type": "object",
+      "properties": {
+        "type_frame": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TypeFrame"
+            }
+          ]
+        }
+      }
+    },
+    "DiagnosisItem": {
+      "title": "DiagnosisItem",
+      "type": "string",
+      "enum": [
+        "BLUR",
+        "ABNORMAL_EXPOSURE",
+        "COLOR_CAST",
+        "BLACK_SCREEN",
+        "SALT_AND_PEPPER_NOISE",
+        "VIEW_BLOCKED",
+        "CAMERA_REDIRECTION_OR_SHAKING"
+      ]
+    },
+    "DroppedField": {
+      "title": "DroppedField",
+      "type": "string",
+      "enum": [
+        "ITEM_EXTRA_INFO",
+        "ITEM_META_DATA"
+      ]
+    },
+    "Event": {
+      "title": "Event",
+      "type": "object",
+      "properties": {
+        "event_id": {
+          "type": "string"
+        },
+        "rule": {
+          "$ref": "#/definitions/Rule"
+        },
+        "event_status": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/EventStatus"
+            }
+          ]
+        },
+        "event_type": {
+          "type": "string"
+        },
+        "rectangle": {
+          "$ref": "#/definitions/Vertices"
+        },
+        "attributes_with_score": {
+          "description": "人脸属性信息, 带属性分数 [SINCE v1.3.0].",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/attributesWithScore1"
+          }
+        }
+      }
+    },
+    "EventStatus": {
+      "title": "EventStatus",
+      "type": "string",
+      "enum": [
+        "EVENT_START",
+        "EVENT_CONTINUE"
+      ]
+    },
+    "Face": {
+      "title": "Face",
+      "type": "object",
+      "properties": {
+        "quality": {
+          "type": "number",
+          "format": "double"
+        },
+        "rectangle": {
+          "$ref": "#/definitions/Vertices"
+        },
+        "track_id": {
+          "description": "物体跟踪ID, 仅保证本次视频源连接中递增, 全局或重连后不唯一 [DEPRECATED].",
+          "type": "integer",
+          "format": "int64"
+        },
+        "angle": {
+          "$ref": "#/definitions/Angle"
+        },
+        "landmarks": {
+          "$ref": "#/definitions/Vertex"
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "attributes_with_score": {
+          "description": "人脸属性信息, 带属性分数 [SINCE v1.3.0].",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/attributesWithScore1"
+          }
+        },
+        "face_score": {
+          "type": "number",
+          "format": "double"
+        },
+        "forehead_landmarks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Vertex"
+          }
+        },
+        "ears_landmarks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Vertex"
+          }
+        },
+        "ears_scores": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "Format": {
+      "title": "Format",
+      "description": "可选, 图片格式, 一般情况下不需要填写, 系统自动解析.",
+      "type": "string",
+      "enum": [
+        "IMAGE_UNKNOWN",
+        "IMAGE_JPEG",
+        "IMAGE_PNG",
+        "IMAGE_BMP",
+        "IMAGE_TIFF",
+        "IMAGE_GIF"
+      ]
+    },
+    "FullHeadTargets": {
+      "title": "FullHeadTargets",
+      "type": "object",
+      "properties": {
+        "head_targets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HeadTarget"
+          }
+        }
+      }
+    },
+    "Gat1400": {
+      "title": "Gat1400",
+      "type": "object",
+      "properties": {
+        "enable": {
+          "description": "GAT1400存储配置.",
+          "type": "boolean"
+        },
+        "platform_id": {
+          "type": "string"
+        }
+      }
+    },
+    "HeadTarget": {
+      "title": "HeadTarget",
+      "type": "object",
+      "properties": {
+        "coordinate": {
+          "$ref": "#/definitions/Vertex"
+        },
+        "rectangle": {
+          "$ref": "#/definitions/Vertices"
+        }
+      }
+    },
+    "HeadTargetConfig": {
+      "title": "HeadTargetConfig",
+      "description": "人头点实时分析 [SINCE v3.2.0].",
+      "type": "object",
+      "properties": {
+        "enable": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Image1": {
+      "title": "Image1",
+      "type": "object",
+      "properties": {
+        "image": {
+          "$ref": "#/definitions/BasicImage"
+        },
+        "face_selection": {
+          "type": "string",
+          "default": "LargestFace"
+        },
+        "auto_rotation_thresh": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "InternalId": {
+      "title": "InternalId",
+      "type": "object",
+      "properties": {
+        "region_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "camera_idx": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Item": {
+      "title": "Item",
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dbFeatureItem"
+          }
+        }
+      }
+    },
+    "Kafka": {
+      "title": "Kafka",
+      "description": "kafka存储配置.",
+      "type": "object",
+      "properties": {
+        "enable": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ObjectType": {
+      "title": "ObjectType",
+      "description": "VIPER平台支持物体对象类型.",
+      "type": "string",
+      "enum": [
+        "OBJECT_UNKNOWN",
+        "OBJECT_FACE",
+        "OBJECT_PEDESTRIAN",
+        "OBJECT_AUTOMOBILE",
+        "OBJECT_CYCLIST",
+        "OBJECT_HUMAN_POWERED_VEHICLE",
+        "OBJECT_SCENARIO",
+        "OBJECT_CROWD",
+        "OBJECT_ALGO",
+        "OBJECT_SNAPSHOT",
+        "OBJECT_FACE_EXTEND_PEDESTRIAN",
+        "OBJECT_EVENT",
+        "OBJECT_VIDEO_SOURCE_DIAGNOSIS",
+        "OBJECT_AUTOMOBILE_DETECT",
+        "OBJECT_CARPLATE",
+        "OBJECT_AUTOMOBILE_IR",
+        "OBJECT_FACE_EXTEND_PEDESTRIAN_NON_AUTOMOBILE",
+        "OBJECT_WATERCRAFT",
+        "OBJECT_FILTERED",
+        "OBJECT_MULTI_PACH",
+        "OBJECT_SCENARIO_CITY_MANAGEMENT",
+        "OBJECT_FACE_PEDESTRIAN",
+        "OBJECT_SCENARIO_AUTOMOBILE_THROW",
+        "OBJECT_MULTI_FACE_PACH",
+        "OBJECT_TRAFFIC_AUTOMOBILE_COUNT",
+        "OBJECT_TRAFFIC_MULTI_PACH",
+        "OBJECT_HUMAN_ACTION",
+        "OBJECT_TRAFFIC_ANOMALY_EVENT",
+        "OBJECT_TRAFFIC_CAMERA_VISION_INFO",
+        "OBJECT_OTHER"
+      ]
+    },
+    "OrientationType": {
+      "title": "OrientationType",
+      "type": "string",
+      "enum": [
+        "ClockWiseUnknown",
+        "ClockWise0",
+        "ClockWise90",
+        "ClockWise180",
+        "ClockWise270"
+      ]
+    },
+    "Osg": {
+      "title": "Osg",
+      "description": "OSG存储配置.",
+      "type": "object",
+      "properties": {
+        "enable": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Other": {
+      "title": "Other",
+      "type": "object",
+      "properties": {
+        "attributes_with_score": {
+          "description": "人脸属性信息, 带属性分数 [SINCE v1.3.0].",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/attributesWithScore1"
+          }
+        }
+      }
+    },
+    "PageResponse": {
+      "title": "PageResponse",
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "PanoramicImageSize": {
+      "title": "PanoramicImageSize",
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "height": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "PanoramicMode": {
+      "title": "PanoramicMode",
+      "description": "可选, 默认值为'OutputOnAlarm'. 全景图输出模式. 告警时输出全景图的意思为只要存在密度告警或者滞留告警, 都会输出全景图 [DEPRECATED]. 注意:当值为'OutputOnAlarm', 全景图只会在告警状态为Start时输出",
+      "type": "string",
+      "enum": [
+        "OutputOnAlarm",
+        "OutputOff",
+        "OutputForever"
+      ]
+    },
+    "Pedestrian": {
+      "title": "Pedestrian",
+      "type": "object",
+      "properties": {
+        "quality": {
+          "type": "number",
+          "format": "double"
+        },
+        "rectangle": {
+          "$ref": "#/definitions/Vertices"
+        },
+        "track_id": {
+          "description": "物体跟踪ID, 仅保证本次视频源连接中递增, 全局或重连后不唯一 [DEPRECATED].",
+          "type": "integer",
+          "format": "int64"
+        },
+        "attributes_with_score": {
+          "description": "人脸属性信息, 带属性分数 [SINCE v1.3.0].",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/attributesWithScore1"
+          }
+        },
+        "pedestrian_score": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "Point": {
+      "title": "Point",
+      "type": "object",
+      "properties": {
+        "roi": {
+          "$ref": "#/definitions/Vertices"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "PortraitImageLocation": {
+      "title": "PortraitImageLocation",
+      "type": "object",
+      "properties": {
+        "panoramic_image_size": {
+          "$ref": "#/definitions/PanoramicImageSize"
+        },
+        "portrait_image_in_panoramic": {
+          "$ref": "#/definitions/Vertices"
+        },
+        "portrait_in_panoramic": {
+          "$ref": "#/definitions/Vertices"
+        }
+      }
+    },
+    "ProducerAnnotation": {
+      "title": "ProducerAnnotation",
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string"
+        },
+        "worker_type": {
+          "type": "string"
+        },
+        "algorithm_version": {
+          "type": "string"
+        }
+      }
+    },
+    "RealtimeAnalysisConfig": {
+      "title": "RealtimeAnalysisConfig",
+      "description": "人群实时分析配置 [SINCE v3.2.0].",
+      "type": "object",
+      "properties": {
+        "realtime_analysis_output_config": {
+          "$ref": "#/definitions/RealtimeAnalysisOutputConfig"
+        }
+      }
+    },
+    "RealtimeAnalysisOutputConfig": {
+      "title": "RealtimeAnalysisOutputConfig",
+      "type": "object",
+      "properties": {
+        "enable": {
+          "type": "boolean"
+        },
+        "min_interval": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Result": {
+      "title": "Result",
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/dbFeatureItem"
+        },
+        "score": {
+          "type": "number",
+          "format": "double"
+        },
+        "index_id": {
+          "type": "string"
+        }
+      }
+    },
+    "RoiFilterConfig": {
+      "title": "RoiFilterConfig",
+      "type": "object",
+      "properties": {
+        "rois": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Vertices"
+          }
+        },
+        "reverse_rois": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Rule": {
+      "title": "Rule",
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/Type6"
+        },
+        "rule_id": {
+          "type": "string"
+        },
+        "roi": {
+          "$ref": "#/definitions/Vertices"
+        },
+        "duration": {
+          "type": "string"
+        },
+        "direction": {
+          "$ref": "#/definitions/Vertex"
+        }
+      }
+    },
+    "ScheduleConfig": {
+      "title": "ScheduleConfig",
+      "description": "可选, 任务调度相关配置 [SINCE v3.0.0].",
+      "type": "object",
+      "properties": {
+        "priority": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "feature_versions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "SearchResult": {
+      "title": "SearchResult",
+      "type": "object",
+      "properties": {
+        "db_id": {
+          "type": "string"
+        },
+        "similat_results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SimilatResult"
+          }
+        }
+      }
+    },
+    "SimilatResult": {
+      "title": "SimilatResult",
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "item": {
+          "$ref": "#/definitions/dbFeatureItem"
+        }
+      }
+    },
+    "SnapshotConfig": {
+      "title": "SnapshotConfig",
+      "type": "object",
+      "properties": {
+        "snapshot_mode": {
+          "$ref": "#/definitions/SnapshotMode"
+        }
+      }
+    },
+    "SnapshotMode": {
+      "title": "SnapshotMode",
+      "type": "string",
+      "enum": [
+        "SNAPSHOT_OFF",
+        "SNAPSHOT_ON",
+        "SNAPSHOT_ONLY"
+      ]
+    },
+    "Status": {
+      "title": "Status",
+      "type": "string",
+      "enum": [
+        "OK",
+        "SYSTEM_UNKNOWN_ERROR",
+        "SYSTEM_NETWORK_ERROR",
+        "SYSTEM_STORAGE_ERROR",
+        "SYSTEM_LICENSE_ERROR"
+      ]
+    },
+    "Status1": {
+      "title": "Status1",
+      "description": "告警事件状态.",
+      "type": "string",
+      "enum": [
+        "INCIDENT_START",
+        "INCIDENT_CONTINUE",
+        "INCIDENT_STOP"
+      ]
+    },
+    "Status2": {
+      "title": "Status2",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Status3"
+            }
+          ]
+        },
+        "error_message": {
+          "type": "string"
+        },
+        "last_received_time": {
+          "type": "string"
+        }
+      }
+    },
+    "Status3": {
+      "title": "Status3",
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "OK",
+        "SOURCE_ERROR",
+        "INTERNAL_ERROR",
+        "FINISHED",
+        "DECODER_ERROR",
+        "CREATING",
+        "RESOLUTION_ERROR",
+        "CONFIG_UPDATE_ERROR"
+      ]
+    },
+    "StoragePolicy": {
+      "title": "StoragePolicy",
+      "type": "object",
+      "properties": {
+        "portrait_storage_config": {
+          "$ref": "#/definitions/storageConfig"
+        },
+        "panoramic_storage_config": {
+          "$ref": "#/definitions/storageConfig"
+        },
+        "binary_storage_config": {
+          "$ref": "#/definitions/storageConfig"
+        }
+      }
+    },
+    "StreamType": {
+      "title": "StreamType",
+      "type": "string",
+      "enum": [
+        "Main",
+        "Second",
+        "Third",
+        "Fourth"
+      ]
+    },
+    "Task": {
+      "title": "Task",
+      "type": "object",
+      "properties": {
+        "info": {
+          "$ref": "#/definitions/taskItem"
+        },
+        "status": {
+          "$ref": "#/definitions/Status2"
+        },
+        "rtsp_preview_address": {
+          "type": "string"
+        }
+      }
+    },
+    "TaskObjectConfig": {
+      "title": "TaskObjectConfig",
+      "type": "object",
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonapisEventRule"
+          }
+        },
+        "algo_config": {
+          "$ref": "#/definitions/algoConfig"
+        },
+        "face_config": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/faceConfig"
+            }
+          ]
+        },
+        "faceped_config": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/facePedConfig"
+            }
+          ]
+        },
+        "path_config": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/pathConfig"
+            }
+          ]
+        },
+        "decoder_config": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/DecoderConfig"
+            }
+          ]
+        },
+        "snapshot_config": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/SnapshotConfig"
+            }
+          ]
+        },
+        "crowd_config": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/crowdConfig"
+            },
+            {
+              "description": "人群配置实时分析配置, 任务object_type为OBJECT_CROWD有效, 此字段废弃, 推荐使用 \"crowd_v2\" 字段 [DEPRECATED]. 当object_type为OBJECT_CROWD且crowd_config为空时, 人群ROI为全屏检测, 过密告警阈值较高, 一般不会触发."
+            }
+          ]
+        },
+        "crowd_config_v2": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/crowdConfigV2"
+            },
+            {
+              "description": "人群分析配置, 任务object_type为OBJECT_CROWD有效 [SINCE v3.2.0]."
+            }
+          ]
+        }
+      }
+    },
+    "TrackEvent": {
+      "title": "TrackEvent",
+      "type": "string",
+      "enum": [
+        "ONGOING",
+        "END",
+        "START",
+        "TRACK_EVENT_NONE"
+      ]
+    },
+    "Trajectory": {
+      "title": "Trajectory",
+      "type": "object",
+      "properties": {
+        "points": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Point"
+          }
+        }
+      }
+    },
+    "Type": {
+      "title": "Type",
+      "description": "特征库类型",
+      "type": "string",
+      "enum": [
+        "STATIC_FEATURE_DB",
+        "ALERT_FEATURE_DB",
+        "IDENTIFICATION_FEATURE_DB",
+        "EXTRA_FEATURE_DB"
+      ]
+    },
+    "Type3": {
+      "title": "Type3",
+      "type": "string",
+      "enum": [
+        "OBJECT_UNKNOWN",
+        "OBJECT_FACE",
+        "OBJECT_PEDESTRIAN",
+        "OBJECT_AUTOMOBILE",
+        "OBJECT_CYCLIST",
+        "OBJECT_HUMAN_POWERED_VEHICLE",
+        "OBJECT_SCENARIO",
+        "OBJECT_CROWD",
+        "OBJECT_ALGO",
+        "OBJECT_SNAPSHOT",
+        "OBJECT_FACE_EXTEND_PEDESTRIAN",
+        "OBJECT_EVENT",
+        "OBJECT_VIDEO_SOURCE_DIAGNOSIS",
+        "OBJECT_AUTOMOBILE_DETECT",
+        "OBJECT_CARPLATE",
+        "OBJECT_AUTOMOBILE_IR",
+        "OBJECT_FACE_EXTEND_PEDESTRIAN_NON_AUTOMOBILE",
+        "OBJECT_WATERCRAFT",
+        "OBJECT_FILTERED",
+        "OBJECT_MULTI_PACH",
+        "OBJECT_SCENARIO_CITY_MANAGEMENT",
+        "OBJECT_FACE_PEDESTRIAN",
+        "OBJECT_SCENARIO_AUTOMOBILE_THROW",
+        "OBJECT_MULTI_FACE_PACH",
+        "OBJECT_TRAFFIC_AUTOMOBILE_COUNT",
+        "OBJECT_TRAFFIC_MULTI_PACH",
+        "OBJECT_HUMAN_ACTION",
+        "OBJECT_TRAFFIC_ANOMALY_EVENT",
+        "OBJECT_TRAFFIC_CAMERA_VISION_INFO",
+        "OBJECT_OTHER"
+      ]
+    },
+    "Type4": {
+      "title": "Type4",
+      "description": "属性类型.",
+      "type": "string",
+      "enum": [
+        "DISCRIMINATION",
+        "REGRESSION",
+        "CLASSIFICATION"
+      ]
+    },
+    "Type5": {
+      "title": "Type5",
+      "description": "告警事件类型.",
+      "type": "string",
+      "enum": [
+        "INCIDENT_CROWD",
+        "INCIDENT_STRAND"
+      ]
+    },
+    "Type6": {
+      "title": "Type6",
+      "type": "string",
+      "enum": [
+        "EVENT_UNKNOWN",
+        "EVENT_PEDESTRIAN_STAY",
+        "EVENT_PEDESTRIAN_HOVER",
+        "EVENT_PEDESTRIAN_CROSS_LINE",
+        "EVENT_PEDESTRIAN_INVADE",
+        "EVENT_VEHICLE_PARK"
+      ]
+    },
+    "Type7": {
+      "title": "Type7",
+      "type": "string",
+      "enum": [
+        "OBJECT_UNKNOWN",
+        "OBJECT_FACE",
+        "OBJECT_PEDESTRIAN",
+        "OBJECT_AUTOMOBILE",
+        "OBJECT_CYCLIST",
+        "OBJECT_HUMAN_POWERED_VEHICLE",
+        "OBJECT_SCENARIO",
+        "OBJECT_CROWD",
+        "OBJECT_ALGO",
+        "OBJECT_SNAPSHOT",
+        "OBJECT_FACE_EXTEND_PEDESTRIAN",
+        "OBJECT_EVENT",
+        "OBJECT_VIDEO_SOURCE_DIAGNOSIS",
+        "OBJECT_AUTOMOBILE_DETECT",
+        "OBJECT_CARPLATE",
+        "OBJECT_AUTOMOBILE_IR",
+        "OBJECT_FACE_EXTEND_PEDESTRIAN_NON_AUTOMOBILE",
+        "OBJECT_WATERCRAFT",
+        "OBJECT_FILTERED",
+        "OBJECT_MULTI_PACH",
+        "OBJECT_SCENARIO_CITY_MANAGEMENT",
+        "OBJECT_FACE_PEDESTRIAN",
+        "OBJECT_SCENARIO_AUTOMOBILE_THROW",
+        "OBJECT_MULTI_FACE_PACH",
+        "OBJECT_TRAFFIC_AUTOMOBILE_COUNT",
+        "OBJECT_TRAFFIC_MULTI_PACH",
+        "OBJECT_HUMAN_ACTION",
+        "OBJECT_TRAFFIC_ANOMALY_EVENT",
+        "OBJECT_TRAFFIC_CAMERA_VISION_INFO",
+        "OBJECT_OTHER"
+      ]
+    },
+    "Type9": {
+      "title": "Type9",
+      "type": "string",
+      "enum": [
+        "EVENT_UNKNOWN",
+        "EVENT_PEDESTRIAN_STAY",
+        "EVENT_PEDESTRIAN_HOVER",
+        "EVENT_PEDESTRIAN_CROSS_LINE",
+        "EVENT_PEDESTRIAN_INVADE",
+        "EVENT_VEHICLE_PARK"
+      ]
+    },
+    "TypeFrame": {
+      "title": "TypeFrame",
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "NORMAL",
+        "ABNORMAL"
+      ]
+    },
+    "TypeItem": {
+      "title": "TypeItem",
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "NORMAL",
+        "ABNORMAL"
+      ]
+    },
+    "VideoFormat": {
+      "title": "VideoFormat",
+      "type": "string",
+      "enum": [
+        "VF_UNKNOWN",
+        "VF_MPEG4",
+        "VF_H264",
+        "VF_SVAC",
+        "VF_3GP",
+        "VF_H265"
+      ]
+    },
+    "VideoParameter": {
+      "title": "VideoParameter",
+      "type": "object",
+      "properties": {
+        "stream_type": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/StreamType"
+            }
+          ]
+        },
+        "video_format": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/VideoFormat"
+            }
+          ]
+        },
+        "width": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "height": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "frame_rate": {
+          "type": "number",
+          "format": "double"
+        },
+        "bit_rate_type": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/BitRateType"
+            }
+          ]
+        },
+        "bit_rate": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "i_frame_interval": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Watercraft": {
+      "title": "Watercraft",
+      "type": "object",
+      "properties": {
+        "rectangle": {
+          "$ref": "#/definitions/Vertices"
+        },
+        "attributes_with_score": {
+          "description": "人脸属性信息, 带属性分数 [SINCE v1.3.0].",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/attributesWithScore1"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "NewDB",
+      "description": "创建一个静态库（需要对入库图片进行存储时调用）"
+    },
+    {
+      "name": "DeleteDB",
+      "description": "删除指定静态库（需要对相应库中所有图片一并删除时调用）"
+    },
+    {
+      "name": "BatchAddImageToDB",
+      "description": "批量图片解析并入静态库"
+    },
+    {
+      "name": "DeleteImageFromDB",
+      "description": "从指定静态库中删除指定特征并删除相应的图片."
+    },
+    {
+      "name": "FeatureBatchAdd",
+      "description": "将批量特征入指定静态库."
+    },
+    {
+      "name": "DetectAndExtract",
+      "description": "单张图片，提取人脸特征及属性."
+    },
+    {
+      "name": "CompareOneToOne",
+      "description": "图片1：1比对."
+    },
+    {
+      "name": "SearchImageInDBs",
+      "description": "针对指定静态库进行图片1：N比对."
+    },
+    {
+      "name": "FeatureBatchSearch",
+      "description": "在指定静态库（单库）中进行特征1：N检索, 置信身份库模式下该接口不可用."
+    },
+    {
+      "name": "FeatureBatchGetByKey",
+      "description": "通过用户自定义key在指定静态库中批量获取特征."
+    },
+    {
+      "name": "TaskNew",
+      "description": "新建任务请求. VPS 任务失败时会自动重试, 重试失败后下次重试间隔时间会相应延长. 部分RTSP源支持点播功能, 可使用重复的region_id与camera_idx多次下发任务. 目前暂只支持\"H264/h265/MJPEG\"三种视频编码格式. OBJECT_FACE(人脸视频解析),当跟踪人脸离开视频范围时输出一帧质量最好的人脸小图及场景大图, 特征值为该人脸多帧特征融合所得, 属性值为质量最好的人脸小图提取所得. OBJECT_MULTI_PACH(结构化视频解析),当跟踪物体离开视频范围时输出一帧质量最好的物体小图及场景大图, 仅有人体会输出特征, 特征值与属性值为物体小图提取所得. OBJECT_CROWD(人群视频解析),检测视频里的行人数量, 并且输出代表人群密度的热力图, 输出过密和滞留等报警事件. OBJECT_SCENARIO_CITY_MANAGEMENT(城管类的视频解析),每隔N帧, 检测视频中的城规类告警事件."
+    },
+    {
+      "name": "TaskList",
+      "description": "查询任务列表请求. 输入参数page_response.limit 取值范围[1,100000], 如果超出范围, 则返回失败.建议实际使用中不要设置很大的值, 项目中实测10000条记录的返回时间大约为2分钟. VPS"
+    },
+    {
+      "name": "TaskDelete",
+      "description": "删除任务请求. VPS"
+    },
+    {
+      "name": "CompareFeature",
+      "description": "特征1：1比对."
+    },
+    {
+      "name": "DownloadObject",
+      "description": "以二进制形式下载 Object 数据."
+    }
+  ]
+}

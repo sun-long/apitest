@@ -1,0 +1,2706 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1.3.0",
+    "title": "SenseTime Product Management API",
+    "contact": {
+      "name": "SenseTime",
+      "url": "https://www.sensetime.com",
+      "email": "business@sensetime.com"
+    }
+  },
+  "host": "gateway.sensegalaxy-dev.sensetime.com",
+  "basePath": "/oplog-management",
+  "tags": [
+    {
+      "name": "Dashboard Management",
+      "description": "Dashboard Controller"
+    },
+    {
+      "name": "Oplog Management",
+      "description": "Op Log Controller"
+    },
+    {
+      "name": "Oplog Open API",
+      "description": "Op Log Open Api Controller"
+    },
+    {
+      "name": "Oplog aggregation",
+      "description": "Data Analysis Controller"
+    }
+  ],
+  "paths": {
+    "/api/v1/aggregation/day": {
+      "get": {
+        "tags": [
+          "Oplog aggregation"
+        ],
+        "summary": "查询当日调用量",
+        "operationId": "dayAggregation",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«aggregationDayVO»",
+              "originalRef": "Result«aggregationDayVO»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/aggregation/range": {
+      "post": {
+        "tags": [
+          "Oplog aggregation"
+        ],
+        "summary": "查询统计周期调用量",
+        "operationId": "rangeAggregation",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "rangeAggregationRequest",
+            "description": "rangeAggregationRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RangeAggregationRequest",
+              "originalRef": "RangeAggregationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«aggregationRangeVO»",
+              "originalRef": "Result«aggregationRangeVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/dashboard/overview": {
+      "post": {
+        "tags": [
+          "Dashboard Management"
+        ],
+        "summary": "场景数据概览",
+        "operationId": "overview",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "statisticalRequest",
+            "description": "statisticalRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StatisticalRequest",
+              "originalRef": "StatisticalRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«OverviewVO»",
+              "originalRef": "Result«OverviewVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/dashboard/overview/export": {
+      "post": {
+        "tags": [
+          "Dashboard Management"
+        ],
+        "summary": "场景数据概览导出",
+        "operationId": "overviewExport",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "statisticalRequest",
+            "description": "statisticalRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StatisticalRequest",
+              "originalRef": "StatisticalRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«string»",
+              "originalRef": "Result«string»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/dashboard/summary": {
+      "post": {
+        "tags": [
+          "Dashboard Management"
+        ],
+        "summary": "数据总览",
+        "operationId": "summary",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "summaryRequest",
+            "description": "summaryRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SummaryRequest",
+              "originalRef": "SummaryRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«List«SummaryVO»»",
+              "originalRef": "Result«List«SummaryVO»»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/dashboard/summary/export": {
+      "post": {
+        "tags": [
+          "Dashboard Management"
+        ],
+        "summary": "数据总览导出",
+        "operationId": "summaryExport",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "summaryRequest",
+            "description": "summaryRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SummaryRequest",
+              "originalRef": "SummaryRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«string»",
+              "originalRef": "Result«string»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/dashboard/tenant/statistic": {
+      "post": {
+        "tags": [
+          "Dashboard Management"
+        ],
+        "summary": "租户数据概览",
+        "operationId": "statistic",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "statisticalRequest",
+            "description": "statisticalRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StatisticalRequest",
+              "originalRef": "StatisticalRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«TenantStatisticVO»",
+              "originalRef": "Result«TenantStatisticVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/dashboard/tenant/statistic/export": {
+      "post": {
+        "tags": [
+          "Dashboard Management"
+        ],
+        "summary": "租户数据概览导出",
+        "operationId": "tenantStatisticExport",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "statisticalRequest",
+            "description": "statisticalRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StatisticalRequest",
+              "originalRef": "StatisticalRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«string»",
+              "originalRef": "Result«string»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/oplogs/abnormal": {
+      "post": {
+        "tags": [
+          "Oplog Management"
+        ],
+        "summary": "上报异常数据",
+        "operationId": "opLogAbnormal",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "opLogAbnormalInternalRequest",
+            "description": "opLogAbnormalInternalRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/abnormalInternalRequest",
+              "originalRef": "abnormalInternalRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«Void»",
+              "originalRef": "Result«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/oplogs/abnormal/logs": {
+      "post": {
+        "tags": [
+          "Oplog Management"
+        ],
+        "summary": "查询所有异常上报信息",
+        "operationId": "abnormalLogsQuery",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "abnormalLogSearchRequest",
+            "description": "abnormalLogSearchRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/abnormalLogRequestBody",
+              "originalRef": "abnormalLogRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«abnormalModel»",
+              "originalRef": "Result«abnormalModel»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/oplogs/abnormal/process": {
+      "post": {
+        "tags": [
+          "Oplog Management"
+        ],
+        "summary": "处理异常上报",
+        "operationId": "abnormalLogProcess",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "abnormalLogProcessRequest",
+            "description": "abnormalLogProcessRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/abnormalLogProcessRequest",
+              "originalRef": "abnormalLogProcessRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«Void»",
+              "originalRef": "Result«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/oplogs/id": {
+      "post": {
+        "tags": [
+          "Oplog Management"
+        ],
+        "summary": "查询requestId",
+        "operationId": "opLogIdQuery",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "opLogIdRequest",
+            "description": "opLogIdRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logIdBody",
+              "originalRef": "logIdBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«OpLogIdVO»",
+              "originalRef": "Result«OpLogIdVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/oplogs/logs": {
+      "post": {
+        "tags": [
+          "Oplog Management"
+        ],
+        "summary": "根据requestIds查询opLog信息",
+        "operationId": "opLogsQuery",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "opLogSearchRequest",
+            "description": "opLogSearchRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logRequestBody",
+              "originalRef": "logRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«oplogVO»",
+              "originalRef": "Result«oplogVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/oplogs/oplog/list": {
+      "post": {
+        "tags": [
+          "Oplog Management"
+        ],
+        "summary": "查询租户oplog 列表",
+        "operationId": "opLogListQuery",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "opLogListRequest",
+            "description": "opLogListRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/opLogListRequest",
+              "originalRef": "opLogListRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«OpLogListVO»",
+              "originalRef": "Result«OpLogListVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/oplogs/product/logs": {
+      "post": {
+        "tags": [
+          "Oplog Management"
+        ],
+        "summary": "根据requestIds查询opLog信息附加商品信息",
+        "operationId": "opLogsQueryWithProduct",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "opLogSearchRequest",
+            "description": "opLogSearchRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logRequestBody",
+              "originalRef": "logRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«oplogVO»",
+              "originalRef": "Result«oplogVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/oplogs/sync": {
+      "post": {
+        "tags": [
+          "Oplog Management"
+        ],
+        "summary": "同步oplog",
+        "operationId": "opLogSync",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "opLogSyncTask",
+            "description": "opLogSyncTask",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/opLogSyncTaskRequest",
+              "originalRef": "opLogSyncTaskRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«Void»",
+              "originalRef": "Result«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/oplogs/task/list": {
+      "post": {
+        "tags": [
+          "Oplog Management"
+        ],
+        "summary": "查询oplog同步任务",
+        "operationId": "opLogTaskQuery",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "pageBaseRequest",
+            "description": "pageBaseRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PageBaseRequest",
+              "originalRef": "PageBaseRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«OplogSyncTaskVO»",
+              "originalRef": "Result«OplogSyncTaskVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v1/oplog/abnormal": {
+      "post": {
+        "tags": [
+          "Oplog Open API"
+        ],
+        "summary": "上报异常数据",
+        "operationId": "opLogAbnormal_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "opLogAbnormalRequest",
+            "description": "opLogAbnormalRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/abnormalRequestBody",
+              "originalRef": "abnormalRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OpenApiResult",
+              "originalRef": "OpenApiResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v1/oplog/queryById": {
+      "get": {
+        "tags": [
+          "Oplog Open API"
+        ],
+        "summary": "根据requestId查询opLog信息",
+        "operationId": "opLogQuery",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "query",
+            "description": "requestId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OpenApiResult",
+              "originalRef": "OpenApiResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v2/oplog/abnormal": {
+      "post": {
+        "tags": [
+          "Oplog Open API"
+        ],
+        "summary": "上报异常数据",
+        "operationId": "opLogAbnormal_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "opLogAbnormalRequest",
+            "description": "opLogAbnormalRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/abnormalRequestBody",
+              "originalRef": "abnormalRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OpenApiResult",
+              "originalRef": "OpenApiResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v2/oplog/queryById": {
+      "get": {
+        "tags": [
+          "Oplog Open API"
+        ],
+        "summary": "根据requestId查询opLog信息",
+        "operationId": "opLogQuery_1",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "query",
+            "description": "requestId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OpenApiResult",
+              "originalRef": "OpenApiResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "DeviceOrder": {
+      "type": "object",
+      "properties": {
+        "deviceName": {
+          "type": "string",
+          "description": "设备名"
+        },
+        "orders": {
+          "type": "integer",
+          "format": "int32",
+          "description": "单量"
+        }
+      },
+      "title": "DeviceOrder"
+    },
+    "Header": {
+      "type": "object",
+      "properties": {
+        "algo_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cost": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "end_time": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "host": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "params": {
+          "type": "string"
+        },
+        "scene": {
+          "type": "string"
+        },
+        "source_ip": {
+          "type": "string"
+        },
+        "status_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tag": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "target_path": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "Header"
+    },
+    "Histogram": {
+      "type": "object",
+      "properties": {
+        "series": {
+          "type": "array",
+          "description": "y轴",
+          "items": {
+            "$ref": "#/definitions/HistogramSeries",
+            "originalRef": "HistogramSeries"
+          }
+        },
+        "xaxis": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Histogram"
+    },
+    "HistogramSeries": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "description": "y轴数据",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "name": {
+          "type": "string",
+          "description": "name"
+        },
+        "type": {
+          "type": "string",
+          "description": "类型. bar:柱状图, line:折线图"
+        }
+      },
+      "title": "HistogramSeries"
+    },
+    "MetaData": {
+      "type": "object",
+      "properties": {
+        "cost": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "cost_since_start": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "data": {
+          "type": "string"
+        },
+        "keyword": {
+          "type": "string"
+        }
+      },
+      "title": "MetaData"
+    },
+    "OpLog": {
+      "type": "object",
+      "properties": {
+        "composes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/composeModel",
+            "originalRef": "composeModel"
+          }
+        },
+        "dynamicVisualDTO": {
+          "$ref": "#/definitions/dynamicVisualDTO",
+          "originalRef": "dynamicVisualDTO"
+        },
+        "header": {
+          "$ref": "#/definitions/Header",
+          "originalRef": "Header"
+        },
+        "initData": {
+          "type": "string",
+          "format": "byte"
+        },
+        "meta": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MetaData",
+            "originalRef": "MetaData"
+          }
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "request_id": {
+          "type": "string"
+        },
+        "tenantName": {
+          "type": "string"
+        }
+      },
+      "title": "OpLog"
+    },
+    "OpLogIdVO": {
+      "type": "object",
+      "required": [
+        "list",
+        "page",
+        "size",
+        "total",
+        "totalPage"
+      ],
+      "properties": {
+        "empty": {
+          "type": "boolean"
+        },
+        "list": {
+          "type": "array",
+          "example": [],
+          "description": "查询结果集",
+          "items": {
+            "type": "object"
+          }
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "example": 1,
+          "description": "当前页"
+        },
+        "requestIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32",
+          "example": 10,
+          "description": "每页数量"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "example": 100,
+          "description": "总记录数"
+        },
+        "totalPage": {
+          "type": "integer",
+          "format": "int32",
+          "example": 10,
+          "description": "总页数"
+        }
+      },
+      "title": "OpLogIdVO",
+      "description": "分页查询响应基类"
+    },
+    "OpLogListVO": {
+      "type": "object",
+      "required": [
+        "list",
+        "page",
+        "size",
+        "total",
+        "totalPage"
+      ],
+      "properties": {
+        "empty": {
+          "type": "boolean"
+        },
+        "list": {
+          "type": "array",
+          "example": [],
+          "description": "查询结果集",
+          "items": {
+            "type": "object"
+          }
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "example": 1,
+          "description": "当前页"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32",
+          "example": 10,
+          "description": "每页数量"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "example": 100,
+          "description": "总记录数"
+        },
+        "totalPage": {
+          "type": "integer",
+          "format": "int32",
+          "example": 10,
+          "description": "总页数"
+        }
+      },
+      "title": "OpLogListVO"
+    },
+    "OpLogSyncTaskDetail": {
+      "type": "object",
+      "properties": {
+        "failDetail": {
+          "type": "array",
+          "description": "失败详情",
+          "items": {
+            "type": "string"
+          }
+        },
+        "statusCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "任务状态，0 进行中，1结束"
+        },
+        "taskName": {
+          "type": "string"
+        }
+      },
+      "title": "OpLogSyncTaskDetail"
+    },
+    "OpenApiResult": {
+      "type": "object",
+      "title": "OpenApiResult"
+    },
+    "OplogSyncTaskVO": {
+      "type": "object",
+      "required": [
+        "list",
+        "page",
+        "size",
+        "total",
+        "totalPage"
+      ],
+      "properties": {
+        "empty": {
+          "type": "boolean"
+        },
+        "list": {
+          "type": "array",
+          "example": [],
+          "description": "查询结果集",
+          "items": {
+            "type": "object"
+          }
+        },
+        "opLogSyncTaskDetailList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OpLogSyncTaskDetail",
+            "originalRef": "OpLogSyncTaskDetail"
+          }
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "example": 1,
+          "description": "当前页"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32",
+          "example": 10,
+          "description": "每页数量"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "example": 100,
+          "description": "总记录数"
+        },
+        "totalPage": {
+          "type": "integer",
+          "format": "int32",
+          "example": 10,
+          "description": "总页数"
+        }
+      },
+      "title": "OplogSyncTaskVO"
+    },
+    "OverviewVO": {
+      "type": "object",
+      "properties": {
+        "activeDeviceNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "活跃设备总数"
+        },
+        "activeDeviceTransactTrend": {
+          "description": "活跃设备-交易接口总趋势",
+          "$ref": "#/definitions/Histogram",
+          "originalRef": "Histogram"
+        },
+        "tenantNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "租户总数"
+        },
+        "tenantTransactActiveDeviceRank": {
+          "type": "array",
+          "description": "租户交易-活跃设备排名",
+          "items": {
+            "$ref": "#/definitions/TenantTransactActiveDevice",
+            "originalRef": "TenantTransactActiveDevice"
+          }
+        },
+        "threeCameraActiveDeviceTransactTrend": {
+          "description": "三摄: 活跃设备-交易接口调用量趋势",
+          "$ref": "#/definitions/Histogram",
+          "originalRef": "Histogram"
+        },
+        "threeCameraInvokeNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "三摄总调用量"
+        },
+        "transactInvokeNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "交易接口总调用量"
+        },
+        "twoCameraActiveDeviceTransactTrend": {
+          "description": "两摄: 活跃设备-交易接口调用量趋势",
+          "$ref": "#/definitions/Histogram",
+          "originalRef": "Histogram"
+        },
+        "twoCameraInvokeNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "两摄总调用量"
+        }
+      },
+      "title": "OverviewVO"
+    },
+    "PageBaseRequest": {
+      "type": "object",
+      "properties": {
+        "dateEnd": {
+          "type": "string",
+          "description": "可选，结束时间格式：2020-09-03 00:00:00，不填写默认搜索最近7天"
+        },
+        "dateStart": {
+          "type": "string",
+          "description": "可选，开始时间，标准时间格式：2020-09-01 00:00:00，不填写默认搜索最近7天"
+        },
+        "externalBizFrom": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "example": 1,
+          "description": "第几页"
+        },
+        "pageOrderList": {
+          "type": "array",
+          "description": "排序字段，可以为空，也可以为多个",
+          "items": {
+            "$ref": "#/definitions/PageOrder",
+            "originalRef": "PageOrder"
+          }
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32",
+          "example": 10,
+          "description": "每页数量"
+        }
+      },
+      "title": "PageBaseRequest",
+      "description": "基础分页条件"
+    },
+    "PageOrder": {
+      "type": "object",
+      "properties": {
+        "orderField": {
+          "type": "string",
+          "description": "排序字段, 如package_id"
+        },
+        "orderType": {
+          "type": "string",
+          "example": "目前支持两种：ASC表示正序，DESC表示倒序。",
+          "description": "排序类型"
+        }
+      },
+      "title": "PageOrder"
+    },
+    "ProductSales": {
+      "type": "object",
+      "properties": {
+        "productName": {
+          "type": "string",
+          "description": "商品名"
+        },
+        "sales": {
+          "type": "integer",
+          "format": "int32",
+          "description": "销量"
+        }
+      },
+      "title": "ProductSales"
+    },
+    "RangeAggregationRequest": {
+      "type": "object",
+      "required": [
+        "endTime",
+        "startTime"
+      ],
+      "properties": {
+        "endTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "时间戳,默认一周，最多一个月"
+        },
+        "externalBizFrom": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "时间戳,默认一周，最多一个月"
+        }
+      },
+      "title": "RangeAggregationRequest"
+    },
+    "Result«List«SummaryVO»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "data": {
+          "type": "array",
+          "description": "数据对象",
+          "items": {
+            "$ref": "#/definitions/SummaryVO",
+            "originalRef": "SummaryVO"
+          }
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«List«SummaryVO»»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "Result«OpLogIdVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "data": {
+          "description": "数据对象",
+          "$ref": "#/definitions/OpLogIdVO",
+          "originalRef": "OpLogIdVO"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«OpLogIdVO»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "Result«OpLogListVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "data": {
+          "description": "数据对象",
+          "$ref": "#/definitions/OpLogListVO",
+          "originalRef": "OpLogListVO"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«OpLogListVO»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "Result«OplogSyncTaskVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "data": {
+          "description": "数据对象",
+          "$ref": "#/definitions/OplogSyncTaskVO",
+          "originalRef": "OplogSyncTaskVO"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«OplogSyncTaskVO»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "Result«OverviewVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "data": {
+          "description": "数据对象",
+          "$ref": "#/definitions/OverviewVO",
+          "originalRef": "OverviewVO"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«OverviewVO»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "Result«TenantStatisticVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "data": {
+          "description": "数据对象",
+          "$ref": "#/definitions/TenantStatisticVO",
+          "originalRef": "TenantStatisticVO"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«TenantStatisticVO»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "Result«Void»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«Void»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "Result«abnormalModel»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "data": {
+          "description": "数据对象",
+          "$ref": "#/definitions/abnormalModel",
+          "originalRef": "abnormalModel"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«abnormalModel»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "Result«aggregationDayVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "data": {
+          "description": "数据对象",
+          "$ref": "#/definitions/aggregationDayVO",
+          "originalRef": "aggregationDayVO"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«aggregationDayVO»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "Result«aggregationRangeVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "data": {
+          "description": "数据对象",
+          "$ref": "#/definitions/aggregationRangeVO",
+          "originalRef": "aggregationRangeVO"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«aggregationRangeVO»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "Result«oplogVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "data": {
+          "description": "数据对象",
+          "$ref": "#/definitions/oplogVO",
+          "originalRef": "oplogVO"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«oplogVO»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "Result«string»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "data": {
+          "type": "string",
+          "description": "数据对象"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«string»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "SeriesData": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "name"
+        },
+        "value": {
+          "type": "number",
+          "format": "double",
+          "description": "value"
+        }
+      },
+      "title": "SeriesData"
+    },
+    "StackedBar": {
+      "type": "object",
+      "properties": {
+        "series": {
+          "type": "array",
+          "description": "series",
+          "items": {
+            "$ref": "#/definitions/StackedBarSeries",
+            "originalRef": "StackedBarSeries"
+          }
+        },
+        "yaxis": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "StackedBar"
+    },
+    "StackedBarSeries": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "description": "x轴数据",
+          "items": {
+            "$ref": "#/definitions/SeriesData",
+            "originalRef": "SeriesData"
+          }
+        },
+        "name": {
+          "type": "string",
+          "description": "name"
+        },
+        "type": {
+          "type": "string",
+          "description": "类型. bar:柱状图"
+        }
+      },
+      "title": "StackedBarSeries"
+    },
+    "StatisticalRequest": {
+      "type": "object",
+      "required": [
+        "endTime",
+        "scene",
+        "startTime"
+      ],
+      "properties": {
+        "endTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "时间戳,默认一周，最多一个月"
+        },
+        "externalBizFrom": {
+          "type": "string"
+        },
+        "scene": {
+          "type": "string",
+          "description": "场景"
+        },
+        "startTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "时间戳,默认一周，最多一个月"
+        },
+        "tenant": {
+          "type": "string",
+          "description": "租户id"
+        }
+      },
+      "title": "StatisticalRequest"
+    },
+    "SummaryRequest": {
+      "type": "object",
+      "required": [
+        "endTime",
+        "scene",
+        "startTime"
+      ],
+      "properties": {
+        "endTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "时间戳,默认一周，最多一个月"
+        },
+        "externalBizFrom": {
+          "type": "string"
+        },
+        "scene": {
+          "type": "string",
+          "description": "场景"
+        },
+        "startTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "时间戳,默认一周，最多一个月"
+        }
+      },
+      "title": "SummaryRequest"
+    },
+    "SummaryVO": {
+      "type": "object",
+      "properties": {
+        "accuracy": {
+          "type": "number",
+          "format": "double",
+          "description": "准确率"
+        },
+        "activeDevice": {
+          "type": "integer",
+          "format": "int64",
+          "description": "活跃设备"
+        },
+        "errorOrderNum": {
+          "type": "integer",
+          "format": "int64",
+          "description": "错误订单数"
+        },
+        "inventoryRecognitionNum": {
+          "type": "integer",
+          "format": "int64",
+          "description": "库存识别总数"
+        },
+        "manualOrderNum": {
+          "type": "integer",
+          "format": "int64",
+          "description": "推人工订单数"
+        },
+        "manualOrderNumRatio": {
+          "type": "number",
+          "format": "double",
+          "description": "推人工订单数占比"
+        },
+        "orderNum": {
+          "type": "integer",
+          "format": "int64",
+          "description": "订单总数"
+        },
+        "tenantName": {
+          "type": "string",
+          "description": "租户名"
+        },
+        "type": {
+          "type": "string",
+          "description": "类型"
+        }
+      },
+      "title": "SummaryVO"
+    },
+    "TenantStatisticVO": {
+      "type": "object",
+      "properties": {
+        "activeDeviceNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "活跃设备总数"
+        },
+        "activeDeviceTransactTrend": {
+          "description": "活跃设备-交易接口趋势",
+          "$ref": "#/definitions/Histogram",
+          "originalRef": "Histogram"
+        },
+        "avgTimeTrend": {
+          "description": "接口平均耗时",
+          "$ref": "#/definitions/Histogram",
+          "originalRef": "Histogram"
+        },
+        "deviceOrders": {
+          "type": "array",
+          "description": "单量top10设备",
+          "items": {
+            "$ref": "#/definitions/DeviceOrder",
+            "originalRef": "DeviceOrder"
+          }
+        },
+        "productNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "有实际售卖商品数"
+        },
+        "productSales": {
+          "type": "array",
+          "description": "销量top10商品",
+          "items": {
+            "$ref": "#/definitions/ProductSales",
+            "originalRef": "ProductSales"
+          }
+        },
+        "recognizeTrend": {
+          "description": "库存接口调用量趋势",
+          "$ref": "#/definitions/Histogram",
+          "originalRef": "Histogram"
+        },
+        "stockAvgTime": {
+          "type": "number",
+          "format": "double",
+          "description": "库存平均处理时长"
+        },
+        "stockInvokeNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "库存接口总调用量"
+        },
+        "threeCameraAvgTime": {
+          "type": "number",
+          "format": "double",
+          "description": "三摄平均耗时"
+        },
+        "threeCameraDeviceNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "三摄设备数"
+        },
+        "threeCameraInvokeNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "三摄总调用量"
+        },
+        "threeCameraManualDistribute": {
+          "description": "三摄人工订单分布",
+          "$ref": "#/definitions/StackedBar",
+          "originalRef": "StackedBar"
+        },
+        "threeCameraManualNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "三摄人工标记量"
+        },
+        "top1": {
+          "type": "string",
+          "description": "TOP1畅销品"
+        },
+        "transactAvgTime": {
+          "type": "number",
+          "format": "double",
+          "description": "交易平均处理时长"
+        },
+        "transactInvokeNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "交易接口总调用量"
+        },
+        "transactInvokeTrend": {
+          "description": "两摄-三摄交易接口调用量趋势",
+          "$ref": "#/definitions/Histogram",
+          "originalRef": "Histogram"
+        },
+        "twoCameraAvgTime": {
+          "type": "number",
+          "format": "double",
+          "description": "两摄平均耗时"
+        },
+        "twoCameraDeviceNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "两摄设备数"
+        },
+        "twoCameraInvokeNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "两摄总调用量"
+        },
+        "twoCameraManualDistribute": {
+          "description": "两摄人工订单分布",
+          "$ref": "#/definitions/StackedBar",
+          "originalRef": "StackedBar"
+        },
+        "twoCameraManualNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "两摄人工标记量"
+        }
+      },
+      "title": "TenantStatisticVO"
+    },
+    "TenantTransactActiveDevice": {
+      "type": "object",
+      "properties": {
+        "activeDeviceNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "活跃设备数"
+        },
+        "tenantName": {
+          "type": "string",
+          "description": "租户名"
+        },
+        "transactInvokeNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "交易接口调用量"
+        }
+      },
+      "title": "TenantTransactActiveDevice"
+    },
+    "abnormalInternalRequest": {
+      "type": "object",
+      "properties": {
+        "business_order_id": {
+          "type": "string",
+          "description": "订单id"
+        },
+        "business_order_type": {
+          "type": "string",
+          "description": "订单类型"
+        },
+        "business_reporter_id": {
+          "type": "string",
+          "description": "上报人id"
+        },
+        "device_id": {
+          "type": "string",
+          "description": "设备id"
+        },
+        "externalBizFrom": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string",
+          "description": "上报备注"
+        },
+        "request_id": {
+          "type": "string",
+          "description": "算法侧请求id"
+        }
+      },
+      "title": "abnormalInternalRequest"
+    },
+    "abnormalLog": {
+      "type": "object",
+      "properties": {
+        "cameraType": {
+          "type": "string",
+          "description": "算法类型，0 双摄 1 三摄"
+        },
+        "deviceId": {
+          "type": "string"
+        },
+        "errorDescription": {
+          "type": "string"
+        },
+        "errorType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id": {
+          "type": "string"
+        },
+        "interfaceName": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "processTime": {
+          "type": "string"
+        },
+        "reportTime": {
+          "type": "string"
+        },
+        "requestId": {
+          "type": "string"
+        },
+        "requestTime": {
+          "type": "string"
+        },
+        "scene": {
+          "type": "string"
+        },
+        "tenantName": {
+          "type": "string"
+        }
+      },
+      "title": "abnormalLog"
+    },
+    "abnormalLogProcessRequest": {
+      "type": "object",
+      "required": [
+        "errorDescription",
+        "errorType"
+      ],
+      "properties": {
+        "errorDescription": {
+          "type": "string"
+        },
+        "errorType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "externalBizFrom": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "description": "主键id"
+        }
+      },
+      "title": "abnormalLogProcessRequest"
+    },
+    "abnormalLogRequestBody": {
+      "type": "object",
+      "properties": {
+        "dateEnd": {
+          "type": "string",
+          "description": "可选，结束时间格式：2020-09-03 00:00:00，不填写默认搜索最近7天"
+        },
+        "dateStart": {
+          "type": "string",
+          "description": "可选，开始时间，标准时间格式：2020-09-01 00:00:00，不填写默认搜索最近7天"
+        },
+        "externalBizFrom": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string",
+          "description": "订单id"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "example": 1,
+          "description": "第几页"
+        },
+        "pageOrderList": {
+          "type": "array",
+          "description": "排序字段，可以为空，也可以为多个",
+          "items": {
+            "$ref": "#/definitions/PageOrder",
+            "originalRef": "PageOrder"
+          }
+        },
+        "requestId": {
+          "type": "string",
+          "description": "算法侧请求id"
+        },
+        "scene": {
+          "type": "string",
+          "description": "业务场景"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32",
+          "example": 10,
+          "description": "每页数量"
+        },
+        "status": {
+          "type": "string",
+          "description": "处理状态，eg:Processing,Processed"
+        },
+        "tenantInfo": {
+          "type": "string",
+          "description": "租户Id"
+        }
+      },
+      "title": "abnormalLogRequestBody"
+    },
+    "abnormalModel": {
+      "type": "object",
+      "required": [
+        "list",
+        "page",
+        "size",
+        "total",
+        "totalPage"
+      ],
+      "properties": {
+        "abnormalLogList": {
+          "type": "array",
+          "description": "上报信息列表",
+          "items": {
+            "$ref": "#/definitions/abnormalLog",
+            "originalRef": "abnormalLog"
+          }
+        },
+        "empty": {
+          "type": "boolean"
+        },
+        "list": {
+          "type": "array",
+          "example": [],
+          "description": "查询结果集",
+          "items": {
+            "type": "object"
+          }
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "example": 1,
+          "description": "当前页"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32",
+          "example": 10,
+          "description": "每页数量"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "example": 100,
+          "description": "总记录数"
+        },
+        "totalPage": {
+          "type": "integer",
+          "format": "int32",
+          "example": 10,
+          "description": "总页数"
+        }
+      },
+      "title": "abnormalModel"
+    },
+    "abnormalRequestBody": {
+      "type": "object",
+      "properties": {
+        "business_order_id": {
+          "type": "string",
+          "description": "订单id",
+          "refType": null
+        },
+        "business_order_type": {
+          "type": "string",
+          "description": "订单类型",
+          "refType": null
+        },
+        "business_reporter_id": {
+          "type": "string",
+          "description": "上报人id",
+          "refType": null
+        },
+        "device_id": {
+          "type": "string",
+          "description": "设备id",
+          "refType": null
+        },
+        "externalBizFrom": {
+          "type": "string",
+          "refType": null
+        },
+        "remark": {
+          "type": "string",
+          "description": "上报备注",
+          "refType": null
+        },
+        "request_id": {
+          "type": "string",
+          "description": "算法侧请求id",
+          "refType": null
+        }
+      },
+      "title": "abnormalRequestBody"
+    },
+    "aggregationDayVO": {
+      "type": "object",
+      "properties": {
+        "totalDeviceNum": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalInvokeNum": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "aggregationDayVO"
+    },
+    "aggregationRangeVO": {
+      "type": "object",
+      "properties": {
+        "activeDeviceNum": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "avgInvokeNum": {
+          "type": "number",
+          "format": "double",
+          "description": "周期内平均每天调用总数"
+        },
+        "timeInvokeDetails": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/timeInvokeDetail",
+            "originalRef": "timeInvokeDetail"
+          }
+        },
+        "totalInvokeNum": {
+          "type": "integer",
+          "format": "int64",
+          "description": "周期内调用总数"
+        }
+      },
+      "title": "aggregationRangeVO"
+    },
+    "composeModel": {
+      "type": "object",
+      "properties": {
+        "composeId": {
+          "type": "string",
+          "description": "composeId"
+        },
+        "composeName": {
+          "type": "string",
+          "description": "composeName"
+        }
+      },
+      "title": "composeModel"
+    },
+    "crossLine": {
+      "type": "object",
+      "properties": {
+        "crossLine": {
+          "type": "integer",
+          "format": "int32",
+          "description": "跨线信息 0:非拿取/放回 1:拿取 -1:放回"
+        },
+        "fileName": {
+          "type": "string",
+          "description": "fileName"
+        },
+        "frameId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "imageUrlLKey": {
+          "type": "string",
+          "description": "图片地址"
+        },
+        "skuId": {
+          "type": "string",
+          "description": "商品id"
+        },
+        "timeStamp": {
+          "type": "integer",
+          "format": "int32",
+          "description": "时间信息 毫秒"
+        }
+      },
+      "title": "crossLine"
+    },
+    "crossLineSet": {
+      "type": "object",
+      "properties": {
+        "crossLineSet": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/crossLine",
+            "originalRef": "crossLine"
+          }
+        }
+      },
+      "title": "crossLineSet"
+    },
+    "dynamicVisualDTO": {
+      "type": "object",
+      "properties": {
+        "crossLines": {
+          "type": "array",
+          "description": "跨线信息",
+          "items": {
+            "$ref": "#/definitions/crossLineSet",
+            "originalRef": "crossLineSet"
+          }
+        },
+        "videoUrlLKeys": {
+          "type": "array",
+          "description": "视频地址",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "dynamicVisualDTO"
+    },
+    "logIdBody": {
+      "type": "object",
+      "properties": {
+        "algoCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "costMax": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "costMin": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "dateEnd": {
+          "type": "string",
+          "description": "可选，结束时间格式：2020-09-03 00:00:00，不填写默认搜索最近7天"
+        },
+        "dateStart": {
+          "type": "string",
+          "description": "可选，开始时间，标准时间格式：2020-09-01 00:00:00，不填写默认搜索最近7天"
+        },
+        "deviceId": {
+          "type": "string"
+        },
+        "externalBizFrom": {
+          "type": "string"
+        },
+        "host": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "example": 1,
+          "description": "第几页"
+        },
+        "pageOrderList": {
+          "type": "array",
+          "description": "排序字段，可以为空，也可以为多个",
+          "items": {
+            "$ref": "#/definitions/PageOrder",
+            "originalRef": "PageOrder"
+          }
+        },
+        "scene": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32",
+          "example": 10,
+          "description": "每页数量"
+        },
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tag": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "targetPath": {
+          "type": "string"
+        },
+        "timeStampMax": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "timeStampMin": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "logIdBody"
+    },
+    "logRequestBody": {
+      "type": "object",
+      "properties": {
+        "dataIgnore": {
+          "type": "boolean"
+        },
+        "externalBizFrom": {
+          "type": "string"
+        },
+        "requestIds": {
+          "type": "array",
+          "description": "请求id 集合",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "logRequestBody"
+    },
+    "opLogListRequest": {
+      "type": "object",
+      "required": [
+        "endTime",
+        "startTime"
+      ],
+      "properties": {
+        "dateEnd": {
+          "type": "string",
+          "description": "可选，结束时间格式：2020-09-03 00:00:00，不填写默认搜索最近7天"
+        },
+        "dateStart": {
+          "type": "string",
+          "description": "可选，开始时间，标准时间格式：2020-09-01 00:00:00，不填写默认搜索最近7天"
+        },
+        "deviceNo": {
+          "type": "string"
+        },
+        "endTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "时间戳,默认一个月，最多一个月"
+        },
+        "externalBizFrom": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "example": 1,
+          "description": "第几页"
+        },
+        "pageOrderList": {
+          "type": "array",
+          "description": "排序字段，可以为空，也可以为多个",
+          "items": {
+            "$ref": "#/definitions/PageOrder",
+            "originalRef": "PageOrder"
+          }
+        },
+        "requestId": {
+          "type": "string"
+        },
+        "requestType": {
+          "type": "string",
+          "description": "交易 transact ,识别 recognize"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32",
+          "example": 10,
+          "description": "每页数量"
+        },
+        "startTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "时间戳,默认一个月，最多一个月"
+        },
+        "status": {
+          "type": "string",
+          "description": "状态 eg.Processing,Processed"
+        },
+        "warningCode": {
+          "type": "string",
+          "description": "异常码"
+        },
+        "whetherError": {
+          "type": "boolean"
+        }
+      },
+      "title": "opLogListRequest"
+    },
+    "opLogSyncTaskRequest": {
+      "type": "object",
+      "required": [
+        "taskName"
+      ],
+      "properties": {
+        "externalBizFrom": {
+          "type": "string"
+        },
+        "requestId": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "taskName": {
+          "type": "string"
+        }
+      },
+      "title": "opLogSyncTaskRequest"
+    },
+    "oplogVO": {
+      "type": "object",
+      "properties": {
+        "opLogList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OpLog",
+            "originalRef": "OpLog"
+          }
+        }
+      },
+      "title": "oplogVO"
+    },
+    "timeInvokeDetail": {
+      "type": "object",
+      "properties": {
+        "deviceNum": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "invokeNum": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "invokeTime": {
+          "type": "string",
+          "description": "时间戳类型 eg.1663516800000 -> 2022-09-19 00:00:00"
+        }
+      },
+      "title": "timeInvokeDetail"
+    }
+  }
+}

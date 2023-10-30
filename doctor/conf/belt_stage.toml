@@ -1,0 +1,326 @@
+[ConfigMap]
+   camera_info = [
+       'Clients.SubDevice.aide1',
+#       'Clients.SubDevice.aide2'
+#       'Clients.SubDevice.camera1'
+   ]
+   user_info = [
+        #'Console.User.testUser', 
+        #'Console.User.testUserlc', 
+        'Console.User.Regression'  #回归账号,请勿修改
+       #'Console.User.FangZhen'#仿真
+       #'Console.User.idstest',
+       #'Console.User.function',
+   ]
+   cluster_info = [
+        'EnvInfo.BeltEdge.hangzhou' # 接入点
+   ]
+   botApi = [
+#           'Bot.easyBot',
+           'Bot.aide',
+   ]
+   botInfo = [
+#           'Bot.easyBot',
+           'Bot.aide',
+   ]
+    user_info_console = [
+            'Console.User.testEnterprise', #企业账号
+                "Console.User.testPerson", #个人账号
+    ]
+
+    user_info_galaxy = [
+        "Console.User.static",
+        "Console.User.dynamic",
+    ]
+
+[ConfigExtra]
+    test_data = [
+        'ids_new',
+    ]
+
+[EnvInfo]
+    [EnvInfo.BeltCloud]
+        Service = "https://console.staging.sensebelt.com"
+        InternalService = "https://internal-console.staging.sensebelt.com"
+        CrdService = "https://ras.staging.sensebelt.com"
+        EdgeService = "https://ids.staging.sensebelt.com" #业务边缘 ids
+        EdgeRasService = "https://ras-sh1.staging.sensebelt.com" #业务边缘 ras
+        IamService = "https://console.staging.sensebelt.com" # 用于登录登出
+        RunTimeProxyService = "http://10.10.18.109:39569"
+        RunTimeViperAppletService = "http://10.10.18.109:46606"
+        RunTimeViperOcrService = "http://10.10.18.109:60890"
+        RunTimeViperService = "http://10.10.18.109:46606"
+        VipperService="http://crd-dev.sensetime.com"
+        AdapterService="http://crd-test.sensetime.com/aide-belt-adapter-staging/"
+        deckService = "https://deck.staging.sensebelt.com"
+        galaxyService = "https://galaxy.staging.sensebelt.com"
+
+    [EnvInfo.BeltCenter]
+        [EnvInfo.BeltCenter.master]
+            id = "crd-test"
+            name = "crd 当前测试环境"
+            site_id = "123"
+            type = "CT_CENTER"
+    [EnvInfo.BeltEdge]
+        [EnvInfo.BeltEdge.hangzhou]
+            id = "shanghai1"
+            name = "上海1"
+            site_id = "166432073597351373"
+            type = "CT_EDGE"
+
+
+[DeviceKindType]
+    [DeviceKindType.aide]
+        id = "b493d9ba4d9c4efcb9bfba323a1428cd"
+        name = "AIDE"
+    [DeviceKindType.easyBot]
+        id = "78e20c5148b94b05934bc2722f7c9904"
+        name = "fell_detective_device"
+    [DeviceKindType.rtmp]
+        id = "a4b2a709bb544c74b85580503a480145"
+        name = "test2"
+[Bot]
+    [Bot.easyBot]
+#        spu_name = 'easy-bot-spu-test'
+        spu_name = 'EasyBotSpu'
+        spu_display_name = 'easy bot 测试 spu'
+        deviceKindId = "45098e066a7740688fa7eb09b3699275"
+        deviceKindName = "fell_detective_device"
+    [Bot.aide]
+        spu_name = 'FallDetection'
+        spu_display_name = '摔倒识别机器人'
+        deviceKindId = "b493d9ba4d9c4efcb9bfba323a1428cd"
+        deviceKindName = "AIDE"
+        noSupportdeviceKindName = "for-test"
+    [Bot.spu]
+        name = 'easy-bot'
+        cluster_id = '2'
+ [SpuCode]
+   [SpuCode.ids]
+           ids_spuCode = ["CompleteIdentity", "CompareImage", "DetectLiveness", "OCRBankcard", "OCRBusinessLicense",
+                "OCRDrivingLicense", "OCRHKMacauExitEntryPermit","OCRIDCard","OCRPassport","OCRTaiwanExitEntryPermit","OCRVehicleLicense",
+                "PersonDBManageSet","SearchPerson","SecureLiveness","VerifyIDCard","VerifyIDCardFace"]
+
+[Console]
+    [Console.User.testUser]
+        username = "15011263602"
+        password = "wangan1234"
+        account_id = ""
+        ak = "2NjH04R7nnNBlLQSe7xn51ENPS4"
+        sk = "Xd1yKoR65Fs8KpsDZMoGJ9IGGWtzAQ95"
+        allowaccess = []
+        userToken = ""
+
+    [Console.User.testConsoleMainUser]
+        username = "13693109392"
+        password = "123456qw"
+        userNameForDisable = "461010793345904229"
+        userNameForFreeOrder = "464347733575134821"
+        freeOrderPeriod = "1"
+        skuIdforFree = "187900809478946781"
+        account_id = "159177960522361124"
+        policyGroupId = "167208358804226482"
+        spuCode = "OCRBusinessLicense"
+        spuCodeForOrder = "OCRBankcard"
+        spuCodeForOrderAgain = "DetectLiveness"
+        prePayOrderId = "178639416443551688"
+        policyGroupIdForOrder = "167208358787449266"
+        policyGroupName = "bot_ids_ocr_bankcard_pg"
+        policyGroupNameForPrePaid = "bot_ids_ocr_business_license_pg"
+        subUserId = "173820677818729283"
+        subUserIdForDisable = "178638701012726058"
+        subUserName = "consoleAutoSubUser"
+        akForDisable = "2PujNFskG97vymEYV4gJwEkw4w1"
+        skForDisable = "NOmWJND2jYPYvpKC3w6jx6jghhBDzg7Q"
+        accountIdForDisable = "178638168487178538"
+        allowaccess = []
+        userToken = ""
+
+    [Console.User.testEnterprise]
+        username = "13300000002"
+        password = "Qwert1"
+        #username = "13300000030"
+        #password = "Qwert1"
+        account_id = "171666353479065369"
+        policyGroupId = "167207193089731259"
+        ak = "2Nj5P5CqMyt0VfFdLp7wHVGddiZ"
+        sk = "cX4X7enUDPojjMd0M4tb1VSMQxjsAqAB"
+        allowaccess = []
+        userToken = ""
+
+    [Console.User.testPerson]
+        username = "13300000003"
+        password = "Qwert1"
+        #username = "13300000030"
+        #password = "Qwert1"
+        account_id = "171668075811282713"
+        policyGroupId = "167208358787449266"
+        ak = "2NjOnwsqlcVphVzLepNrHmQlWTZ"
+        sk = "EmbucPU2kBkRiurR9o6sYY6RQX6dQToO"
+        allowaccess = []
+        userToken = ""
+
+    [Console.User.Regression] # test环境Regression
+        username = "15011263680"
+        password = "wangan1234"
+        account_id = "167199091674153394"
+        ak = "2MMLmlz5qlkKIfQlwFh6NnpgpAY"
+        sk = "IHK8ZlTVxa9vx35N7LFbxM0aMYhL3AR2"
+        allowaccess = []
+        userToken = ""
+
+    [Console.User.FangZhen] # stage环境仿真
+        username = "15010019137"
+        password = "Qwer1234"
+        account_id = "455179146780274251"
+        ak = "2O55HRldTuZZW1Ic4BEaMk1I2Av"
+        sk = "DRT6HRgIGUv0vsQkn82x5Eo43Rwolcni"
+        allowaccess = []
+        userToken = ""
+
+
+    [Console.User.testUser1] # 该用户下仅含有老人跌倒bot
+        username = "15011263681"
+        password = "wangan1234"
+        account_id = "160344332761676616"
+        ak = "2MAoiWLDjdaL26zhqpwUXZUco6v"
+        sk = "MTwFUEw6w4DZtZnGAF8SpY0VkrQ3bktz"
+        allowaccess = []
+        userToken = "" # 登录token 测试环境userToken = ""，会根据username/password自动生成token
+
+   [Console.User.internalTestUser]
+        username = "456197822711131723"
+        password = "B9828W2B6*"
+        testAccountId = "178638168487178538"
+        testUserId = "171676708443823897"
+        orderIdByGetLog = "178625276975005640"
+        account_id = "173820042532733763"
+        spuCode = "VerifyIDCard"
+        spuId = "167209292724715467"
+        skuId = "184567065678462941"
+        skuName = "VerifyIDCard102"
+        group_id_list = ["170511597918282949","167314677246755250","167314677347418546","167314677448081842","167314677565522354","167314677750071730","167314676927988146","167314677011874226","167314677146091954","167176158729765298"]
+        ak = ""
+        sk = ""
+        allowaccess = []
+        userToken = ""                          # 登录token
+
+    [Console.User.idstest]
+        username = "idstest@sensetime.com"
+        password = "weishuting1234"
+        ak = "2OEJfhJT0vSEoKALOMJ9geDt8iy"
+        sk = "q1G88xQdy8GVTYWerqKriJ8rDJxdWgCt"
+
+    [Console.User.function]
+        username = "function@sensetime.com"
+        password = "weishuting1234"
+        ak = "2PdcT4neMhutHx8deahGvpPodgd"
+        sk = "yfNzHagXqUD20RNiHXpIBqrgemgemYDw"
+
+    [Console.User.testUserlc]
+        username = "15010019137"
+        password = "Qwer1234"
+        sub_account="15010019137test1"
+        ak = "2O55HRldTuZZW1Ic4BEaMk1I2Av"
+        sk = "DRT6HRgIGUv0vsQkn82x5Eo43Rwolcni"
+        allowaccess = []
+        userToken="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIySWNhbGZsdHNkb2EwaWU1S0EzMUl6cE5pM3IiLCJleHAiOjE2NzA0ODY3NzQsIm5iZiI6MTY3MDQ4NDk2OX0.7QepeJnZQj-Akv9vy5DwRVlEnv6Y5M24nXNsfLRZjwU"
+
+    [Console.User.testUserids]
+        username = "zhangrui2@sensetime.com"
+        password = "Admin12345@"
+        ak = "2NctPmh3t2qh3F5ISNtW2Q5Zy8s"
+        sk = "kfgoSlU5RNrPJunU7g1GKAztfXmj6Ujy"
+        allowaccess = []
+        userToken = ""
+
+    [Console.User.testUsersunqigang] 
+        username = "18682048833"
+        password = "AIai90944"
+        account_id = "168747672986004722"
+        ak = "2PdjLsn0yF9sr1H2A5NMKGe86BA"
+        sk = "7WhMqRdr8Pn16ryEqSWv2ukX8uZIHADS"
+        allowaccess = []
+        userToken = ""
+
+     [Console.User.static]
+        type = "static"
+        username = "15011263501"
+        password = "wangan1234"
+        ak = "2Q8aOISFc55NkCjxijNOnK62wjM"
+        sk = "XRRjenfUbf342YCEDo9YMkt2jj6Z65cx"
+        allowaccess = []
+    [Console.User.dynamic]
+        type = "dynamic"
+        username = "15011263502"
+        password = "wangan1234"
+        ak = "2Q8bm20M8fkqIoiPZwXR2VeUPeF"
+        sk = "yK8eYRPCdm1zCo9m1hsXtPOiaCYUGGlB"
+        allowaccess = []
+
+[Console.type1]
+        name = 'messageType1'
+    [Console.type2]
+        name = 'messageType2'
+    [Console.template1]
+        name = 'messageTemplate1'
+    [Console.template2]
+        name = 'messageTemplate2'
+    [Console.tempContent1]
+        name = 'msgTemContent1:hi, your {0} services expires in {1} days'
+    [Console.msgContent1]
+        name = 'oldRobot,7'
+
+
+
+[Ids]
+
+[Ras]
+    [Ras.botManager]
+        serviceName = 'sensego-crd-test'
+    [Ras.callback]
+        address1 = 'http://10.4.132.19:9999'
+
+
+
+[Clients]
+    [Clients.Aiot]    # aiot的端
+        [Clients.Aiot.ec1]
+            ip = '10.151.5.205'
+            port = '22'
+        [Clients.Aiot.ec2]
+            ip = '10.151.5.206'
+            port = '22'
+
+    # 测试用的摄像头、抓拍机配置 用于修改配置
+    [Clients.SubDevice]
+        [Clients.SubDevice.aide1]
+            type = "RTSP"
+            rtsp = 'rtsp://10.4.7.18:8554/b2-63yanchang.264' # 无人跌倒
+        [Clients.SubDevice.aide2] # 有人跌倒
+            type = "RTSP"
+            rtsp = 'rtsp://10.4.7.18:8554/fell.264'
+        [Clients.SubDevice.camera1] # 真实摄像头  理想F7
+            type = "RTSP"
+            rtsp = 'rtsp://10.4.7.18:8554/b2-63yanchang.264'
+        [Clients.SubDevice.camera2] # 长视频
+            type = "RTSP"
+            rtsp = 'rtsp://10.4.7.18:8554/fell.264'
+        [Clients.SubDevice.IotRtmp] # IOT—RMTP类型的设备
+            device_id = '9d73aae6e850417db1e830b81a2de315'
+            url="rtmp://nlb-dcc-1-eg-cn-shanghai-1.staging.sensebelt.com:31935/live/00002036?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmdyZXNzX2lkIjoiYTQ2NGZkYmEtYTllZC00NjdmLThkMTctNzQ2NjY3YzcyZjllLTAwMDAyMDM2IiwiZXhwIjo5MjIzMzcyMDM2fQ.AhZDNoCneZownzLpUs-rAywbqhuV0Nkr0rdaNfShQ2c"
+        [Clients.SubDevice.IotRtc] # IOT—RTC类型的设备
+            device_id = 'c7539d232c304d4dbbd8697b11c03b3e'
+            ingress_id="testingress id"
+        [Clients.SubDevice.recordTask] # 测试录播使用的摄像头
+            device_id = "30d70e18437541188b461af3fd2eb035"
+            device_id2 = ""
+            type = "RTSP"
+#            rtsp = 'rtsp://admin:t2mksense@10.4.7.11:554'
+            rtsp = 'rtsp://10.4.7.18:8554/b2-63yanchang.264'
+
+
+#创建设备需要填的IOT设备
+[Clients.devicekind]
+    name="IOT-SYMPHONY-RTC"
+

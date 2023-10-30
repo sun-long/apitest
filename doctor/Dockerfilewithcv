@@ -1,0 +1,11 @@
+FROM registry.sensetime.com/belt/belt-api-test:base
+# install requirements
+RUN python3 -m pip install --upgrade pip && pip3 install -i https://repo.sensetime.com/repository/pypi/simple  opencv-python-headless==4.7.0.68
+COPY requirements-ci.txt .
+RUN pip3 install -i https://repo.sensetime.com/repository/pypi/simple --no-cache-dir -r requirements-ci.txt
+
+RUN mkdir /home/apitest/code
+WORKDIR /home/apitest/code
+COPY . .
+ENV PYTHONIOENCODING=utf-8
+# ENTRYPOINT ["pytest","-sv"]

@@ -1,0 +1,1594 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "DB service.",
+        "title": "DB service API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "paths": {
+        "/argus/v1/db/batch_search/feature": {
+            "post": {
+                "summarydescription": "多图检索接口 X-Belt-Action:BatchSearchFeature, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_BatchSearchFeature",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.BatchFeatureSearchMultiReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.FeatureBatchSearchMultiRes"
+                        }
+                    }
+                }
+            }
+        },
+        "/argus/v1/db/batch_search/image": {
+            "post": {
+                "summary": "多图检索接口 X-Belt-Action:BatchSearchImage, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_BatchSearchImage",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.BatchFaceImageSearchRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.FeatureBatchSearchMultiRes"
+                        }
+                    }
+                }
+            }
+        },
+        "/argus/v1/db/bg_image": {
+            "get": {
+                "summary": "获取背景大图接口 X-Belt-Action:GetBgImage, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_GetBgImage",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ak",
+                        "name": "ak",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "group_id",
+                        "name": "group_id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "bg_request_id",
+                        "name": "bg_request_id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.ArgusBgImageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/argus/v1/db/delete_person": {
+            "post": {
+                "summary": "删除人员接口 X-Belt-Action:DeletePerson, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_DeletePerson",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.ArgusPersonDeleteRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.ArgusPersonDeleteRequest"
+                        }
+                    }
+                }
+            }
+        },
+        "/argus/v1/db/delete_static_group": {
+            "post": {
+                "summary": "删除静态库 X-Belt-Action:DeleteStaticGroup, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_DeleteStaticGroup",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.ArgusGroupDeleteRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.GenericErrInfo"
+                        }
+                    }
+                }
+            }
+        },
+        "/argus/v1/db/delete_stream_group": {
+            "post": {
+                "summary": "删除动态库 X-Belt-Action:DeleteStreamGroup, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_DeleteStreamGroup",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.ArgusGroupDeleteRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.GenericErrInfo"
+                        }
+                    }
+                }
+            }
+        },
+        "/argus/v1/db/image_detect": {
+            "post": {
+                "summary": "多图检索接口 X-Belt-Action:ImageDetect, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_ImageDetect",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.ImageDetectRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.ImageDetectResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/argus/v1/db/person": {
+            "get": {
+                "summary": "获取人员信息接口 X-Belt-Action:GetPerson, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_GetPerson",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ak",
+                        "name": "ak",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "group_id",
+                        "name": "group_id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "person_id",
+                        "name": "person_id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.PersonRetrieveResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "添加人员接口 X-Belt-Action:CreatePerson, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_CreatePerson",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "body",
+                        "in": "formData",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.ArgusPersonAddRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.ArgusPersonAddResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/argus/v1/db/person/list": {
+            "get": {
+                "summary": "获取人员信息接口 X-Belt-Action:ListPerson, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_ListPerson",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ak",
+                        "name": "ak",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "group_id",
+                        "name": "group_id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "limit",
+                        "name": "limit",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "offset",
+                        "name": "offset",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "reversed",
+                        "name": "reversed",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.PersonListResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/argus/v1/db/person_by_feature": {
+            "post": {
+                "summary": "根据特征添加人员接口 X-Belt-Action:CreatePersonByFeature, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_CreatePersonByFeature",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.PersonAddByFeatureRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.ArgusPersonAddResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/argus/v1/db/search/feature": {
+            "post": {
+                "summary": "特征检索接口 X-Belt-Action:SearchFeature, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_SearchFeature",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.FaceFeatureSearchRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.FeatureSearchResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/argus/v1/db/search/image": {
+            "post": {
+                "summary": "人脸图片检索接口 X-Belt-Action:SearchImage, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_SearchImage",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "body",
+                        "in": "formData",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.FaceImageSearchRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.FeatureSearchResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/argus/v1/db/search/image/multi_face": {
+            "post": {
+                "summary": "多图检索接口 X-Belt-Action:SearchImageMultiFace, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_SearchImageMultiFace",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "body",
+                        "in": "formData",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.FaceImageSearchRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.MultiFeatureSearchResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/argus/v1/db/static_group": {
+            "get": {
+                "summary": "查看静态库 X-Belt-Action:GetStaticGroup, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_GetStaticGroup",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ak",
+                        "name": "ak",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "group_id",
+                        "name": "group_id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.ArgusGroupListResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "创建静态库 X-Belt-Action:CreateStaticGroup, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_CreateStaticGroup",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.GroupAddRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.ArgusGroupAddResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/argus/v1/db/static_group/list": {
+            "get": {
+                "summary": "查看静态库列表 X-Belt-Action:ListStaticGroup, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_ListStaticGroup",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ak",
+                        "name": "ak",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "group_type",
+                        "name": "group_type",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.ArgusGroupListResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/argus/v1/db/stream_group": {
+            "get": {
+                "summary": "查看动态库 X-Belt-Action:GetStreamGroup, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_GetStreamGroup",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ak",
+                        "name": "ak",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "group_id",
+                        "name": "group_id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.ArgusGroupListResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "创建动态库 X-Belt-Action:CreateStreamGroup, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_CreateStreamGroup",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.GroupAddRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.ArgusGroupAddResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/argus/v1/db/stream_group/list": {
+            "get": {
+                "summary": "查看动态库列表 X-Belt-Action:ListStreamGroup, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_ListStreamGroup",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ak",
+                        "name": "ak",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "group_type",
+                        "name": "group_type",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.ArgusGroupListResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/argus/v1/db/update_person": {
+            "post": {
+                "summary": "更新人员接口 X-Belt-Action:UpdatePerson, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_UpdatePerson",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "body",
+                        "in": "formData",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.ArgusPersonUpdateRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.GenericErrInfo"
+                        }
+                    }
+                }
+            }
+        },
+        "/argus/v1/db/update_static_group": {
+            "post": {
+                "summary": "更新静态库 X-Belt-Action:UpdateStaticGroup, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_UpdateStaticGroup",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.GroupUpdateForWebRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.GenericErrInfo"
+                        }
+                    }
+                }
+            }
+        },
+        "/argus/v1/db/update_stream_group": {
+            "post": {
+                "summary": "更新静态库 X-Belt-Action:UpdateStreamGroup, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "DB API",
+                "operationId":"DB_UpdateStreamGroup",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.GroupUpdateForWebRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.GenericErrInfo"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "api.BoundingPoly": {
+            "type": "object",
+            "properties": {
+                "vertices": {
+                    "description": "多边形顶点.\n注意目标区域为矩形时, 仅包含两个顶点, 第一个为左上角坐标, 第二个为右下角坐标.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/api.Vertex"
+                    }
+                }
+            }
+        },
+        "api.Vertex": {
+            "type": "object",
+            "properties": {
+                "x": {
+                    "type": "integer"
+                },
+                "y": {
+                    "type": "integer"
+                }
+            }
+        },
+        "data.ArgusBgImageResponse": {
+            "type": "object",
+            "properties": {
+                "bg_oss_url": {
+                    "type": "string"
+                },
+                "error_code": {
+                    "type": "integer"
+                },
+                "error_msg": {
+                    "type": "string"
+                },
+                "request_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.ArgusGroupAddResponse": {
+            "type": "object",
+            "properties": {
+                "error_code": {
+                    "type": "integer"
+                },
+                "error_msg": {
+                    "type": "string"
+                },
+                "feature_version": {
+                    "description": "库使用的特征模型版本",
+                    "type": "string"
+                },
+                "group_id": {
+                    "description": "库id",
+                    "type": "string"
+                },
+                "request_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.ArgusGroupDeleteRequest": {
+            "type": "object",
+            "required": [
+                "ak",
+                "group_id"
+            ],
+            "properties": {
+                "ak": {
+                    "type": "string"
+                },
+                "group_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.ArgusGroupInfo": {
+            "type": "object",
+            "properties": {
+                "bind_groups": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "event_cb_url": {
+                    "type": "string"
+                },
+                "expired_time": {
+                    "type": "integer"
+                },
+                "feature_version": {
+                    "type": "string"
+                },
+                "group_id": {
+                    "type": "string"
+                },
+                "group_mold": {
+                    "type": "string"
+                },
+                "group_name": {
+                    "type": "string"
+                },
+                "group_size": {
+                    "type": "integer"
+                },
+                "merge_cb_url": {
+                    "type": "string"
+                },
+                "pedes_cb_url": {
+                    "type": "string"
+                },
+                "peer_cb_url": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.ArgusGroupListResponse": {
+            "type": "object",
+            "properties": {
+                "error_code": {
+                    "type": "integer"
+                },
+                "error_msg": {
+                    "type": "string"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/data.ArgusGroupInfo"
+                    }
+                },
+                "request_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.ArgusPersonAddRequest": {
+            "type": "object",
+            "properties": {
+                "ak": {
+                    "type": "string"
+                },
+                "bounding": {
+                    "$ref": "#/definitions/data.BoundingPoly"
+                },
+                "group_id": {
+                    "type": "string"
+                },
+                "image": {
+                    "description": "可以通过 base64 image 和 file 的形式",
+                    "type": "string"
+                },
+                "override": {
+                    "type": "string"
+                },
+                "person_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.ArgusPersonAddResponse": {
+            "type": "object",
+            "properties": {
+                "error_code": {
+                    "type": "integer"
+                },
+                "error_msg": {
+                    "type": "string"
+                },
+                "person_id": {
+                    "type": "string"
+                },
+                "request_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.ArgusPersonDeleteRequest": {
+            "type": "object",
+            "properties": {
+                "ak": {
+                    "type": "string"
+                },
+                "group_id": {
+                    "type": "string"
+                },
+                "person_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.ArgusPersonUpdateRequest": {
+            "type": "object",
+            "properties": {
+                "ak": {
+                    "type": "string"
+                },
+                "group_id": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "person_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.ArgusSearchNode": {
+            "type": "object",
+            "properties": {
+                "feature_id": {
+                    "type": "string"
+                },
+                "person_id": {
+                    "type": "string"
+                },
+                "score": {
+                    "type": "number"
+                }
+            }
+        },
+        "data.BatchFaceImageSearchRequest": {
+            "type": "object",
+            "properties": {
+                "ak": {
+                    "type": "string"
+                },
+                "images": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/data.DBImage"
+                    }
+                },
+                "search_configs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/data.BatchFeatureSearchMultiReqSearchConfig"
+                    }
+                }
+            }
+        },
+        "data.BatchFeatureSearchMultiReq": {
+            "type": "object",
+            "properties": {
+                "ak": {
+                    "type": "string"
+                },
+                "features": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "search_configs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/data.BatchFeatureSearchMultiReqSearchConfig"
+                    }
+                }
+            }
+        },
+        "data.BatchFeatureSearchMultiReqSearchConfig": {
+            "type": "object",
+            "properties": {
+                "group_id": {
+                    "type": "string"
+                },
+                "threshold": {
+                    "type": "number"
+                },
+                "top_k": {
+                    "type": "integer"
+                }
+            }
+        },
+        "data.BoundingPoly": {
+            "type": "object",
+            "properties": {
+                "vertices": {
+                    "description": "多边形顶点.\n注意: 目标区域为矩形时, 仅包含两个顶点, 第一个为左上角坐标, 第二个为右下角坐标.\n[EN] Polygon vertices. Note that it only contains two vertices - the\nfirst is the coordinate in upper left corner and the second is in the\nlower right corner - when the target area is rectangular.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/data.Vertex"
+                    }
+                }
+            }
+        },
+        "data.DBImage": {
+            "type": "object",
+            "properties": {
+                "bounding": {
+                    "$ref": "#/definitions/data.BoundingPoly"
+                },
+                "data": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.FaceFeatureSearchRequest": {
+            "type": "object",
+            "properties": {
+                "ak": {
+                    "type": "string"
+                },
+                "feature": {
+                    "type": "string"
+                },
+                "group_id": {
+                    "type": "string"
+                },
+                "threshold": {
+                    "description": "必须，人脸检索的阈值，取值范围(0,1)",
+                    "type": "number"
+                },
+                "top_k": {
+                    "description": "可选，检索相似度最高的top k个结果，取值范围[3,10]，默认3",
+                    "type": "integer"
+                }
+            }
+        },
+        "data.FaceImageSearchRequest": {
+            "type": "object",
+            "properties": {
+                "ak": {
+                    "type": "string"
+                },
+                "bounding": {
+                    "description": "可选",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/data.BoundingPoly"
+                        }
+                    ]
+                },
+                "group_id": {
+                    "type": "string"
+                },
+                "image": {
+                    "description": "可选，待检索图，非空表示以base64形式上传，file与image二选一",
+                    "type": "string"
+                },
+                "threshold": {
+                    "description": "必须，人脸检索的阈值，取值范围(0,1)",
+                    "type": "number"
+                },
+                "top_k": {
+                    "description": "可选，检索相似度最高的top k个结果，取值范围[3,5]，默认3",
+                    "type": "integer"
+                }
+            }
+        },
+        "data.FeatureBatchSearchMultiRes": {
+            "type": "object",
+            "properties": {
+                "error_code": {
+                    "type": "integer"
+                },
+                "error_msg": {
+                    "type": "string"
+                },
+                "request_id": {
+                    "type": "string"
+                },
+                "results": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/data.SingleGroupSearchRes"
+                    }
+                }
+            }
+        },
+        "data.FeatureSearchResInGroup": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/data.SimilarFeature"
+                    }
+                },
+                "msg": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.FeatureSearchResponse": {
+            "type": "object",
+            "properties": {
+                "error_code": {
+                    "type": "integer"
+                },
+                "error_msg": {
+                    "type": "string"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/data.ArgusSearchNode"
+                    }
+                },
+                "request_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.GenericErrInfo": {
+            "type": "object",
+            "properties": {
+                "error_code": {
+                    "type": "integer"
+                },
+                "error_msg": {
+                    "type": "string"
+                },
+                "request_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.GroupAddRequest": {
+            "type": "object",
+            "properties": {
+                "ak": {
+                    "type": "string"
+                },
+                "al_cb_url": {
+                    "type": "string"
+                },
+                "auto": {
+                    "type": "boolean"
+                },
+                "bind_groups": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "conf_type": {
+                    "type": "integer"
+                },
+                "event_cb_url": {
+                    "type": "string"
+                },
+                "expired_time": {
+                    "type": "integer"
+                },
+                "feature_version": {
+                    "type": "string"
+                },
+                "group_mold": {
+                    "type": "string"
+                },
+                "group_name": {
+                    "type": "string"
+                },
+                "group_size": {
+                    "type": "integer"
+                },
+                "group_tag": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "ll_cb_url": {
+                    "type": "string"
+                },
+                "merge_cb_url": {
+                    "type": "string"
+                },
+                "opq_model": {
+                    "type": "string"
+                },
+                "pedes_cb_url": {
+                    "type": "string"
+                },
+                "pedes_tag": {
+                    "type": "integer"
+                },
+                "peer_cb_url": {
+                    "type": "string"
+                },
+                "product_line": {
+                    "type": "integer"
+                },
+                "sync": {
+                    "type": "boolean"
+                },
+                "use_cache": {
+                    "type": "boolean"
+                },
+                "use_logic_layer": {
+                    "type": "boolean"
+                },
+                "use_multi_face": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "data.GroupUpdateForWebRequest": {
+            "type": "object",
+            "properties": {
+                "ak": {
+                    "type": "string"
+                },
+                "bind_groups": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "event_cb_url": {
+                    "type": "string"
+                },
+                "expired_time": {
+                    "type": "integer"
+                },
+                "group_id": {
+                    "type": "string"
+                },
+                "group_mold": {
+                    "type": "string"
+                },
+                "group_name": {
+                    "type": "string"
+                },
+                "merge_cb_url": {
+                    "type": "string"
+                },
+                "pedes_cb_url": {
+                    "type": "string"
+                },
+                "peer_cb_url": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.ImageDetectRequest": {
+            "type": "object",
+            "properties": {
+                "ak": {
+                    "type": "string"
+                },
+                "group_id": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.ImageDetectResponse": {
+            "type": "object",
+            "properties": {
+                "error_code": {
+                    "type": "integer"
+                },
+                "error_msg": {
+                    "type": "string"
+                },
+                "headpose": {
+                    "$ref": "#/definitions/utils.Headpose"
+                },
+                "quality": {
+                    "type": "number"
+                },
+                "rect": {
+                    "$ref": "#/definitions/utils.Rectangle"
+                },
+                "request_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.MultiFeatureResult": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/data.ArgusSearchNode"
+                    }
+                },
+                "msg": {
+                    "type": "string"
+                },
+                "quality": {
+                    "type": "number"
+                },
+                "rectangle": {
+                    "$ref": "#/definitions/api.BoundingPoly"
+                }
+            }
+        },
+        "data.MultiFeatureSearchResponse": {
+            "type": "object",
+            "properties": {
+                "error_code": {
+                    "type": "integer"
+                },
+                "error_msg": {
+                    "type": "string"
+                },
+                "request_id": {
+                    "type": "string"
+                },
+                "results": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/data.MultiFeatureResult"
+                    }
+                }
+            }
+        },
+        "data.Person": {
+            "type": "object",
+            "properties": {
+                "image": {
+                    "type": "string"
+                },
+                "person_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.PersonAddByFeatureRequest": {
+            "type": "object",
+            "properties": {
+                "ak": {
+                    "type": "string"
+                },
+                "feature": {
+                    "type": "string"
+                },
+                "group_id": {
+                    "type": "string"
+                },
+                "override": {
+                    "type": "string"
+                },
+                "person_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.PersonListResponse": {
+            "type": "object",
+            "properties": {
+                "error_code": {
+                    "type": "integer"
+                },
+                "error_msg": {
+                    "type": "string"
+                },
+                "limit": {
+                    "type": "integer"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/data.Person"
+                    }
+                },
+                "offset": {
+                    "type": "integer"
+                },
+                "request_id": {
+                    "type": "string"
+                },
+                "reversed": {
+                    "type": "boolean"
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
+        "data.PersonRetrieveResponse": {
+            "type": "object",
+            "properties": {
+                "error_code": {
+                    "type": "integer"
+                },
+                "error_msg": {
+                    "type": "string"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/data.Person"
+                    }
+                },
+                "request_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.SimilarFeature": {
+            "type": "object",
+            "properties": {
+                "feature_id": {
+                    "type": "string"
+                },
+                "person_id": {
+                    "type": "string"
+                },
+                "score": {
+                    "type": "number"
+                }
+            }
+        },
+        "data.SingleGroupSearchRes": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "feature_results": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/data.FeatureSearchResInGroup"
+                    }
+                },
+                "group_id": {
+                    "type": "string"
+                },
+                "msg": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.Vertex": {
+            "type": "object",
+            "properties": {
+                "x": {
+                    "type": "integer"
+                },
+                "y": {
+                    "type": "integer"
+                }
+            }
+        },
+        "utils.Headpose": {
+            "type": "object",
+            "properties": {
+                "pitch": {
+                    "type": "number"
+                },
+                "roll": {
+                    "type": "number"
+                },
+                "yaw": {
+                    "type": "number"
+                }
+            }
+        },
+        "utils.Rectangle": {
+            "type": "object",
+            "properties": {
+                "bottom": {
+                    "type": "integer"
+                },
+                "left": {
+                    "type": "integer"
+                },
+                "right": {
+                    "type": "integer"
+                },
+                "top": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

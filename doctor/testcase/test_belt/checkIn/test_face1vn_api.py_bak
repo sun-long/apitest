@@ -1,0 +1,66 @@
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+
+import os
+import pytest
+from commonlib import config, time_utils, sign_utils
+from commonlib.log_utils import log
+
+
+@pytest.mark.checkin
+@pytest.mark.ids
+
+class TestFace1vnApi(object):
+    """ face Api测试"""
+
+    @pytest.fixture(scope="class", autouse=True)
+    def init_func(self, config_obj):
+        # 初始化测试集
+        # 所有test运行前运行一次，接收外部参数env_obj，初始化测试环境
+        log().info("==========%s测试开始==========" % self.__class__.__name__)
+
+    def teardown_class(self):
+        # 所有test运行完后运行一次
+        log().info("==========%s测试结束==========\n" % self.__name__)
+        log().info("clear tasks finish")
+
+    def setup_method(self, method):
+        # 每个测试用例执行之前做操作
+        log().info("用例%s开始" % method.__name__)
+
+    def teardown_method(self, method):
+        # 每个测试用例执行之后做操作
+        log().info("用例%s结束" % method.__name__)
+
+    def test_api_FaceService_SearchPerson_01(self, config_obj, FaceApi):
+            """人员搜索_search_person"""
+            #step1创建库
+            name="test_db_search_person"
+            description = "用于测试人员搜索创建的库"
+            resp = FaceApi.FaceService_CreatePersonDBPostApi(name=name, description=description)
+            db_id=resp.json_get("id")
+            #step2入库两组人员，a1,b1
+            #第一组
+            person_id = "a"
+            a_image1=FaceApi.idsImageToBase64(f"face1vn/search_person/a_image1.jpg")
+            images = [a_image1]
+            extra_info = None
+            auto_rotate = None
+            min_quality_level = None
+            tag_ids = None
+            encrypt_info = None
+            resp = FaceApi.FaceService_AddPersonPostApi(db_id=db_id, person_id=person_id, images=images, extra_info=extra_info, auto_rotate=auto_rotate, min_quality_level=min_quality_level, tag_ids=tag_ids, encrypt_info=encrypt_info)
+            #step3检索      
+            image_query = a_image1
+            top_k = 10
+            min_score = 0
+            auto_rotate = None
+            min_quality_level = None
+            detect_liveness = None
+            tag_ids = None
+            with_detail = None
+            resp = FaceApi.FaceService_SearchPersonPostApi(db_id=db_id, image=image_query, top_k=top_k, min_score=min_score, auto_rotate=auto_rotate, min_quality_level=min_quality_level, detect_liveness=detect_liveness, tag_ids=tag_ids, with_detail=with_detail)
+            #删除库
+            FaceApi.FaceService_DeletePersonDBPostApi(id=db_id)        
+            #校验逻辑
+            assert resp.status_code == 200        

@@ -1,0 +1,2511 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "console-user",
+    "version": "v1.0.0"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/console/v1/accounts/ocr": {
+      "post": {
+        "summary": "身份张照片识别\nroute: prefix=console action=OCRIDCard version=v1",
+        "operationId": "ConsoleUserService_OCRIDCard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userOCRIDCardRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userOCRIDCardReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/policygroups": {
+      "get": {
+        "summary": "策略组列表\nroute: prefix=console action=ListPolicyGroup version=v1",
+        "operationId": "ConsoleUserService_ListPolicyGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userListPolicyGroupRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "nick_name",
+            "description": "权限组名称.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "description": "描述.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order",
+            "description": "顺序；默认创建时间降序，可选.\n\n - LIST_ORDER_UNSPECIFIED: 未指定\n - LIST_ORDER_CREATED_TIME_ASC: 创建时间升序排列\n - LIST_ORDER_CREATED_TIME_DESC: 创建时间降序排列\n - LIST_ORDER_NAME_ASC: 名称升序排列\n - LIST_ORDER_NAME_DESC: 名称降序排列\n - LIST_ORDER_SUBMIT_AT_ASC: 提交时间升序排列\n - LIST_ORDER_SUBMIT_AT_DESC: 提交时间降序排列\n - LIST_ORDER_RECHARGE_AT_ASC: 提交充值申请时间升序排列\n - LIST_ORDER_RECHARGE_AT_DESC: 提交充值申请时间降序排列",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "LIST_ORDER_UNSPECIFIED",
+              "LIST_ORDER_CREATED_TIME_ASC",
+              "LIST_ORDER_CREATED_TIME_DESC",
+              "LIST_ORDER_NAME_ASC",
+              "LIST_ORDER_NAME_DESC",
+              "LIST_ORDER_SUBMIT_AT_ASC",
+              "LIST_ORDER_SUBMIT_AT_DESC",
+              "LIST_ORDER_RECHARGE_AT_ASC",
+              "LIST_ORDER_RECHARGE_AT_DESC"
+            ],
+            "default": "LIST_ORDER_UNSPECIFIED"
+          },
+          {
+            "name": "page_request.offset",
+            "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条; 默认值为0.\n返回本次请求返回的第一条记录实际位置(一般与输入一致).\n[EN] Optional, start position, value: \u003e = 0, 0 is the first line; the\ndefault value is 0. In response, actual offset of the first returned record\nis returned (generally equals to the offset in request).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.limit",
+            "description": "长度, 取值范围[1,100], 如果超出范围, 则返回失败;\n在某些接口中limit范围可能会重新定义, 请以其接口的补充说明为准. [EN] Length,\ndefault value range [1,100], if it is out of the range, error will be\nreturned; as the limit range may be redefined in some APIs, please refer to\nthe supplementary description of these APIs.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.total",
+            "description": "可选, 总数, 请求无须填此参数, 响应时填写.\n[EN] Optional, this parameter is not required for request, but will be\nfilled in response.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/policygroups/group_id": {
+      "get": {
+        "summary": "策略组详情\nroute: prefix=console action=GetPolicyGroupAssociatedInfoByID version=v1",
+        "operationId": "ConsoleUserService_GetPolicyGroupAssociatedInfoByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userGetPolicyGroupAssociatedInfoByIDRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "group_id",
+            "description": "策略组ID 必选.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/user/policygroups": {
+      "get": {
+        "summary": "根据user_id获取策略组列表\nroute: prefix=console action=GetAllPolicyGroupsByUserID version=v1",
+        "operationId": "ConsoleUserService_GetAllPolicyGroupsByUserID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userGetAllPolicyGroupsByUserIDRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_id",
+            "description": "权限组名称.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "order",
+            "description": "顺序；默认创建时间降序，可选.\n\n - LIST_ORDER_UNSPECIFIED: 未指定\n - LIST_ORDER_CREATED_TIME_ASC: 创建时间升序排列\n - LIST_ORDER_CREATED_TIME_DESC: 创建时间降序排列\n - LIST_ORDER_NAME_ASC: 名称升序排列\n - LIST_ORDER_NAME_DESC: 名称降序排列\n - LIST_ORDER_SUBMIT_AT_ASC: 提交时间升序排列\n - LIST_ORDER_SUBMIT_AT_DESC: 提交时间降序排列\n - LIST_ORDER_RECHARGE_AT_ASC: 提交充值申请时间升序排列\n - LIST_ORDER_RECHARGE_AT_DESC: 提交充值申请时间降序排列",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "LIST_ORDER_UNSPECIFIED",
+              "LIST_ORDER_CREATED_TIME_ASC",
+              "LIST_ORDER_CREATED_TIME_DESC",
+              "LIST_ORDER_NAME_ASC",
+              "LIST_ORDER_NAME_DESC",
+              "LIST_ORDER_SUBMIT_AT_ASC",
+              "LIST_ORDER_SUBMIT_AT_DESC",
+              "LIST_ORDER_RECHARGE_AT_ASC",
+              "LIST_ORDER_RECHARGE_AT_DESC"
+            ],
+            "default": "LIST_ORDER_UNSPECIFIED"
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/user_accounts": {
+      "post": {
+        "summary": "portal主用户注册\nroute: prefix=console action=CreateUserWithAccount version=v1",
+        "operationId": "ConsoleUserService_CreateUserWithAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userCreateUserWithAccountRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userCreateUserWithAccountReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/user_accounts/login_forgot_poassword": {
+      "post": {
+        "summary": "portal主用户忘记密码时 用手机号码或者邮箱重置密码操作\nroute: prefix=console action=UserLoginForgotPassword version=v1",
+        "operationId": "ConsoleUserService_UserLoginForgotPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userUserLoginForgotPasswordRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userUserLoginForgotPasswordReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/user_accounts/verify_user_register_info": {
+      "post": {
+        "summary": "portal验证邮箱账号、手机号、手机验证码信息\nroute: prefix=console action=VerifyUserRegisterInfo version=v1",
+        "operationId": "ConsoleUserService_VerifyUserRegisterInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userVerifyUserRegisterInfoRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userVerifyUserRegisterInfoReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users": {
+      "get": {
+        "summary": "获取子用户列表\nroute: prefix=console action=GetUserList version=v1",
+        "operationId": "ConsoleUserService_GetUserList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userGetUserListRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "nick_name",
+            "description": "显示用名称.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "description": "描述.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "blocked",
+            "description": "状态 (1：停用) (0：启用) (-1：全部) 必选.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "order",
+            "description": "顺序；默认创建时间降序，可选.\n\n - LIST_ORDER_UNSPECIFIED: 未指定\n - LIST_ORDER_CREATED_TIME_ASC: 创建时间升序排列\n - LIST_ORDER_CREATED_TIME_DESC: 创建时间降序排列\n - LIST_ORDER_NAME_ASC: 名称升序排列\n - LIST_ORDER_NAME_DESC: 名称降序排列\n - LIST_ORDER_SUBMIT_AT_ASC: 提交时间升序排列\n - LIST_ORDER_SUBMIT_AT_DESC: 提交时间降序排列\n - LIST_ORDER_RECHARGE_AT_ASC: 提交充值申请时间升序排列\n - LIST_ORDER_RECHARGE_AT_DESC: 提交充值申请时间降序排列",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "LIST_ORDER_UNSPECIFIED",
+              "LIST_ORDER_CREATED_TIME_ASC",
+              "LIST_ORDER_CREATED_TIME_DESC",
+              "LIST_ORDER_NAME_ASC",
+              "LIST_ORDER_NAME_DESC",
+              "LIST_ORDER_SUBMIT_AT_ASC",
+              "LIST_ORDER_SUBMIT_AT_DESC",
+              "LIST_ORDER_RECHARGE_AT_ASC",
+              "LIST_ORDER_RECHARGE_AT_DESC"
+            ],
+            "default": "LIST_ORDER_UNSPECIFIED"
+          },
+          {
+            "name": "page_request.offset",
+            "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条; 默认值为0.\n返回本次请求返回的第一条记录实际位置(一般与输入一致).\n[EN] Optional, start position, value: \u003e = 0, 0 is the first line; the\ndefault value is 0. In response, actual offset of the first returned record\nis returned (generally equals to the offset in request).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.limit",
+            "description": "长度, 取值范围[1,100], 如果超出范围, 则返回失败;\n在某些接口中limit范围可能会重新定义, 请以其接口的补充说明为准. [EN] Length,\ndefault value range [1,100], if it is out of the range, error will be\nreturned; as the limit range may be redefined in some APIs, please refer to\nthe supplementary description of these APIs.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.total",
+            "description": "可选, 总数, 请求无须填此参数, 响应时填写.\n[EN] Optional, this parameter is not required for request, but will be\nfilled in response.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      },
+      "post": {
+        "summary": "创建子用户\nroute: prefix=console action=CreateUser version=v1",
+        "operationId": "ConsoleUserService_CreateUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userCreateUserRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userCreateUserReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/access_mode/user_id": {
+      "post": {
+        "summary": "子用户编辑 包括用户访问方式（编程访问、控制台访问）\nroute: prefix=console action=UpdateUserAccessMode version=v1",
+        "operationId": "ConsoleUserService_UpdateUserAccessMode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userUpdateUserAccessModeRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userUpdateUserAccessModeReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/associated_info/user_id": {
+      "get": {
+        "summary": "子用户详情包括用户基本信息、所属权限组（用户所拥有的权限组列表）、安全设置（用户所拥有的access_key_id列表）\nroute: prefix=console action=GetUserAssociatedInfoByID version=v1",
+        "operationId": "ConsoleUserService_GetUserAssociatedInfoByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userGetUserAssociatedInfoByIDRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_id",
+            "description": "用户ID 必选.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/base_info": {
+      "get": {
+        "summary": "获取用户基本信息\nroute: prefix=console action=GetUserBaseInfo version=v1",
+        "operationId": "ConsoleUserService_GetUserBaseInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userGetUserBaseInfoRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "ConsoleUserService"
+        ]
+      },
+      "post": {
+        "summary": "更新用户基本信息 包括昵称\nroute: prefix=console action=UpdateUserBaseInfo version=v1",
+        "operationId": "ConsoleUserService_UpdateUserBaseInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userUpdateUserBaseInfoRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userUpdateUserBaseInfoReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/code": {
+      "get": {
+        "summary": "申请验证码需要填写手机号或者邮箱账号\nroute: prefix=console action=SendSmsCode version=v1",
+        "operationId": "ConsoleUserService_SendSmsCode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userSendSmsCodeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mode",
+            "description": "模式 0：邮箱 1：手机 必选.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "description": "邮箱/手机号 必选.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/code/verify": {
+      "get": {
+        "summary": "验证验证码需要填写手机号或者邮箱账号\nroute: prefix=console action=VerifySmsCode version=v1",
+        "operationId": "ConsoleUserService_VerifySmsCode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userVerifySmsCodeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mode",
+            "description": "模式 0：邮箱 1：手机 必选.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "description": "邮箱/手机号 必选.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "code",
+            "description": "验证码 必选.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/current_user/code": {
+      "get": {
+        "summary": "申请验证码用当前用户user_id的手机号或者邮箱账号\nroute: prefix=console action=SendCurrentUserSmsCode version=v1",
+        "operationId": "ConsoleUserService_SendCurrentUserSmsCode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userSendCurrentUserSmsCodeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mode",
+            "description": "模式 0：邮箱 1：手机 必选.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/current_user/code/verify": {
+      "get": {
+        "summary": "验证验证码用当前用户user_id的手机号或者邮箱账号\nroute: prefix=console action=VerifyCurrentUserSmsCode version=v1",
+        "operationId": "ConsoleUserService_VerifyCurrentUserSmsCode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userVerifyCurrentUserSmsCodeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mode",
+            "description": "模式 0：邮箱 1：手机 必选.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "code",
+            "description": "验证码 必选.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/delete_root_user": {
+      "post": {
+        "summary": "用手机号码或者userID删除主用户",
+        "operationId": "ConsoleUserService_UsePhoneOrUserIDDeleteUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userUsePhoneOrUserIDDeleteUserRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userUsePhoneOrUserIDDeleteUserReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/desc_info/user_id": {
+      "post": {
+        "summary": "子用户编辑 包括用户名称、状态、描述\nroute: prefix=console action=UpdateUserDescInfo version=v1",
+        "operationId": "ConsoleUserService_UpdateUserDescInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userUpdateUserDescInfoRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userUpdateUserDescInfoReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/security_set/cellphone": {
+      "post": {
+        "summary": "安全设置 手机号码修改\nroute: prefix=console action=SecuritySetUpdateUserCellphone version=v1",
+        "operationId": "ConsoleUserService_SecuritySetUpdateUserCellphone",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userSecuritySetUpdateUserCellphoneRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userSecuritySetUpdateUserCellphoneReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/security_set/email": {
+      "post": {
+        "summary": "安全设置 绑定邮箱\nroute: prefix=console action=SecuritySetUpdateUserEmail version=v1",
+        "operationId": "ConsoleUserService_SecuritySetUpdateUserEmail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userSecuritySetUpdateUserEmailRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userSecuritySetUpdateUserEmailReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/security_set/password": {
+      "post": {
+        "summary": "安全设置 修改登录密码\nroute: prefix=console action=SecuritySetUpdateUserPassword version=v1",
+        "operationId": "ConsoleUserService_SecuritySetUpdateUserPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userSecuritySetUpdateUserPasswordRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userSecuritySetUpdateUserPasswordReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/sub_user/password": {
+      "post": {
+        "summary": "子用户编辑 更新子用户密码\nroute: prefix=console action=UpdateSubUserPassword version=v1",
+        "operationId": "ConsoleUserService_UpdateSubUserPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userUpdateSubUserPasswordRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userUpdateSubUserPasswordReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/unredacted_info": {
+      "get": {
+        "summary": "获取用户未脱敏的基本信息(电话或者邮箱)\nroute: prefix=console action=GetUserUnRedactedInfo version=v1",
+        "operationId": "ConsoleUserService_GetUserUnRedactedInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userGetUserUnRedactedInfoRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mode",
+            "description": "0 获取真实姓名未脱敏信息\n1 获取手机号未脱敏信息\n2 获取邮箱账号未脱敏信息\n3 获取身份证号码未脱敏信息.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "user_id",
+            "description": "用户ID.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/user_id": {
+      "post": {
+        "summary": "子用户删除\nroute: prefix=console action=DeleteUser version=v1",
+        "operationId": "ConsoleUserService_DeleteUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userDeleteUserRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userDeleteUserReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/user_id/accesskeys": {
+      "post": {
+        "summary": "子用户新增访问密钥\nroute: prefix=console action=CreateUserAKSK version=v1",
+        "operationId": "ConsoleUserService_CreateUserAKSK",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userCreateUserAKSKRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userCreateUserAKSKReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/user_id/accesskeys/access_key_id": {
+      "post": {
+        "summary": "子用户移除访问密钥\nroute: prefix=console action=DeleteAccessKey version=v1",
+        "operationId": "ConsoleUserService_DeleteAccessKey",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userDeleteAccessKeyRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userDeleteAccessKeyReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/user_id/accesskeys/excel_export": {
+      "post": {
+        "summary": "将aksk信息导出为excel文件\nroute: prefix=console action=ExportUserAKSKExcel version=v1",
+        "operationId": "ConsoleUserService_ExportUserAKSKExcel",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userExportUserAKSKExcelRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userExportUserAKSKExcelReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/user_id/accesskeys/status": {
+      "post": {
+        "summary": "设置子用户aksk状态\nroute: prefix=console action=SetAccessKeyStatus version=v1",
+        "operationId": "ConsoleUserService_SetAccessKeyStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userSetAccessKeyStatusRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userSetAccessKeyStatusReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/user_id/batch_policygroups": {
+      "post": {
+        "summary": "批量授权子用户权限组\nroute: prefix=console action=BatchAddPolicyGroupToUser version=v1",
+        "operationId": "ConsoleUserService_BatchAddPolicyGroupToUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userBatchAddPolicyGroupToUserRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userBatchAddPolicyGroupToUserReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/user_id/policygroups/group_id": {
+      "post": {
+        "summary": "用户移除授权权限组\nroute: prefix=console action=RemovePolicyGroupFromUser version=v1",
+        "operationId": "ConsoleUserService_RemovePolicyGroupFromUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userRemovePolicyGroupFromUserResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userRemovePolicyGroupFromUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    },
+    "/console/v1/users/user_name_exist": {
+      "post": {
+        "summary": "查询创建的新子用户名称是否已经存在\nroute: prefix=console action=UserNameExistInAccount version=v1",
+        "operationId": "ConsoleUserService_UserNameExistInAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userUserNameExistInAccountRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userUserNameExistInAccountReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleUserService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string",
+          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+        },
+        "value": {
+          "type": "string",
+          "format": "byte",
+          "description": "Must be a valid serialized protocol buffer of the above specified type."
+        }
+      },
+      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\nExample 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\nExample 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := \u0026pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "userAccessKeyInfo": {
+      "type": "object",
+      "properties": {
+        "access_key_id": {
+          "type": "string",
+          "title": "access key ID"
+        },
+        "secret_access_key": {
+          "type": "string",
+          "title": "访问凭证密钥"
+        },
+        "description": {
+          "type": "string",
+          "title": "详细描述"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "创建时间"
+        },
+        "blocked": {
+          "type": "boolean",
+          "title": "aksk状态  (true：停用) (false：启用)"
+        }
+      }
+    },
+    "userAccountInfo": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户id"
+        },
+        "account_name": {
+          "type": "string",
+          "title": "账户名称"
+        },
+        "enterprise_name": {
+          "type": "string",
+          "title": "认证主体"
+        },
+        "submit_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "提交认证时间"
+        },
+        "status": {
+          "$ref": "#/definitions/userAccountStatus",
+          "title": "认证状态"
+        },
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "主账号id 已经弃用"
+        },
+        "user_name": {
+          "type": "string",
+          "title": "user_name 主账号id"
+        },
+        "enterprise_card_name": {
+          "type": "string",
+          "title": "联系人"
+        },
+        "cellphone": {
+          "type": "string",
+          "title": "联系电话"
+        },
+        "email": {
+          "type": "string",
+          "title": "联系邮箱"
+        },
+        "business_department": {
+          "type": "string",
+          "title": "部门"
+        },
+        "business_name": {
+          "type": "string",
+          "title": "姓名"
+        },
+        "business_code": {
+          "type": "string",
+          "title": "工号"
+        },
+        "business_assigned": {
+          "type": "string",
+          "title": "商务分配标记"
+        },
+        "account_used_status": {
+          "$ref": "#/definitions/userAccountUsedStatus",
+          "title": "账户启用状态"
+        },
+        "payment_type": {
+          "$ref": "#/definitions/userAccountPaymentType",
+          "title": "付费类型"
+        },
+        "account_type": {
+          "$ref": "#/definitions/userAccountType",
+          "title": "账户类型"
+        },
+        "audit_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "审核结束时间"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "创建时间"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "最后修改时间"
+        },
+        "the_last_three_months_bill_amount": {
+          "type": "string",
+          "format": "uint64",
+          "title": "最近三个月的账单金额"
+        },
+        "empty_status": {
+          "type": "integer",
+          "format": "int64",
+          "title": "最近三月账单金额记录是否为空 0:不为空 1:为空"
+        },
+        "submit_recharge_time": {
+          "type": "string",
+          "format": "int64",
+          "title": "提交充值申请时间"
+        },
+        "recharge_log_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "recharge_log_id 充值申请记录id"
+        },
+        "have_unprocessed_recharge_log": {
+          "type": "integer",
+          "format": "int32",
+          "title": "是否有未处理完成的申请记录 0:没有  1:有"
+        },
+        "have_second_confirm_recharge_log": {
+          "type": "integer",
+          "format": "int32",
+          "title": "是否有有待更余额的申请记录(也就是待二次确认的充值申请记录) 0:没有  1:有"
+        },
+        "account_level": {
+          "$ref": "#/definitions/userAccountLevel",
+          "description": "账户等级."
+        }
+      }
+    },
+    "userAccountLevel": {
+      "type": "string",
+      "enum": [
+        "ACCOUNT_LEVEL_UNDEFINED",
+        "ACCOUNT_LEVEL_A",
+        "ACCOUNT_LEVEL_C",
+        "ACCOUNT_LEVEL_D",
+        "ACCOUNT_LEVEL_N"
+      ],
+      "default": "ACCOUNT_LEVEL_UNDEFINED",
+      "description": "- ACCOUNT_LEVEL_A: A级客户 合作超过一年（含），无超过90天（含）逾期应收的公司现有全部客户\n - ACCOUNT_LEVEL_C: C级客户 合作超过一年（含），有超过90天（不含含）逾期、但未超过360天（含）的客户\n - ACCOUNT_LEVEL_D: D级客户 合作超过一年（含），有超过360天（不含）逾期的客户\n - ACCOUNT_LEVEL_N: N级客户 合作不到一年的新客户",
+      "title": "账户等级定义,具体定义见注释.\n[since] 2023-03-06,应crd需求添加.enum\nhttps://ones.ainewera.com/project/#/team/JNwe8qUX/task/BSFvCGGdbDSADlv8"
+    },
+    "userAccountPaymentType": {
+      "type": "string",
+      "enum": [
+        "ACCOUNT_PAYMENT_UNSPECIFIED",
+        "ACCOUNT_PAYMENT_POSTPAID",
+        "ACCOUNT_PAYMENT_UNPOSTPAID"
+      ],
+      "default": "ACCOUNT_PAYMENT_UNSPECIFIED",
+      "title": "- ACCOUNT_PAYMENT_UNSPECIFIED: 未指定\n - ACCOUNT_PAYMENT_POSTPAID: 允许后付费\n - ACCOUNT_PAYMENT_UNPOSTPAID: 不允许后付费"
+    },
+    "userAccountStatus": {
+      "type": "string",
+      "enum": [
+        "ACCOUNT_STATUS_UNSPECIFIED",
+        "ACCOUNT_STATUS_BERINGCERTIFIED",
+        "ACCOUNT_STATUS_SUCCEEDED",
+        "ACCOUNT_STATUS_FAILED",
+        "ACCOUNT_STATUS_CHANGED",
+        "ACCOUNT_STATUS_CHANGED_FAILED",
+        "ACCOUNT_AUDIT_STATUS_UNCERTIFIED"
+      ],
+      "default": "ACCOUNT_STATUS_UNSPECIFIED",
+      "title": "- ACCOUNT_STATUS_UNSPECIFIED: 未指定\n - ACCOUNT_STATUS_BERINGCERTIFIED: 认证中\n - ACCOUNT_STATUS_SUCCEEDED: 认证成功\n - ACCOUNT_STATUS_FAILED: 认证失败\n - ACCOUNT_STATUS_CHANGED: 认证变更待审核\n - ACCOUNT_STATUS_CHANGED_FAILED: 认证变更失败\n - ACCOUNT_AUDIT_STATUS_UNCERTIFIED: 未认证审核"
+    },
+    "userAccountType": {
+      "type": "string",
+      "enum": [
+        "ACCOUNT_TYPE_UNSPECIFIED",
+        "ACCOUNT_TYPE_PERSON",
+        "ACCOUNT_TYPE_ENTERPRISE",
+        "ACCOUNT_TYPE_UNKNOW"
+      ],
+      "default": "ACCOUNT_TYPE_UNSPECIFIED",
+      "title": "- ACCOUNT_TYPE_UNSPECIFIED: 未指定\n - ACCOUNT_TYPE_PERSON: 个人账户\n - ACCOUNT_TYPE_ENTERPRISE: 企业账户\n - ACCOUNT_TYPE_UNKNOW: 未知类型"
+    },
+    "userAccountUsedStatus": {
+      "type": "string",
+      "enum": [
+        "ACCOUNT_USED_STATUS_UNSPECIFIED",
+        "ACCOUNT_USED_STATUS_UNBLOCKED",
+        "ACCOUNT_USED_STATUS_BLOCKED"
+      ],
+      "default": "ACCOUNT_USED_STATUS_UNSPECIFIED",
+      "title": "- ACCOUNT_USED_STATUS_UNSPECIFIED: 未指定\n - ACCOUNT_USED_STATUS_UNBLOCKED: 启用\n - ACCOUNT_USED_STATUS_BLOCKED: 停用"
+    },
+    "userBatchAddPolicyGroupToUserReq": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户ID 必选"
+        },
+        "group_id_list": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uint64"
+          },
+          "title": "策略组ID 必选"
+        }
+      }
+    },
+    "userBatchAddPolicyGroupToUserRes": {
+      "type": "object"
+    },
+    "userCreateUserAKSKReq": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户ID 必选"
+        },
+        "code": {
+          "type": "string",
+          "title": "验证码 必选"
+        }
+      }
+    },
+    "userCreateUserAKSKRes": {
+      "type": "object",
+      "properties": {
+        "access_key_id": {
+          "type": "string",
+          "title": "访问凭证ID"
+        },
+        "secret_access_key": {
+          "type": "string",
+          "title": "访问凭证密钥"
+        },
+        "create_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "密钥创建时间"
+        },
+        "blocked": {
+          "type": "boolean",
+          "title": "aksk状态  (true：停用) (false：启用)"
+        },
+        "csv_file": {
+          "type": "string",
+          "title": "csv_file"
+        }
+      }
+    },
+    "userCreateUserReq": {
+      "type": "object",
+      "properties": {
+        "nick_name": {
+          "type": "string",
+          "title": "用户名称"
+        },
+        "access_mode": {
+          "type": "string",
+          "format": "int64",
+          "title": "访问方式，位运算 0x0：无法访问 0x1：编程访问 0x2：控制台访问"
+        },
+        "password": {
+          "type": "string",
+          "title": "密码 必选"
+        },
+        "code": {
+          "type": "string",
+          "title": "验证码 必选"
+        }
+      }
+    },
+    "userCreateUserRes": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户ID"
+        },
+        "user_name": {
+          "type": "string",
+          "title": "用户user_name"
+        },
+        "nick_name": {
+          "type": "string",
+          "title": "用户nick_name"
+        },
+        "description": {
+          "type": "string",
+          "title": "描述"
+        },
+        "access_key_info": {
+          "$ref": "#/definitions/userAccessKeyInfo",
+          "title": "aksk信息"
+        },
+        "csv_file": {
+          "type": "string",
+          "title": "csv_file"
+        }
+      }
+    },
+    "userCreateUserWithAccountReq": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "integer",
+          "format": "int32",
+          "title": "模式 0：邮箱 1：手机 必选"
+        },
+        "password": {
+          "type": "string",
+          "title": "密码 必选"
+        },
+        "email": {
+          "type": "string",
+          "title": "邮箱 （只邮箱模式有效）"
+        },
+        "phone": {
+          "type": "string",
+          "title": "手机号 必选"
+        },
+        "code": {
+          "type": "string",
+          "title": "验证码 必选"
+        },
+        "email_code": {
+          "type": "string",
+          "title": "邮箱验证码"
+        }
+      }
+    },
+    "userCreateUserWithAccountRes": {
+      "type": "object",
+      "properties": {
+        "user_info": {
+          "$ref": "#/definitions/userUserInfo",
+          "title": "用户信息"
+        },
+        "account_info": {
+          "$ref": "#/definitions/userAccountInfo",
+          "title": "账户信息"
+        }
+      }
+    },
+    "userDeleteAccessKeyReq": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户ID 必选"
+        },
+        "access_key_id": {
+          "type": "string",
+          "title": "访问凭证ID 必选"
+        },
+        "code": {
+          "type": "string",
+          "title": "验证码"
+        }
+      }
+    },
+    "userDeleteAccessKeyRes": {
+      "type": "object"
+    },
+    "userDeleteUserReq": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户ID 必选"
+        },
+        "code": {
+          "type": "string",
+          "title": "验证码 必选"
+        },
+        "force": {
+          "type": "boolean",
+          "title": "是否强删"
+        }
+      }
+    },
+    "userDeleteUserRes": {
+      "type": "object"
+    },
+    "userExportUserAKSKExcelReq": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户ID 必选"
+        },
+        "access_key_id": {
+          "type": "string",
+          "title": "访问凭证ID"
+        }
+      }
+    },
+    "userExportUserAKSKExcelRes": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户ID 必选"
+        },
+        "access_key_id": {
+          "type": "string",
+          "title": "访问凭证ID"
+        },
+        "file_name": {
+          "type": "string",
+          "title": "excel 文件名"
+        },
+        "file": {
+          "type": "string",
+          "format": "byte",
+          "title": "aksk 的excel 二进制文件"
+        }
+      }
+    },
+    "userGetAllPolicyGroupsByUserIDRes": {
+      "type": "object",
+      "properties": {
+        "group_id_list": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uint64"
+          },
+          "title": "策略组ID列表"
+        }
+      }
+    },
+    "userGetPolicyGroupAssociatedInfoByIDRes": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "策略组ID"
+        },
+        "group_name": {
+          "type": "string",
+          "title": "策略组名称"
+        },
+        "nick_name": {
+          "type": "string",
+          "title": "策略组显示名称"
+        },
+        "user_num": {
+          "type": "string",
+          "format": "int64",
+          "title": "拥有该角色的用户数"
+        },
+        "description": {
+          "type": "string",
+          "title": "描述"
+        },
+        "create_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "创建时间"
+        },
+        "policy_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/userPolicyInfo"
+          },
+          "title": "资源列表"
+        },
+        "user_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/userUserInfo"
+          },
+          "title": "用户列表"
+        }
+      }
+    },
+    "userGetUserAssociatedInfoByIDRes": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户ID"
+        },
+        "user_name": {
+          "type": "string",
+          "title": "用户user_name"
+        },
+        "nick_name": {
+          "type": "string",
+          "title": "显示用名称"
+        },
+        "description": {
+          "type": "string",
+          "title": "描述"
+        },
+        "access_mode": {
+          "type": "string",
+          "format": "int64",
+          "title": "访问方式，位运算 0x0：无法访问 0x1：编程访问 0x2：控制台访问"
+        },
+        "blocked": {
+          "type": "boolean",
+          "title": "状态  (true：停用) (false：启用)"
+        },
+        "create_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "创建时间"
+        },
+        "master_user": {
+          "type": "integer",
+          "format": "int32",
+          "title": "是不是主用户(1:是  0:不是)"
+        },
+        "policy_group_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/userGroupInfo"
+          },
+          "title": "策略组列表"
+        },
+        "access_key_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/userAccessKeyInfo"
+          },
+          "title": "access_key列表"
+        },
+        "password": {
+          "type": "string",
+          "title": "登录密码"
+        }
+      }
+    },
+    "userGetUserBaseInfoRes": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户ID"
+        },
+        "user_name": {
+          "type": "string",
+          "title": "用户user_name"
+        },
+        "email": {
+          "type": "string",
+          "title": "用户邮箱, 全局唯一"
+        },
+        "phone": {
+          "type": "string",
+          "title": "用于联系电话, 全局唯一"
+        },
+        "nick_name": {
+          "type": "string",
+          "title": "显示用名称"
+        },
+        "user_photo": {
+          "type": "string",
+          "title": "用户头像"
+        },
+        "master_user": {
+          "type": "integer",
+          "format": "int32",
+          "title": "是不是主用户(1:是   0:不是)"
+        },
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户ID"
+        },
+        "account_type": {
+          "$ref": "#/definitions/userAccountType",
+          "title": "账户类型"
+        },
+        "account_used_status": {
+          "$ref": "#/definitions/userAccountUsedStatus",
+          "title": "账户启用状态"
+        },
+        "payment_type": {
+          "$ref": "#/definitions/userAccountPaymentType",
+          "title": "付费类型"
+        },
+        "account_level": {
+          "$ref": "#/definitions/userAccountLevel",
+          "description": "账户等级.\n[since] 2023-03-06."
+        }
+      }
+    },
+    "userGetUserListRes": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/userUserInfo"
+          },
+          "title": "用户列表"
+        },
+        "page_response": {
+          "$ref": "#/definitions/userListPage",
+          "title": "list返回对应的翻页：offset, total"
+        }
+      }
+    },
+    "userGetUserUnRedactedInfoRes": {
+      "type": "object",
+      "properties": {
+        "phone": {
+          "type": "string",
+          "title": "用户真实联系电话"
+        },
+        "email": {
+          "type": "string",
+          "title": "用户真实邮箱"
+        }
+      }
+    },
+    "userGroupInfo": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "group_name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "userListOrder": {
+      "type": "string",
+      "enum": [
+        "LIST_ORDER_UNSPECIFIED",
+        "LIST_ORDER_CREATED_TIME_ASC",
+        "LIST_ORDER_CREATED_TIME_DESC",
+        "LIST_ORDER_NAME_ASC",
+        "LIST_ORDER_NAME_DESC",
+        "LIST_ORDER_SUBMIT_AT_ASC",
+        "LIST_ORDER_SUBMIT_AT_DESC",
+        "LIST_ORDER_RECHARGE_AT_ASC",
+        "LIST_ORDER_RECHARGE_AT_DESC"
+      ],
+      "default": "LIST_ORDER_UNSPECIFIED",
+      "description": "- LIST_ORDER_UNSPECIFIED: 未指定\n - LIST_ORDER_CREATED_TIME_ASC: 创建时间升序排列\n - LIST_ORDER_CREATED_TIME_DESC: 创建时间降序排列\n - LIST_ORDER_NAME_ASC: 名称升序排列\n - LIST_ORDER_NAME_DESC: 名称降序排列\n - LIST_ORDER_SUBMIT_AT_ASC: 提交时间升序排列\n - LIST_ORDER_SUBMIT_AT_DESC: 提交时间降序排列\n - LIST_ORDER_RECHARGE_AT_ASC: 提交充值申请时间升序排列\n - LIST_ORDER_RECHARGE_AT_DESC: 提交充值申请时间降序排列",
+      "title": "列表顺序"
+    },
+    "userListPage": {
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条; 默认值为0.\n返回本次请求返回的第一条记录实际位置(一般与输入一致).\n[EN] Optional, start position, value: \u003e = 0, 0 is the first line; the\ndefault value is 0. In response, actual offset of the first returned record\nis returned (generally equals to the offset in request)."
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "description": "长度, 取值范围[1,100], 如果超出范围, 则返回失败;\n在某些接口中limit范围可能会重新定义, 请以其接口的补充说明为准. [EN] Length,\ndefault value range [1,100], if it is out of the range, error will be\nreturned; as the limit range may be redefined in some APIs, please refer to\nthe supplementary description of these APIs."
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32",
+          "description": "可选, 总数, 请求无须填此参数, 响应时填写.\n[EN] Optional, this parameter is not required for request, but will be\nfilled in response."
+        }
+      }
+    },
+    "userListPolicyGroupRes": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/userPolicyGroupInfo"
+          }
+        },
+        "page_response": {
+          "$ref": "#/definitions/userListPage",
+          "title": "list返回对应的翻页：offset, total"
+        }
+      }
+    },
+    "userOCRIDCardReq": {
+      "type": "object",
+      "properties": {
+        "id_card_image": {
+          "type": "string",
+          "title": "身份证照片正面base64"
+        }
+      }
+    },
+    "userOCRIDCardRes": {
+      "type": "object",
+      "properties": {
+        "id_card_name": {
+          "type": "string",
+          "title": "身份证照片识别出来的姓名"
+        },
+        "id_card_number": {
+          "type": "string",
+          "title": "身份证照片识别出来的身份证号码"
+        }
+      }
+    },
+    "userPolicyBody": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "integer",
+          "format": "int64",
+          "title": "policy 版本"
+        },
+        "statements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/userPolicyStatement"
+          },
+          "title": "policy 内容"
+        }
+      }
+    },
+    "userPolicyGroupInfo": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "策略组ID"
+        },
+        "group_name": {
+          "type": "string",
+          "title": "策略组名称"
+        },
+        "nick_name": {
+          "type": "string",
+          "title": "策略组显示名称"
+        },
+        "used_num": {
+          "type": "string",
+          "format": "int64",
+          "title": "拥有该策略组的用户数"
+        },
+        "description": {
+          "type": "string",
+          "title": "描述"
+        },
+        "create_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "创建时间"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int32",
+          "title": "策略组类型"
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "自定义属性值"
+        }
+      }
+    },
+    "userPolicyInfo": {
+      "type": "object",
+      "properties": {
+        "policy_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "policy ID"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "nick_name": {
+          "type": "string",
+          "title": "显示名称"
+        },
+        "description": {
+          "type": "string",
+          "title": "详细描述"
+        },
+        "body": {
+          "$ref": "#/definitions/userPolicyBody",
+          "title": "权限内容"
+        }
+      }
+    },
+    "userPolicyStatement": {
+      "type": "object",
+      "properties": {
+        "effect": {
+          "type": "string",
+          "title": "deny or allow"
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "动作列表"
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "资源列表"
+        }
+      }
+    },
+    "userRemovePolicyGroupFromUserRequest": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户组id，必填"
+        },
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户id，必填"
+        },
+        "code": {
+          "type": "string",
+          "title": "验证码"
+        }
+      }
+    },
+    "userRemovePolicyGroupFromUserResponse": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户组id，必填"
+        },
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户id，必填"
+        }
+      }
+    },
+    "userSecuritySetUpdateUserCellphoneReq": {
+      "type": "object",
+      "properties": {
+        "phone_code": {
+          "type": "string",
+          "title": "用户旧的联系电话验证码 必选"
+        },
+        "phone": {
+          "type": "string",
+          "title": "用户新的联系电话号码 必选"
+        },
+        "code": {
+          "type": "string",
+          "title": "用户新的联系电话验证码 必选"
+        }
+      }
+    },
+    "userSecuritySetUpdateUserCellphoneRes": {
+      "type": "object"
+    },
+    "userSecuritySetUpdateUserEmailReq": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "title": "用户邮箱 必选"
+        },
+        "code": {
+          "type": "string",
+          "title": "验证码 必选"
+        }
+      }
+    },
+    "userSecuritySetUpdateUserEmailRes": {
+      "type": "object"
+    },
+    "userSecuritySetUpdateUserPasswordReq": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "integer",
+          "format": "int32",
+          "title": "模式 0：邮箱 1：手机 必选"
+        },
+        "password": {
+          "type": "string",
+          "title": "密码 必选"
+        },
+        "code": {
+          "type": "string",
+          "title": "验证码 必选"
+        }
+      }
+    },
+    "userSecuritySetUpdateUserPasswordRes": {
+      "type": "object",
+      "properties": {
+        "same": {
+          "type": "boolean",
+          "title": "子用户新修改的密码与原密码是否相同"
+        }
+      }
+    },
+    "userSendCurrentUserSmsCodeResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/userSendResult",
+          "description": "短信验证码枚举."
+        },
+        "cooling_interval": {
+          "type": "integer",
+          "format": "int64",
+          "description": "冷却时间,单位[s]."
+        }
+      }
+    },
+    "userSendResult": {
+      "type": "string",
+      "enum": [
+        "Send_Result_Success",
+        "Send_Result_TryAgainLater"
+      ],
+      "default": "Send_Result_Success",
+      "description": " - Send_Result_Success: 成功.\n[en] Success.\n - Send_Result_TryAgainLater: 稍后从试.\n[en] try again later."
+    },
+    "userSendSmsCodeResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/userSendResult",
+          "description": "短信验证码枚举."
+        },
+        "cooling_interval": {
+          "type": "integer",
+          "format": "int64",
+          "description": "冷却时间,单位[s]."
+        }
+      }
+    },
+    "userSetAccessKeyStatusReq": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户ID 必选"
+        },
+        "access_key_id": {
+          "type": "string",
+          "title": "访问凭证ID 必选"
+        },
+        "blocked": {
+          "type": "boolean",
+          "title": "aksk状态  (true：停用) (false：启用)"
+        }
+      }
+    },
+    "userSetAccessKeyStatusRes": {
+      "type": "object"
+    },
+    "userUpdateSubUserPasswordReq": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "子用户id"
+        },
+        "password": {
+          "type": "string",
+          "title": "子用户密码"
+        }
+      }
+    },
+    "userUpdateSubUserPasswordRes": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "子用户id"
+        },
+        "same": {
+          "type": "boolean",
+          "title": "子用户新修改的密码与原密码是否相同"
+        }
+      }
+    },
+    "userUpdateUserAccessModeReq": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户ID 必选"
+        },
+        "access_mode": {
+          "type": "string",
+          "format": "int64",
+          "title": "访问方式，位运算 0x0：无法访问 0x1：编程访问 0x2：控制台访问"
+        },
+        "code": {
+          "type": "string",
+          "title": "验证码 必选"
+        }
+      }
+    },
+    "userUpdateUserAccessModeRes": {
+      "type": "object"
+    },
+    "userUpdateUserBaseInfoReq": {
+      "type": "object",
+      "properties": {
+        "nick_name": {
+          "type": "string",
+          "title": "用户名称"
+        }
+      }
+    },
+    "userUpdateUserBaseInfoRes": {
+      "type": "object"
+    },
+    "userUpdateUserDescInfoReq": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户ID 必选"
+        },
+        "nick_name": {
+          "type": "string",
+          "title": "用户名称"
+        },
+        "description": {
+          "type": "string",
+          "title": "描述"
+        },
+        "blocked": {
+          "type": "boolean",
+          "title": "状态  (true：停用) (false：启用)"
+        }
+      }
+    },
+    "userUpdateUserDescInfoRes": {
+      "type": "object"
+    },
+    "userUsePhoneOrUserIDDeleteUserReq": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户ID"
+        },
+        "phone": {
+          "type": "string",
+          "title": "手机号"
+        }
+      }
+    },
+    "userUsePhoneOrUserIDDeleteUserRes": {
+      "type": "object"
+    },
+    "userUserInfo": {
+      "type": "object",
+      "properties": {
+        "user_name": {
+          "type": "string",
+          "title": "用户ID"
+        },
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户ID"
+        },
+        "nick_name": {
+          "type": "string",
+          "title": "显示用名称，必填"
+        },
+        "description": {
+          "type": "string",
+          "title": "描述"
+        },
+        "blocked": {
+          "type": "boolean",
+          "title": "状态 true：停用 false：启用"
+        },
+        "last_login_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "上次登录时间"
+        },
+        "create_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "创建时间"
+        },
+        "email": {
+          "type": "string",
+          "title": "用户邮箱, 全局唯一"
+        },
+        "cellphone": {
+          "type": "string",
+          "title": "用于联系电话, 全局唯一"
+        },
+        "profile_photo_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户头像，图片id"
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "自定义属性值"
+        }
+      }
+    },
+    "userUserLoginForgotPasswordReq": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "integer",
+          "format": "int32",
+          "title": "模式 0：邮箱 1：手机 必选"
+        },
+        "password": {
+          "type": "string",
+          "title": "密码 必选"
+        },
+        "value": {
+          "type": "string",
+          "title": "邮箱或者手机号 必选"
+        },
+        "code": {
+          "type": "string",
+          "title": "验证码 必选"
+        }
+      }
+    },
+    "userUserLoginForgotPasswordRes": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户ID"
+        }
+      }
+    },
+    "userUserNameExistInAccountReq": {
+      "type": "object",
+      "properties": {
+        "user_name": {
+          "type": "string",
+          "title": "用户名称 必选"
+        }
+      }
+    },
+    "userUserNameExistInAccountRes": {
+      "type": "object",
+      "properties": {
+        "exist": {
+          "type": "integer",
+          "format": "int32",
+          "title": "用户名称是否已存在 (0:不存在 1:已存在)"
+        }
+      }
+    },
+    "userVerifyCurrentUserSmsCodeResponse": {
+      "type": "object"
+    },
+    "userVerifySmsCodeResponse": {
+      "type": "object"
+    },
+    "userVerifyUserRegisterInfoReq": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "integer",
+          "format": "int32",
+          "title": "模式 0：邮箱 1：手机"
+        },
+        "password": {
+          "type": "string",
+          "title": "密码"
+        },
+        "value": {
+          "type": "string",
+          "title": "邮箱或者手机号 必选"
+        },
+        "code": {
+          "type": "string",
+          "title": "验证码"
+        }
+      }
+    },
+    "userVerifyUserRegisterInfoRes": {
+      "type": "object",
+      "properties": {
+        "email_available": {
+          "type": "integer",
+          "format": "int32",
+          "title": "邮箱是否可用 (0:可用 1:不可用)"
+        },
+        "phone_available": {
+          "type": "integer",
+          "format": "int32",
+          "title": "手机号是否可用 (0:可用 1:不可用)"
+        }
+      }
+    }
+  }
+}

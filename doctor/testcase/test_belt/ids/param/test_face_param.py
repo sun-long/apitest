@@ -1,0 +1,95 @@
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+
+import os
+import pytest
+from commonlib import config
+from commonlib.log_utils import log
+from commonlib.api_lib.base_api import BaseApi
+from commonlib.config import ids_image_path
+
+class TestFaceParam(object):
+    """ face Param测试"""
+
+    @pytest.fixture(scope="class", autouse=True)
+    def init_func(self, config_obj):
+        # 初始化测试集
+        # 所有test运行前运行一次，接收外部参数env_obj，初始化测试环境
+        log().info("==========%s测试开始==========" % self.__class__.__name__)
+
+    def teardown_class(self):
+        # 所有test运行完后运行一次
+        log().info("==========%s测试结束==========\n" % self.__name__)
+        log().info("clear tasks finish")
+
+    def setup_method(self, method):
+        # 每个测试用例执行之前做操作
+        log().info("用例%s开始" % method.__name__)
+
+    def teardown_method(self, method):
+        # 每个测试用例执行之后做操作
+        log().info("用例%s结束" % method.__name__)
+
+    invalidencrypt_info={
+        "algorithm": "",
+        "version": 0,
+        "iv": "string",
+        "encrypted_fields": [
+        "string"
+        ],
+        "data": "string"
+    }    
+    invalidimage_7M=os.path.join(ids_image_path,"ocr/beyond_size_7M.jpg")
+
+    invalidimage_7M=str(BaseApi.imageToBase64(invalidimage_7M))
+    invalidimage_two_face=os.path.join(ids_image_path,"face1v1/two.jpeg")
+    invalidimage_two_face=str(BaseApi.imageToBase64(invalidimage_two_face))
+    @pytest.mark.parametrize("invalidParam", [
+        # ('image', invalidimage_two_face),  
+        ('image', invalidimage_7M),
+        ('image', ''),
+        ('image', None),
+        ('base_image', invalidimage_7M),
+        # ('base_image', invalidimage_two_face),
+        ('base_image', ''),
+        ('base_image', None),
+        # ('auto_rotate', 'invalidauto_rotate'),
+        ('auto_rotate', ''),
+        # ('auto_rotate', None),
+        # ('min_quality_level', 'invalidmin_quality_level'),
+        ('min_quality_level', ''),
+        ('min_quality_level', 12),
+        # ('min_quality_level', None),
+        ('encrypt_info', invalidencrypt_info),
+        ('encrypt_info', ''),
+        # ('encrypt_info', None),
+    ])
+    def test_api_CompareInvalidParam(self, invalidParam, config_obj,testImages_same, FaceApi):
+        """验证face1:1compare单接口_iamge非法_旋转参数none_质量过滤none_加密参数非法_反例"""
+        image = str(BaseApi.imageToBase64(os.path.join(ids_image_path,testImages_same.image)))
+        base_image =  str(BaseApi.imageToBase64(os.path.join(ids_image_path,testImages_same.base_image)))
+        auto_rotate = False
+        min_quality_level = "QUALITY_LEVEL_NONE"
+        encrypt_info={
+            "algorithm": "ENCRPT_ALGORITHM_NONE",
+            "version": 0,
+            "encrypted_fields": [
+            "string"
+            ],
+            "data": "string"
+        } 
+
+        intef = FaceApi.FaceService_CompareImagePostApi(image=image, base_image=base_image, auto_rotate=auto_rotate, min_quality_level=min_quality_level, encrypt_info=encrypt_info, sendRequest=False)
+        intef.update_body(invalidParam[0], invalidParam[1])
+        resp = intef.request()
+        assert resp.status_code != 200
+        assert resp.status_code != 500
+
+
+
+if __name__ == "__main__":
+    import datetime
+
+    utc_time_now = datetime.datetime.utcnow()
+    time = str(utc_time_now).split(".")[0].replace("-", "").replace(":", "").replace(" ", "")
+    pytest.main(['-rav --capture=no', os.path.abspath(__file__)])

@@ -1,0 +1,80 @@
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+
+import os
+import pytest
+from commonlib import config, time_utils, sign_utils
+from commonlib.log_utils import log
+from commonlib.api_lib.AES_new import *
+@pytest.mark.checkin
+class TestFaceApi(object):
+    """ face Api测试"""
+
+    @pytest.fixture(scope="class", autouse=True)
+    def init_func(self, config_obj):
+        # 初始化测试集
+        # 所有test运行前运行一次，接收外部参数env_obj，初始化测试环境
+        log().info("==========%s测试开始==========" % self.__class__.__name__)
+
+    def teardown_class(self):
+        # 所有test运行完后运行一次
+        log().info("==========%s测试结束==========\n" % self.__name__)
+        log().info("clear tasks finish")
+
+    def setup_method(self, method):
+        # 每个测试用例执行之前做操作
+        log().info("用例%s开始" % method.__name__)
+
+    def teardown_method(self, method):
+        # 每个测试用例执行之后做操作
+        log().info("用例%s结束" % method.__name__)
+
+    def test_api_FaceService_CompareImage(self,config_obj, FaceApi):
+        """  人脸 1:1 比对接口, 输入两张图片, 进行特征比对.
+route prefix=ids inte... """
+        image_path=os.path.join(
+            config.ids_image_path, "face1v1/single_face_01.jpeg")
+        image = FaceApi.imageToBase64(image_path)       
+        auto_rotate = None
+        min_quality_level = None
+        encrypt_info = None
+        resp = FaceApi.FaceService_CompareImagePostApi(image, image, auto_rotate=auto_rotate, min_quality_level=min_quality_level, encrypt_info=encrypt_info)
+        assert resp.status_code == 200
+
+    def test_api_FaceService_DetectLiveness(self, config_obj, FaceApi):
+        """  提供图片静默活体检测.
+route prefix=ids internal_prefix=ids a... """
+        image_path = os.path.join(
+            config.image_path, "go_image/ids_face/Q1.jpg")
+        image = FaceApi.imageToBase64(image_path)       
+        min_quality_level = None
+        disable_defake = None
+        encrypt_info = None
+        resp = FaceApi.FaceService_DetectLivenessPostApi(image=image, min_quality_level=min_quality_level, disable_defake=disable_defake, encrypt_info=encrypt_info)
+        assert resp.status_code == 200
+
+
+    def test_scenario_add_person_add_delete_person_face(self, config_obj, FaceApi):
+        """ 验证 添加/删除 人脸接口"""
+        user_info = config_obj.Console.User.testUser
+        image = []
+        image.append(FaceApi.idsImageToBase64("face1vn/single_face_0.jpeg"))
+        jstr = {
+            "image": image[0],
+        }
+        cryptor = AESCipher(user_info.sk)
+        cypher = cryptor.encrypt(json.dumps(jstr))
+        encrypt_info = {
+            "algorithm": "AES_256_CBC",
+            "version": 0,
+            "encrypted_fields": ["image"],
+            "data": cypher
+        }
+        res = FaceApi.FaceService_AddPersonFacePostApi(db_id=None, person_id=None, image=None, auto_rotate=True,
+                                                       min_quality_level=None, encrypt_info=encrypt_info)
+        assert res.status_code == 400
+        assert res.json_get("error.message")=='E12003050: person db id not provided'
+
+        res = FaceApi.FaceService_DeletePersonFacePostApi(db_id=None, person_id=None, face_id=None)
+        assert res.status_code == 400
+        assert res.json_get("error.message") == 'E12003050: person db id not provided'

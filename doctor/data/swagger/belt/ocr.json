@@ -1,0 +1,1527 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "IDS OCR Service",
+    "version": "v1.2.0"
+  },
+  "tags": [
+    {
+      "name": "OCRService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/h5/ocr/idcard": {
+      "post": {
+        "summary": "检测识别图片中的身份证, 仅限H5调用[INTERNAL].\nroute prefix=ids internal_prefix=ids action=H5OCRIDCard version=v1",
+        "operationId": "OCRService_H5OCRIDCard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ocrOCRIDCardResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ocrH5OCRIDCardRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OCRService"
+        ]
+      }
+    },
+    "/v1/ocr/bankcard": {
+      "post": {
+        "summary": "对图片中的文字进行模板检测识别.\nroute prefix=ids internal_prefix=ids action=OCRBankcard version=v1",
+        "operationId": "OCRService_OCRBankcard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ocrOCRBankcardResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ocrOCRBankcardRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OCRService"
+        ]
+      }
+    },
+    "/v1/ocr/business_license": {
+      "post": {
+        "summary": "营业执照识别.\nroute prefix=ids internal_prefix=ids action=OCRBusinessLicense version=v1",
+        "operationId": "OCRService_OCRBusinessLicense",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ocrOCRBusinessLicenseResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ocrOCRBusinessLicenseRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OCRService"
+        ]
+      }
+    },
+    "/v1/ocr/car_plate": {
+      "post": {
+        "summary": "检测识别图片中的车牌号.\nroute prefix=ids internal_prefix=ids action=OCRCarPlate version=v1",
+        "operationId": "OCRService_OCRCarPlate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ocrOCRCarPlateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ocrOCRCarPlateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OCRService"
+        ]
+      }
+    },
+    "/v1/ocr/create_session": {
+      "post": {
+        "summary": "创建一个检测会话.\nroute prefix=ids internal_prefix=ids action=CreateSession version=v1",
+        "operationId": "OCRService_CreateSession",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ocrCreateSessionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ocrCreateSessionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OCRService"
+        ]
+      }
+    },
+    "/v1/ocr/driving_license": {
+      "post": {
+        "summary": "驾驶证识别.\n// route prefix=ids internal_prefix=ids action=OCRDrivingLicense version=v1",
+        "operationId": "OCRService_OCRDrivingLicense",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ocrOCRDrivingLicenseResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ocrOCRDrivingLicenseRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OCRService"
+        ]
+      }
+    },
+    "/v1/ocr/hk_macau_exit_entry_permit": {
+      "post": {
+        "summary": "港澳通行证识别.\nroute prefix=ids internal_prefix=ids action=OCRHKMacauExitEntryPermit version=v1",
+        "operationId": "OCRService_OCRHKMacauExitEntryPermit",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ocrOCRHKMacauExitEntryPermitResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ocrOCRHKMacauExitEntryPermitRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OCRService"
+        ]
+      }
+    },
+    "/v1/ocr/idcard": {
+      "post": {
+        "summary": "检测识别图片中的身份证.\nroute prefix=ids internal_prefix=ids action=OCRIDCard version=v1",
+        "operationId": "OCRService_OCRIDCard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ocrOCRIDCardResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ocrOCRIDCardRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OCRService"
+        ]
+      }
+    },
+    "/v1/ocr/passport": {
+      "post": {
+        "summary": "护照识别.\nroute prefix=ids internal_prefix=ids action=OCRPassport version=v1",
+        "operationId": "OCRService_OCRPassport",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ocrOCRPassportResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ocrOCRPassportRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OCRService"
+        ]
+      }
+    },
+    "/v1/ocr/taiwan_exit_entry_permit": {
+      "post": {
+        "summary": "台湾通行证识别.\nroute prefix=ids internal_prefix=ids action=OCRTaiwanExitEntryPermit version=v1",
+        "operationId": "OCRService_OCRTaiwanExitEntryPermit",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ocrOCRTaiwanExitEntryPermitResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ocrOCRTaiwanExitEntryPermitRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OCRService"
+        ]
+      }
+    },
+    "/v1/ocr/vehicle_license": {
+      "post": {
+        "summary": "行驶证识别.\nroute prefix=ids internal_prefix=ids action=OCRVehicleLicense version=v1",
+        "operationId": "OCRService_OCRVehicleLicense",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ocrOCRVehicleLicenseResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ocrOCRVehicleLicenseRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OCRService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "idsocrQualityItem": {
+      "type": "object",
+      "properties": {
+        "quality_type": {
+          "$ref": "#/definitions/idsocrQualityType",
+          "description": "质量评估异常类型."
+        },
+        "score": {
+          "type": "number",
+          "format": "float",
+          "description": "置信度分数."
+        }
+      }
+    },
+    "idsocrQualityLevel": {
+      "type": "string",
+      "enum": [
+        "QUALITY_LEVEL_NONE",
+        "EXTREMELY_LOW",
+        "LOW",
+        "NORMAL",
+        "HIGH"
+      ],
+      "default": "QUALITY_LEVEL_NONE",
+      "description": "卡证质量控制等级.\n\n - QUALITY_LEVEL_NONE: 无质量等级，预留.\n - EXTREMELY_LOW: 极低质量, 证件存在被遮挡, 被裁剪的任一情况.\n - LOW: 低质量, 无遮挡, 不存在裁剪, 存在光照和模糊维度均不通过的情况.\n - NORMAL: 普通质量, 无遮挡, 不存在裁剪, 可存在光照或模糊其中一个维度略差的情况.\n - HIGH: 高质量, 无遮挡, 未被裁剪, 光照良好, 清晰, 即不存在任何遮挡, 无任何裁剪, 无光照过强或过暗,模糊等情况."
+    },
+    "idsocrQualityType": {
+      "type": "string",
+      "enum": [
+        "QUALITY_TYPE_NONE",
+        "OCCLUSION",
+        "LIGHT_BRIGHT",
+        "LIGHT_DARK",
+        "BLUR",
+        "CROPPED",
+        "ID_CARD_QUALITY_OTHER"
+      ],
+      "default": "QUALITY_TYPE_NONE",
+      "description": " - QUALITY_TYPE_NONE: 正常, 无质量问题.\n - OCCLUSION: 遮挡.\n - LIGHT_BRIGHT: 强光.\n - LIGHT_DARK: 弱光.\n - BLUR: 模糊.\n - CROPPED: 被剪裁，不完整.\n - ID_CARD_QUALITY_OTHER: 其他."
+    },
+    "ocrBankcard": {
+      "type": "object",
+      "properties": {
+        "card_number": {
+          "type": "string",
+          "description": "银行卡号."
+        },
+        "bank_name": {
+          "type": "string",
+          "description": "银行名称."
+        },
+        "bank_id": {
+          "type": "string",
+          "description": "发卡行标识代码."
+        },
+        "card_name": {
+          "type": "string",
+          "description": "卡片名称."
+        },
+        "card_type": {
+          "type": "string",
+          "title": "卡片类型(注：支持借记卡, 贷记卡, 准贷记卡及预付费卡类型的识别)"
+        },
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "description": "扫描剪裁图片."
+        }
+      }
+    },
+    "ocrBusinessLicense": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "商户名称."
+        },
+        "code": {
+          "type": "string",
+          "description": "社会信用代码."
+        },
+        "type": {
+          "type": "string",
+          "description": "类型(例: 有限责任公司, 企业法人)."
+        },
+        "serial_number": {
+          "type": "string",
+          "description": "证件编号."
+        },
+        "address": {
+          "type": "string",
+          "description": "经营场所."
+        },
+        "composition": {
+          "type": "string",
+          "description": "组成形式, 例如: 个人经营."
+        },
+        "artificial_person": {
+          "type": "string",
+          "description": "法人名称."
+        },
+        "business_scope": {
+          "type": "string",
+          "description": "经营范围."
+        },
+        "operation_period": {
+          "type": "string",
+          "description": "有效期."
+        },
+        "capital": {
+          "type": "string",
+          "description": "注册资本."
+        },
+        "register_date": {
+          "type": "string",
+          "description": "注册日期."
+        },
+        "registration_authority_seal": {
+          "type": "string",
+          "description": "登记机关签章."
+        }
+      },
+      "description": "营业执照信息."
+    },
+    "ocrCarPlate": {
+      "type": "object",
+      "properties": {
+        "color": {
+          "$ref": "#/definitions/wrapperColorType",
+          "title": "车牌颜色, 国内机动车车牌颜色: 蓝色, 绿色, 黄绿色, 黄色, 白色, 黑色"
+        },
+        "number": {
+          "type": "string",
+          "description": "车牌号."
+        },
+        "confidence": {
+          "type": "number",
+          "format": "float",
+          "description": "置信度."
+        },
+        "roi": {
+          "$ref": "#/definitions/wrapperBoundingPoly",
+          "description": "车牌检测框."
+        },
+        "is_valid": {
+          "type": "boolean",
+          "description": "车牌号是否有效(可信), true: 车牌完整有效, false: 包含非法字符或者未识别到字符(例如遮挡,强光,弱光等导致)."
+        }
+      },
+      "description": "车牌信息."
+    },
+    "ocrCreateSessionRequest": {
+      "type": "object",
+      "properties": {
+        "session": {
+          "$ref": "#/definitions/ocrSession",
+          "description": "待扫描卡证类型."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "字段加密信息, 有加密需求的用户需要填写, 对session 字段加密, 不传表示不加密."
+        }
+      },
+      "description": "创建端侧检测会话."
+    },
+    "ocrCreateSessionResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "belt通用错误模型结构, 出现错误时不为空."
+        },
+        "session_id": {
+          "type": "string",
+          "description": "创建成功后返回一个会话标识."
+        },
+        "biz_token": {
+          "type": "string",
+          "description": "端侧调用接口的令牌."
+        }
+      },
+      "description": "创建端侧检测会话."
+    },
+    "ocrDetailedInfo": {
+      "type": "object",
+      "properties": {
+        "has_invalid_field": {
+          "type": "boolean",
+          "description": "是否存在不可信字段."
+        },
+        "detect_details": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/ocrDetectDetail"
+          },
+          "description": "可选,字段详细检测信息."
+        }
+      }
+    },
+    "ocrDetectDetail": {
+      "type": "object",
+      "properties": {
+        "field_name": {
+          "type": "string",
+          "description": "字段名称."
+        },
+        "is_invalid": {
+          "type": "boolean",
+          "description": "字段是否可信."
+        },
+        "confidence": {
+          "type": "number",
+          "format": "float",
+          "description": "字段置信度."
+        }
+      }
+    },
+    "ocrDriverFirstPage": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "证件号."
+        },
+        "name": {
+          "type": "string",
+          "description": "姓名."
+        },
+        "sex": {
+          "type": "string",
+          "description": "性别 [男/女]."
+        },
+        "nationality": {
+          "type": "string",
+          "description": "国籍."
+        },
+        "address": {
+          "type": "string",
+          "description": "住址."
+        },
+        "birth_date": {
+          "type": "string",
+          "description": "出生日期."
+        },
+        "issue_date": {
+          "type": "string",
+          "description": "初次领证日期."
+        },
+        "class": {
+          "type": "string",
+          "title": "准驾车型 例：C1"
+        },
+        "valid_from": {
+          "type": "string",
+          "description": "有效起始日期(YYYY-MM-DD)."
+        },
+        "valid_to": {
+          "type": "string",
+          "description": "有效期限, 日期(YYYY-MM-DD)或者年数, 例如: 6年."
+        }
+      },
+      "description": "驾驶证首页信息."
+    },
+    "ocrDriverSecondPage": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "证件号."
+        },
+        "name": {
+          "type": "string",
+          "description": "姓名."
+        },
+        "file_no": {
+          "type": "string",
+          "description": "档案编号."
+        },
+        "record": {
+          "type": "string",
+          "description": "记录."
+        },
+        "barcode": {
+          "type": "string",
+          "description": "条形码."
+        }
+      },
+      "description": "驾驶证次页信息."
+    },
+    "ocrH5OCRIDCardRequest": {
+      "type": "object",
+      "properties": {
+        "front_image": {
+          "type": "string",
+          "format": "byte",
+          "description": "身份证正面图, 支持图片二进制数据BASE64编码."
+        },
+        "back_image": {
+          "type": "string",
+          "format": "byte",
+          "description": "身份证背面图, 支持图片二进制数据BASE64编码."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "可选, 加密信息配置, 默认不加密, 本次请求可以对image字段加密."
+        }
+      },
+      "description": "OCR批量模板处理请求体.\n[EN] OCR batch template request."
+    },
+    "ocrHKMacauExitEntryPermit": {
+      "type": "object",
+      "properties": {
+        "issue_address": {
+          "type": "string",
+          "description": "签发地."
+        },
+        "birth_date": {
+          "type": "string",
+          "description": "出生日期."
+        },
+        "card_number": {
+          "type": "string",
+          "title": "卡号--11位，首位为H/M，2~11位为数字"
+        },
+        "name": {
+          "type": "string",
+          "description": "姓名."
+        },
+        "name_pinyin": {
+          "type": "string",
+          "description": "姓名拼音."
+        },
+        "sex": {
+          "type": "string",
+          "description": "性别."
+        },
+        "expiry_date": {
+          "type": "string",
+          "description": "有效期 YYYY-MM-DD."
+        }
+      }
+    },
+    "ocrIDCard": {
+      "type": "object",
+      "properties": {
+        "side": {
+          "$ref": "#/definitions/ocrIDCardSide",
+          "description": "身份证正反面."
+        },
+        "name": {
+          "type": "string",
+          "description": "姓名."
+        },
+        "sex": {
+          "type": "string",
+          "description": "性别."
+        },
+        "nation": {
+          "type": "string",
+          "description": "民族."
+        },
+        "birth_date": {
+          "type": "string",
+          "description": "出生日期,格式为 YYYY-MM-DD, 如2022-12-30."
+        },
+        "address": {
+          "type": "string",
+          "description": "身份证地址."
+        },
+        "number": {
+          "type": "string",
+          "description": "身份证号码."
+        },
+        "authority": {
+          "type": "string",
+          "description": "签发结构, 身份证背面信息."
+        },
+        "expiry_date": {
+          "type": "string",
+          "description": "过期日期, 来自身份证背面信息\"有效期限\", 格式为: YYYY-MM-DD, 例如: 2023-12-30, 或者\"长期\"."
+        },
+        "issue_date": {
+          "type": "string",
+          "description": "签发日期, 身份证背面信息\"有效期限\", 格式为: YYYY-MM-DD, 例如: 2003-12-30."
+        },
+        "idcard_source": {
+          "$ref": "#/definitions/ocrIDCardSource",
+          "description": "身份证来源信息."
+        },
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "description": "身份证裁剪图."
+        },
+        "front_image": {
+          "type": "string",
+          "format": "byte",
+          "description": "身份证裁剪图（正面），当前仅限于session中保存使用[INTERNAL]."
+        },
+        "back_image": {
+          "type": "string",
+          "format": "byte",
+          "description": "身份证裁剪图（反面），当前仅限于session中保存使用[INTERNAL]."
+        }
+      }
+    },
+    "ocrIDCardSide": {
+      "type": "string",
+      "enum": [
+        "AUTO",
+        "FRONT",
+        "BACK"
+      ],
+      "default": "AUTO",
+      "description": " - AUTO: 请求时自动识别正反面.\n - FRONT: 身份证正面.\n - BACK: 身份证反面."
+    },
+    "ocrIDCardSource": {
+      "type": "string",
+      "enum": [
+        "ID_CARD_SOURCE_NONE",
+        "ORIGIN",
+        "PHOTO_COPY",
+        "PS",
+        "REVERSION",
+        "TEMPORARY",
+        "ID_CARD_SOURCE_OTHER"
+      ],
+      "default": "ID_CARD_SOURCE_NONE",
+      "description": "- ID_CARD_SOURCE_NONE: 无来源信息.\n - ORIGIN: 原件.\n - PHOTO_COPY: 复印件.\n - PS: 水印(ps?).\n - REVERSION: 翻拍.\n - TEMPORARY: 临时身份证.\n - ID_CARD_SOURCE_OTHER: 其他.",
+      "title": "身份证来源类型：原件, 黑白复印（主要指黑白复印，彩色复印效果一般）, 水印PS, 翻拍, 其他, 临时身份证, 未知"
+    },
+    "ocrOCRBankcardRequest": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "description": "请求图片, 支持图片二进制数据BASE64编码."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "可选, 加密信息配置, 默认不加密."
+        },
+        "session_id": {
+          "type": "string",
+          "description": "可选, 扫描会话标识, 当使用扫描方式时需要传递."
+        }
+      },
+      "description": "OCR 银行卡识别请求体.\n[EN] OCR bankcard recognition request."
+    },
+    "ocrOCRBankcardResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "title": "belt通用错误模型结构, 出现错误时不为空.\nhttps://gitlab.sz.sensetime.com/belt/crd/ras-protocols/common/-/blob/master/error_info.proto"
+        },
+        "bankcard": {
+          "$ref": "#/definitions/ocrBankcard",
+          "description": "银行卡信息, 支持加密."
+        },
+        "detailed_info": {
+          "$ref": "#/definitions/ocrDetailedInfo",
+          "description": "可选,详细参考信息."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "可选, 加密信息配置, 默认不加密."
+        }
+      },
+      "description": "银行卡识别请求体.\n[EN] OCR bankcard request."
+    },
+    "ocrOCRBusinessLicenseRequest": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "description": "请求图片, 支持图片二进制数据BASE64编码."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "可选, 加密信息配置, 默认不加密."
+        }
+      }
+    },
+    "ocrOCRBusinessLicenseResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "title": "belt通用错误模型结构, 出现错误时不为空.\nhttps://gitlab.sz.sensetime.com/belt/crd/ras-protocols/common/-/blob/master/error_info.proto"
+        },
+        "business_license": {
+          "$ref": "#/definitions/ocrBusinessLicense",
+          "description": "营业执照文本信息."
+        },
+        "detailed_info": {
+          "$ref": "#/definitions/ocrDetailedInfo",
+          "description": "可选,详细参考信息."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "加密信息配置, 加密字段参考其中encrypted_fields."
+        }
+      },
+      "description": "营业执照识别应答消息体."
+    },
+    "ocrOCRCarPlateRequest": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "description": "请求图片, 支持图片二进制数据BASE64编码."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "可选, 加密信息配置, 默认不加密."
+        }
+      },
+      "description": "OCR 机动车车牌识别请求体.\n[EN] Request of car plate OCR."
+    },
+    "ocrOCRCarPlateResponse": {
+      "type": "object",
+      "properties": {
+        "car_plates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ocrCarPlate"
+          },
+          "description": "识别到的车牌信息, 目前最多输出一个, 如果识别到多个车牌会输出面积最大的一个."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "加密信息."
+        }
+      },
+      "description": "OCR 机动车车牌识别应答消息体.\n[EN] Response of car plate OCR."
+    },
+    "ocrOCRDrivingLicenseRequest": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "description": "请求图片, 支持图片二进制数据BASE64编码."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "可选, 加密信息配置, 默认不加密."
+        }
+      },
+      "description": "OCR 驾驶证识别请求消息体."
+    },
+    "ocrOCRDrivingLicenseResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "title": "belt通用错误模型结构, 出现错误时不为空.\nhttps://gitlab.sz.sensetime.com/belt/crd/ras-protocols/common/-/blob/master/error_info.proto"
+        },
+        "first_page": {
+          "$ref": "#/definitions/ocrDriverFirstPage",
+          "description": "驾驶证主页信息."
+        },
+        "second_page": {
+          "$ref": "#/definitions/ocrDriverSecondPage",
+          "description": "驾驶证副页信息."
+        },
+        "detailed_info": {
+          "$ref": "#/definitions/ocrDetailedInfo",
+          "description": "可选,详细参考信息."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "加密信息配置, 加密字段参考其中encrypted_fields."
+        }
+      },
+      "description": "OCR 驾驶证识别应答消息体."
+    },
+    "ocrOCRHKMacauExitEntryPermitRequest": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "description": "请求图片, 支持图片二进制数据BASE64编码."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "可选, 加密信息配置, 默认不加密."
+        }
+      },
+      "description": "港澳通行证识别请求消息体."
+    },
+    "ocrOCRHKMacauExitEntryPermitResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "title": "belt通用错误模型结构, 出现错误时不为空.\nhttps://gitlab.sz.sensetime.com/belt/crd/ras-protocols/common/-/blob/master/error_info.proto"
+        },
+        "hk_macau_exit_entry_permit": {
+          "$ref": "#/definitions/ocrHKMacauExitEntryPermit",
+          "description": "港澳通行证文本信息."
+        },
+        "detailed_info": {
+          "$ref": "#/definitions/ocrDetailedInfo",
+          "description": "可选,详细参考信息."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "加密信息配置, 为空时不加密, 加密字段参考其中encrypted_fields."
+        }
+      },
+      "description": "港澳通行证识别应答消息体."
+    },
+    "ocrOCRIDCardRequest": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "description": "请求图片, 支持图片二进制数据BASE64编码."
+        },
+        "side": {
+          "$ref": "#/definitions/ocrIDCardSide",
+          "description": "可选, 指示检测身份证正面还是反面, 默认自动检测."
+        },
+        "detect_quality": {
+          "type": "boolean",
+          "description": "可选, 是否检测身份证质量, 默认不检测."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "可选, 加密信息配置, 默认不加密, 本次请求可以对image字段加密."
+        },
+        "session_id": {
+          "type": "string",
+          "description": "可选, 扫描会话标识, 当使用扫描方式时需要传递."
+        }
+      },
+      "description": "OCR批量模板处理请求体.\n[EN] OCR batch template request."
+    },
+    "ocrOCRIDCardResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "title": "belt通用错误模型结构, 出现错误时不为空.\nhttps://gitlab.sz.sensetime.com/belt/crd/ras-protocols/common/-/blob/master/error_info.proto"
+        },
+        "idcard": {
+          "$ref": "#/definitions/ocrIDCard",
+          "description": "身份证文本信息, 支持加密."
+        },
+        "roi": {
+          "$ref": "#/definitions/wrapperBoundingPoly",
+          "description": "身份证检测框."
+        },
+        "quality_level": {
+          "$ref": "#/definitions/idsocrQualityLevel",
+          "description": "身份证质量等级, 当请求中设置检测身份证质量时返回."
+        },
+        "quality_items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/idsocrQualityItem"
+          },
+          "description": "身份证质量各维度(遮挡, 剪裁, 光照, 模糊等）信息列表, 当请求中设置检测身份证质量时返回."
+        },
+        "detailed_info": {
+          "$ref": "#/definitions/ocrDetailedInfo",
+          "description": "可选,详细参考信息."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "加密信息, 根据请求消息种设置的加密参数加密指定字段."
+        }
+      }
+    },
+    "ocrOCRPassportRequest": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "description": "请求图片, 支持图片二进制数据BASE64编码."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "可选, 加密信息配置, 默认不加密."
+        }
+      },
+      "title": "仅支持中国颁发的护照，海外护照仅支持MRZCode1, MRZCode2"
+    },
+    "ocrOCRPassportResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "title": "belt通用错误模型结构, 出现错误时不为空.\nhttps://gitlab.sz.sensetime.com/belt/crd/ras-protocols/common/-/blob/master/error_info.proto"
+        },
+        "passport": {
+          "$ref": "#/definitions/ocrPassport",
+          "description": "护照文本信息, 海外签发护照仅输出机读码, 可加密字段."
+        },
+        "detailed_info": {
+          "$ref": "#/definitions/ocrDetailedInfo",
+          "description": "可选,详细参考信息."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "加密信息配置, 为空时不加密, 加密字段参考其中encrypted_fields."
+        }
+      }
+    },
+    "ocrOCRTaiwanExitEntryPermitRequest": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "description": "请求图片, 支持图片二进制数据BASE64编码."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "可选, 加密信息配置, 默认不加密."
+        }
+      }
+    },
+    "ocrOCRTaiwanExitEntryPermitResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "title": "belt通用错误模型结构, 出现错误时不为空.\nhttps://gitlab.sz.sensetime.com/belt/crd/ras-protocols/common/-/blob/master/error_info.proto"
+        },
+        "taiwan_exit_entry_permit": {
+          "$ref": "#/definitions/ocrTaiwanExitEntryPermit",
+          "description": "台湾通行证文本信息."
+        },
+        "detailed_info": {
+          "$ref": "#/definitions/ocrDetailedInfo",
+          "description": "可选,详细参考信息."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "加密信息配置, 为空时不加密, 加密字段参考其中encrypted_fields."
+        }
+      }
+    },
+    "ocrOCRVehicleLicenseRequest": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "description": "请求图片, 支持图片二进制数据BASE64编码."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "可选, 加密信息配置, 默认不加密."
+        }
+      }
+    },
+    "ocrOCRVehicleLicenseResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "title": "belt通用错误模型结构, 出现错误时不为空.\nhttps://gitlab.sz.sensetime.com/belt/crd/ras-protocols/common/-/blob/master/error_info.proto"
+        },
+        "first_page": {
+          "$ref": "#/definitions/ocrVehicleFirstPage",
+          "description": "行驶证首页信息."
+        },
+        "second_page": {
+          "$ref": "#/definitions/ocrVehicleSecondPage",
+          "description": "行驶证副页信息."
+        },
+        "extra_page": {
+          "$ref": "#/definitions/ocrVehicleExtraPage",
+          "description": "行驶证附加页信息, 如果没有则不返回."
+        },
+        "detailed_info": {
+          "$ref": "#/definitions/ocrDetailedInfo",
+          "description": "可选,详细参考信息."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "加密信息, 加密字段参考其中 encrypted_fields."
+        }
+      }
+    },
+    "ocrPassport": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "类型--P：普通护照，W：外交护照，G：公务护照"
+        },
+        "country_code": {
+          "type": "string",
+          "title": "国家码--采用ISO 3166-1三字母代码"
+        },
+        "passport_no": {
+          "type": "string",
+          "description": "护照号."
+        },
+        "name": {
+          "type": "string",
+          "description": "姓名."
+        },
+        "sex": {
+          "type": "string",
+          "description": "性别 [男/女]."
+        },
+        "nationality": {
+          "type": "string",
+          "description": "国籍."
+        },
+        "birth_date": {
+          "type": "string",
+          "description": "出生日期 YYYY-MM-DD."
+        },
+        "birth_place": {
+          "type": "string",
+          "description": "出生地."
+        },
+        "issue_date": {
+          "type": "string",
+          "description": "签发日期 YYYY-MM-DD."
+        },
+        "issue_place": {
+          "type": "string",
+          "description": "签发地."
+        },
+        "expiry_date": {
+          "type": "string",
+          "description": "有效期 YYYY-MM-DD."
+        },
+        "authority": {
+          "type": "string",
+          "description": "签发机关."
+        },
+        "mrz_code_1": {
+          "type": "string",
+          "description": "机读码第一行."
+        },
+        "mrz_code_2": {
+          "type": "string",
+          "description": "机读码第二行."
+        }
+      }
+    },
+    "ocrSession": {
+      "type": "object",
+      "properties": {
+        "session_type": {
+          "$ref": "#/definitions/wrapperSessionType",
+          "title": "当前会话类型"
+        },
+        "uuid": {
+          "type": "string",
+          "description": "端侧传递的通用唯一标识."
+        },
+        "idcard_min_quality_level": {
+          "$ref": "#/definitions/idsocrQualityLevel",
+          "description": "当配置做身份证OCR时, 最低身份证质量等级要求, 当低于该质量等级时报错(四个级别：EXTREMELY_LOW\u003cLOW\u003cNORMAL\u003cHIGH), 默认不填不做质量控制."
+        }
+      }
+    },
+    "ocrTaiwanExitEntryPermit": {
+      "type": "object",
+      "properties": {
+        "issue_address": {
+          "type": "string",
+          "description": "签发地."
+        },
+        "birth_date": {
+          "type": "string",
+          "description": "出生日期."
+        },
+        "card_number": {
+          "type": "string",
+          "title": "卡号--9位，首位为T，2~9位为数字"
+        },
+        "name": {
+          "type": "string",
+          "description": "姓名."
+        },
+        "name_pinyin": {
+          "type": "string",
+          "description": "姓名拼音."
+        },
+        "sex": {
+          "type": "string",
+          "description": "姓名."
+        },
+        "expiry_date": {
+          "type": "string",
+          "description": "有效期 YYYY-MM-DD."
+        }
+      },
+      "description": "台湾通行证信息."
+    },
+    "ocrVehicleExtraPage": {
+      "type": "object",
+      "properties": {
+        "inspection_record": {
+          "type": "string",
+          "title": "检验记录;"
+        }
+      }
+    },
+    "ocrVehicleFirstPage": {
+      "type": "object",
+      "properties": {
+        "plate_no": {
+          "type": "string",
+          "description": "车牌号."
+        },
+        "vehicle_type": {
+          "type": "string",
+          "description": "车辆类型 例：小型轿车."
+        },
+        "owner": {
+          "type": "string",
+          "description": "所有人."
+        },
+        "address": {
+          "type": "string",
+          "description": "住址."
+        },
+        "use_character": {
+          "type": "string",
+          "description": "使用性质 例：非运营."
+        },
+        "model": {
+          "type": "string",
+          "description": "品牌型号."
+        },
+        "vin": {
+          "type": "string",
+          "description": "车辆识别代号."
+        },
+        "engine_no": {
+          "type": "string",
+          "description": "发动机号码."
+        },
+        "register_date": {
+          "type": "string",
+          "description": "注册日期."
+        },
+        "issue_date": {
+          "type": "string",
+          "description": "发证日期."
+        }
+      },
+      "title": "- Plate NO.: 车牌号\n- Vehicle Type:\n- Owner: 所有人\n- Address: 住址\n- Use Character: 使用性质 例：非运营\n- Model: 品牌型号\n- VIN: 车辆识别代号\n- Engine No.: 发动机号码\n- Register Date: 注册日期\n- Issue Date: 发证日期"
+    },
+    "ocrVehicleSecondPage": {
+      "type": "object",
+      "properties": {
+        "plate_no": {
+          "type": "string",
+          "description": "车牌号."
+        },
+        "file_no": {
+          "type": "string",
+          "description": "档案编号."
+        },
+        "vehicle_type": {
+          "type": "string",
+          "title": "汽车类型 注：少数行驶证副页有该字段"
+        },
+        "apc": {
+          "type": "string",
+          "description": "核定载人数."
+        },
+        "gross_mass": {
+          "type": "string",
+          "description": "总质量."
+        },
+        "unladen_mass": {
+          "type": "string",
+          "description": "整备质量."
+        },
+        "approved_load": {
+          "type": "string",
+          "description": "核定载质量."
+        },
+        "overall_dimension": {
+          "type": "string",
+          "description": "外廓尺寸."
+        },
+        "traction_mass": {
+          "type": "string",
+          "description": "准牵引总质量."
+        },
+        "comment": {
+          "type": "string",
+          "description": "备注."
+        },
+        "inspection_record": {
+          "type": "string",
+          "description": "检验记录."
+        },
+        "barcode": {
+          "type": "string",
+          "description": "条形码."
+        }
+      },
+      "title": "- VehicleB\n- Plate NO.: 号牌号码\n- File No.: 档案编号\n- Vehicle Type: 汽车类型 注：少数行驶证副页有该字段\n- APC: 核定载人数\n- Gross Mass: 总质量\n- Unladen Mass: 整备质量\n- Approved Load: 核定载质量\n- Overall Dimension: 外廓尺寸\n- Traction Mass: 准牵引总质量\n- Comment: 备注\n- Inspection Record: 检验记录\n- Barcode: 条形码"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+        }
+      },
+      "additionalProperties": {},
+      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := \u0026pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code]."
+        },
+        "message": {
+          "type": "string",
+          "description": "A developer-facing error message, which should be in English. Any\nuser-facing error message should be localized and sent in the\n[google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client."
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          },
+          "description": "A list of messages that carry the error details.  There is a common set of\nmessage types for APIs to use."
+        }
+      },
+      "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors)."
+    },
+    "wrapperBoundingPoly": {
+      "type": "object",
+      "properties": {
+        "vertices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/wrapperVertex"
+          },
+          "description": "多边形顶点.\n注意: 仅包含两个顶点, 目标区域被解释为矩形, 第一个为左上角坐标, 第二个为右下角坐标.\n[EN] Polygon vertices.\nNote when vertices only contains two vertices, the polygon is interoperate as rectangular, the\nfirst is the coordinate in upper left corner and the second is in the lower right corner."
+        }
+      },
+      "description": "多边形边界.\n[EN] Bounding poly."
+    },
+    "wrapperColorType": {
+      "type": "string",
+      "enum": [
+        "COLOR_TYPE_NONE",
+        "BLACK",
+        "WHITE",
+        "BLUE",
+        "YELLOW",
+        "GREEN",
+        "YELLOW_GREEN"
+      ],
+      "default": "COLOR_TYPE_NONE",
+      "description": "- COLOR_TYPE_NONE: 保留字段, 暂未使用.\n[EN] Reserved field, unused.\n - BLACK: 黑.\n[EN] Black.\n - WHITE: 白.\n[EN] White.\n - BLUE: 蓝.\n[EN] Blue.\n - YELLOW: 黄.\n[EN] Yellow.\n - GREEN: 绿.\n[EN] Green.\n - YELLOW_GREEN: 黄绿.\n[EN] Yellow Green.",
+      "title": "颜色枚举"
+    },
+    "wrapperEncryptAlgorithm": {
+      "type": "string",
+      "enum": [
+        "ENCRPT_ALGORITHM_NONE",
+        "AES_256_CBC",
+        "AES_256_GCM"
+      ],
+      "default": "ENCRPT_ALGORITHM_NONE",
+      "description": "加密算法.\n\n - ENCRPT_ALGORITHM_NONE: 不加密.\n - AES_256_CBC: AES 256 CBC加密.\n - AES_256_GCM: AES 256 GCM加密."
+    },
+    "wrapperEncryptInfo": {
+      "type": "object",
+      "properties": {
+        "algorithm": {
+          "$ref": "#/definitions/wrapperEncryptAlgorithm",
+          "description": "加密算法, 目前支持AES_256_CBC."
+        },
+        "version": {
+          "type": "integer",
+          "format": "int32",
+          "description": "可选, 加密算法版本."
+        },
+        "encrypted_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "可选, 该消息中加密 JSON (协议原始字段名)字段列表, 仅支持与此结构平级的字段."
+        },
+        "data": {
+          "type": "string",
+          "format": "byte",
+          "description": "加密数据信息, 由包含该结构体的请求或应答消息中上述加密字段消息体 JSON 对象序列化后加密得到.\n如果加密算法指定为 AES_256_CBC, 前 16B 字节为 IV 向量, 其他为用该IV向量得到的加密密文数据.\n如果加密算法指定为 AES_256_GCM, 前 12B 字节为随机 NONCE."
+        }
+      },
+      "description": "加密信息消息体, 如果请求中包含此字段, 对应应答消息也会做相应的加密, 具体加密字段参考具体的API定义."
+    },
+    "wrapperSessionType": {
+      "type": "string",
+      "enum": [
+        "IDENTITY_VERIFICATION",
+        "LIVENESS",
+        "H5_LIVENESS",
+        "IDCARD_SCAN",
+        "BANKCARD_SCAN"
+      ],
+      "default": "IDENTITY_VERIFICATION",
+      "description": "会话类型.\n\n - IDENTITY_VERIFICATION: H5 身份核验流程会话, 可以包括身份证识别, 活体检测, 权威源核验.\n - LIVENESS: SDK 实时活体检测流程会话.\n - H5_LIVENESS: H5 实时活体检测流程会话.\n - IDCARD_SCAN: SDK OCR 身份证扫描会话.\n - BANKCARD_SCAN: SDK OCR 银行卡扫描会话."
+    },
+    "wrapperVertex": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "integer",
+          "format": "int32",
+          "description": "X 轴坐标."
+        },
+        "y": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Y 轴坐标."
+        }
+      },
+      "description": "二维图像坐标, 注意: 坐标系与输入图像相同.\n[EN] Coordinates of two-dimensional image. Note: the coordinate system is the same as the input image."
+    }
+  }
+}

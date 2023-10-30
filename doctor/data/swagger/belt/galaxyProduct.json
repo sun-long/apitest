@@ -1,0 +1,3623 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1.3.0",
+    "title": "SenseTime Product Management API",
+    "contact": {
+      "name": "SenseTime",
+      "url": "https://www.sensetime.com",
+      "email": "business@sensetime.com"
+    }
+  },
+  "host": "gateway.sensegalaxy-dev.sensetime.com",
+  "basePath": "/product-management",
+  "tags": [
+    {
+      "name": "Product Management",
+      "description": "Product Controller"
+    },
+    {
+      "name": "Product upload Management",
+      "description": "Product Upload Controller"
+    },
+    {
+      "name": "Recognize Open API",
+      "description": "Product Open Api Controller"
+    }
+  ],
+  "paths": {
+    "/api/v1/product/urls/download": {
+      "post": {
+        "tags": [
+          "Product upload Management"
+        ],
+        "summary": "获取图片下载链接",
+        "operationId": "modifyProduct_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "productDownloadUrlRequest",
+            "description": "productDownloadUrlRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductDownloadUrlRequest",
+              "originalRef": "ProductDownloadUrlRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«productOssUrl»",
+              "originalRef": "Result«productOssUrl»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/product/urls/upload": {
+      "post": {
+        "tags": [
+          "Product upload Management"
+        ],
+        "summary": "获取物品上传链接",
+        "operationId": "getProductUploadUrl",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "productUploadUrlRequest",
+            "description": "productUploadUrlRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductUploadUrlRequest",
+              "originalRef": "ProductUploadUrlRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«productOssUrl»",
+              "originalRef": "Result«productOssUrl»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/products/add": {
+      "post": {
+        "tags": [
+          "Product Management"
+        ],
+        "summary": "添加产品",
+        "operationId": "addProduct",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "productAddRequest",
+            "description": "productAddRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductAddRequest",
+              "originalRef": "ProductAddRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«Void»",
+              "originalRef": "Result«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/products/batch/del": {
+      "post": {
+        "tags": [
+          "Product Management"
+        ],
+        "summary": "批量删除物品",
+        "operationId": "batchDelProduct",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductBatchDelRequest",
+              "originalRef": "ProductBatchDelRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«Void»",
+              "originalRef": "Result«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/products/edit/businessCode/{productId}": {
+      "put": {
+        "tags": [
+          "Product Management"
+        ],
+        "summary": "编辑businessCode",
+        "operationId": "编辑businessCode",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "businessCode",
+            "description": "businessCode",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "productId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«Void»",
+              "originalRef": "Result«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/products/list": {
+      "post": {
+        "tags": [
+          "Product Management"
+        ],
+        "summary": "查询产品列表",
+        "operationId": "getProductList",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductPageListRequest",
+              "originalRef": "ProductPageListRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«Page«ProductInfoListVO»»",
+              "originalRef": "Result«Page«ProductInfoListVO»»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/products/manual/sync/{scene}": {
+      "put": {
+        "tags": [
+          "Product Management"
+        ],
+        "summary": "手动同步失败的sku",
+        "operationId": "editBusinessCodeUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "productIds",
+            "description": "productIds",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          },
+          {
+            "name": "scene",
+            "in": "path",
+            "description": "scene",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«Void»",
+              "originalRef": "Result«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/products/modify": {
+      "post": {
+        "tags": [
+          "Product Management"
+        ],
+        "summary": "修改产品",
+        "operationId": "modifyProduct",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "productUpdateRequest",
+            "description": "productUpdateRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductUpdateRequest",
+              "originalRef": "ProductUpdateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«Void»",
+              "originalRef": "Result«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/products/register": {
+      "post": {
+        "tags": [
+          "Product Management"
+        ],
+        "summary": "注册产品",
+        "operationId": "registerProduct",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "productCreateRequest",
+            "description": "productCreateRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductCreateRequest",
+              "originalRef": "ProductCreateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«Void»",
+              "originalRef": "Result«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/products/reset/image/{productId}/{scene}": {
+      "put": {
+        "tags": [
+          "Product Management"
+        ],
+        "summary": "重置imageId",
+        "operationId": "resetSkuImage",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "productId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "scene",
+            "in": "path",
+            "description": "scene",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«Void»",
+              "originalRef": "Result«Void»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/products/scene/list": {
+      "post": {
+        "tags": [
+          "Product Management"
+        ],
+        "summary": "查询产品仓库列表",
+        "operationId": "getProductListByScene",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductSourcePageListRequest",
+              "originalRef": "ProductSourcePageListRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«Page«ProductInfoListVO»»",
+              "originalRef": "Result«Page«ProductInfoListVO»»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/products/{productId}": {
+      "get": {
+        "tags": [
+          "Product Management"
+        ],
+        "summary": "查询产品详情",
+        "operationId": "getProductDetail",
+        "produces": [
+          "*/*",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "productId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«ProductInfoDetailVO»",
+              "originalRef": "Result«ProductInfoDetailVO»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Product Management"
+        ],
+        "summary": "删除物品",
+        "operationId": "delProduct",
+        "produces": [
+          "*/*",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "productId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«Void»",
+              "originalRef": "Result«Void»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/openapi/v1/product/async/transact": {
+      "post": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "异步交易",
+        "operationId": "transactProductAsync",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "productTransactAsyncRequest",
+            "description": "productTransactAsyncRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductTransactRequestAsync",
+              "originalRef": "ProductTransactRequestAsync"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«transactAsyncVO»",
+              "originalRef": "Result«transactAsyncVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v1/product/async/{transactCode}/status": {
+      "get": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "查询异步交易状态",
+        "operationId": "asyncTransactStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "transactCode",
+            "in": "path",
+            "description": "transactCode",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«ProductAsyncStatusVO»",
+              "originalRef": "Result«ProductAsyncStatusVO»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v1/product/camera": {
+      "post": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "相机检测",
+        "operationId": "cameraCheck",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "cameraCheckRequest",
+            "description": "cameraCheckRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CameraCheckRequest",
+              "originalRef": "CameraCheckRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OpenApiResult",
+              "originalRef": "OpenApiResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v1/product/conflict": {
+      "post": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "冲突检测",
+        "operationId": "conflictProduct",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "productConflictRequest",
+            "description": "productConflictRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductConflictRequest",
+              "originalRef": "ProductConflictRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OpenApiResult",
+              "originalRef": "OpenApiResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v1/product/detail/recognize": {
+      "post": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "检测图片中物品以及物品框",
+        "operationId": "RecognizeProduct",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "recognizeImageRequest",
+            "description": "recognizeImageRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RecognizeImageRequest",
+              "originalRef": "RecognizeImageRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«RecognizeBodyVO»",
+              "originalRef": "Result«RecognizeBodyVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v1/product/list": {
+      "get": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "查询所有已注册物品信息",
+        "operationId": "queryProductList",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sku_id",
+            "in": "query",
+            "description": "sku_id",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OpenApiResult",
+              "originalRef": "OpenApiResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v1/product/multiple/detail/recognize": {
+      "post": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "检测多张图片中物品以及物品框",
+        "operationId": "RecognizeMultipleProduct",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "multipleRecognizeImageRequest",
+            "description": "multipleRecognizeImageRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MultipleRecognizeImageRequest",
+              "originalRef": "MultipleRecognizeImageRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«MultiRecognizeBodyVO»",
+              "originalRef": "Result«MultiRecognizeBodyVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v1/product/name": {
+      "post": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "查询skuName",
+        "operationId": "ProductNameSearch",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "productIds",
+            "description": "productIds",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«List«Map»»",
+              "originalRef": "Result«List«Map»»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v1/product/recognize": {
+      "post": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "识别",
+        "operationId": "recognizeProduct",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "productRecognizeRequest",
+            "description": "productRecognizeRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductRecognizeRequest",
+              "originalRef": "ProductRecognizeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OpenApiResult",
+              "originalRef": "OpenApiResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v1/product/replenish": {
+      "post": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "补货检测",
+        "operationId": "replenishCheck",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "replenishCheckRequest",
+            "description": "replenishCheckRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ReplenishCheckRequest",
+              "originalRef": "ReplenishCheckRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OpenApiResult",
+              "originalRef": "OpenApiResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v1/product/sync/product": {
+      "get": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "查询同步的sku信息,同步到测试环境用",
+        "operationId": "ProductSyncInfo",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«ProductSyncVO»",
+              "originalRef": "Result«ProductSyncVO»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v1/product/tenant/conflict": {
+      "get": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "获取租户所有冲突信息",
+        "operationId": "tenantConflict",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«ProductConflictVO»",
+              "originalRef": "Result«ProductConflictVO»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v1/product/transact": {
+      "post": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "识别两组图片前后的商品数量变化，仅与传入模版商品比对",
+        "operationId": "compareProduct",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "productTransactRequest",
+            "description": "productTransactRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductTransactRequest",
+              "originalRef": "ProductTransactRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OpenApiResult",
+              "originalRef": "OpenApiResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v2/product/async/transact": {
+      "post": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "异步交易",
+        "operationId": "transactProductAsync_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "productTransactAsyncRequest",
+            "description": "productTransactAsyncRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductTransactRequestAsync",
+              "originalRef": "ProductTransactRequestAsync"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«transactAsyncVO»",
+              "originalRef": "Result«transactAsyncVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v2/product/async/{transactCode}/status": {
+      "get": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "查询异步交易状态",
+        "operationId": "asyncTransactStatus_1",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "transactCode",
+            "in": "path",
+            "description": "transactCode",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«ProductAsyncStatusVO»",
+              "originalRef": "Result«ProductAsyncStatusVO»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v2/product/camera": {
+      "post": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "相机检测",
+        "operationId": "cameraCheck_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "cameraCheckRequest",
+            "description": "cameraCheckRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CameraCheckRequest",
+              "originalRef": "CameraCheckRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OpenApiResult",
+              "originalRef": "OpenApiResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v2/product/conflict": {
+      "post": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "冲突检测",
+        "operationId": "conflictProduct_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "productConflictRequest",
+            "description": "productConflictRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductConflictRequest",
+              "originalRef": "ProductConflictRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OpenApiResult",
+              "originalRef": "OpenApiResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v2/product/detail/recognize": {
+      "post": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "检测图片中物品以及物品框",
+        "operationId": "RecognizeProduct_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "recognizeImageRequest",
+            "description": "recognizeImageRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RecognizeImageRequest",
+              "originalRef": "RecognizeImageRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«RecognizeBodyVO»",
+              "originalRef": "Result«RecognizeBodyVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v2/product/list": {
+      "get": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "查询所有已注册物品信息",
+        "operationId": "queryProductList_1",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sku_id",
+            "in": "query",
+            "description": "sku_id",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OpenApiResult",
+              "originalRef": "OpenApiResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v2/product/multiple/detail/recognize": {
+      "post": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "检测多张图片中物品以及物品框",
+        "operationId": "RecognizeMultipleProduct_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "multipleRecognizeImageRequest",
+            "description": "multipleRecognizeImageRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MultipleRecognizeImageRequest",
+              "originalRef": "MultipleRecognizeImageRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«MultiRecognizeBodyVO»",
+              "originalRef": "Result«MultiRecognizeBodyVO»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v2/product/name": {
+      "post": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "查询skuName",
+        "operationId": "ProductNameSearch_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "productIds",
+            "description": "productIds",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«List«Map»»",
+              "originalRef": "Result«List«Map»»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v2/product/recognize": {
+      "post": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "识别",
+        "operationId": "recognizeProduct_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "productRecognizeRequest",
+            "description": "productRecognizeRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductRecognizeRequest",
+              "originalRef": "ProductRecognizeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OpenApiResult",
+              "originalRef": "OpenApiResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v2/product/replenish": {
+      "post": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "补货检测",
+        "operationId": "replenishCheck_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "replenishCheckRequest",
+            "description": "replenishCheckRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ReplenishCheckRequest",
+              "originalRef": "ReplenishCheckRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OpenApiResult",
+              "originalRef": "OpenApiResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v2/product/sync/product": {
+      "get": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "查询同步的sku信息,同步到测试环境用",
+        "operationId": "ProductSyncInfo_1",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«ProductSyncVO»",
+              "originalRef": "Result«ProductSyncVO»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v2/product/tenant/conflict": {
+      "get": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "获取租户所有冲突信息",
+        "operationId": "tenantConflict_1",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«ProductConflictVO»",
+              "originalRef": "Result«ProductConflictVO»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/openapi/v2/product/transact": {
+      "post": {
+        "tags": [
+          "Recognize Open API"
+        ],
+        "summary": "识别两组图片前后的商品数量变化，仅与传入模版商品比对",
+        "operationId": "compareProduct_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "productTransactRequest",
+            "description": "productTransactRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductTransactRequest",
+              "originalRef": "ProductTransactRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OpenApiResult",
+              "originalRef": "OpenApiResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "BoundingPoly": {
+      "type": "object",
+      "properties": {
+        "vertices": {
+          "type": "array",
+          "description": "Polygon vertices. Note: When the target area is a rectangle, it only contains two vertices, the first is the upper-left corner coordinates, and the second is the lower-right corner coordinates",
+          "items": {
+            "$ref": "#/definitions/Vertices",
+            "originalRef": "Vertices"
+          },
+          "refType": "Vertices"
+        }
+      },
+      "title": "BoundingPoly",
+      "description": "Object detection result polygon boundary"
+    },
+    "CameraCheckRequest": {
+      "type": "object",
+      "required": [
+        "imageInfo"
+      ],
+      "properties": {
+        "imageInfo": {
+          "type": "array",
+          "description": "请求检查的相机图片base64",
+          "items": {
+            "type": "string"
+          },
+          "refType": "string"
+        }
+      },
+      "title": "CameraCheckRequest",
+      "description": "相机检测请求"
+    },
+    "ComposeDTO": {
+      "type": "object",
+      "properties": {
+        "sku": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SkuDTO",
+            "originalRef": "SkuDTO"
+          },
+          "refType": "SkuDTO"
+        }
+      },
+      "title": "ComposeDTO"
+    },
+    "ComposeInfo": {
+      "type": "object",
+      "properties": {
+        "skus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SkuInfo",
+            "originalRef": "SkuInfo"
+          },
+          "refType": "SkuInfo"
+        }
+      },
+      "title": "ComposeInfo"
+    },
+    "ConflictDetail": {
+      "type": "object",
+      "properties": {
+        "businessCode": {
+          "type": "string",
+          "description": "businessCode",
+          "refType": null
+        },
+        "conflictList": {
+          "type": "array",
+          "description": "每个物品冲突集合",
+          "items": {
+            "type": "string"
+          },
+          "refType": "string"
+        }
+      },
+      "title": "ConflictDetail"
+    },
+    "Gravity": {
+      "type": "object",
+      "properties": {
+        "gravities": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          },
+          "refType": "number"
+        },
+        "timestamp": {
+          "type": "string",
+          "refType": null
+        }
+      },
+      "title": "Gravity"
+    },
+    "ImageInfo": {
+      "type": "object",
+      "required": [
+        "image",
+        "uniqueId"
+      ],
+      "properties": {
+        "image": {
+          "type": "string",
+          "description": "base64图片",
+          "refType": null
+        },
+        "uniqueId": {
+          "type": "string",
+          "description": "图片唯一标识",
+          "refType": null
+        }
+      },
+      "title": "ImageInfo"
+    },
+    "ImageInfoVO": {
+      "type": "object",
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "description": "图片名称",
+          "refType": null
+        },
+        "imageType": {
+          "type": "integer",
+          "format": "int32",
+          "description": "图片类型 0:大图 1:小图",
+          "refType": null
+        },
+        "md5": {
+          "type": "string",
+          "description": "md5码",
+          "refType": null
+        }
+      },
+      "title": "ImageInfoVO"
+    },
+    "ImageParamDTO": {
+      "type": "object",
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "description": "图片名称",
+          "refType": null
+        },
+        "imageType": {
+          "type": "integer",
+          "format": "int32",
+          "description": "图片类型 0:大图 1:小图",
+          "refType": null
+        },
+        "md5": {
+          "type": "string",
+          "description": "md5码",
+          "refType": null
+        }
+      },
+      "title": "ImageParamDTO"
+    },
+    "ImageSet": {
+      "type": "object",
+      "required": [
+        "图片顺序"
+      ],
+      "properties": {
+        "camera_id": {
+          "type": "string",
+          "refType": null
+        },
+        "content": {
+          "type": "string",
+          "description": "图片base64",
+          "refType": null
+        },
+        "url": {
+          "type": "string",
+          "description": "媒介url",
+          "refType": null
+        },
+        "图片顺序": {
+          "type": "integer",
+          "format": "int32",
+          "refType": null
+        }
+      },
+      "title": "ImageSet"
+    },
+    "MediaSet": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "图片内容",
+          "refType": null
+        },
+        "index": {
+          "type": "integer",
+          "format": "int32",
+          "description": "顺序",
+          "refType": null
+        },
+        "mediaId": {
+          "type": "string",
+          "description": "媒体文件id",
+          "refType": null
+        },
+        "url": {
+          "type": "string",
+          "description": "文件链接",
+          "refType": null
+        }
+      },
+      "title": "MediaSet"
+    },
+    "MultiRecognizeBodyVO": {
+      "type": "object",
+      "properties": {
+        "multiRecognizeBody": {
+          "type": "array",
+          "description": "返回检测详情",
+          "items": {
+            "$ref": "#/definitions/RecognizeBodyVO",
+            "originalRef": "RecognizeBodyVO"
+          },
+          "refType": "RecognizeBodyVO"
+        },
+        "requestId": {
+          "type": "string",
+          "description": "requestId",
+          "refType": null
+        }
+      },
+      "title": "MultiRecognizeBodyVO"
+    },
+    "MultipleRecognizeImageRequest": {
+      "type": "object",
+      "required": [
+        "deviceId",
+        "imageList",
+        "skuCompose"
+      ],
+      "properties": {
+        "deviceId": {
+          "type": "string",
+          "example": "test001",
+          "description": "设备id",
+          "refType": null
+        },
+        "externalBizFrom": {
+          "type": "string",
+          "refType": null
+        },
+        "imageList": {
+          "type": "array",
+          "description": "图片集合，最多10",
+          "items": {
+            "$ref": "#/definitions/ImageInfo",
+            "originalRef": "ImageInfo"
+          },
+          "refType": "ImageInfo"
+        },
+        "orderId": {
+          "type": "string",
+          "example": "AC000000001",
+          "description": "订单id",
+          "refType": null
+        },
+        "skuCompose": {
+          "description": "物品比较范围的skuId",
+          "$ref": "#/definitions/ComposeDTO",
+          "originalRef": "ComposeDTO",
+          "refType": "ComposeDTO"
+        }
+      },
+      "title": "MultipleRecognizeImageRequest"
+    },
+    "OpenApiResult": {
+      "type": "object",
+      "title": "OpenApiResult"
+    },
+    "PageOrder": {
+      "type": "object",
+      "properties": {
+        "orderField": {
+          "type": "string",
+          "description": "排序字段, 如package_id",
+          "refType": null
+        },
+        "orderType": {
+          "type": "string",
+          "example": "目前支持两种：ASC表示正序，DESC表示倒序。",
+          "description": "排序类型",
+          "refType": null
+        }
+      },
+      "title": "PageOrder"
+    },
+    "Page«ProductInfoListVO»": {
+      "type": "object",
+      "required": [
+        "list",
+        "page",
+        "size",
+        "total",
+        "totalPage"
+      ],
+      "properties": {
+        "empty": {
+          "type": "boolean",
+          "refType": null
+        },
+        "list": {
+          "type": "array",
+          "example": [],
+          "description": "查询结果集",
+          "items": {
+            "$ref": "#/definitions/ProductInfoListVO",
+            "originalRef": "ProductInfoListVO"
+          },
+          "refType": "ProductInfoListVO"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "example": 1,
+          "description": "当前页",
+          "refType": null
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32",
+          "example": 10,
+          "description": "每页数量",
+          "refType": null
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "example": 100,
+          "description": "总记录数",
+          "refType": null
+        },
+        "totalPage": {
+          "type": "integer",
+          "format": "int32",
+          "example": 10,
+          "description": "总页数",
+          "refType": null
+        }
+      },
+      "title": "Page«ProductInfoListVO»",
+      "description": "分页查询响应基类"
+    },
+    "ProductAddRequest": {
+      "type": "object",
+      "properties": {
+        "externalBizFrom": {
+          "type": "string",
+          "refType": null
+        },
+        "productIdList": {
+          "type": "array",
+          "description": "物品id集合",
+          "items": {
+            "type": "string"
+          },
+          "refType": "string"
+        }
+      },
+      "title": "ProductAddRequest"
+    },
+    "ProductAsyncStatusVO": {
+      "type": "object",
+      "properties": {
+        "requestId": {
+          "type": "string",
+          "description": "算法返回requestId",
+          "refType": null
+        },
+        "status": {
+          "type": "string",
+          "description": "订单状态,Processing,Finish,Fail",
+          "refType": null
+        }
+      },
+      "title": "ProductAsyncStatusVO"
+    },
+    "ProductBatchDelRequest": {
+      "type": "object",
+      "properties": {
+        "externalBizFrom": {
+          "type": "string",
+          "refType": null
+        },
+        "productIdList": {
+          "type": "array",
+          "description": "物品id集合",
+          "items": {
+            "type": "string"
+          },
+          "refType": "string"
+        }
+      },
+      "title": "ProductBatchDelRequest"
+    },
+    "ProductConflictRequest": {
+      "type": "object",
+      "properties": {
+        "sku_compose": {
+          "description": "sku比较id集合",
+          "$ref": "#/definitions/ComposeInfo",
+          "originalRef": "ComposeInfo",
+          "refType": "ComposeInfo"
+        }
+      },
+      "title": "ProductConflictRequest",
+      "description": "冲突检测对象"
+    },
+    "ProductConflictVO": {
+      "type": "object",
+      "properties": {
+        "conflictDetailList": {
+          "type": "array",
+          "description": "冲突集合",
+          "items": {
+            "$ref": "#/definitions/ConflictDetail",
+            "originalRef": "ConflictDetail"
+          },
+          "refType": "ConflictDetail"
+        }
+      },
+      "title": "ProductConflictVO"
+    },
+    "ProductCreateRequest": {
+      "type": "object",
+      "properties": {
+        "barCode": {
+          "type": "string",
+          "description": "69码",
+          "refType": null
+        },
+        "brand": {
+          "type": "string",
+          "description": "品牌",
+          "refType": null
+        },
+        "createTenantId": {
+          "type": "string",
+          "refType": null
+        },
+        "createUserId": {
+          "type": "integer",
+          "format": "int64",
+          "refType": null
+        },
+        "externalBizFrom": {
+          "type": "string",
+          "refType": null
+        },
+        "height": {
+          "type": "string",
+          "description": "高(单位：cm)",
+          "refType": null
+        },
+        "imgList": {
+          "type": "array",
+          "description": "物品图片数据集合",
+          "items": {
+            "$ref": "#/definitions/ImageParamDTO",
+            "originalRef": "ImageParamDTO"
+          },
+          "refType": "ImageParamDTO"
+        },
+        "length": {
+          "type": "string",
+          "description": "长(单位：cm)",
+          "refType": null
+        },
+        "name": {
+          "type": "string",
+          "description": "物品名称",
+          "refType": null
+        },
+        "packing": {
+          "type": "string",
+          "description": "包装",
+          "refType": null
+        },
+        "tag": {
+          "type": "string",
+          "description": "标签以逗号分割",
+          "refType": null
+        },
+        "tenantBusinessCode": {
+          "type": "string",
+          "description": "业务编码",
+          "refType": null
+        },
+        "tenantScene": {
+          "type": "string",
+          "refType": null
+        },
+        "weight": {
+          "type": "string",
+          "description": "重量(单位：G)",
+          "refType": null
+        },
+        "width": {
+          "type": "string",
+          "description": "宽(单位：cm)",
+          "refType": null
+        }
+      },
+      "title": "ProductCreateRequest"
+    },
+    "ProductDownloadUrlRequest": {
+      "type": "object",
+      "properties": {
+        "externalBizFrom": {
+          "type": "string",
+          "refType": null
+        },
+        "fileNameList": {
+          "type": "array",
+          "description": "file name list",
+          "items": {
+            "type": "string"
+          },
+          "refType": "string"
+        }
+      },
+      "title": "ProductDownloadUrlRequest"
+    },
+    "ProductInfoDetailVO": {
+      "type": "object",
+      "properties": {
+        "auditStatus": {
+          "type": "integer",
+          "format": "int32",
+          "description": "审核状态,0通过，1审核中，2拒绝",
+          "refType": null
+        },
+        "barCode": {
+          "type": "string",
+          "description": "69码",
+          "refType": null
+        },
+        "brand": {
+          "type": "string",
+          "description": "品牌",
+          "refType": null
+        },
+        "categoryId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "物品类型id",
+          "refType": null
+        },
+        "effectEndTime": {
+          "type": "integer",
+          "format": "int32",
+          "description": "物品生效结束时间",
+          "refType": null
+        },
+        "effectStartTime": {
+          "type": "integer",
+          "format": "int32",
+          "description": "物品生效开始时间",
+          "refType": null
+        },
+        "height": {
+          "type": "string",
+          "description": "高(单位：cm)",
+          "refType": null
+        },
+        "imgList": {
+          "type": "array",
+          "description": "物品图片",
+          "items": {
+            "$ref": "#/definitions/ImageInfoVO",
+            "originalRef": "ImageInfoVO"
+          },
+          "refType": "ImageInfoVO"
+        },
+        "imgSetting": {
+          "type": "string",
+          "description": "图片摆放建议",
+          "refType": null
+        },
+        "length": {
+          "type": "string",
+          "description": "长(单位：cm)",
+          "refType": null
+        },
+        "name": {
+          "type": "string",
+          "description": "物品名称",
+          "refType": null
+        },
+        "packing": {
+          "type": "string",
+          "description": "包装",
+          "refType": null
+        },
+        "productId": {
+          "type": "string",
+          "description": "物品唯一ID",
+          "refType": null
+        },
+        "recommendId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "注册失败后推荐关联物品id",
+          "refType": null
+        },
+        "remark": {
+          "type": "string",
+          "description": "备注，失败原因等",
+          "refType": null
+        },
+        "remoteUrls": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "url"
+          },
+          "refType": "string"
+        },
+        "sceneType": {
+          "type": "string",
+          "description": "记录当前物品已添加产品场景",
+          "refType": null
+        },
+        "size": {
+          "type": "string",
+          "description": "尺寸",
+          "refType": null
+        },
+        "tag": {
+          "type": "string",
+          "description": "标签",
+          "refType": null
+        },
+        "tenantBusinessCode": {
+          "type": "string",
+          "description": "业务编码",
+          "refType": null
+        },
+        "weight": {
+          "type": "string",
+          "description": "重量",
+          "refType": null
+        },
+        "width": {
+          "type": "string",
+          "description": "宽(单位：cm)",
+          "refType": null
+        }
+      },
+      "title": "ProductInfoDetailVO"
+    },
+    "ProductInfoListVO": {
+      "type": "object",
+      "properties": {
+        "auditStatus": {
+          "type": "integer",
+          "format": "int32",
+          "description": "审核状态，0通过，1审核中，2拒绝",
+          "refType": null
+        },
+        "barCode": {
+          "type": "string",
+          "description": "物品码",
+          "refType": null
+        },
+        "brand": {
+          "type": "string",
+          "description": "品牌",
+          "refType": null
+        },
+        "chooseFlag": {
+          "type": "integer",
+          "format": "int32",
+          "description": "选中标识符(0:不能被选中，1:可以被选中)",
+          "refType": null
+        },
+        "createTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "注册/添加时间",
+          "refType": null
+        },
+        "effectStartTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "审核时间",
+          "refType": null
+        },
+        "height": {
+          "type": "string",
+          "description": "高(单位：cm)",
+          "refType": null
+        },
+        "imgList": {
+          "type": "array",
+          "description": "物品图片",
+          "items": {
+            "$ref": "#/definitions/ImageInfoVO",
+            "originalRef": "ImageInfoVO"
+          },
+          "refType": "ImageInfoVO"
+        },
+        "length": {
+          "type": "string",
+          "description": "长(单位：cm)",
+          "refType": null
+        },
+        "name": {
+          "type": "string",
+          "description": "物品名称",
+          "refType": null
+        },
+        "packing": {
+          "type": "string",
+          "description": "包装",
+          "refType": null
+        },
+        "productId": {
+          "type": "string",
+          "description": "物品唯一ID",
+          "refType": null
+        },
+        "remark": {
+          "type": "string",
+          "description": "备注",
+          "refType": null
+        },
+        "tag": {
+          "type": "string",
+          "description": "标签(以逗号分割)",
+          "refType": null
+        },
+        "tenantBusinessCode": {
+          "type": "string",
+          "description": "业务编码",
+          "refType": null
+        },
+        "urls": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "url"
+          },
+          "refType": "string"
+        },
+        "weight": {
+          "type": "string",
+          "description": "重量",
+          "refType": null
+        },
+        "width": {
+          "type": "string",
+          "description": "宽(单位：cm)",
+          "refType": null
+        }
+      },
+      "title": "ProductInfoListVO"
+    },
+    "ProductPageListRequest": {
+      "type": "object",
+      "properties": {
+        "auditStatus": {
+          "type": "integer",
+          "format": "int32",
+          "description": "审核状态",
+          "refType": null
+        },
+        "dateEnd": {
+          "type": "string",
+          "description": "可选，结束时间格式：2020-09-03 00:00:00，不填写默认搜索最近7天",
+          "refType": null
+        },
+        "dateStart": {
+          "type": "string",
+          "description": "可选，开始时间，标准时间格式：2020-09-01 00:00:00，不填写默认搜索最近7天",
+          "refType": null
+        },
+        "externalBizFrom": {
+          "type": "string",
+          "refType": null
+        },
+        "name": {
+          "type": "string",
+          "description": "物品名称",
+          "refType": null
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "example": 1,
+          "description": "第几页",
+          "refType": null
+        },
+        "pageOrderList": {
+          "type": "array",
+          "description": "排序字段，可以为空，也可以为多个",
+          "items": {
+            "$ref": "#/definitions/PageOrder",
+            "originalRef": "PageOrder"
+          },
+          "refType": "PageOrder"
+        },
+        "productId": {
+          "type": "string",
+          "description": "物品码",
+          "refType": null
+        },
+        "sceneType": {
+          "type": "string",
+          "description": "场景",
+          "refType": null
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32",
+          "example": 10,
+          "description": "每页数量",
+          "refType": null
+        },
+        "tenantBusinessCode": {
+          "type": "string",
+          "description": "tenantBusinessCode",
+          "refType": null
+        }
+      },
+      "title": "ProductPageListRequest"
+    },
+    "ProductRecognizeRequest": {
+      "type": "object",
+      "required": [
+        "device_id"
+      ],
+      "properties": {
+        "device_id": {
+          "type": "string",
+          "description": "设备id",
+          "refType": null
+        },
+        "image_set1": {
+          "type": "array",
+          "description": "识别集合",
+          "items": {
+            "$ref": "#/definitions/ImageSet",
+            "originalRef": "ImageSet"
+          },
+          "refType": "ImageSet"
+        },
+        "orderId": {
+          "type": "string",
+          "description": "订单id",
+          "refType": null
+        },
+        "sku_compose": {
+          "description": "对比skuIds",
+          "$ref": "#/definitions/ComposeInfo",
+          "originalRef": "ComposeInfo",
+          "refType": "ComposeInfo"
+        }
+      },
+      "title": "ProductRecognizeRequest",
+      "description": "物品识别对象"
+    },
+    "ProductSourcePageListRequest": {
+      "type": "object",
+      "properties": {
+        "brand": {
+          "type": "string",
+          "description": "品牌",
+          "refType": null
+        },
+        "dateEnd": {
+          "type": "string",
+          "description": "可选，结束时间格式：2020-09-03 00:00:00，不填写默认搜索最近7天",
+          "refType": null
+        },
+        "dateStart": {
+          "type": "string",
+          "description": "可选，开始时间，标准时间格式：2020-09-01 00:00:00，不填写默认搜索最近7天",
+          "refType": null
+        },
+        "externalBizFrom": {
+          "type": "string",
+          "refType": null
+        },
+        "packing": {
+          "type": "string",
+          "description": "包装",
+          "refType": null
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32",
+          "example": 1,
+          "description": "第几页",
+          "refType": null
+        },
+        "pageOrderList": {
+          "type": "array",
+          "description": "排序字段，可以为空，也可以为多个",
+          "items": {
+            "$ref": "#/definitions/PageOrder",
+            "originalRef": "PageOrder"
+          },
+          "refType": "PageOrder"
+        },
+        "searchKey": {
+          "type": "string",
+          "description": "物品名称或物品码",
+          "refType": null
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32",
+          "example": 10,
+          "description": "每页数量",
+          "refType": null
+        }
+      },
+      "title": "ProductSourcePageListRequest"
+    },
+    "ProductSyncVO": {
+      "type": "object",
+      "properties": {
+        "simpleProductSyncRecordList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SimpleProductSyncRecord",
+            "originalRef": "SimpleProductSyncRecord"
+          },
+          "refType": "SimpleProductSyncRecord"
+        }
+      },
+      "title": "ProductSyncVO"
+    },
+    "ProductTransactRequest": {
+      "type": "object",
+      "properties": {
+        "algorithm_type": {
+          "type": "integer",
+          "format": "int32",
+          "description": "类型，0 表示原始动态视频，1.代表0号机",
+          "refType": null
+        },
+        "compose_id": {
+          "type": "string",
+          "description": "订单id",
+          "refType": null
+        },
+        "device_id": {
+          "type": "string",
+          "description": "设备id",
+          "refType": null
+        },
+        "gravity": {
+          "type": "array",
+          "description": "动态场景使用",
+          "items": {
+            "$ref": "#/definitions/Gravity",
+            "originalRef": "Gravity"
+          },
+          "refType": "Gravity"
+        },
+        "image_set1": {
+          "type": "array",
+          "description": "交易集合第一组",
+          "items": {
+            "$ref": "#/definitions/ImageSet",
+            "originalRef": "ImageSet"
+          },
+          "refType": "ImageSet"
+        },
+        "image_set2": {
+          "type": "array",
+          "description": "交易集合第二组,第二组与第一组一一对应",
+          "items": {
+            "$ref": "#/definitions/ImageSet",
+            "originalRef": "ImageSet"
+          },
+          "refType": "ImageSet"
+        },
+        "image_set3": {
+          "type": "array",
+          "description": "交易集合第三组",
+          "items": {
+            "$ref": "#/definitions/ImageSet",
+            "originalRef": "ImageSet"
+          },
+          "refType": "ImageSet"
+        },
+        "order_id": {
+          "type": "string",
+          "description": "订单id",
+          "refType": null
+        },
+        "sku_compose": {
+          "description": "比较范围skuIds",
+          "$ref": "#/definitions/ComposeInfo",
+          "originalRef": "ComposeInfo",
+          "refType": "ComposeInfo"
+        }
+      },
+      "title": "ProductTransactRequest",
+      "description": "交易请求对象"
+    },
+    "ProductTransactRequestAsync": {
+      "type": "object",
+      "properties": {
+        "algorithmType": {
+          "type": "integer",
+          "format": "int32",
+          "description": "类型，0 表示原始动态视频，1.代表0号机",
+          "refType": null
+        },
+        "callBackUrl": {
+          "type": "string",
+          "description": "回调url",
+          "refType": null
+        },
+        "deviceId": {
+          "type": "string",
+          "description": "设备id",
+          "refType": null
+        },
+        "externalBizFrom": {
+          "type": "string",
+          "refType": null
+        },
+        "orderId": {
+          "type": "string",
+          "description": "订单id",
+          "refType": null
+        },
+        "skuCompose": {
+          "description": "比较范围skuIds",
+          "$ref": "#/definitions/ComposeDTO",
+          "originalRef": "ComposeDTO",
+          "refType": "ComposeDTO"
+        },
+        "videoSet": {
+          "type": "array",
+          "description": "交易视频集合",
+          "items": {
+            "$ref": "#/definitions/mediaModel",
+            "originalRef": "mediaModel"
+          },
+          "refType": "mediaModel"
+        }
+      },
+      "title": "ProductTransactRequestAsync",
+      "description": "异步交易请求对象"
+    },
+    "ProductUpdateRequest": {
+      "type": "object",
+      "properties": {
+        "barCode": {
+          "type": "string",
+          "description": "69码",
+          "refType": null
+        },
+        "brand": {
+          "type": "string",
+          "description": "品牌",
+          "refType": null
+        },
+        "externalBizFrom": {
+          "type": "string",
+          "refType": null
+        },
+        "height": {
+          "type": "string",
+          "description": "高(单位：cm)",
+          "refType": null
+        },
+        "imgList": {
+          "type": "array",
+          "description": "物品图片数据集合",
+          "items": {
+            "$ref": "#/definitions/ImageParamDTO",
+            "originalRef": "ImageParamDTO"
+          },
+          "refType": "ImageParamDTO"
+        },
+        "length": {
+          "type": "string",
+          "description": "长(单位：cm)",
+          "refType": null
+        },
+        "name": {
+          "type": "string",
+          "description": "物品名称",
+          "refType": null
+        },
+        "packing": {
+          "type": "string",
+          "description": "包装",
+          "refType": null
+        },
+        "productId": {
+          "type": "string",
+          "description": "物品id",
+          "refType": null
+        },
+        "tag": {
+          "type": "string",
+          "description": "标签以逗号分割",
+          "refType": null
+        },
+        "tenantBusinessCode": {
+          "type": "string",
+          "description": "业务编码",
+          "refType": null
+        },
+        "weight": {
+          "type": "string",
+          "description": "重量(单位：G)",
+          "refType": null
+        },
+        "width": {
+          "type": "string",
+          "description": "宽(单位：cm)",
+          "refType": null
+        }
+      },
+      "title": "ProductUpdateRequest"
+    },
+    "ProductUploadUrlRequest": {
+      "type": "object",
+      "properties": {
+        "externalBizFrom": {
+          "type": "string",
+          "refType": null
+        },
+        "fileNameList": {
+          "type": "array",
+          "description": "file name list",
+          "items": {
+            "type": "string"
+          },
+          "refType": "string"
+        }
+      },
+      "title": "ProductUploadUrlRequest"
+    },
+    "RecognizeBodyVO": {
+      "type": "object",
+      "properties": {
+        "recognizeBodyList": {
+          "type": "array",
+          "description": "返回检测详情",
+          "items": {
+            "$ref": "#/definitions/modelRecognize",
+            "originalRef": "modelRecognize"
+          },
+          "refType": "modelRecognize"
+        },
+        "requestId": {
+          "type": "string",
+          "description": "图片唯一id",
+          "refType": null
+        },
+        "uniqueId": {
+          "type": "string",
+          "description": "图片唯一id",
+          "refType": null
+        }
+      },
+      "title": "RecognizeBodyVO"
+    },
+    "RecognizeImageRequest": {
+      "type": "object",
+      "required": [
+        "deviceId",
+        "image",
+        "orderId",
+        "skuComposeIds"
+      ],
+      "properties": {
+        "deviceId": {
+          "type": "string",
+          "example": "test001",
+          "description": "设备id",
+          "refType": null
+        },
+        "externalBizFrom": {
+          "type": "string",
+          "refType": null
+        },
+        "image": {
+          "type": "string",
+          "example": "/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQND",
+          "description": "Base64 encoded picture file",
+          "refType": null
+        },
+        "orderId": {
+          "type": "string",
+          "example": "AC000000001",
+          "description": "订单id",
+          "refType": null
+        },
+        "skuComposeIds": {
+          "type": "array",
+          "example": [
+            12325
+          ],
+          "description": "物品比较范围的skuId",
+          "items": {
+            "type": "string"
+          },
+          "refType": "string"
+        }
+      },
+      "title": "RecognizeImageRequest"
+    },
+    "ReplenishCheckRequest": {
+      "type": "object",
+      "properties": {
+        "deviceId": {
+          "type": "string",
+          "description": "设备id",
+          "refType": null
+        },
+        "mediaSets": {
+          "type": "array",
+          "description": "资源信息",
+          "items": {
+            "$ref": "#/definitions/MediaSet",
+            "originalRef": "MediaSet"
+          },
+          "refType": "MediaSet"
+        },
+        "skuCompose": {
+          "description": "sku 信息",
+          "$ref": "#/definitions/ComposeInfo",
+          "originalRef": "ComposeInfo",
+          "refType": "ComposeInfo"
+        },
+        "template": {
+          "type": "array",
+          "description": "模板信息",
+          "items": {
+            "$ref": "#/definitions/TemplateInfo",
+            "originalRef": "TemplateInfo"
+          },
+          "refType": "TemplateInfo"
+        }
+      },
+      "title": "ReplenishCheckRequest",
+      "description": "补货请求"
+    },
+    "Result«List«Map»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "data": {
+          "type": "array",
+          "description": "数据对象",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«List«Map»»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "Result«MultiRecognizeBodyVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "data": {
+          "description": "数据对象",
+          "$ref": "#/definitions/MultiRecognizeBodyVO",
+          "originalRef": "MultiRecognizeBodyVO"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«MultiRecognizeBodyVO»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "Result«Page«ProductInfoListVO»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "data": {
+          "description": "数据对象",
+          "$ref": "#/definitions/Page«ProductInfoListVO»",
+          "originalRef": "Page«ProductInfoListVO»"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«Page«ProductInfoListVO»»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "Result«ProductAsyncStatusVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "data": {
+          "description": "数据对象",
+          "$ref": "#/definitions/ProductAsyncStatusVO",
+          "originalRef": "ProductAsyncStatusVO"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«ProductAsyncStatusVO»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "Result«ProductConflictVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "data": {
+          "description": "数据对象",
+          "$ref": "#/definitions/ProductConflictVO",
+          "originalRef": "ProductConflictVO"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«ProductConflictVO»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "Result«ProductInfoDetailVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "data": {
+          "description": "数据对象",
+          "$ref": "#/definitions/ProductInfoDetailVO",
+          "originalRef": "ProductInfoDetailVO"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«ProductInfoDetailVO»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "Result«ProductSyncVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "data": {
+          "description": "数据对象",
+          "$ref": "#/definitions/ProductSyncVO",
+          "originalRef": "ProductSyncVO"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«ProductSyncVO»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "Result«RecognizeBodyVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "data": {
+          "description": "数据对象",
+          "$ref": "#/definitions/RecognizeBodyVO",
+          "originalRef": "RecognizeBodyVO"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«RecognizeBodyVO»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "Result«Void»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«Void»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "Result«productOssUrl»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "data": {
+          "description": "数据对象",
+          "$ref": "#/definitions/productOssUrl",
+          "originalRef": "productOssUrl"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«productOssUrl»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "Result«transactAsyncVO»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "错误码，错误码相关信息见错误码文档"
+        },
+        "data": {
+          "description": "数据对象",
+          "$ref": "#/definitions/transactAsyncVO",
+          "originalRef": "transactAsyncVO"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误信息详情提示"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Result«transactAsyncVO»",
+      "description": "设备相应基类，所有的数据响应都会按照此模型"
+    },
+    "SimpleProductSyncRecord": {
+      "type": "object",
+      "properties": {
+        "auditStatus": {
+          "type": "integer",
+          "format": "int32",
+          "description": "审核状态,0通过，1审核中，2拒绝",
+          "refType": null
+        },
+        "barCode": {
+          "type": "string",
+          "description": "尺码",
+          "refType": null
+        },
+        "brand": {
+          "type": "string",
+          "description": "品牌",
+          "refType": null
+        },
+        "categoryId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "物品类型id",
+          "refType": null
+        },
+        "createTime": {
+          "type": "integer",
+          "format": "int64",
+          "refType": null
+        },
+        "effectEndTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "物品生效结束时间",
+          "refType": null
+        },
+        "effectStartTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "物品生效开始时间",
+          "refType": null
+        },
+        "imageInfo": {
+          "type": "string",
+          "refType": null
+        },
+        "name": {
+          "type": "string",
+          "description": "物品名称",
+          "refType": null
+        },
+        "packing": {
+          "type": "string",
+          "description": "包装",
+          "refType": null
+        },
+        "productId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "物品唯一ID",
+          "refType": null
+        },
+        "scene": {
+          "type": "string",
+          "description": "记录当前物品已添加产品场景",
+          "refType": null
+        },
+        "size": {
+          "type": "string",
+          "description": "尺寸",
+          "refType": null
+        },
+        "tag": {
+          "type": "string",
+          "description": "标签",
+          "refType": null
+        },
+        "weight": {
+          "type": "string",
+          "description": "重量",
+          "refType": null
+        }
+      },
+      "title": "SimpleProductSyncRecord"
+    },
+    "SkuColumn": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "integer",
+          "format": "int32",
+          "description": "一列个数",
+          "minimum": 1,
+          "exclusiveMinimum": false,
+          "refType": null
+        },
+        "skuId": {
+          "type": "string",
+          "description": "商品Id",
+          "refType": null
+        }
+      },
+      "title": "SkuColumn"
+    },
+    "SkuDTO": {
+      "type": "object",
+      "properties": {
+        "businessCode": {
+          "type": "string",
+          "refType": null
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32",
+          "description": "无需填写",
+          "refType": null
+        },
+        "skuId": {
+          "type": "string",
+          "refType": null
+        }
+      },
+      "title": "SkuDTO"
+    },
+    "SkuInfo": {
+      "type": "object",
+      "required": [
+        "sku_id"
+      ],
+      "properties": {
+        "business_code": {
+          "type": "string",
+          "refType": null
+        },
+        "gravity": {
+          "type": "integer",
+          "format": "int32",
+          "description": "动态填写此数据",
+          "refType": null
+        },
+        "sku_id": {
+          "type": "string",
+          "description": "skuId",
+          "refType": null
+        }
+      },
+      "title": "SkuInfo"
+    },
+    "TemplateInfo": {
+      "type": "object",
+      "properties": {
+        "columns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SkuColumn",
+            "originalRef": "SkuColumn"
+          },
+          "refType": "SkuColumn"
+        }
+      },
+      "title": "TemplateInfo",
+      "description": "模板请求"
+    },
+    "Vertices": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "format": "float",
+          "description": "x坐标",
+          "refType": null
+        },
+        "y": {
+          "type": "number",
+          "format": "float",
+          "description": "y坐标",
+          "refType": null
+        }
+      },
+      "title": "Vertices",
+      "description": "顶点模型"
+    },
+    "mediaModel": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "文件链接，视频使用",
+          "refType": null
+        },
+        "videoOrder": {
+          "type": "integer",
+          "format": "int32",
+          "description": "视频顺序",
+          "refType": null
+        }
+      },
+      "title": "mediaModel"
+    },
+    "modelRecognize": {
+      "type": "object",
+      "properties": {
+        "boundingPoly": {
+          "description": "图片框",
+          "$ref": "#/definitions/BoundingPoly",
+          "originalRef": "BoundingPoly",
+          "refType": "BoundingPoly"
+        },
+        "skuInfoList": {
+          "type": "array",
+          "description": "sku检测集合",
+          "items": {
+            "$ref": "#/definitions/skuDetail",
+            "originalRef": "skuDetail"
+          },
+          "refType": "skuDetail"
+        }
+      },
+      "title": "modelRecognize"
+    },
+    "productOssUrl": {
+      "type": "object",
+      "properties": {
+        "productUrls": {
+          "type": "array",
+          "description": "productUrlList",
+          "items": {
+            "type": "string",
+            "format": "url"
+          },
+          "refType": "string"
+        }
+      },
+      "title": "productOssUrl"
+    },
+    "skuDetail": {
+      "type": "object",
+      "properties": {
+        "businessCode": {
+          "type": "string",
+          "description": "商品业务编码",
+          "refType": null
+        },
+        "confidence": {
+          "type": "number",
+          "format": "double",
+          "description": "分数",
+          "refType": null
+        },
+        "price": {
+          "type": "number",
+          "format": "double",
+          "description": "价格",
+          "refType": null
+        },
+        "skuId": {
+          "type": "string",
+          "description": "商品id",
+          "refType": null
+        },
+        "skuName": {
+          "type": "string",
+          "description": "商品名称",
+          "refType": null
+        }
+      },
+      "title": "skuDetail"
+    },
+    "transactAsyncVO": {
+      "type": "object",
+      "properties": {
+        "transactCode": {
+          "type": "string",
+          "description": "异步交易返回的transact code",
+          "refType": null
+        }
+      },
+      "title": "transactAsyncVO"
+    }
+  }
+}

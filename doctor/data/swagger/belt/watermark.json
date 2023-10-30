@@ -1,0 +1,236 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "IDS Data Security Service",
+      "version": "v1.0.0"
+    },
+    "tags": [
+      {
+        "name": "DataSecurityService"
+      }
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/v1/watermark/sign_image": {
+        "post": {
+          "summary": "图片数字水印签名.\nroute prefix=ids internal_prefix=ids action=SignImage version=v1",
+          "operationId": "DataSecurityService_SignImage",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/securitySignImageResponse"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/securitySignImageRequest"
+              }
+            }
+          ],
+          "tags": [
+            "DataSecurityService"
+          ]
+        }
+      },
+      "/v1/watermark/verify_image": {
+        "post": {
+          "summary": "图片数字水印验签.\nroute prefix=ids internal_prefix=ids action=VerifyImage version=v1",
+          "operationId": "DataSecurityService_VerifyImage",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/securityVerifyImageResponse"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/securityVerifyImageRequest"
+              }
+            }
+          ],
+          "tags": [
+            "DataSecurityService"
+          ]
+        }
+      }
+    },
+    "definitions": {
+      "protobufAny": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string",
+            "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+          }
+        },
+        "additionalProperties": {},
+        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := \u0026pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+      },
+      "rpcStatus": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code]."
+          },
+          "message": {
+            "type": "string",
+            "description": "A developer-facing error message, which should be in English. Any\nuser-facing error message should be localized and sent in the\n[google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/protobufAny"
+            },
+            "description": "A list of messages that carry the error details.  There is a common set of\nmessage types for APIs to use."
+          }
+        },
+        "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors)."
+      },
+      "securitySignImageRequest": {
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "string",
+            "format": "byte",
+            "description": "待签名图片，可加密."
+          },
+          "watermark": {
+            "type": "string",
+            "format": "byte",
+            "description": "水印，最长16字节二进制，使用base64编码，可加密."
+          },
+          "encrypt_info": {
+            "$ref": "#/definitions/wrapperEncryptInfo",
+            "description": "加密信息, 根据请求消息种设置的加密参数加密指定字段."
+          }
+        },
+        "description": "图片数字水印签名请求."
+      },
+      "securitySignImageResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "$ref": "#/definitions/rpcStatus",
+            "description": "belt通用错误模型结构, 出现错误时不为空."
+          },
+          "image": {
+            "type": "string",
+            "format": "byte",
+            "description": "已签名图片，支持加密."
+          },
+          "encrypt_info": {
+            "$ref": "#/definitions/wrapperEncryptInfo",
+            "description": "加密信息, 根据请求消息种设置的加密参数加密指定字段."
+          }
+        },
+        "description": "图片数字水印签名响应."
+      },
+      "securityVerifyImageRequest": {
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "string",
+            "format": "byte",
+            "description": "待验签图片，可加密."
+          },
+          "watermark": {
+            "type": "string",
+            "format": "byte",
+            "description": "待比对水印，最长16字节二进制，使用base64编码，可加密."
+          },
+          "encrypt_info": {
+            "$ref": "#/definitions/wrapperEncryptInfo",
+            "description": "加密信息, 根据请求消息种设置的加密参数加密指定字段."
+          }
+        },
+        "description": "图片数字水印验签请求."
+      },
+      "securityVerifyImageResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "$ref": "#/definitions/rpcStatus",
+            "description": "belt通用错误模型结构, 出现错误时不为空."
+          },
+          "is_matched": {
+            "type": "boolean",
+            "description": "图中水印是否匹配请求中待比对水印."
+          },
+          "score": {
+            "type": "number",
+            "format": "float",
+            "description": "相似度分数，0到1之间，分数越高则图中水印越接近请求中的待比对水印."
+          }
+        },
+        "description": "图片数字水印验签响应."
+      },
+      "wrapperEncryptAlgorithm": {
+        "type": "string",
+        "enum": [
+          "ENCRPT_ALGORITHM_NONE",
+          "AES_256_CBC",
+          "AES_256_GCM"
+        ],
+        "default": "ENCRPT_ALGORITHM_NONE",
+        "description": "加密算法.\n\n - ENCRPT_ALGORITHM_NONE: 不加密.\n - AES_256_CBC: AES 256 CBC加密.\n - AES_256_GCM: AES 256 GCM加密."
+      },
+      "wrapperEncryptInfo": {
+        "type": "object",
+        "properties": {
+          "algorithm": {
+            "$ref": "#/definitions/wrapperEncryptAlgorithm",
+            "description": "加密算法, 目前支持AES_256_CBC."
+          },
+          "version": {
+            "type": "integer",
+            "format": "int32",
+            "description": "可选, 加密算法版本."
+          },
+          "encrypted_fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "可选, 该消息中加密 JSON (协议原始字段名)字段列表, 仅支持与此结构平级的字段."
+          },
+          "data": {
+            "type": "string",
+            "format": "byte",
+            "description": "加密数据信息, 由包含该结构体的请求或应答消息中上述加密字段消息体 JSON 对象序列化后加密得到.\n如果加密算法指定为 AES_256_CBC, 前 16B 字节为 IV 向量, 其他为用该IV向量得到的加密密文数据.\n如果加密算法指定为 AES_256_GCM, 前 12B 字节为随机 NONCE."
+          }
+        },
+        "description": "加密信息消息体, 如果请求中包含此字段, 对应应答消息也会做相应的加密, 具体加密字段参考具体的API定义."
+      }
+    }
+  }

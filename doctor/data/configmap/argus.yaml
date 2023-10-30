@@ -1,0 +1,793 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: '{{ include "ras-ingress-kong-argus.fullname" . }}'
+  labels:
+    '{{- include "ras-ingress-kong-argus.labels" . | nindent 4 }}'
+data:
+  kong.yml: 
+    _format_version: "3.0"
+    _transform: true
+
+    services:
+      - name: argus-bot-CreateStaticGroup-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/static_group
+        routes:
+          - name: argus-bot-CreateStaticGroup-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["CreateStaticGroup"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-DeleteStaticGroup-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/delete_static_group
+        routes:
+          - name: argus-bot-DeleteStaticGroup-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["DeleteStaticGroup"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-UpdateStaticGroup-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/update_static_group
+        routes:
+          - name: argus-bot-UpdateStaticGroup-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["UpdateStaticGroup"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-GetStaticGroup-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/static_group
+        routes:
+          - name: argus-bot-GetStaticGroup-route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["GetStaticGroup"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-ListStaticGroup-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/static_group/list
+        routes:
+          - name: argus-bot-ListStaticGroup-route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["ListStaticGroup"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-CreateStreamGroup-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/stream_group
+        routes:
+          - name: argus-bot-CreateStreamGroup-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["CreateStreamGroup"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-DeleteStreamGroup-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/delete_stream_group
+        routes:
+          - name: argus-bot-DeleteStreamGroup-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["DeleteStreamGroup"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-UpdateStreamGroup-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/update_stream_group
+        routes:
+          - name: argus-bot-UpdateStreamGroup-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["UpdateStreamGroup"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-GetStreamGroup-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/stream_group
+        routes:
+          - name: argus-bot-GetStreamGroup-route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["GetStreamGroup"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-ListStreamGroup-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/stream_group/list
+        routes:
+          - name: argus-bot-ListStreamGroup-route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["ListStreamGroup"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-CreatePerson-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/person
+        routes:
+          - name: argus-bot-CreatePerson-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["CreatePerson"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-DeletePerson-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/delete_person
+        routes:
+          - name: argus-bot-DeletePerson-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["DeletePerson"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-UpdatePerson-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/update_person
+        routes:
+          - name: argus-bot-UpdatePerson-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["UpdatePerson"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-GetPerson-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/person
+        routes:
+          - name: argus-bot-GetPerson-route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["GetPerson"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-ListPerson-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/person/list
+        routes:
+          - name: argus-bot-ListPerson-route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["ListPerson"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-CreatePersonByFeature-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/person_by_feature
+        routes:
+          - name: argus-bot-CreatePersonByFeature-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["CreatePersonByFeature"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-SearchFeature-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/search/feature
+        routes:
+          - name: argus-bot-SearchFeature-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["SearchFeature"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-SearchImage-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/search/image
+        routes:
+          - name: argus-bot-SearchImage-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["SearchImage"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-SearchImageMultiFace-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/search/image/multi_face
+        routes:
+          - name: argus-bot-SearchImageMultiFace-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["SearchImageMultiFace"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-BatchSearchFeature-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/batch_search/feature
+        routes:
+          - name: argus-bot-BatchSearchFeature-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["BatchSearchFeature"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-BatchSearchImage-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/batch_search/image
+        routes:
+          - name: argus-bot-BatchSearchImage-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["BatchSearchImage"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-ImageDetect-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/image_detect
+        routes:
+          - name: argus-bot-ImageDetect-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["ImageDetect"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-GetBgImage-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://db-proxy.argus:20000/argus/v1/db/bg_image
+        routes:
+          - name: argus-bot-GetBgImage-route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["GetBgImage"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-DetectFace-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://lambor-http.argus:80/v1/ips/face_detect
+        routes:
+          - name: argus-bot-DetectFace-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["DetectFace"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-DetectAndExtractFace-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://lambor-http.argus:80/v1/ips/face_detect_and_extract
+        routes:
+          - name: argus-bot-DetectAndExtractFace-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["DetectAndExtractFace"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-DetectAndExtractAllFace-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://lambor-http.argus:80/v1/ips/face_detect_and_extract_all
+        routes:
+          - name: argus-bot-DetectAndExtractAllFace-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["DetectAndExtractAllFace"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-ExtractFaceWithOverlap-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://lambor-http.argus:80/v1/ips/face_extract_with_overlap
+        routes:
+          - name: argus-bot-ExtractFaceWithOverlap-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["ExtractFaceWithOverlap"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-CompareFeature-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://lambor-http.argus:80/v1/ips/compare_feature
+        routes:
+          - name: argus-bot-CompareFeature-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["CompareFeature"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-CompareImage-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://lambor-http.argus:80/v1/ips/compare_image
+        routes:
+          - name: argus-bot-CompareImage-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["CompareImage"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-OCRTemplate-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://lambor-http.argus:80/v1/ocr/template
+        routes:
+          - name: argus-bot-OCRTemplate-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["OCRTemplate"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-Recognize-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://ingress-meister-landfill.argus:11000/argus/v1/recognize/pedestrian
+        routes:
+          - name: argus-bot-Recognize-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["Recognize"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-GetResourceList-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://argus-rrs.argus:8000/sensego/v1/tenant/list-resource
+        routes:
+          - name: argus-bot-GetResourceList-route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["GetResourceList"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-GetRgroupList-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://argus-rrs.argus:8000/sensego/v1/tenant/list-r-group
+        routes:
+          - name: argus-bot-GetRgroupList-route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["GetRgroupList"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-GetTagList-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://argus-rrs.argus:8000/sensego/v1/tenant/list-tag
+        routes:
+          - name: argus-bot-GetTagList-route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["GetTagList"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-AddResource-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://argus-rrs.argus:8000/sensego/v1/tenant/add-resource
+        routes:
+          - name: argus-bot-AddResource-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["AddResource"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-DeleteResource-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://argus-rrs.argus:8000/sensego/v1/tenant/delete-resource
+        routes:
+          - name: argus-bot-DeleteResource-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["DeleteResource"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-UpdateResource-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://argus-rrs.argus:8000/sensego/v1/tenant/update-resource
+        routes:
+          - name: argus-bot-UpdateResource-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["UpdateResource"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-AddTag-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://argus-rrs.argus:8000/sensego/v1/tenant/add-tag
+        routes:
+          - name: argus-bot-AddTag-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["AddTag"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-DeleteTag-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://argus-rrs.argus:8000/sensego/v1/tenant/delete-tag
+        routes:
+          - name: argus-bot-DeleteTag-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["DeleteTag"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-UpdateTag-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://argus-rrs.argus:8000/sensego/v1/tenant/update-tag
+        routes:
+          - name: argus-bot-UpdateTag-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["UpdateTag"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-AddRgroup-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://argus-rrs.argus:8000/sensego/v1/tenant/add-r-group
+        routes:
+          - name: argus-bot-AddRgroup-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["AddRgroup"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-GetRgroupByAK-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://argus-rrs.argus:8000/sensego/v1/tenant/get-rgroup-by-ak
+        routes:
+          - name: argus-bot-GetRgroupByAK-route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{ { .Values.proxy.argusdomain } }'
+            headers: { "X-Belt-Action": [ "GetRgroupByAK" ], "X-Belt-Version": [ "v1" ] }
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-GetRgroupAKRelationList-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://argus-rrs.argus:8000/sensego/v1/tenant/list-r-group-ak-relation
+        routes:
+          - name: argus-bot-GetRgroupAKRelationList-route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["GetRgroupAKRelationList"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-AddRgroupAKRelation-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://argus-rrs.argus:8000/sensego/v1/tenant/add-r-group-ak-relation
+        routes:
+          - name: argus-bot-AddRgroupAKRelation-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["AddRgroupAKRelation"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-DeleteRgroup-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://argus-rrs.argus:8000/sensego/v1/tenant/delete-r-group
+        routes:
+          - name: argus-bot-DeleteRgroup-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["DeleteRgroup"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-NewSFDDB-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://facesfd-sg-sfd-face-proxy.argus:8080/v1/databases
+        routes:
+          - name: argus-bot-NewSFDDB-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["NewSFDDB"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+      - name: argus-bot-BatchAddFeatureToSFD-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://facesfd-sg-sfd-face-proxy.argus:8080
+        routes:
+          - name: argus-bot-BatchAddFeatureToSFD-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["BatchAddFeatureToSFD"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+            plugins:
+             - name: pre-function
+               config:
+                 access:
+                   - |
+                     local body = kong.request.get_body()
+                     local col_id = body.col_id
+                     if col_id then
+                       kong.service.request.set_path("/v1/databases/"..col_id.."/batch_add")
+                     else
+                       local response_format = '{"error": {"code": %d,"message": "%s"}}''
+                       return kong.response.exit(400, string.format(response_format, 3, "INVALID_ARGUMENT"))
+                     end
+      - name: argus-bot-GetOriginMetaInfo-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: http://datacenter-hauler-srv.argus:10002/sensego/datacenter/unicron/meta/origin_meta_info
+        routes:
+          - name: argus-bot-GetOriginMetaInfo-route
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            hosts:
+              - '{{ .Values.proxy.argusdomain }}'
+            headers: {"X-Belt-Action": ["GetOriginMetaInfo"], "X-Belt-Version": ["v1"]}
+            paths:
+              - /PedestrianDocument
+
+    plugins:
+      - name: authentication
+        enabled: false
+        config:
+          request_header_key:
+            request_header_action: "X-Belt-Action"
+      - name: rate-limit
+        enabled: false
+        config:
+          redis:
+            mode: '{{ .Values.dep.redis.mode | quote }}'
+            sentinel:
+              password: '{{ include "redis.password" . }}'
+              sentinels:
+                host: ['{{ include "redis.address" . }}']
+                port: '{{ include "redis.port" . }}'
+      - name: value-point
+        enabled: false
+        config:
+          redis:
+            mode: '{{ .Values.dep.redis.mode | quote }}'
+            sentinel:
+              password: '{{ include "redis.password" . }}'
+              sentinels:
+                host: ['{{ include "redis.address" . }}']
+                port: '{{ include "redis.port" . }}'
+          request_header_key:
+            request_header_action: "X-Belt-Action"
+          value_point_config:
+            address: '{{ .Values.bss.auditlog.addr | quote }}'
+            site_id: '{{ .Values.bss.auditlog.site_id | quote }}'
+      - name: correlation-id
+        enabled: true
+        config:
+          header_name: X-Belt-Request-Id
+          generator: uuid
+      - name: prometheus
+        enabled: true
+        config:
+          status_code_metrics: true
+          latency_metrics: true
+          upstream_health_metrics: true
+      - name: response-transformer
+        enabled: true
+        config:
+          remove:
+            headers: ["x-kong-upstream-latency","via","x-kong-proxy-latency","grpcgateway-content-type"]

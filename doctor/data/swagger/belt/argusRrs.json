@@ -1,0 +1,995 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "rrs.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/sensego/v1/tenant/add-r-group": {
+      "post": {
+        "operationId": "Tenant_AddRGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rrsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rrsAddRGroupReq"
+            }
+          }
+        ],
+        "tags": [
+          "Tenant"
+        ]
+      }
+    },
+    "/sensego/v1/tenant/add-r-group-ak-relation": {
+      "post": {
+        "operationId": "Tenant_AddRGroupAkRelation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rrsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rrsAddRGroupAkRelationReq"
+            }
+          }
+        ],
+        "tags": [
+          "Tenant"
+        ]
+      }
+    },
+    "/sensego/v1/tenant/add-resource": {
+      "post": {
+        "operationId": "Tenant_AddResource",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rrsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rrsAddResourceReq"
+            }
+          }
+        ],
+        "tags": [
+          "Tenant"
+        ]
+      }
+    },
+    "/sensego/v1/tenant/add-tag": {
+      "post": {
+        "operationId": "Tenant_AddTag",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rrsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rrsAddTagReq"
+            }
+          }
+        ],
+        "tags": [
+          "Tenant"
+        ]
+      }
+    },
+    "/sensego/v1/tenant/delete-r-group": {
+      "post": {
+        "operationId": "Tenant_DeleteRGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rrsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rrsDeleteRGroupReq"
+            }
+          }
+        ],
+        "tags": [
+          "Tenant"
+        ]
+      }
+    },
+    "/sensego/v1/tenant/delete-resource": {
+      "post": {
+        "operationId": "Tenant_DeleteResource",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rrsDeleteResourceResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rrsDeleteResourceReq"
+            }
+          }
+        ],
+        "tags": [
+          "Tenant"
+        ]
+      }
+    },
+    "/sensego/v1/tenant/delete-tag": {
+      "post": {
+        "operationId": "Tenant_DeleteTag",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rrsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rrsDeleteTagReq"
+            }
+          }
+        ],
+        "tags": [
+          "Tenant"
+        ]
+      }
+    },
+    "/sensego/v1/tenant/get-rgroup-by-ak": {
+      "get": {
+        "operationId": "Tenant_GetRgroupByAk",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rrsGetRgroupByAkResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "header.request_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ak",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Tenant"
+        ]
+      }
+    },
+    "/sensego/v1/tenant/list-allocate-group": {
+      "get": {
+        "operationId": "Tenant_ListAllocateGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rrsListAllocateGroupResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "header.request_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "rstype",
+            "description": " - SFD: 0 = SFD\n - GPU: 1 = GPU\n - MONGO: 2 = MONGO",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "SFD",
+              "GPU",
+              "MONGO"
+            ],
+            "default": "SFD"
+          }
+        ],
+        "tags": [
+          "Tenant"
+        ]
+      }
+    },
+    "/sensego/v1/tenant/list-r-group": {
+      "get": {
+        "operationId": "Tenant_ListRGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rrsListRGroupResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "header.request_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Tenant"
+        ]
+      }
+    },
+    "/sensego/v1/tenant/list-r-group-ak-relation": {
+      "get": {
+        "operationId": "Tenant_ListRGroupAkRelation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rrsListRGroupAkRelationResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "header.request_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Tenant"
+        ]
+      }
+    },
+    "/sensego/v1/tenant/list-resource": {
+      "get": {
+        "operationId": "Tenant_ListResource",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rrsListResourceResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "header.request_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "rgroup",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Tenant"
+        ]
+      }
+    },
+    "/sensego/v1/tenant/list-resource-by-rstype": {
+      "get": {
+        "operationId": "Tenant_ListResourceByRsType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rrsListResourceResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "header.request_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "rstype",
+            "description": " - SFD: 0 = SFD\n - GPU: 1 = GPU\n - MONGO: 2 = MONGO",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "SFD",
+              "GPU",
+              "MONGO"
+            ],
+            "default": "SFD"
+          }
+        ],
+        "tags": [
+          "Tenant"
+        ]
+      }
+    },
+    "/sensego/v1/tenant/list-tag": {
+      "get": {
+        "operationId": "Tenant_ListTag",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rrsListTagResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "header.request_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Tenant"
+        ]
+      }
+    },
+    "/sensego/v1/tenant/lookup": {
+      "post": {
+        "operationId": "Tenant_Lookup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rrsLookupResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rrsLookupReq"
+            }
+          }
+        ],
+        "tags": [
+          "Tenant"
+        ]
+      }
+    },
+    "/sensego/v1/tenant/update-r-group": {
+      "post": {
+        "operationId": "Tenant_UpdateRGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rrsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rrsUpdateRGroupReq"
+            }
+          }
+        ],
+        "tags": [
+          "Tenant"
+        ]
+      }
+    },
+    "/sensego/v1/tenant/update-resource": {
+      "post": {
+        "operationId": "Tenant_UpdateResource",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rrsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rrsUpdateResourceReq"
+            }
+          }
+        ],
+        "tags": [
+          "Tenant"
+        ]
+      }
+    },
+    "/sensego/v1/tenant/update-tag": {
+      "post": {
+        "operationId": "Tenant_UpdateTag",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rrsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rrsUpdateTagReq"
+            }
+          }
+        ],
+        "tags": [
+          "Tenant"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "genericRequestHeader": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string"
+        }
+      }
+    },
+    "rrsAddRGroupAkRelationReq": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/genericRequestHeader"
+        },
+        "rgroup": {
+          "type": "string"
+        },
+        "ak": {
+          "type": "string"
+        }
+      }
+    },
+    "rrsAddRGroupReq": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/genericRequestHeader"
+        },
+        "rgroup": {
+          "type": "string"
+        }
+      }
+    },
+    "rrsAddResourceReq": {
+      "type": "object",
+      "example": {
+        "unit": {
+          "name": "rs1",
+          "rgroup": "group1",
+          "rstype": 0,
+          "tags": [
+            {
+              "name": "sfd-type",
+              "value": "face;"
+            }
+          ],
+          "host": "sfd10.sensego-viper-11",
+          "prom_name": "engine-static-feature-db-sfd-sg-proxy-headless"
+        }
+      },
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/genericRequestHeader"
+        },
+        "unit": {
+          "$ref": "#/definitions/rrsResourceUnit"
+        }
+      },
+      "description": "add resource, optional fields: `tags`"
+    },
+    "rrsAddTagReq": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/genericRequestHeader"
+        },
+        "tag": {
+          "$ref": "#/definitions/rrsTag"
+        }
+      }
+    },
+    "rrsAllocateGroupUnit": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "host": {
+          "type": "string"
+        }
+      }
+    },
+    "rrsDeleteRGroupReq": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/genericRequestHeader"
+        },
+        "rgroup": {
+          "type": "string"
+        }
+      }
+    },
+    "rrsDeleteResourceReq": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/genericRequestHeader"
+        },
+        "resource_id": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "delete resource",
+      "required": [
+        "resource_id"
+      ]
+    },
+    "rrsDeleteResourceResp": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string"
+        },
+        "deleted_count": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "rrsDeleteTagReq": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/genericRequestHeader"
+        },
+        "tag": {
+          "type": "string"
+        }
+      }
+    },
+    "rrsGetRgroupByAkResp": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/genericRequestHeader"
+        },
+        "rgroup": {
+          "type": "string"
+        }
+      }
+    },
+    "rrsListAllocateGroupResp": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string"
+        },
+        "units": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rrsAllocateGroupUnit"
+          }
+        },
+        "error_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "error_msg": {
+          "type": "string"
+        }
+      }
+    },
+    "rrsListRGroupAkRelationResp": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string"
+        },
+        "bind": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rrsRGroupAkRelation"
+          }
+        }
+      }
+    },
+    "rrsListRGroupResp": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string"
+        },
+        "rgroups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rrsRGroup"
+          }
+        },
+        "error_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "error_msg": {
+          "type": "string"
+        }
+      }
+    },
+    "rrsListResourceResp": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string"
+        },
+        "units": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rrsResourceUnit"
+          }
+        },
+        "error_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "error_msg": {
+          "type": "string"
+        }
+      }
+    },
+    "rrsListTagNameResp": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string"
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "error_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "error_msg": {
+          "type": "string"
+        }
+      }
+    },
+    "rrsListTagResp": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rrsTag"
+          }
+        },
+        "error_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "error_msg": {
+          "type": "string"
+        }
+      }
+    },
+    "rrsLookupReq": {
+      "type": "object",
+      "example": {
+        "ak": "ak1",
+        "tags": {
+          "sfd-type": "face",
+          "group": "gid"
+        },
+        "rsType": 0
+      },
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/genericRequestHeader"
+        },
+        "ak": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "rsType": {
+          "$ref": "#/definitions/rrsRsType"
+        }
+      }
+    },
+    "rrsLookupResp": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string"
+        },
+        "host": {
+          "type": "string"
+        }
+      }
+    },
+    "rrsRGroup": {
+      "type": "object",
+      "properties": {
+        "rgroup": {
+          "type": "string"
+        },
+        "create_at": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "rrsRGroupAkRelation": {
+      "type": "object",
+      "properties": {
+        "rgroup": {
+          "type": "string"
+        },
+        "ak": {
+          "type": "string"
+        },
+        "create_at": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "rrsResourceUnit": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "rgroup": {
+          "type": "string"
+        },
+        "rstype": {
+          "$ref": "#/definitions/rrsRsType"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rrsTag"
+          }
+        },
+        "host": {
+          "type": "string"
+        },
+        "prom_name": {
+          "type": "string"
+        },
+        "resource_id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "rrsResponse": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string"
+        },
+        "error_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "error_msg": {
+          "type": "string"
+        }
+      }
+    },
+    "rrsRsType": {
+      "type": "string",
+      "enum": [
+        "SFD",
+        "GPU",
+        "MONGO"
+      ],
+      "default": "SFD",
+      "description": "- SFD: 0 = SFD\n - GPU: 1 = GPU\n - MONGO: 2 = MONGO",
+      "title": "RsType (resource type)"
+    },
+    "rrsTag": {
+      "type": "object",
+      "example": {
+        "name": "sfd-type",
+        "score": 1,
+        "type": 0,
+        "value": "face;body"
+      },
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "score": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "$ref": "#/definitions/rrsTagType"
+        },
+        "value": {
+          "type": "string"
+        },
+        "create_at": {
+          "type": "string",
+          "format": "int64"
+        },
+        "update_at": {
+          "type": "string",
+          "format": "int64"
+        }
+      },
+      "description": "value is required when type is 0 (STATIC), multi value with semicolon",
+      "required": [
+        "name",
+        "type"
+      ]
+    },
+    "rrsTagType": {
+      "type": "string",
+      "enum": [
+        "STATIC",
+        "DYNAMIC"
+      ],
+      "default": "STATIC",
+      "description": "- STATIC: 0 = STATIC\n - DYNAMIC: 1 = DYNAMIC",
+      "title": "TagType is 0 or 1"
+    },
+    "rrsUpdateRGroupReq": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/genericRequestHeader"
+        },
+        "rgroup": {
+          "type": "string"
+        },
+        "new_rgroup": {
+          "type": "string"
+        }
+      }
+    },
+    "rrsUpdateResourceReq": {
+      "type": "object",
+      "example": {
+        "unit": {
+          "resource_id": "5eb3c5924378c05e1536210b",
+          "tags": [
+            {
+              "name": "sfd-type",
+              "value": "face;"
+            }
+          ],
+          "host": "sfd10.sensego-viper-11",
+          "prom_name": "engine-static-feature-db-sfd-sg-proxy-headless"
+        }
+      },
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/genericRequestHeader"
+        },
+        "unit": {
+          "$ref": "#/definitions/rrsResourceUnit"
+        }
+      },
+      "description": "update resource, all fields required"
+    },
+    "rrsUpdateTagReq": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/genericRequestHeader"
+        },
+        "tag": {
+          "$ref": "#/definitions/rrsTag"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,188 @@
+[ConfigMap]
+   camera_info = [
+#       'Clients.SubDevice.aide1',
+#       'Clients.SubDevice.aide2'
+       'Clients.SubDevice.camera1'
+   ]
+   user_info = [
+       "Console.User.testUser"
+#        'Console.User.static', # 当前使用的测试用户信息
+#        'Console.User.dynamic' # 当前使用的测试用户信息
+   ]
+   cluster_info = [
+        'EnvInfo.BeltEdge.hangzhou' # 接入点
+   ]
+   botApi = [
+#           'Bot.easyBot',
+           'Bot.aide',
+   ]
+   botInfo = [
+#           'Bot.easyBot',
+           'Bot.aide',
+   ]
+
+[ConfigExtra]
+    test_data = [
+        'ids_new',
+        'galaxy_test'
+    ]
+    
+[EnvInfo]
+    [EnvInfo.BeltCloud]
+        Service = "https://www.dev-sensebelt.com"
+        CrdService = "https://ras.dev.sensebelt.net"
+        EdgeService = "https://ids.dev.sensebelt.net" #业务边缘 ids
+        EdgeRasService = "https://ras-sh1.dev.sensebelt.net" #业务边缘 ras
+        IamService = "https://console.dev-sensebelt.com" # 用于登录登出
+        RunTimeProxyService = "http://10.10.18.109:39569"
+        RunTimeViperAppletService = "http://10.10.18.109:46606"
+        RunTimeViperOcrService = "http://10.10.18.109:60890"
+        RunTimeViperService = "http://10.10.18.109:46606"
+        VipperService="http://crd-dev.sensetime.com"
+        AdapterService="http://crd-test.sensetime.com/aide-belt-adapter"
+        galaxyService = "https://galaxy.dev.sensebelt.net"
+        argusService = "https://argus.dev.sensebelt.net"
+
+    [EnvInfo.BeltCenter]
+        [EnvInfo.BeltCenter.master]
+            id = "crd-test"
+            name = "crd 当前测试环境"
+            site_id = "123"
+            type = "CT_CENTER"
+    [EnvInfo.BeltEdge]
+        [EnvInfo.BeltEdge.hangzhou]
+            id = "shanghai1"
+            name = "上海1"
+            site_id = "155111745130602252"
+            type = "CT_EDGE"
+    [EnvInfo.Galaxy]
+        beltAdapterService = "https://sensegalaxy-dev.sensetime.com"
+        [EnvInfo.Galaxy.superAdmin]
+            ak = ""
+            sk = ""
+            username = "super_admin"
+            password = "Goodsense@2022"
+        [EnvInfo.Galaxy.user1]
+            ak = "51e719fd-9883-452b-8e41-1e3641a85fc3"
+            sk = "vWh60OPGxugS02ebe0Y9fwzfDIIExba9"
+
+
+[DeviceKindType]
+    [DeviceKindType.aide]
+        id = "78e20c5148b94b05934bc2722f7c9904"
+        name = "fell_detective_device"
+    [DeviceKindType.easyBot]
+        id = "78e20c5148b94b05934bc2722f7c9904"
+        name = "fell_detective_device"
+    [DeviceKindType.rtmp]
+        id = "a4b2a709bb544c74b85580503a480145"
+        name = "test2"
+[Bot]
+    [Bot.easyBot]
+#        spu_name = 'easy-bot-spu-test'
+        spu_name = 'EasyBotSpu'
+        spu_display_name = 'easy bot 测试 spu'
+        deviceKindId = "78e20c5148b94b05934bc2722f7c9904"
+        deviceKindName = "fell_detective_device"
+    [Bot.aide]
+        spu_name = 'FellDetective'
+        spu_display_name = '摔倒识别机器人'
+        deviceKindId = "4c44d961f6794541a142eb92ba1069af"
+        deviceKindName = "AIDE"
+    [Bot.spu]
+        name = 'easy-bot'
+        cluster_id = '2'
+
+[Console]
+    [Console.User.testUser]
+        username = "15011263680"
+        password = "wangan1234"
+        ak = "2NOiquiLx9QZKCip0Q2ggNEkCcT"
+        sk = "JPnxTNvBAmSwRUzOj95d3Z2AQuYJt0Cx"
+        allowaccess = []
+    [Console.User.testUser1]
+        username = "15011263601"
+        password = "wangan1234"
+        ak = "2OY4slcTQTX3IlHTcSN1mG7OYEF"
+        sk = "6EfgRg8G5vFaXxca4h7yZAFHtHyQSwQE"
+        allowaccess = []
+
+    [Console.User.static]
+        username = "15011263680"
+        password = "wangan1234"
+        ak = "2NOiquiLx9QZKCip0Q2ggNEkCcT"
+        sk = "JPnxTNvBAmSwRUzOj95d3Z2AQuYJt0Cx"
+        allowaccess = []
+    [Console.User.dynamic]
+        username = "15011263601"
+        password = "wangan1234"
+        ak = "2OY4slcTQTX3IlHTcSN1mG7OYEF"
+        sk = "6EfgRg8G5vFaXxca4h7yZAFHtHyQSwQE"
+        allowaccess = []
+
+    [Console.User.testUserlc]
+        username = "15010019137"
+        password = "Lczhy85--68679245"
+        ak = "2Icalfltsdoa0ie5KA31IzpNi3r"
+        sk = "J3lgltkL1fVVr1AomrSi4VKtaEh1aaMz"
+        allowaccess = []
+        userToken="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIySWNhbGZsdHNkb2EwaWU1S0EzMUl6cE5pM3IiLCJleHAiOjE2NzA0ODY3NzQsIm5iZiI6MTY3MDQ4NDk2OX0.7QepeJnZQj-Akv9vy5DwRVlEnv6Y5M24nXNsfLRZjwU"
+    [Console.User.testUserids]
+        username = "zhangrui2@sensetime.com"
+        password = "Admin12345@"
+        ak = "2Jqmqs5AaTf7VkaeischoCsKVKh"
+        sk = "ui2TJY8zNhm0ycai1ovfjRV3Lpiaa2V9"
+    [Console.type1]
+        name = 'messageType1'
+    [Console.type2]
+        name = 'messageType2'
+    [Console.template1]
+        name = 'messageTemplate1'
+    [Console.template2]
+        name = 'messageTemplate2'
+    [Console.tempContent1]
+        name = 'msgTemContent1:hi, your {0} services expires in {1} days'
+    [Console.msgContent1]
+        name = 'oldRobot,7'
+
+
+
+[Ids]
+
+[Ras]
+    [Ras.botManager]
+        serviceName = 'sensego-crd-test'
+    [Ras.callback]
+        address1 = 'http://10.4.132.19:9999'
+
+
+
+[Clients]
+    [Clients.Aiot]    # aiot的端
+        [Clients.Aiot.ec1]
+            ip = '10.151.5.205'
+            port = '22'
+        [Clients.Aiot.ec2]
+            ip = '10.151.5.206'
+            port = '22'
+
+    # 测试用的摄像头、抓拍机配置 用于修改配置
+    [Clients.SubDevice]
+        [Clients.SubDevice.aide1]
+            type = "RTSP"
+            rtsp = 'rtsp://10.53.4.176:8554/175236_new.264'
+        [Clients.SubDevice.aide2] # 大华
+            type = "RTSP"
+            rtsp = 'rtsp://10.4.7.18:8554/084934_new.264'
+        [Clients.SubDevice.camera1] # 真实摄像头  理想F7
+            type = "RTSP"
+            rtsp = 'rtsp://admin:t2mksense@10.4.7.11:554'
+        [Clients.SubDevice.camera2] # 长视频
+            type = "RTSP"
+            rtsp = 'rtsp://10.4.7.18:8554/fell.264'
+
+
+[Argus]
+    ak = "l1-e764abc0-cs80fd9324aa"
+    pedes_cb_url = ""
+    feature_version = "24902"

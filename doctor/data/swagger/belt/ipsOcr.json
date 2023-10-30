@@ -1,0 +1,932 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "engine-ocr-extract-service",
+    "version": "v3.0.0",
+    "description": "repo:gitlab.sz.sensetime.com/viper/engine-image-process-service, branch:ocr/2.5.0-dev, commit:036b3e2"
+  },
+  "host": "ras-runtime-proxy.belt-crd",
+  "basePath": "/ips/ocr",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/batch_custom_template_extract": {
+      "post": {
+        "summary": "对批量的图片中的文字进行用户自定义模板检测识别.  [INTERNAL] [EXPERIMENTAL].\n[EN] OCR custom template for batch  images.   [INTERNAL] [EXPERIMENTAL].",
+        "operationId": "BatchCustomTemplate",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ocr_extractBatchTemplateResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "X-Resource-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "enum": ["ips", "sfd", "ars"],
+            "description": "resource_type"
+          },
+          {
+            "name": "X-Object-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "enum": ["face", "ocr", "face-liveness-applet", "sku", "elders-fall-applet"],
+            "description": "object_type"
+          },
+          {
+            "name": "X-Object-Version",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "enum": ["25000", "2.5.0-dev", "10000", "10005", "10001"],
+            "description": "object_version"
+          },
+          {
+            "name": "X-Bot-Name",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "enum": ["bot-ids", "bot-sku", "bot-elders"],
+            "description": "bot_name"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ocr_extractBatchCustomTemplateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OCRService"
+        ]
+      }
+    },
+    "/v1/batch_plaintext_extract": {
+      "post": {
+        "summary": "对批量的图片中的纯文本进行检测识别.  [SINCE v3.0.0].\n[EN] Detection and recognition of plain text in batch images.  [SINCE v3.0.0].",
+        "operationId": "BatchPlainText",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ocr_extractBatchPlainTextResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "X-Resource-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "enum": ["ips", "sfd", "ars"],
+            "description": "resource_type"
+          },
+          {
+            "name": "X-Object-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "enum": ["face", "ocr", "face-liveness-applet", "sku", "elders-fall-applet"],
+            "description": "object_type"
+          },
+          {
+            "name": "X-Object-Version",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "enum": ["25000", "2.5.0-dev", "10000", "10005", "10001"],
+            "description": "object_version"
+          },
+          {
+            "name": "X-Bot-Name",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "enum": ["bot-ids", "bot-sku", "bot-elders"],
+            "description": "bot_name"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ocr_extractBatchPlainTextRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OCRService"
+        ]
+      }
+    },
+    "/v1/batch_special_template_extract": {
+      "post": {
+        "summary": "对批量的图片进行模板检测识别, 适用于特殊模板类型.  [SINCE v3.0.0].\n[EN] OCR template for batch images, suitable for special template types.  [SINCE v3.0.0].",
+        "operationId": "BatchSpecialTemplate",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ocr_extractBatchTemplateResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "X-Resource-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "enum": ["ips", "sfd", "ars"],
+            "description": "resource_type"
+          },
+          {
+            "name": "X-Object-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "enum": ["face", "ocr", "face-liveness-applet", "sku", "elders-fall-applet"],
+            "description": "object_type"
+          },
+          {
+            "name": "X-Object-Version",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "enum": ["25000", "2.5.0-dev", "10000", "10005", "10001"],
+            "description": "object_version"
+          },
+          {
+            "name": "X-Bot-Name",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "enum": ["bot-ids", "bot-sku", "bot-elders"],
+            "description": "bot_name"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ocr_extractBatchSpecialTemplateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OCRService"
+        ]
+      }
+    },
+    "/v1/batch_template_extract": {
+      "post": {
+        "summary": "对批量的图片中的文字进行模板检测识别, 需要指定模板的区域信息.  [SINCE v3.0.0].\n[EN] OCR template for batch images, region information for which a template needs to be specified  [SINCE v3.0.0].",
+        "operationId": "BatchTemplate",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ocr_extractBatchTemplateResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "X-Resource-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "enum": ["ips", "sfd", "ars"],
+            "description": "resource_type"
+          },
+          {
+            "name": "X-Object-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "enum": ["face", "ocr", "face-liveness-applet", "sku", "elders-fall-applet"],
+            "description": "object_type"
+          },
+          {
+            "name": "X-Object-Version",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "enum": ["25000", "2.5.0-dev", "10000", "10005", "10001"],
+            "description": "object_version"
+          },
+          {
+            "name": "X-Bot-Name",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "enum": ["bot-ids", "bot-sku", "bot-elders"],
+            "description": "bot_name"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ocr_extractBatchTemplateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OCRService"
+        ]
+      }
+    },
+    "/v1/get_system_info": {
+      "get": {
+        "summary": "获取系统信息. [SINCE v3.0.0].\n[EN] Get system info which about models info. [SINCE v3.0.0].",
+        "operationId": "GetSystemInfo",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ocr_extractGetSystemInfoResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "X-Resource-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "enum": ["ips", "sfd", "ars"],
+            "description": "resource_type"
+          },
+          {
+            "name": "X-Object-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "enum": ["face", "ocr", "face-liveness-applet", "sku", "elders-fall-applet"],
+            "description": "object_type"
+          },
+          {
+            "name": "X-Object-Version",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "enum": ["25000", "2.5.0-dev", "10000", "10005", "10001"],
+            "description": "object_version"
+          },
+          {
+            "name": "X-Bot-Name",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "enum": ["bot-ids", "bot-sku", "bot-elders"],
+            "description": "bot_name"
+          }
+        ],
+        "tags": [
+          "OCRService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "MatrixOrder": {
+      "type": "string",
+      "enum": [
+        "ROW_MAJOR",
+        "COLUMN_MAJOR"
+      ],
+      "default": "ROW_MAJOR"
+    },
+    "commonapisImage": {
+      "type": "object",
+      "properties": {
+        "format": {
+          "$ref": "#/definitions/commonapisImageFormat",
+          "description": "可选, 图片格式, 一般情况下不需要填写, 系统自动解析.\n[EN] Optional, image format, generally no need to fill in, will be automatically detected by the system."
+        },
+        "data": {
+          "type": "string",
+          "format": "byte",
+          "description": "可选, 原始图片数据, 使用JSON编码是传入图片内容的Base64编码字符串.\n[EN] Optional, the original image data, encoded by JSON, is the Base64 encoded string for the content of input images."
+        },
+        "url": {
+          "type": "string",
+          "description": "可选, 图片网络位置, 部分服务不支持url形式传入, 请查看对应服务接口文档.\n[EN] Optional, network location of the image. Some services do not support url field, and please view the API documentation for reference of relating services."
+        },
+        "image_id": {
+          "type": "string",
+          "description": "可选, 图片id, 用于标识图片 [SINCE v4.2.0].\n[EN] Optional, image id, used to identify image [SINCE v4.2.0]."
+        },
+        "cache_url": {
+          "type": "string",
+          "description": "可选，图片缓存url [SINCE v4.2.0].\n[EN] Optional, image cache url [SINCE v4.2.0]."
+        }
+      }
+    },
+    "commonapisImageFormat": {
+      "type": "string",
+      "enum": [
+        "IMAGE_UNKNOWN",
+        "IMAGE_JPEG",
+        "IMAGE_PNG",
+        "IMAGE_BMP",
+        "IMAGE_TIFF",
+        "IMAGE_GIF"
+      ],
+      "default": "IMAGE_UNKNOWN",
+      "description": "图片格式.\n[EN] Image format.\n\n - IMAGE_UNKNOWN: 未知格式.\n[EN] Unspecified format.\n - IMAGE_JPEG: JPEG格式.\n[EN] JPEG format.\n - IMAGE_PNG: PNG格式.\n[EN] PNG format.\n - IMAGE_BMP: BMP格式.\n[EN] BMP format.\n - IMAGE_TIFF: TIFF格式.\n[EN] TIFF format.\n - IMAGE_GIF: GIF格式.\n[EN] GIF format."
+    },
+    "commonapisMatrix": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "columns": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "order": {
+          "$ref": "#/definitions/MatrixOrder"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          }
+        }
+      }
+    },
+    "commonapisObjectFeature": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "特征对象类型, 为对应ObjectType的字符串表示.\n[EN] The feature object type is a string representation of the corresponding Object Type."
+        },
+        "version": {
+          "type": "integer",
+          "format": "int32",
+          "description": "特征模型版本, 对应SDK模型版本号, 如: 24001.\n[EN] Feature model version, corresponding to SDK model version number, e.g: 24001."
+        },
+        "blob": {
+          "type": "string",
+          "format": "byte",
+          "description": "特征数据, 完整标准特征序列化格式, 范围: JSON表示为Base64编码字符串.\n[EN] Feature data in standard feature serialization format, range: JSON is represented as a Base64 encoded string."
+        }
+      },
+      "description": "SenseTime通用特征格式.\n[EN] SenseTime common feature format."
+    },
+    "commonapisResult": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "通用服务、系统错误码, 对应HTTP错误及语义见系统标准错误表.\n若为业务特定错误, code应返回0, 详情见status及对应错误.\n[EN] For common service and system error codes, see the system standard error table corresponding HTTP errors and semantics.\nFor business-specific errors, code will return 0. For details, see status and corresponding errors."
+        },
+        "error": {
+          "type": "string",
+          "description": "错误详细描述.\n[EN] Detailed description of the error."
+        },
+        "status": {
+          "$ref": "#/definitions/commonapisStatusCode",
+          "description": "业务错误码.\n[EN] Business error code."
+        }
+      },
+      "description": "通用处理结果返回. 通常在Batch类请求中返回每个子请求的错误状态.\n[EN] General processing results returned. Error status of each sub-request is usually returned in Batch mode requests."
+    },
+    "commonapisStatusCode": {
+      "type": "string",
+      "enum": [
+        "OK",
+        "SYSTEM_UNKNOWN_ERROR",
+        "SYSTEM_NETWORK_ERROR",
+        "SYSTEM_STORAGE_ERROR",
+        "SYSTEM_LICENSE_ERROR",
+        "DB_NOT_FOUND",
+        "DB_KEY_NOT_FOUND",
+        "DB_ALREADY_EXISTS",
+        "DB_KEY_ALREADY_EXISTS",
+        "FACE_NOT_FOUND_FIRST",
+        "FACE_NOT_FOUND_SECOND",
+        "FACE_NOT_FOUND",
+        "FACE_BAD_QUALITY",
+        "IMAGE_UNKNOWN_FILE_FORMAT",
+        "IMAGE_UNKNOWN_PIXEL_FORMAT",
+        "IMAGE_SIZE_TOO_SMALL",
+        "IMAGE_SIZE_TOO_LARGE",
+        "OBJECT_NOT_FOUND",
+        "OBJECT_BAD_QUALITY"
+      ],
+      "default": "OK",
+      "description": "公共状态码.\n[EN] Common status code.\n\n - OK: 成功.\n[EN] succeed.\n - SYSTEM_UNKNOWN_ERROR: 未知系统错误.\n[EN] Unknown system error.\n - SYSTEM_NETWORK_ERROR: 网络错误.\n[EN] Network error.\n - SYSTEM_STORAGE_ERROR: 存储系统错误.\n[EN] Storage system error.\n - SYSTEM_LICENSE_ERROR: 授权错误.\n[EN] License error.\n - DB_NOT_FOUND: 指定数据库未找到.\n[EN] The specified database was not found.\n - DB_KEY_NOT_FOUND: 指定主键未找到.\n[EN] The specified master key was not found.\n - DB_ALREADY_EXISTS: 指定数据库已存在.\n[EN] The specified database already exists.\n - DB_KEY_ALREADY_EXISTS: 指定主键已存在.\n[EN] The specified master key already exists.\n - FACE_NOT_FOUND_FIRST: 人脸比对第一张图无人脸.\n[EN] No identity found in the first image through identity recognition.\n - FACE_NOT_FOUND_SECOND: 人脸比对第二张图无人脸.\n[EN] No identity found in the second image through identity recognition.\n - FACE_NOT_FOUND: 图中无人脸.\n[EN] No identity found in the image.\n - FACE_BAD_QUALITY: 图像人脸质量太差.\n[EN] The bad quality of identity in the image.\n - IMAGE_UNKNOWN_FILE_FORMAT: 未知或不支持的图片文件格式.\n[EN] Unknown or unsupported image file format.\n - IMAGE_UNKNOWN_PIXEL_FORMAT: 未知或不支持的图片颜色空间格式.\n[EN] Unknown or unsupported image color space format.\n - IMAGE_SIZE_TOO_SMALL: 图片尺寸过小.\n[EN] The image size is too small.\n - IMAGE_SIZE_TOO_LARGE: 图片尺寸过大.\n[EN] The image size is too large.\n - OBJECT_NOT_FOUND: 指定物体未找到.\n[EN] The specific object was not found.\n - OBJECT_BAD_QUALITY: 物体质量太差.\n[EN] The object quality is too bad."
+    },
+    "commonapisVertex2F": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "format": "float"
+        },
+        "y": {
+          "type": "number",
+          "format": "float"
+        }
+      },
+      "description": "二维图像坐标(可用于表示百分比以适应不同分辨率) [SINCE v2.0.0].\n[EN] Coordinates of two-dimensional image (can be used to represent\npercentages to accommodate different resolutions) [SINCE v2.0.0]."
+    },
+    "image_processModelInfo": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "模型名称.\n[EN] model name."
+        },
+        "path": {
+          "type": "string",
+          "description": "模型路径.\n[EN] model path."
+        },
+        "oid": {
+          "type": "string",
+          "description": "模型oid.\n[EN] model oid."
+        },
+        "err_msg": {
+          "type": "string",
+          "description": "错误信息.\n[EN] error message."
+        }
+      },
+      "description": "[SINCE v2.2.0].\n[EN] [SINCE v2.2.0]."
+    },
+    "image_processModelInfoList": {
+      "type": "object",
+      "properties": {
+        "models": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/image_processModelInfo"
+          },
+          "description": "模型列表信息.\n[EN] models info list."
+        },
+        "status": {
+          "type": "string",
+          "description": "下载信息.\n[EN] download status."
+        }
+      },
+      "description": "[SINCE v2.2.0].\n[EN] [SINCE v2.2.0]."
+    },
+    "ocr_extractBatchCustomTemplateRequest": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/ocr_extractOCRCustomTemplateType",
+          "description": "使用的模板类型\n[EN] Template type."
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonapisImage"
+          },
+          "description": "需要进行OCR处理的图片数据.\n[EN] Request images for OCR."
+        },
+        "template_data": {
+          "type": "string",
+          "format": "byte",
+          "description": "使用的模板数据.\n[EN] Template data."
+        }
+      },
+      "description": "批量自定义模板OCR处理请求.  [INTERNAL] [EXPERIMENTAL].\n[EN] Batch Custom Template OCR request.  [INTERNAL] [EXPERIMENTAL]."
+    },
+    "ocr_extractBatchPlainTextRequest": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/ocr_extractOCRPlainTextType",
+          "description": "图片中纯文本类型.\n[EN] Plain text type in the image."
+        },
+        "region_type": {
+          "$ref": "#/definitions/ocr_extractOCRRegionType",
+          "description": "国家类型.\n[EN] Region type."
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonapisImage"
+          },
+          "description": "需要进行OCR处理的图片数据.\n[EN] Request images for OCR."
+        }
+      },
+      "description": "批量纯文本OCR处理请求.  [SINCE v3.0.0].\n[EN] Batch PlainText OCR request.  [SINCE v3.0.0]."
+    },
+    "ocr_extractBatchPlainTextResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonapisResult"
+          },
+          "description": "结果状态数组.\n[EN] Result status."
+        },
+        "responses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ocr_extractPlainTextResponse"
+          },
+          "description": "纯文本结果数组.\n[EN] Responses for PlainText OCR."
+        }
+      },
+      "description": "批量纯文本OCR返回体.  [SINCE v3.0.0].\n[EN] Batch PlainText OCR request.  [SINCE v3.0.0]."
+    },
+    "ocr_extractBatchSpecialTemplateRequest": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/ocr_extractOCRSpecialTemplateType",
+          "description": "使用的模板类型\n[EN] Template type."
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonapisImage"
+          },
+          "description": "需要进行OCR处理的图片数据.\n[EN] Request images for OCR."
+        },
+        "template_db_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "模版特征库ids, 用于OCR_MIXED_TEMPLATE模板类型.  [SINCE V3.2.0]\n[EN]  Teamplate DB ids, used in OCR_MIXED_TEMPLATE template type.  [SINCE V3.2.0]"
+        }
+      },
+      "description": "批量特殊模板请求.  [SINCE v3.0.0].\n[EN] Batch Special Template request. [SINCE v3.0.0]."
+    },
+    "ocr_extractBatchTemplateRequest": {
+      "type": "object",
+      "properties": {
+        "region_type": {
+          "$ref": "#/definitions/ocr_extractOCRRegionType",
+          "description": "地区类型.\n[EN] Region type."
+        },
+        "type": {
+          "type": "string",
+          "description": "使用的模板类型\n[EN] Template type."
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonapisImage"
+          },
+          "description": "需要进行OCR处理的图片数据.\n[EN] Request images for OCR."
+        }
+      },
+      "description": "批量模板请求. [SINCE v3.0.0].\n[EN] Batch Template request. [SINCE v3.0.0]."
+    },
+    "ocr_extractBatchTemplateResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonapisResult"
+          },
+          "description": "结果状态数组.\n[EN] Result status."
+        },
+        "responses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ocr_extractTemplateResponse"
+          },
+          "description": "特征结果数组.\n[EN] Responses for Template OCR."
+        }
+      },
+      "description": "批量OCR模板响应结果.  [SINCE v3.0.0].\n[EN] Batch OCR Template response results.  [SINCE v3.0.0]."
+    },
+    "ocr_extractGetSystemInfoResponse": {
+      "type": "object",
+      "properties": {
+        "models_info": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/image_processModelInfoList"
+          },
+          "description": "模型列表数据主键是服务名称.\n[EN] model list info key is the service name."
+        },
+        "special_template": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "服务支持的特殊模板类型.\n[EN] Special template types supported by the service."
+        },
+        "custom_template": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "服务支持的自定义模板类型.\n[EN] Custom template types supported by the service."
+        },
+        "region_info": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/ocr_extractOCRTypeInfo"
+          },
+          "description": "服务支持的区域以及相关模板文本信息.\n[EN] Region supported by the service and related template text information."
+        }
+      },
+      "description": "获取系统信息 [SINCE v3.0.0].\n[EN] Get system info response [SINCE v3.0.0]."
+    },
+    "ocr_extractOCRCellPosition": {
+      "type": "object",
+      "properties": {
+        "top_left_row": {
+          "type": "integer",
+          "format": "int32",
+          "description": "单元格左上行坐标.\n[EN] The top-left row of the cell."
+        },
+        "top_left_col": {
+          "type": "integer",
+          "format": "int32",
+          "description": "单元格左上列坐标.\n[EN] The top-left column of the cell."
+        },
+        "bottom_right_row": {
+          "type": "integer",
+          "format": "int32",
+          "description": "单元格右下行坐标.\n[EN] The bottom-right row of the cell."
+        },
+        "bottom_right_col": {
+          "type": "integer",
+          "format": "int32",
+          "description": "单元格右下列坐标.\n[EN] The bottom-right column of the cell."
+        }
+      },
+      "description": "OCR单元格位置结构, 仅用于OCR_GENERAL_TABLE类型. [SINCE v3.1.0].\n[EN] OCR cell position struct, only used in OCR_GENERAL_TABLE type. [SINCE v3.1.0]."
+    },
+    "ocr_extractOCRChar": {
+      "type": "object",
+      "properties": {
+        "pos": {
+          "type": "integer",
+          "format": "int32",
+          "description": "单字位置.\n[EN] Word position."
+        },
+        "score": {
+          "type": "number",
+          "format": "float",
+          "description": "文字分数.\n[EN] Text score."
+        }
+      },
+      "description": "OCR单字信息. [SINCE v3.2.0].\n[EN] Single word infomation. [SINCE v3.2.0]."
+    },
+    "ocr_extractOCRCustomTemplateType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_CUSTOM_TEMPLATE_TYPE",
+        "OCR_CUSTOM_TEMPLATE",
+        "OCR_CUSTOM_TABLE",
+        "OCR_CUSTOM_LAYOUT",
+        "OCR_TABLE_MATCH",
+        "OCR_TEMPLATE_EXTRACTION",
+        "OCR_TEMPLATE_ADAPTIVE",
+        "OCR_SELF_TRAINING"
+      ],
+      "default": "UNKNOWN_CUSTOM_TEMPLATE_TYPE",
+      "description": "用户自定义模板类型. [INTERNAL] [EXPERIMENTAL].\n[EN] Custom template type. [INTERNAL] [EXPERIMENTAL].\n\n - UNKNOWN_CUSTOM_TEMPLATE_TYPE: 未知类型.\n[EN] Unknown type.\n - OCR_CUSTOM_TEMPLATE: 用户自定义模板.\n[EN] User-defined template.\n - OCR_CUSTOM_TABLE: 用户自定义表格.\n[EN] User-defined table template.\n - OCR_CUSTOM_LAYOUT: 用户自定义版面.\n[EN] User-defined layout.\n - OCR_TABLE_MATCH: 表格匹配.\n[EN] Table match.\n - OCR_TEMPLATE_EXTRACTION: 模板抽取.\n[EN] Template Extraction.\n - OCR_TEMPLATE_ADAPTIVE: 模板自适应. [SINCE v3.2.0].\n[EN] Template Adaptive. [SINCE v3.2.0].\n - OCR_SELF_TRAINING: 用户自训练版面. [INTERNAL] [EXPERIMENTAL].\n[EN] Self Training. [INTERNAL] [EXPERIMENTAL]."
+    },
+    "ocr_extractOCRObject": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Object的类型.\n[EN] Object type."
+        },
+        "textline": {
+          "$ref": "#/definitions/ocr_extractOCRTextline",
+          "description": "嵌套的文本行结构\n[EN] Nested text line struct."
+        },
+        "key_points": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonapisVertex2F"
+          },
+          "description": "表格线画线使用.\n[EN] Using to draw table line."
+        },
+        "rectify_matrix": {
+          "$ref": "#/definitions/commonapisMatrix",
+          "description": "校正矩阵.\n[EN] The rectify matrix."
+        },
+        "document_retrieve_feature": {
+          "$ref": "#/definitions/commonapisObjectFeature",
+          "title": "文档检索特征.\n[EN] document retrieve feature"
+        },
+        "object_detection_info": {
+          "$ref": "#/definitions/ocr_extractObjectDetectionInfo",
+          "title": "目标检测信息\n[EN] Object detection info"
+        },
+        "extra_type": {
+          "type": "string",
+          "description": "额外类型信息.\n[EN] Extra type info."
+        },
+        "classification_score": {
+          "type": "number",
+          "format": "float",
+          "description": "目标分类置信度.\n[EN] The object classification score."
+        },
+        "form_line": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonapisVertex2F"
+          },
+          "description": "表格线.\n[EN] The form line."
+        }
+      },
+      "description": "OCR对象，可以是一个身份证或护照等. [SINCE v3.2.0].\n[EN] OCR object such as ID Card or Passport etc. [SINCE v3.2.0]."
+    },
+    "ocr_extractOCRPlainTextType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_PLAIN_TEXT_TYPE",
+        "OCR_GENERAL_SCENE",
+        "OCR_GENERAL_HAND_WRITING",
+        "OCR_GENERAL_PRINT",
+        "OCR_PRE_IDENTIFY_GENERAL",
+        "OCR_GENERAL_TABLE",
+        "OCR_GENERAL_TABLE_WITHOUT_FORMLINE"
+      ],
+      "default": "UNKNOWN_PLAIN_TEXT_TYPE",
+      "description": "纯文本类型. [SINCE v3.0.0].\n[EN] Plain text type. [SINCE v3.0.0].\n\n - UNKNOWN_PLAIN_TEXT_TYPE: 未知类型.\n[EN] Unknown type.\n - OCR_GENERAL_SCENE: 自然场景类型.\n[EN] General scene text.\n - OCR_GENERAL_HAND_WRITING: 手写类型.\n[EN] General hand writing.\n - OCR_GENERAL_PRINT: 印刷体类型.\n[EN] General print.\n - OCR_PRE_IDENTIFY_GENERAL: 通用预识别. [INTERNAL] [EXPERIMENTAL].\nIdentify general. [INTERNAL] [EXPERIMENTAL].\n - OCR_GENERAL_TABLE: 通用表格识别. [INTERNAL] [EXPERIMENTAL].\nGeneral table recognition. [INTERNAL] [EXPERIMENTAL].\n - OCR_GENERAL_TABLE_WITHOUT_FORMLINE: 无线表格识别.\n[EN] Table without line recognition."
+    },
+    "ocr_extractOCRRegionType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_REGION",
+        "CHINA",
+        "UK",
+        "HK",
+        "MACAO"
+      ],
+      "default": "UNKNOWN_REGION",
+      "description": "地区类型. [SINCE v3.0.0].\n[EN] Region type. [SINCE v3.0.0].\n\n - UNKNOWN_REGION: 未知地区.\n[EN] Unknown region.\n - CHINA: 中国.\n[EN] China.\n - UK: 英国.\n[EN] United Kingdom.\n - HK: 香港.\n[EN] Hong Kong.\n - MACAO: 澳门.\n[EN] Macao."
+    },
+    "ocr_extractOCRSpecialTemplateType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_SPECIAL_TEMPLATE_TYPE",
+        "OCR_DOC_RETRIEVE",
+        "OCR_PRE_IDENTIFY_TABLE",
+        "OCR_OBJECT_DETECTION",
+        "OCR_MIXED_TEMPLATE"
+      ],
+      "default": "UNKNOWN_SPECIAL_TEMPLATE_TYPE",
+      "description": "特殊模板类型, 通常适用于辅助类型模板. [SINCE v3.0.0].\n[EN] Special template type, suitable for auxiliary type templates. [SINCE v3.0.0].\n\n - UNKNOWN_SPECIAL_TEMPLATE_TYPE: 未知类型.\n[EN] Unknown type.\n - OCR_DOC_RETRIEVE: 文档检索.\n[EN] Document retrieve.\n - OCR_PRE_IDENTIFY_TABLE: 表格线预识别.\n[EN] Pre identify table line.\n - OCR_OBJECT_DETECTION: 通用模型检测.\n[EN] Object detection.\n - OCR_MIXED_TEMPLATE: 混贴模板识别. [SINCE v3.2.0].\n[EN] mixed templates recognition. [SINCE v3.2.0]."
+    },
+    "ocr_extractOCRTextline": {
+      "type": "object",
+      "properties": {
+        "childs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ocr_extractOCRTextline"
+          },
+          "title": "子节点数组.\n[EN] Child nodes array"
+        },
+        "name": {
+          "type": "string",
+          "description": "文本行语义名称.\n[EN] The semantic name of the textline."
+        },
+        "valid": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "是否符合校验.\n[EN] if valid."
+        },
+        "content": {
+          "type": "string",
+          "description": "文本内容.\n[EN] Text Content."
+        },
+        "score": {
+          "type": "number",
+          "format": "float",
+          "description": "文本行分数.\n[EN] Textline score."
+        },
+        "roi": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonapisVertex2F"
+          },
+          "description": "文本行坐标\n[EN] Textline coordinates."
+        },
+        "multiline": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "该节点是否为多行结构.\n[EN] The node is a multiline structure or not."
+        },
+        "cell_position": {
+          "$ref": "#/definitions/ocr_extractOCRCellPosition",
+          "description": "OCR单元格位置, 仅用于OCR_GENERAL_TABLE类型.\n[EN] OCR cell position, only used in OCR_GENERAL_TABLE type."
+        },
+        "chars": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ocr_extractOCRChar"
+          },
+          "description": "单个文字内容数组.\n[EN] Single char in content."
+        }
+      },
+      "description": "文本行结构. [SINCE v3.2.0].\n[EN] Text line structure. [SINCE v3.2.0]."
+    },
+    "ocr_extractOCRTypeInfo": {
+      "type": "object",
+      "properties": {
+        "template": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "服务支持的模板类型.\n[EN] Template types supported by the service."
+        },
+        "plain_text": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "服务支持的文本类型.\n[EN] Text types supported by the service."
+        }
+      },
+      "description": "区域以及相关模板文本信息. [SINCE v3.0.0].\n[EN] Region and related template text information. [SINCE v3.0.0]."
+    },
+    "ocr_extractObjectDetectionInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "目标检测id.\n[EN] Object detection id."
+        },
+        "label": {
+          "type": "integer",
+          "format": "int32",
+          "description": "目标检测标签.\n[EN] Object detection label."
+        },
+        "roi": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonapisVertex2F"
+          },
+          "description": "目标检测框.\n[EN] Object detection bounding box."
+        },
+        "confidence": {
+          "type": "number",
+          "format": "float",
+          "description": "目标检测置信度.\n[EN] Object detection confidence."
+        }
+      },
+      "description": "目标检测信息. [SINCE v3.2.0].\n[EN] Objection detection infomation. [SINCE v3.2.0]."
+    },
+    "ocr_extractPlainTextResponse": {
+      "type": "object",
+      "properties": {
+        "object_array": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ocr_extractOCRObject"
+          },
+          "description": "一张图片中可能存在多个对象，所以返回体为数组形式. [SINCE v3.2.0].\n[EN] Considering to case of multiple document in one image, so the response for one image is a array. [SINCE v3.2.0]."
+        }
+      },
+      "description": "纯文本OCR返回体，对应一张图片的结果.  [SINCE v3.0.0].\n[EN] OCR Template response for one image.  [SINCE v3.0.0]."
+    },
+    "ocr_extractTemplateResponse": {
+      "type": "object",
+      "properties": {
+        "object_array": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ocr_extractOCRObject"
+          },
+          "description": "一张图片中可能存在多个对象，所以返回体为数组形式. [SINCE v3.2.0].\n[EN] Considering to case of multiple document in one image, so the response for one image is a array. [SINCE v3.2.0]."
+        }
+      },
+      "description": "模板OCR返回体，对应一张图片的结果. [SINCE v3.0.0].\n[EN] OCR Template response for one image. [SINCE v3.0.0]."
+    }
+  }
+}

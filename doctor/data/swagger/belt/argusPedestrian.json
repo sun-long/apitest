@@ -1,0 +1,637 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "pedestrian service.",
+        "title": "pedestrian service API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "paths": {
+        "/argus/v1/recognize/pedestrian": {
+            "post": {
+                "summary": "人脸人体图片识别 X-Belt-Action:Recognize, prefix: /pedestrain, X-Belt-Version=v1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "pedestrian API",
+                "operationId":"Pedestrain_Recognize",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.PedestrianRecognizeExtRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/data.PedestrianRecognizeResp"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "data.Extra": {
+            "type": "object",
+            "properties": {
+                "bg_oss_url": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.PedestrianRecognizeExtRequest": {
+            "type": "object",
+            "properties": {
+                "associates": {
+                    "description": "client fills in",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/meister.AssociateTrack"
+                    }
+                },
+                "bg_image_upload": {
+                    "type": "boolean"
+                },
+                "body": {
+                    "description": "client \u0026 skyfall fills in",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meister.Body"
+                        }
+                    ]
+                },
+                "device": {
+                    "description": "client fills in",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meister.Device"
+                        }
+                    ]
+                },
+                "face": {
+                    "description": "client \u0026 skyfall fills in",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meister.Face"
+                        }
+                    ]
+                },
+                "faceTrack": {
+                    "description": "client fills in, skyfall my update",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meister.FaceTrack"
+                        }
+                    ]
+                },
+                "flag": {
+                    "description": "*\nclients fills in, suggest how server should process this message\nflag=0 normal message\nflag=1 indicates the image is duplicated, but other message should be processed",
+                    "type": "integer"
+                },
+                "header": {
+                    "description": "Nginx UUID plugin \u0026 landfill fills in",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/generic.RequestHeader"
+                        }
+                    ]
+                },
+                "image": {
+                    "description": "client \u0026 skyfall fills in",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meister.Image"
+                        }
+                    ]
+                },
+                "location": {
+                    "description": "skyfall fills in",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/generic.Location"
+                        }
+                    ]
+                },
+                "meta": {
+                    "description": "client fills in",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meister.Meta"
+                        }
+                    ]
+                },
+                "misc": {
+                    "$ref": "#/definitions/meister.Misc"
+                },
+                "monitor": {
+                    "description": "client fills in",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meister.Monitor"
+                        }
+                    ]
+                },
+                "relation": {
+                    "description": "landfill fills in",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meister.Relation"
+                        }
+                    ]
+                },
+                "timestamp": {
+                    "description": "client fills in",
+                    "type": "integer"
+                }
+            }
+        },
+        "data.PedestrianRecognizeResp": {
+            "type": "object",
+            "properties": {
+                "error_code": {
+                    "type": "integer"
+                },
+                "error_msg": {
+                    "type": "string"
+                },
+                "extra": {
+                    "$ref": "#/definitions/data.Extra"
+                },
+                "request_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "generic.Coordinate": {
+            "type": "object",
+            "properties": {
+                "x": {
+                    "type": "number"
+                },
+                "y": {
+                    "type": "number"
+                }
+            }
+        },
+        "generic.Location": {
+            "type": "object",
+            "properties": {
+                "area": {
+                    "type": "integer"
+                },
+                "coordinate": {
+                    "$ref": "#/definitions/generic.Coordinate"
+                },
+                "floor": {
+                    "type": "integer"
+                },
+                "zone": {
+                    "type": "integer"
+                }
+            }
+        },
+        "generic.Rect": {
+            "type": "object",
+            "properties": {
+                "bottom": {
+                    "type": "integer"
+                },
+                "left": {
+                    "type": "integer"
+                },
+                "right": {
+                    "type": "integer"
+                },
+                "top": {
+                    "type": "integer"
+                }
+            }
+        },
+        "generic.RequestHeader": {
+            "type": "object",
+            "properties": {
+                "request_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "meister.AssociateTrack": {
+            "type": "object",
+            "properties": {
+                "begin_timestamp": {
+                    "type": "integer"
+                },
+                "end_timestamp": {
+                    "type": "integer"
+                },
+                "score": {
+                    "type": "number"
+                },
+                "target_id": {
+                    "description": "client and skyfall fills in",
+                    "type": "string"
+                }
+            }
+        },
+        "meister.Body": {
+            "type": "object",
+            "properties": {
+                "attr": {
+                    "description": "skyfall fills in",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meister.BodyAttr"
+                        }
+                    ]
+                },
+                "ext_attr": {
+                    "description": "landfill \u0026\u0026 others fills in",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meister.BodyExtAttr"
+                        }
+                    ]
+                },
+                "ext_attr_str": {
+                    "description": "skyfall fills in",
+                    "type": "string"
+                },
+                "frame_id": {
+                    "description": "client fills in",
+                    "type": "integer"
+                },
+                "meta": {
+                    "description": "skyfall fills in",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meister.BodyMeta"
+                        }
+                    ]
+                },
+                "origin_rect": {
+                    "description": "client fills in",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/generic.Rect"
+                        }
+                    ]
+                },
+                "track_id": {
+                    "description": "client fills in",
+                    "type": "string"
+                },
+                "track_ts": {
+                    "description": "client fills in",
+                    "type": "integer"
+                },
+                "trajectory_str": {
+                    "description": "client fills in",
+                    "type": "string"
+                }
+            }
+        },
+        "meister.BodyAttr": {
+            "type": "object"
+        },
+        "meister.BodyExtAttr": {
+            "type": "object"
+        },
+        "meister.BodyMeta": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "merge_id": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "score": {
+                    "type": "number"
+                }
+            }
+        },
+        "meister.CommonImage": {
+            "type": "object",
+            "properties": {
+                "encrypt_image": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "image_path": {
+                    "type": "string"
+                },
+                "quality": {
+                    "type": "number"
+                }
+            }
+        },
+        "meister.Device": {
+            "type": "object",
+            "properties": {
+                "camera_id": {
+                    "type": "string"
+                },
+                "camera_name": {
+                    "type": "string"
+                },
+                "device_id": {
+                    "type": "string"
+                },
+                "group_id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "meister.Face": {
+            "type": "object",
+            "properties": {
+                "attr": {
+                    "description": "skyfall fills in",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meister.FaceAttr"
+                        }
+                    ]
+                },
+                "ext_attr": {
+                    "description": "landfill \u0026\u0026 others fills in",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meister.FaceExtAttr"
+                        }
+                    ]
+                },
+                "ext_attr_str": {
+                    "description": "skyfall fills in",
+                    "type": "string"
+                },
+                "ext_attr_with_score_str": {
+                    "type": "string"
+                },
+                "feature": {
+                    "description": "skyfall fills in",
+                    "type": "string"
+                },
+                "frame_id": {
+                    "description": "client fills in",
+                    "type": "integer"
+                },
+                "meta": {
+                    "description": "skyfall fills in",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meister.FaceMeta"
+                        }
+                    ]
+                },
+                "origin_rect": {
+                    "description": "client fills in",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/generic.Rect"
+                        }
+                    ]
+                },
+                "rect": {
+                    "description": "client fills in",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/generic.Rect"
+                        }
+                    ]
+                },
+                "track_id": {
+                    "description": "client fills in",
+                    "type": "string"
+                },
+                "track_ts": {
+                    "description": "client fills in",
+                    "type": "integer"
+                }
+            }
+        },
+        "meister.FaceAttr": {
+            "type": "object",
+            "properties": {
+                "age": {
+                    "type": "integer"
+                },
+                "customer_type": {
+                    "type": "integer"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "new": {
+                    "type": "boolean"
+                },
+                "respirator": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "meister.FaceExtAttr": {
+            "type": "object",
+            "properties": {
+                "flock_id": {
+                    "type": "string"
+                },
+                "flock_ts": {
+                    "type": "integer"
+                }
+            }
+        },
+        "meister.FaceMeta": {
+            "type": "object",
+            "properties": {
+                "face_id": {
+                    "type": "string"
+                },
+                "feature_id": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "merge_id": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "score": {
+                    "type": "number"
+                },
+                "source_group": {
+                    "type": "string"
+                }
+            }
+        },
+        "meister.FaceTrack": {
+            "type": "object",
+            "properties": {
+                "away_timestamp": {
+                    "type": "integer"
+                },
+                "enter_timestamp": {
+                    "type": "integer"
+                }
+            }
+        },
+        "meister.Image": {
+            "type": "object",
+            "properties": {
+                "body_image": {
+                    "$ref": "#/definitions/meister.CommonImage"
+                },
+                "encrypt_snap_image": {
+                    "description": "client fills in ,安全原因抓拍图需加密上传,注意只有新端生效,老端还走原来snap_image字段",
+                    "type": "string"
+                },
+                "face_image": {
+                    "description": "客户端可以分开传人脸和人体的图片，但是与 snap_image 二选一",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meister.CommonImage"
+                        }
+                    ]
+                },
+                "plate_image": {
+                    "description": "skyfall fills in",
+                    "type": "string"
+                },
+                "plate_image_bucket": {
+                    "description": "skyfall fills in",
+                    "type": "string"
+                },
+                "plate_image_path": {
+                    "description": "skyfall fills in",
+                    "type": "string"
+                },
+                "snap_image": {
+                    "description": "client fills in",
+                    "type": "string"
+                },
+                "snap_image_bucket": {
+                    "description": "skyfall fills in",
+                    "type": "string"
+                },
+                "snap_image_path": {
+                    "description": "skyfall fills in",
+                    "type": "string"
+                },
+                "snap_image_quality": {
+                    "description": "skyfall fills in",
+                    "type": "number"
+                }
+            }
+        },
+        "meister.Meta": {
+            "type": "object",
+            "properties": {
+                "bg_image_bucket": {
+                    "type": "string"
+                },
+                "bg_image_path": {
+                    "type": "string"
+                },
+                "bg_image_url": {
+                    "type": "string"
+                },
+                "extra": {
+                    "type": "string"
+                },
+                "request_type": {
+                    "type": "string"
+                },
+                "result_type": {
+                    "type": "string"
+                }
+            }
+        },
+        "meister.Misc": {
+            "type": "object",
+            "properties": {
+                "access_timestamp": {
+                    "type": "integer"
+                },
+                "callback": {
+                    "type": "string"
+                },
+                "error_code": {
+                    "type": "integer"
+                },
+                "error_msg": {
+                    "type": "string"
+                },
+                "extra_type": {
+                    "type": "string"
+                },
+                "replay_timestamp": {
+                    "type": "integer"
+                }
+            }
+        },
+        "meister.Monitor": {
+            "type": "object",
+            "properties": {
+                "body_total_cost": {
+                    "type": "integer"
+                },
+                "face_total_cost": {
+                    "type": "integer"
+                }
+            }
+        },
+        "meister.Relation": {
+            "type": "object",
+            "properties": {
+                "ak": {
+                    "type": "string"
+                },
+                "binding_group": {
+                    "type": "string"
+                },
+                "city_code": {
+                    "type": "integer"
+                },
+                "company_id": {
+                    "type": "string"
+                },
+                "namespace": {
+                    "type": "string"
+                },
+                "product_line": {
+                    "type": "integer"
+                },
+                "store_id": {
+                    "type": "string"
+                },
+                "store_name": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

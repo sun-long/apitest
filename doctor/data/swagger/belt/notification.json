@@ -1,0 +1,549 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "console-notification-service",
+    "version": "v1.0.0"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/console/v1/all_notification": {
+      "get": {
+        "summary": "拉取消息列表\nroute: prefix=console action=GetAllMsg version=v1",
+        "operationId": "ConsoleNotificationService_GetAllMsg",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/notificationGetAllResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "msg_type_id",
+            "description": "可选，拉取的消息类型，不填则是所有消息.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "status",
+            "description": "可选，拉取的消息状态，不填则是所有消息.\n\n - STATUS_UNKOWN: 未知\n - STATUS_UNREAD: 未读\n - STATUS_READ: 已读",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "STATUS_UNKOWN",
+              "STATUS_UNREAD",
+              "STATUS_READ"
+            ],
+            "default": "STATUS_UNKOWN"
+          },
+          {
+            "name": "page_request.offset",
+            "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条; 默认值为0.\n返回本次请求返回的第一条记录实际位置(一般与输入一致).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.limit",
+            "description": "长度, 取值范围[1,100], 如果超出范围, 则返回失败;\n在某些接口中limit范围可能会重新定义, 请以其接口的补充说明为准.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.total",
+            "description": "可选, 总数, 请求无须填此参数, 响应时填写.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ConsoleNotificationService"
+        ]
+      }
+    },
+    "/console/v1/delete_all_notification": {
+      "post": {
+        "summary": "删除全部消息\nroute: prefix=console action=DeleteAllMsg version=v1",
+        "operationId": "ConsoleNotificationService_DeleteAllMsg",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/notificationDeleteAllResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/notificationDeleteAllRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleNotificationService"
+        ]
+      }
+    },
+    "/console/v1/delete_batch_notification": {
+      "post": {
+        "summary": "批量删除消息\nroute: prefix=console action=DeleteBatchMsg version=v1",
+        "operationId": "ConsoleNotificationService_DeleteBatchMsg",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/notificationDeleteBatchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/notificationDeleteBatchRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleNotificationService"
+        ]
+      }
+    },
+    "/console/v1/notification": {
+      "get": {
+        "summary": "获取消息详情\nroute: prefix=console action=GetOneMsg version=v1",
+        "operationId": "ConsoleNotificationService_GetOneMsg",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/notificationGetOneResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "msg_id",
+            "description": "消息ID.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "ConsoleNotificationService"
+        ]
+      }
+    },
+    "/console/v1/notification/all_msg_type": {
+      "get": {
+        "summary": "拉取消息类型列表\nroute: prefix=console action=GetAllMsgType version=v1",
+        "operationId": "ConsoleNotificationService_GetAllMsgType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/notificationGetAllMsgTypeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page_request.offset",
+            "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条; 默认值为0.\n返回本次请求返回的第一条记录实际位置(一般与输入一致).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.limit",
+            "description": "长度, 取值范围[1,100], 如果超出范围, 则返回失败;\n在某些接口中limit范围可能会重新定义, 请以其接口的补充说明为准.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.total",
+            "description": "可选, 总数, 请求无须填此参数, 响应时填写.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ConsoleNotificationService"
+        ]
+      }
+    },
+    "/console/v1/notification_unread_count": {
+      "get": {
+        "summary": "获取未读消息数\nroute: prefix=console action=GetUnReadCount version=v1",
+        "operationId": "ConsoleNotificationService_GetUnReadCount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/notificationGetUnreadCountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "ConsoleNotificationService"
+        ]
+      }
+    },
+    "/console/v1/read_all_notification": {
+      "post": {
+        "summary": "全部标记为已读\nroute: prefix=console action=ReadAllMsg version=v1",
+        "operationId": "ConsoleNotificationService_ReadAllMsg",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/notificationReadAllResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/notificationReadAllRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleNotificationService"
+        ]
+      }
+    },
+    "/console/v1/read_batch_notification": {
+      "post": {
+        "summary": "批量标记为已读\nroute: prefix=console action=ReadBatchMsg version=v1",
+        "operationId": "ConsoleNotificationService_ReadBatchMsg",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/notificationReadBatchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/notificationReadBatchRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleNotificationService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "notificationDeleteAllRequest": {
+      "type": "object",
+      "properties": {
+        "msg_type_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "选择的消息类型，为0则是所有消息"
+        }
+      }
+    },
+    "notificationDeleteAllResponse": {
+      "type": "object"
+    },
+    "notificationDeleteBatchRequest": {
+      "type": "object",
+      "properties": {
+        "all_msg_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uint64"
+          },
+          "title": "选择的消息ID列表"
+        }
+      }
+    },
+    "notificationDeleteBatchResponse": {
+      "type": "object"
+    },
+    "notificationGetAllMsgTypeResponse": {
+      "type": "object",
+      "properties": {
+        "all_msg_types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/notificationMsgTypeInfo"
+          },
+          "title": "所有消息类型数据"
+        },
+        "page_response": {
+          "$ref": "#/definitions/notificationPageInfo",
+          "title": "list返回对应的翻页：offset, total"
+        }
+      }
+    },
+    "notificationGetAllResponse": {
+      "type": "object",
+      "properties": {
+        "all_msgs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/notificationMsgInfo"
+          },
+          "title": "所有消息数据"
+        },
+        "count": {
+          "type": "string",
+          "format": "int64",
+          "title": "未读消息数"
+        },
+        "page_response": {
+          "$ref": "#/definitions/notificationPageInfo",
+          "title": "list返回对应的翻页：offset, total"
+        }
+      }
+    },
+    "notificationGetOneResponse": {
+      "type": "object",
+      "properties": {
+        "msg_info": {
+          "$ref": "#/definitions/notificationMsgInfo",
+          "title": "消息基础数据"
+        }
+      }
+    },
+    "notificationGetUnreadCountResponse": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "string",
+          "format": "int64",
+          "title": "未读消息数"
+        }
+      }
+    },
+    "notificationMsgInfo": {
+      "type": "object",
+      "properties": {
+        "msg_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "消息ID"
+        },
+        "status": {
+          "$ref": "#/definitions/notificationMsgStatus",
+          "title": "消息状态 0：未读 1：已读"
+        },
+        "msg_type": {
+          "$ref": "#/definitions/notificationMsgTypeInfo",
+          "title": "消息类型"
+        },
+        "name": {
+          "type": "string",
+          "title": "消息标题"
+        },
+        "create_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "消息接收时间"
+        },
+        "content": {
+          "type": "string",
+          "title": "消息内容 在拉取消息列表时，不会返回content数据，只有获取单个消息详情时才会返回"
+        }
+      }
+    },
+    "notificationMsgStatus": {
+      "type": "string",
+      "enum": [
+        "STATUS_UNKOWN",
+        "STATUS_UNREAD",
+        "STATUS_READ"
+      ],
+      "default": "STATUS_UNKOWN",
+      "title": "- STATUS_UNKOWN: 未知\n - STATUS_UNREAD: 未读\n - STATUS_READ: 已读"
+    },
+    "notificationMsgTypeInfo": {
+      "type": "object",
+      "properties": {
+        "msg_type_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "消息类型"
+        },
+        "name": {
+          "type": "string",
+          "title": "类型名称"
+        }
+      }
+    },
+    "notificationPageInfo": {
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条; 默认值为0.\n返回本次请求返回的第一条记录实际位置(一般与输入一致)."
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "description": "长度, 取值范围[1,100], 如果超出范围, 则返回失败;\n在某些接口中limit范围可能会重新定义, 请以其接口的补充说明为准."
+        },
+        "total": {
+          "type": "string",
+          "format": "int64",
+          "description": "可选, 总数, 请求无须填此参数, 响应时填写."
+        }
+      }
+    },
+    "notificationReadAllRequest": {
+      "type": "object",
+      "properties": {
+        "msg_type_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "选择的消息类型，为0则是所有消息"
+        }
+      }
+    },
+    "notificationReadAllResponse": {
+      "type": "object"
+    },
+    "notificationReadBatchRequest": {
+      "type": "object",
+      "properties": {
+        "all_msg_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uint64"
+          },
+          "title": "选择的消息ID列表"
+        }
+      }
+    },
+    "notificationReadBatchResponse": {
+      "type": "object"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string",
+          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+        },
+        "value": {
+          "type": "string",
+          "format": "byte",
+          "description": "Must be a valid serialized protocol buffer of the above specified type."
+        }
+      },
+      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\nExample 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\nExample 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := \u0026pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

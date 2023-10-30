@@ -1,0 +1,937 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "video_center.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "VideoManagerCenter"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/CancelRecordTask": {
+      "post": {
+        "summary": "取消录播task\nroute: prefix=, internal_prefix=video, action=CancelRecordTask, version=v1",
+        "operationId": "VideoManagerCenter_CancelRecordTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/videoCancelRecordTaskResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/videoCancelRecordTaskReq"
+            }
+          }
+        ],
+        "tags": [
+          "VideoManagerCenter"
+        ]
+      }
+    },
+    "/v1/CreateRecordTask": {
+      "post": {
+        "summary": "创建录播task\nroute: prefix=, internal_prefix=video, action=CreateRecordTask, version=v1",
+        "operationId": "VideoManagerCenter_CreateRecordTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/videoCreateRecordTaskResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/videoCreateRecordTaskReq"
+            }
+          }
+        ],
+        "tags": [
+          "VideoManagerCenter"
+        ]
+      }
+    },
+    "/v1/CreateTask": {
+      "post": {
+        "summary": "创建task\nroute: prefix=, internal_prefix=video, action=CreateLiveTask, version=v1",
+        "operationId": "VideoManagerCenter_CreateTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/videoCreateTaskResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/videoCreateTaskReq"
+            }
+          }
+        ],
+        "tags": [
+          "VideoManagerCenter"
+        ]
+      }
+    },
+    "/v1/DeleteTask": {
+      "post": {
+        "summary": "删除task\nroute: prefix=, internal_prefix=video, action=DeleteLiveTask, version=v1",
+        "operationId": "VideoManagerCenter_DeleteTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/videoDeleteTaskResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/videoDeleteTaskReq"
+            }
+          }
+        ],
+        "tags": [
+          "VideoManagerCenter"
+        ]
+      }
+    },
+    "/v1/GeneratePlayAddress": {
+      "post": {
+        "summary": "生成播放地址\nroute: prefix=, internal_prefix=video, action=GeneratePlayAddress, version=v1",
+        "operationId": "VideoManagerCenter_GeneratePlayAddress",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/videoGeneratePlayAddressResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/videoGeneratePlayAddressReq"
+            }
+          }
+        ],
+        "tags": [
+          "VideoManagerCenter"
+        ]
+      }
+    },
+    "/v1/GetRecordTasks": {
+      "get": {
+        "summary": "获取录播task列表\nroute: prefix=, internal_prefix=video, action=GetRecordTasks, version=v1",
+        "operationId": "VideoManagerCenter_GetRecordTasks",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/videoGetRecordTasksResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "task_ids",
+            "description": "[可选] 按id搜索, 默认为空",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "device_ids",
+            "description": "[可选] 按task对应的device_id搜索，默认为空,不对外暴露，仅rpc调用时可传",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "paging.offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.total",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "VideoManagerCenter"
+        ]
+      }
+    },
+    "/v1/GetTasks": {
+      "get": {
+        "summary": "获取task列表\nroute: prefix=, internal_prefix=video, action=GetLiveTasks, version=v1",
+        "operationId": "VideoManagerCenter_GetTasks",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/videoGetTasksResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "task_ids",
+            "description": "[可选] 按id搜索, 默认为空",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "device_ids",
+            "description": "[可选] 按task对应的device_id搜索，默认为空,不对外暴露，仅rpc调用时可传",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "paging.offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.total",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "VideoManagerCenter"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apiPaging": {
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+        }
+      },
+      "additionalProperties": {},
+      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := \u0026pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    },
+    "rasAudioConfig": {
+      "type": "object",
+      "properties": {
+        "use_origin": {
+          "type": "boolean",
+          "title": "true: 使用原始码流格式, config里配置无效; false: 转码成config里的码流配置"
+        },
+        "config": {
+          "$ref": "#/definitions/rasAudioConfigParam",
+          "title": "音频转码配置参数"
+        }
+      },
+      "title": "音频文件配置"
+    },
+    "rasAudioConfigParam": {
+      "type": "object",
+      "title": "音频转码配置参数"
+    },
+    "rasIngress": {
+      "type": "object",
+      "properties": {
+        "ingress_id": {
+          "type": "string",
+          "description": "唯一标识, 系统内部生成."
+        },
+        "name": {
+          "type": "string",
+          "description": "[optional] 接入源名称."
+        },
+        "description": {
+          "type": "string",
+          "description": "[optional] 接入源描述."
+        },
+        "information": {
+          "$ref": "#/definitions/rasIngressInformation",
+          "description": "[optional] 接入源描述信息."
+        },
+        "status": {
+          "$ref": "#/definitions/rasIngressStatus",
+          "description": "接入源状态, 不可作为参数输入."
+        }
+      },
+      "description": "接入源信息定义."
+    },
+    "rasIngressInformation": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/rasIngressType",
+          "description": "[require] 接入源类型, 与接入源信息."
+        },
+        "rtmp": {
+          "$ref": "#/definitions/rasRTMPIngress"
+        },
+        "rtsp": {
+          "$ref": "#/definitions/rasRTSPIngress"
+        },
+        "webrtc": {
+          "$ref": "#/definitions/rasWebRTCIngress"
+        }
+      },
+      "description": "接入信息描述."
+    },
+    "rasIngressStatus": {
+      "type": "string",
+      "enum": [
+        "INGRESS_STATUS_UNKNOWN",
+        "AVAILABLE",
+        "UNAVAILABLE"
+      ],
+      "default": "INGRESS_STATUS_UNKNOWN",
+      "description": "接入源状态定义, 不可作为参数输入.\n\n - INGRESS_STATUS_UNKNOWN: 未知状态.\n - AVAILABLE: 可用状态.\n - UNAVAILABLE: 异常状态."
+    },
+    "rasIngressType": {
+      "type": "string",
+      "enum": [
+        "INGRESS_TYPE_UNKNOWN",
+        "RTSP",
+        "RTMP",
+        "WEBRTC"
+      ],
+      "default": "INGRESS_TYPE_UNKNOWN",
+      "description": "接入源类型定义.\n\n - INGRESS_TYPE_UNKNOWN: 未知类型, 禁止作为输入参数.\n - RTSP: RTSP接入流类型, 关联参数RTSPIngress.\n - RTMP: RTMP推流类型, 关联参数RTMPIngress.\n - WEBRTC: WebRTC推流类型, 关联参数WebRTCIngress."
+    },
+    "rasIngressVerification": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "$ref": "#/definitions/rasIngressVerificationMethod",
+          "description": "[require] 鉴权类型."
+        }
+      },
+      "description": "接入源鉴权信息."
+    },
+    "rasIngressVerificationMethod": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "TOKEN"
+      ],
+      "default": "NONE",
+      "description": "接入源鉴权类型.\n\n - NONE: 无, 仅用于RTSP类型的接入类型.\n - TOKEN: token鉴权, 仅用于RTMP类型的接入类型."
+    },
+    "rasLiveTask": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "任务id"
+        },
+        "device_id": {
+          "type": "string",
+          "title": "设备id"
+        },
+        "enable": {
+          "type": "boolean",
+          "title": "起停状态"
+        },
+        "online_num": {
+          "type": "string",
+          "format": "uint64",
+          "title": "在线人数"
+        },
+        "metrics": {
+          "$ref": "#/definitions/rasTrafficMetric",
+          "title": "metrics"
+        },
+        "ingresses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasIngress"
+          },
+          "title": "接入源信息"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "更新时间."
+        }
+      },
+      "title": "视频直播任务"
+    },
+    "rasProtocolType": {
+      "type": "string",
+      "enum": [
+        "TCP",
+        "UDP"
+      ],
+      "default": "TCP",
+      "description": "网络传输协议类型.\n\n - TCP: TCP协议.\n - UDP: UDP协议."
+    },
+    "rasRTMPIngress": {
+      "type": "object",
+      "properties": {
+        "publish_url": {
+          "type": "string",
+          "description": "RTMP推流地址, 系统自动生成, 不可作为参数输入."
+        },
+        "url": {
+          "type": "string",
+          "description": "RTSP拉流地址, 系统内部地址, 不可作为参数输入."
+        },
+        "verification": {
+          "$ref": "#/definitions/rasIngressVerification",
+          "description": "[require] 鉴权信息."
+        }
+      },
+      "description": "RTMP接入源信息."
+    },
+    "rasRTSPIngress": {
+      "type": "object",
+      "properties": {
+        "source_url": {
+          "type": "string",
+          "description": "[require] 用户输入的RTSP流地址."
+        },
+        "protocol_type": {
+          "$ref": "#/definitions/rasProtocolType",
+          "description": "[require] 网络传输协议类型."
+        },
+        "url": {
+          "type": "string",
+          "description": "RTSP拉流地址, 系统内部地址, 不可作为参数输入."
+        },
+        "verification": {
+          "$ref": "#/definitions/rasIngressVerification",
+          "description": "[require] 鉴权信息."
+        }
+      },
+      "description": "RTSP接入源信息."
+    },
+    "rasRecordFile": {
+      "type": "object",
+      "properties": {
+        "object_key": {
+          "type": "string",
+          "title": "文件存储信息"
+        },
+        "status": {
+          "$ref": "#/definitions/rasRecordFileStatus",
+          "title": "文件状态"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "更新时间."
+        }
+      },
+      "title": "录制文件信息"
+    },
+    "rasRecordFileFormat": {
+      "type": "string",
+      "enum": [
+        "RecordFileFormat_UNKNOWN",
+        "MP4"
+      ],
+      "default": "RecordFileFormat_UNKNOWN",
+      "description": "- RecordFileFormat_UNKNOWN: 未知格式\n - MP4: .mp4格式",
+      "title": "录制文件封装格式"
+    },
+    "rasRecordFileStatus": {
+      "type": "string",
+      "enum": [
+        "FILE_UNKNOWN_STATUS",
+        "FILE_RECORDING",
+        "FILE_RECORDED",
+        "FILE_UPLOADING",
+        "FILE_AVAILABLE",
+        "FILE_RETRYING",
+        "FILE_DELETED"
+      ],
+      "default": "FILE_UNKNOWN_STATUS",
+      "description": "- FILE_UNKNOWN_STATUS: 未知\n - FILE_RECORDING: 正在录制\n - FILE_RECORDED: 录制完成\n - FILE_UPLOADING: 正在上传\n - FILE_AVAILABLE: 上传完成，可下载\n - FILE_RETRYING: 重传中\n - FILE_DELETED: 被删除",
+      "title": "录制文件状态"
+    },
+    "rasRecordStatus": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "NOT_START",
+        "INITING",
+        "RUNNING",
+        "CANCELED",
+        "FINISHED",
+        "FAILED",
+        "ERROR"
+      ],
+      "default": "UNKNOWN",
+      "description": "- UNKNOWN: 未知，暂无该情况\n - NOT_START: 未开始, 任务start_time前\n - INITING: 任务启动成功后，正在初始化\n - RUNNING: 正在运行\n - CANCELED: 被取消，任务在start_time前被成功取消\n - FINISHED: 已结束，任务到达end_time时，成功停止\n - FAILED: 失败，任务到达end_time时，停止失败\n - ERROR: 任务错误，可能原因: \n1.任务启动失败，该情况schedule会在starttime-endtime内每次重复尝试启动任务; \n2. starttime-endtime阶段，从任务模块获取状态为ERROR; \n3. starttime-endtime阶段，从任务模块获取状态报错",
+      "title": "录制任务状态"
+    },
+    "rasRecordTask": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "任务id"
+        },
+        "device_id": {
+          "type": "string",
+          "title": "设备id"
+        },
+        "ingress": {
+          "$ref": "#/definitions/rasIngress",
+          "title": "接入源信息"
+        },
+        "start_time": {
+          "type": "string",
+          "format": "date-time",
+          "title": "任务开始时间"
+        },
+        "end_time": {
+          "type": "string",
+          "format": "date-time",
+          "title": "任务结束时间"
+        },
+        "keep_days": {
+          "type": "integer",
+          "format": "int32",
+          "title": "录制文件存储时间，单位天"
+        },
+        "template": {
+          "$ref": "#/definitions/rasRecordTemplate",
+          "title": "录制参数模板"
+        },
+        "record_files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasRecordFile"
+          },
+          "title": "录制文件信息"
+        },
+        "status": {
+          "$ref": "#/definitions/rasRecordStatus",
+          "title": "任务状态"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "更新时间."
+        }
+      },
+      "title": "视频录制任务"
+    },
+    "rasRecordTemplate": {
+      "type": "object",
+      "properties": {
+        "video_config": {
+          "$ref": "#/definitions/rasVideoConfig",
+          "title": "视频参数配置"
+        },
+        "audio_config": {
+          "$ref": "#/definitions/rasAudioConfig",
+          "title": "音频参数配置"
+        },
+        "format": {
+          "$ref": "#/definitions/rasRecordFileFormat",
+          "title": "封装格式"
+        }
+      },
+      "title": "录制文件模板"
+    },
+    "rasTokenExpiration": {
+      "type": "string",
+      "enum": [
+        "TokenExpiration_UNSET",
+        "HOURS_1",
+        "MINUTES_30",
+        "MINUTES_15",
+        "NO_EXPIRED"
+      ],
+      "default": "TokenExpiration_UNSET",
+      "description": "token有效时间.\n\n - TokenExpiration_UNSET: 不可作为参数输入.\n - HOURS_1: 有效时长一小时.\n - MINUTES_30: 有效时长30分钟.\n - MINUTES_15: 有效时长15分钟.\n - NO_EXPIRED: 永远不过期."
+    },
+    "rasTrafficMetric": {
+      "type": "object",
+      "properties": {
+        "historical_traffic": {
+          "type": "string",
+          "format": "int64",
+          "title": "已经断开连接的播放器流量"
+        },
+        "current_traffic": {
+          "type": "string",
+          "format": "int64",
+          "title": "连接中的播放器流量"
+        },
+        "reported_traffic": {
+          "type": "string",
+          "format": "int64",
+          "title": "已经在BSS中打点过的流量"
+        }
+      }
+    },
+    "rasVideoConfig": {
+      "type": "object",
+      "properties": {
+        "use_origin": {
+          "type": "boolean",
+          "title": "true: 使用原始码流格式, config里配置无效; false: 转码成config里的码流配置"
+        },
+        "config": {
+          "$ref": "#/definitions/rasVideoConfigParam",
+          "title": "视频转码配置参数"
+        }
+      },
+      "title": "视频文件配置"
+    },
+    "rasVideoConfigParam": {
+      "type": "object",
+      "title": "视频转码配置参数"
+    },
+    "rasWebRTCIngress": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "RTSP拉流地址, 系统内部地址, 不可作为参数输入."
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code]."
+        },
+        "message": {
+          "type": "string",
+          "description": "A developer-facing error message, which should be in English. Any\nuser-facing error message should be localized and sent in the\n[google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client."
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          },
+          "description": "A list of messages that carry the error details.  There is a common set of\nmessage types for APIs to use."
+        }
+      },
+      "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors)."
+    },
+    "videoCancelRecordTaskReq": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string",
+          "title": "[必须]. 任务id, 长度范围[1, 64]"
+        }
+      },
+      "title": "取消录播任务请求"
+    },
+    "videoCancelRecordTaskResp": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        }
+      },
+      "title": "取消录播任务响应"
+    },
+    "videoCreateRecordTaskReq": {
+      "type": "object",
+      "properties": {
+        "device_id": {
+          "type": "string",
+          "title": "[必须]. 设备id, 长度范围[1, 64]"
+        },
+        "ingress_id": {
+          "type": "string",
+          "title": "[可选]. 接入源id, 如果该设备id下只有一个接入源，可不用指定"
+        },
+        "start_time": {
+          "type": "string",
+          "format": "date-time",
+          "title": "[必须]. 任务开始时间, 精确到秒, 必须满足: 开始时间 \u003e= 当前时间+10分钟, \n采用ISO8601时间格式:\u003cyyyy-MM-dd\u003eT\u003cHH:mm:ss\u003eZ，比如:2023-05-15T07:07:48Z,"
+        },
+        "end_time": {
+          "type": "string",
+          "format": "date-time",
+          "title": "[必须]. 任务结束时间, 精确到秒, 必须满足: 1小时 \u003c= 结束时间-开始时间 \u003c= 24小时, 格式和start_time一致"
+        },
+        "template": {
+          "$ref": "#/definitions/rasRecordTemplate",
+          "title": "[必须]. 录制参数模板, 目前音频、视频均不支持转码，use_origin必须为true, 录制文件封装仅支持mp4格式"
+        },
+        "keep_days": {
+          "type": "integer",
+          "format": "int32",
+          "title": "[可选]. 录制文件存储时间，单位天, 范围：1天 - 30天，默认7天，从录制结束时间开始计算"
+        }
+      },
+      "title": "创建录播任务请求"
+    },
+    "videoCreateRecordTaskResp": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "task": {
+          "$ref": "#/definitions/rasRecordTask"
+        }
+      },
+      "title": "创建录播任务响应"
+    },
+    "videoCreateTaskReq": {
+      "type": "object",
+      "properties": {
+        "device_id": {
+          "type": "string",
+          "title": "[必须]. 设备id, 长度范围[1, 64]"
+        },
+        "ingress_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "[可选]. 接入源id, 如果该设备id下只有一个接入源，可不用指定"
+        }
+      }
+    },
+    "videoCreateTaskResp": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "task": {
+          "$ref": "#/definitions/rasLiveTask"
+        }
+      }
+    },
+    "videoDeleteTaskReq": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string",
+          "title": "[必须]. task_id, 长度范围[1, 64]"
+        }
+      }
+    },
+    "videoDeleteTaskResp": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        }
+      }
+    },
+    "videoGeneratePlayAddressReq": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string"
+        },
+        "protocol": {
+          "$ref": "#/definitions/rasIngressType"
+        },
+        "duration": {
+          "$ref": "#/definitions/rasTokenExpiration"
+        }
+      }
+    },
+    "videoGeneratePlayAddressResp": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "videoGetRecordTasksResp": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "tasks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasRecordTask"
+          }
+        },
+        "paging": {
+          "$ref": "#/definitions/apiPaging"
+        }
+      },
+      "title": "获取录播任务响应"
+    },
+    "videoGetTasksResp": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "tasks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasLiveTask"
+          }
+        },
+        "paging": {
+          "$ref": "#/definitions/apiPaging"
+        }
+      }
+    }
+  }
+}

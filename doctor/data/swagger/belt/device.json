@@ -1,0 +1,2169 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "cloud_device.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "DeviceManagerCenter"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/BatchCreateDevices": {
+      "post": {
+        "summary": "批量创建Device, devicekind仅提供devicekind_id, 上限50\nroute: prefix=, internal_prefix=device, action=BatchCreateDevicesByKindID, version=v1",
+        "operationId": "DeviceManagerCenter_BatchCreateDevice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceBatchCreateDeviceResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/deviceBatchCreateDeviceReq"
+            }
+          }
+        ],
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    },
+    "/v1/BatchCreateDevicesByKindName": {
+      "post": {
+        "summary": "批量创建Device, devicekind仅提供devicekind_name, 上限50\nroute: prefix=, internal_prefix=device, action=BatchCreateDevices, version=v1",
+        "operationId": "DeviceManagerCenter_BatchCreateDeviceByKindName",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceBatchCreateDeviceByKindNameResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/deviceBatchCreateDeviceByKindNameReq"
+            }
+          }
+        ],
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    },
+    "/v1/BindDevicePolicyGroup": {
+      "post": {
+        "summary": "添加设备和policy group的绑定,\nroute: prefix=, internal_prefix=device, action=BindDeviceAndPolicy, version=v1",
+        "operationId": "DeviceManagerCenter_BindDevicePolicyGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceBindDevicePolicyGroupResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/deviceBindDevicePolicyGroupReq"
+            }
+          }
+        ],
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    },
+    "/v1/CreateDevice": {
+      "post": {
+        "summary": "创建Device, 设备鉴权信息创建时不用指定，会在创建设备时自动创建鉴权信息并返回，并且之后不能修改, cluster只需要提供id信息\nroute: prefix=, internal_prefix=device, action=CreateDeviceByKindID, version=v1",
+        "operationId": "DeviceManagerCenter_CreateDevice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceCreateDeviceResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/deviceCreateDeviceReq"
+            }
+          }
+        ],
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    },
+    "/v1/CreateDeviceByKindName": {
+      "post": {
+        "summary": "创建Device, 设备鉴权信息创建时不用指定，会在创建设备时自动创建鉴权信息并返回，并且之后不能修改, cluster只需要提供id信息\nroute: prefix=, internal_prefix=device, action=CreateDevice, version=v1",
+        "operationId": "DeviceManagerCenter_CreateDeviceByKindName",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceCreateDeviceByKindNameResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/deviceCreateDeviceByKindNameReq"
+            }
+          }
+        ],
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    },
+    "/v1/CreateDeviceKind": {
+      "post": {
+        "summary": "创建Devicekind,\nroute: prefix=, internal_prefix=device, action=CreateDeviceKind, version=v1",
+        "operationId": "DeviceManagerCenter_CreateDeviceKind",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceCreateDeviceKindResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/deviceCreateDeviceKindReq"
+            }
+          }
+        ],
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    },
+    "/v1/DeleteDevice": {
+      "post": {
+        "summary": "删除Device,\nroute: prefix=, internal_prefix=device, action=DeleteDevice, version=v1",
+        "operationId": "DeviceManagerCenter_DeleteDevice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceDeleteDeviceResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/deviceDeleteDeviceReq"
+            }
+          }
+        ],
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    },
+    "/v1/DeleteDeviceKind": {
+      "post": {
+        "summary": "删除Devicekind, device_kind下有device时，禁止删除, \nroute: prefix=, internal_prefix=device, action=DeleteDeviceKind, version=v1",
+        "operationId": "DeviceManagerCenter_DeleteDeviceKind",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceDeleteDeviceKindResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/deviceDeleteDeviceKindReq"
+            }
+          }
+        ],
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    },
+    "/v1/GenRTMPAddress": {
+      "post": {
+        "summary": "生成RTMP推流地址, 生成的地址过期时间为1小时, 超时后需要重新生成. \nroute: prefix=, internal_prefix=device, action=GenRTMPAddress, version=v1",
+        "operationId": "DeviceManagerCenter_GenRTMPAddress",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceGenRTMPAddressResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/deviceGenRTMPAddressReq"
+            }
+          }
+        ],
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    },
+    "/v1/GetAccountId": {
+      "get": {
+        "summary": "根据请求自带的Context获取account_id,\nroute: prefix=, internal_prefix=device, action=GetAccountId, version=v1",
+        "operationId": "DeviceManagerCenter_GetAccountId",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceGetAccountIdResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    },
+    "/v1/GetAllDevices": {
+      "get": {
+        "summary": "获取所有account_id下的Device列表及总数，支持按device id, name批量分页查询，默认分页设置: offset:0; limit:100, \nroute: prefix=, internal_prefix=device, action=GetAllCenterDevices, version=v1",
+        "operationId": "DeviceManagerCenter_GetAllDevices",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceGetAllDevicesResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ids",
+            "description": "[可选]. 按id搜索，默认为空，获取全部, ids和names都存在时，按id搜索",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "names",
+            "description": "[可选]. 按name搜索，默认为空，获取全部",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "paging.offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.total",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    },
+    "/v1/GetDevice": {
+      "get": {
+        "summary": "根据device_id获取Device, \nroute: prefix=, internal_prefix=device, action=GetCenterDevice, version=v1",
+        "operationId": "DeviceManagerCenter_GetDevice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceGetDeviceResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "[必须]. Device id, 长度范围[1, 64]",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    },
+    "/v1/GetDeviceKind": {
+      "get": {
+        "summary": "根据device_kind_id获取DeviceKind, \nroute: prefix=, internal_prefix=device, action=GetDeviceKind, version=v1",
+        "operationId": "DeviceManagerCenter_GetDeviceKind",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceGetDeviceKindResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "[必须]. Devicekind id, 长度范围[1, 64]",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    },
+    "/v1/GetDeviceKinds": {
+      "get": {
+        "summary": "获取Devicekind列表, \nroute: prefix=, internal_prefix=device, action=GetDeviceKinds, version=v1",
+        "operationId": "DeviceManagerCenter_GetDeviceKinds",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceGetDeviceKindsResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ids",
+            "description": "[可选] 按id搜索, 默认为空，获取全部",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "paging.offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.total",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    },
+    "/v1/GetDevices": {
+      "get": {
+        "summary": "获取Device列表及总数，支持按device id, name批量分页查询，默认分页设置: offset:0; limit:100, \nroute: prefix=, internal_prefix=device, action=GetCenterDevices, version=v1",
+        "operationId": "DeviceManagerCenter_GetDevices",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceGetDevicesResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ids",
+            "description": "[可选]. 按id搜索，默认为空，获取全部, ids和names都存在时，按id搜索",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "names",
+            "description": "[可选]. 按name搜索，默认为空，获取全部",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "paging.offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.total",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    },
+    "/v1/GetIotIngresses": {
+      "get": {
+        "summary": "获取Iot接入配置\nroute: prefix=, internal_prefix=device, action=GetIotIngresses, version=v1",
+        "operationId": "DeviceManagerCenter_GetIotIngresses",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceGetIotIngressesResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    },
+    "/v1/ListRegistration": {
+      "get": {
+        "summary": "[internal] 获取边缘注册信息, \nroute: prefix=, internal_prefix=device, action=ListRegistration, version=v1",
+        "operationId": "DeviceManagerCenter_ListRegistration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceListRegistrationResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    },
+    "/v1/Register": {
+      "post": {
+        "summary": "[internal] 边缘向中心注册接口",
+        "operationId": "DeviceManagerCenter_Register",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceRegisterResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/deviceRegisterReq"
+            }
+          }
+        ],
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    },
+    "/v1/SDP/Publish": {
+      "post": {
+        "summary": "生成SDP服务端描述信息, 生成的SDP描述信息过期时间为30秒, 超时后需要重新生成. \nroute: prefix=, internal_prefix=device, action=SDPPublish, version=v1",
+        "operationId": "DeviceManagerCenter_SDPPublish",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceSDPPublishResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/deviceSDPPublishReq"
+            }
+          }
+        ],
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    },
+    "/v1/UnbindDevicePolicyGroup": {
+      "post": {
+        "summary": "解绑设备和policy group的绑定, \nroute: prefix=, internal_prefix=device, action=UnBindDeviceAndPolicy, version=v1",
+        "operationId": "DeviceManagerCenter_UnbindDevicePolicyGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceUnbindDevicePolicyGroupResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/deviceUnbindDevicePolicyGroupReq"
+            }
+          }
+        ],
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    },
+    "/v1/UpdateDevice": {
+      "post": {
+        "summary": "更新Device，鉴权信息, cluster信息不可修改,\nroute: prefix=, internal_prefix=device, action=UpdateDevice, version=v1",
+        "operationId": "DeviceManagerCenter_UpdateDevice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceUpdateDeviceResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/deviceUpdateDeviceReq"
+            }
+          }
+        ],
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    },
+    "/v1/UpdateDeviceKind": {
+      "post": {
+        "summary": "更新Devicekind, device_kind下有device时，禁止更新, \nroute: prefix=, internal_prefix=device, action=UpdateDeviceKind, version=v1",
+        "operationId": "DeviceManagerCenter_UpdateDeviceKind",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/deviceUpdateDeviceKindResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/deviceUpdateDeviceKindReq"
+            }
+          }
+        ],
+        "tags": [
+          "DeviceManagerCenter"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apiCluster": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "云信息的唯一标识，比如：hangzhou1, shenzhen"
+        },
+        "name": {
+          "type": "string",
+          "title": "云信息的中文名称，用于展示给用户选择使用"
+        },
+        "type": {
+          "$ref": "#/definitions/apiClusterType",
+          "title": "云的类型，中心云或者边缘云。bot 仅能部署在边缘云中"
+        },
+        "public_ingress": {
+          "type": "string",
+          "title": "云的外部通信地址，通常是面向用户的公网域名"
+        },
+        "private_ingress": {
+          "type": "string",
+          "title": "云的内部通信地址，通常是内部各个云之间通信使用"
+        },
+        "site_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "集群区域 id"
+        },
+        "infra_cluster_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "对应 infra 中 cluster 的 id"
+        },
+        "l4_ingress": {
+          "type": "string",
+          "title": "公网 4 层的地址"
+        }
+      }
+    },
+    "apiClusterType": {
+      "type": "string",
+      "enum": [
+        "CT_UNKNOWN",
+        "CT_CENTER",
+        "CT_EDGE"
+      ],
+      "default": "CT_UNKNOWN",
+      "title": "- CT_CENTER: 中心云，ras 整个系统中只有一个中心云\n - CT_EDGE: 边云，bot 只能部署在边云"
+    },
+    "apiPaging": {
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "apiRequestHeader": {
+      "type": "object",
+      "properties": {
+        "trace": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "RequestHeader 在 http 请求的 body 中可以不传.\n存储 request 中上下文信息，如：requestid 等\n支持的 key 包含：\n   \"requestid\": 请求的 requestid\n   \"timeout\": 这条请求的过期时间，nano second"
+    },
+    "apiResponseHeader": {
+      "type": "object",
+      "properties": {
+        "trace": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "deviceBatchCreateDeviceByKindNameReq": {
+      "type": "object",
+      "properties": {
+        "request_header": {
+          "$ref": "#/definitions/apiRequestHeader"
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/deviceBatchDevice"
+          },
+          "title": "[必须]. Device信息, devicekind提供devicekind name"
+        }
+      }
+    },
+    "deviceBatchCreateDeviceByKindNameResp": {
+      "type": "object",
+      "properties": {
+        "response_header": {
+          "$ref": "#/definitions/apiResponseHeader"
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "passed": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "failed": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/deviceCreateDeviceByKindNameResp"
+          }
+        }
+      }
+    },
+    "deviceBatchCreateDeviceReq": {
+      "type": "object",
+      "properties": {
+        "request_header": {
+          "$ref": "#/definitions/apiRequestHeader"
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/deviceBatchDevice"
+          },
+          "title": "[必须]. Device信息, devicekind提供devicekind id"
+        }
+      }
+    },
+    "deviceBatchCreateDeviceResp": {
+      "type": "object",
+      "properties": {
+        "response_header": {
+          "$ref": "#/definitions/apiResponseHeader"
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "passed": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "failed": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/deviceCreateDeviceResp"
+          }
+        }
+      }
+    },
+    "deviceBatchDevice": {
+      "type": "object",
+      "properties": {
+        "devicekind_id": {
+          "type": "string"
+        },
+        "devicekind_name": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "title": "[必须]. 设备名称, 长度范围[1, 64]"
+        },
+        "desc": {
+          "type": "string",
+          "title": "[可选]. 设备描述, 长度范围[1, 512]"
+        },
+        "cluster": {
+          "$ref": "#/definitions/apiCluster",
+          "title": "[必须】. 设备接入点"
+        },
+        "extra_info": {
+          "type": "string",
+          "title": "[可选]. Device自定义信息"
+        },
+        "driver": {
+          "$ref": "#/definitions/rasDriver",
+          "title": "[必须].　设备驱动信息"
+        }
+      },
+      "title": "批量创建设备结构"
+    },
+    "deviceBindDevicePolicyGroupReq": {
+      "type": "object",
+      "properties": {
+        "request_header": {
+          "$ref": "#/definitions/apiRequestHeader"
+        },
+        "device_id": {
+          "type": "string",
+          "title": "[必须]. Device id, 长度范围[1, 64]"
+        },
+        "group_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "[必须]. 用户组id"
+        }
+      }
+    },
+    "deviceBindDevicePolicyGroupResp": {
+      "type": "object",
+      "properties": {
+        "response_header": {
+          "$ref": "#/definitions/apiResponseHeader"
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        }
+      }
+    },
+    "deviceCreateDeviceByKindNameReq": {
+      "type": "object",
+      "properties": {
+        "request_header": {
+          "$ref": "#/definitions/apiRequestHeader"
+        },
+        "devicekind_name": {
+          "type": "string",
+          "title": "[必须]. Device所属Devicekind name, 长度范围[1, 64]"
+        },
+        "name": {
+          "type": "string",
+          "title": "[必须]. 设备名称, 长度范围[1, 64]"
+        },
+        "desc": {
+          "type": "string",
+          "title": "[可选]. 设备描述, 长度范围[1, 512]"
+        },
+        "cluster": {
+          "$ref": "#/definitions/apiCluster",
+          "title": "[必须]. 设备接入点"
+        },
+        "extra_info": {
+          "type": "string",
+          "title": "[可选]. Device自定义信息"
+        },
+        "driver": {
+          "$ref": "#/definitions/rasDriver",
+          "title": "[必须].　设备驱动信息"
+        }
+      }
+    },
+    "deviceCreateDeviceByKindNameResp": {
+      "type": "object",
+      "properties": {
+        "response_header": {
+          "$ref": "#/definitions/apiResponseHeader"
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "device": {
+          "$ref": "#/definitions/rasDeviceInfo"
+        }
+      }
+    },
+    "deviceCreateDeviceKindReq": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/apiRequestHeader"
+        },
+        "name": {
+          "type": "string",
+          "title": "[必须]. Devicekind名称, 长度范围[1, 64]"
+        },
+        "desc": {
+          "type": "string",
+          "title": "[可选]. Devicekind描述, 长度范围[1, 512]"
+        },
+        "verify_method": {
+          "$ref": "#/definitions/rasVerifyMethod",
+          "title": "[必选].　鉴权方式"
+        },
+        "ingress_types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasIngressType"
+          },
+          "title": "[必选].　接入驱动类型"
+        },
+        "iot_type": {
+          "$ref": "#/definitions/rasIotType",
+          "title": "[可选]. IoT接入平台类型"
+        }
+      }
+    },
+    "deviceCreateDeviceKindResp": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/apiResponseHeader"
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "devicekind": {
+          "$ref": "#/definitions/rasDeviceKind"
+        }
+      }
+    },
+    "deviceCreateDeviceReq": {
+      "type": "object",
+      "properties": {
+        "request_header": {
+          "$ref": "#/definitions/apiRequestHeader"
+        },
+        "devicekind_id": {
+          "type": "string",
+          "title": "[必须]. Device所属Devicekind id, 长度范围[1, 64]"
+        },
+        "name": {
+          "type": "string",
+          "title": "[必须]. 设备名称, 长度范围[1, 64]"
+        },
+        "desc": {
+          "type": "string",
+          "title": "[可选]. 设备描述, 长度范围[1, 512]"
+        },
+        "cluster": {
+          "$ref": "#/definitions/apiCluster",
+          "title": "[必须]. 设备接入点"
+        },
+        "extra_info": {
+          "type": "string",
+          "title": "[可选]. Device自定义信息"
+        },
+        "driver": {
+          "$ref": "#/definitions/rasDriver",
+          "title": "[必须].　设备驱动信息"
+        }
+      }
+    },
+    "deviceCreateDeviceResp": {
+      "type": "object",
+      "properties": {
+        "response_header": {
+          "$ref": "#/definitions/apiResponseHeader"
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "device": {
+          "$ref": "#/definitions/rasDevice"
+        }
+      }
+    },
+    "deviceDeleteDeviceKindReq": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/apiRequestHeader"
+        },
+        "id": {
+          "type": "string",
+          "title": "[必须]. Devicekind id, 长度范围[1, 64]"
+        }
+      }
+    },
+    "deviceDeleteDeviceKindResp": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/apiResponseHeader"
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        }
+      }
+    },
+    "deviceDeleteDeviceReq": {
+      "type": "object",
+      "properties": {
+        "request_header": {
+          "$ref": "#/definitions/apiRequestHeader"
+        },
+        "id": {
+          "type": "string",
+          "title": "[必须]. Devicek id, 长度范围[1, 64]"
+        }
+      }
+    },
+    "deviceDeleteDeviceResp": {
+      "type": "object",
+      "properties": {
+        "response_header": {
+          "$ref": "#/definitions/apiResponseHeader"
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        }
+      }
+    },
+    "deviceGRPCClientConfig": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "close_resolver": {
+          "type": "boolean"
+        },
+        "with_block": {
+          "type": "boolean"
+        },
+        "metrics_disabled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "deviceGenRTMPAddressReq": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/apiRequestHeader"
+        },
+        "device_id": {
+          "type": "string",
+          "description": "[require] 需要生成推流地址的设备标识."
+        },
+        "ingress_id": {
+          "type": "string",
+          "description": "[optional] 需要生成推流地址的接入源标识, 当设备仅有一个接入源时可为空."
+        },
+        "duration": {
+          "$ref": "#/definitions/rasTokenExpiration",
+          "description": "[require] token有效时长."
+        }
+      },
+      "description": "生成RTMP推流地址请求."
+    },
+    "deviceGenRTMPAddressResp": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/apiResponseHeader"
+        },
+        "publish_url": {
+          "type": "string",
+          "description": "推流地址."
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "错误信息."
+        }
+      },
+      "description": "生成RTMP推流地址返回."
+    },
+    "deviceGetAccountIdResp": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "account_id": {
+          "type": "string"
+        }
+      },
+      "title": "获取account_id返回"
+    },
+    "deviceGetAllDevicesResp": {
+      "type": "object",
+      "properties": {
+        "response_header": {
+          "$ref": "#/definitions/apiResponseHeader"
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasDevice"
+          }
+        },
+        "paging": {
+          "$ref": "#/definitions/apiPaging"
+        }
+      }
+    },
+    "deviceGetDeviceKindResp": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/apiResponseHeader"
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "devicekind": {
+          "$ref": "#/definitions/rasDeviceKind"
+        }
+      }
+    },
+    "deviceGetDeviceKindsResp": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/apiResponseHeader"
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "devicekinds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasDeviceKind"
+          }
+        },
+        "paging": {
+          "$ref": "#/definitions/apiPaging"
+        }
+      }
+    },
+    "deviceGetDeviceResp": {
+      "type": "object",
+      "properties": {
+        "response_header": {
+          "$ref": "#/definitions/apiResponseHeader"
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "device": {
+          "$ref": "#/definitions/rasDevice"
+        }
+      }
+    },
+    "deviceGetDevicesResp": {
+      "type": "object",
+      "properties": {
+        "response_header": {
+          "$ref": "#/definitions/apiResponseHeader"
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasDevice"
+          }
+        },
+        "paging": {
+          "$ref": "#/definitions/apiPaging"
+        }
+      }
+    },
+    "deviceGetIotIngressesResp": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "iot_ingress": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/deviceIotIngress"
+          }
+        }
+      }
+    },
+    "deviceHTTPClientConfig": {
+      "type": "object",
+      "properties": {
+        "schema": {
+          "type": "string"
+        },
+        "ingress": {
+          "type": "string"
+        },
+        "prefix": {
+          "type": "string"
+        }
+      }
+    },
+    "deviceIotClientConfig": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "register_callback_url": {
+          "type": "string"
+        },
+        "status_callback_url": {
+          "type": "string"
+        },
+        "grpc_client": {
+          "$ref": "#/definitions/deviceGRPCClientConfig"
+        },
+        "http_client": {
+          "$ref": "#/definitions/deviceHTTPClientConfig"
+        }
+      }
+    },
+    "deviceIotIngress": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/rasIotType"
+        },
+        "name": {
+          "type": "string"
+        },
+        "clients": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/deviceIotClientConfig"
+          }
+        }
+      },
+      "title": "iot配置信息"
+    },
+    "deviceListRegistrationResp": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/apiResponseHeader"
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "infos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/deviceRegistrationInfo"
+          }
+        }
+      }
+    },
+    "deviceRegisterReq": {
+      "type": "object",
+      "properties": {
+        "info": {
+          "$ref": "#/definitions/deviceRegistrationInfo",
+          "title": "[必须] 边缘注册信息"
+        }
+      }
+    },
+    "deviceRegisterResp": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/apiResponseHeader"
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        }
+      }
+    },
+    "deviceRegistrationInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "cluster": {
+          "$ref": "#/definitions/apiCluster",
+          "title": "集群信息"
+        },
+        "version": {
+          "type": "string",
+          "title": "版本信息"
+        },
+        "create_time": {
+          "type": "string",
+          "format": "date-time",
+          "title": "创建时间"
+        },
+        "last_connected_time": {
+          "type": "string",
+          "format": "date-time",
+          "title": "更新时间"
+        },
+        "online": {
+          "type": "boolean",
+          "title": "online 根据心跳时间计算"
+        }
+      }
+    },
+    "deviceSDPPublishReq": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/apiRequestHeader"
+        },
+        "device_id": {
+          "type": "string",
+          "description": "[必须] 设备唯一标识."
+        },
+        "ingress_id": {
+          "type": "string",
+          "description": "[可选] 接入源唯一标识."
+        },
+        "sdp": {
+          "type": "string",
+          "description": "[必须] 客户端的SDP信息."
+        },
+        "type": {
+          "$ref": "#/definitions/rasWebRTCSDPType"
+        }
+      }
+    },
+    "deviceSDPPublishResp": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/apiResponseHeader"
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "device_id": {
+          "type": "string",
+          "description": "设备唯一标识."
+        },
+        "ingress_id": {
+          "type": "string",
+          "description": "接入源唯一标识."
+        },
+        "sdp": {
+          "type": "string",
+          "description": "生成的SDP信息."
+        },
+        "type": {
+          "$ref": "#/definitions/rasWebRTCSDPType"
+        }
+      }
+    },
+    "deviceUnbindDevicePolicyGroupReq": {
+      "type": "object",
+      "properties": {
+        "request_header": {
+          "$ref": "#/definitions/apiRequestHeader"
+        },
+        "device_id": {
+          "type": "string",
+          "title": "[必须]. Device id, 长度范围[1, 64]"
+        },
+        "group_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "[必须]. 用户组id"
+        }
+      }
+    },
+    "deviceUnbindDevicePolicyGroupResp": {
+      "type": "object",
+      "properties": {
+        "response_header": {
+          "$ref": "#/definitions/apiResponseHeader"
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        }
+      }
+    },
+    "deviceUpdateDeviceKindReq": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/apiRequestHeader"
+        },
+        "id": {
+          "type": "string",
+          "title": "[必须]. Devicekind id, 长度范围[1, 64]"
+        },
+        "name": {
+          "type": "string",
+          "title": "[可选]. Devicekind名称, 长度范围[1, 64]"
+        },
+        "desc": {
+          "type": "string",
+          "title": "[可选]. Devicekind描述, 长度范围[1, 512]"
+        },
+        "verify_method": {
+          "$ref": "#/definitions/rasVerifyMethod",
+          "title": "[可选].　鉴权方式"
+        },
+        "ingress_types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasIngressType"
+          },
+          "title": "[可选].　接入驱动类型"
+        },
+        "iot_type": {
+          "$ref": "#/definitions/rasIotType",
+          "title": "[可选]. IoT接入平台类型"
+        }
+      }
+    },
+    "deviceUpdateDeviceKindResp": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/apiResponseHeader"
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "devicekind": {
+          "$ref": "#/definitions/rasDeviceKind"
+        }
+      }
+    },
+    "deviceUpdateDeviceReq": {
+      "type": "object",
+      "properties": {
+        "request_header": {
+          "$ref": "#/definitions/apiRequestHeader"
+        },
+        "id": {
+          "type": "string",
+          "title": "[必须]. Device id, 长度范围[1, 64]"
+        },
+        "name": {
+          "type": "string",
+          "title": "[可选]. 设备名称, 长度范围[1, 64]"
+        },
+        "desc": {
+          "type": "string",
+          "title": "[可选]. 设备描述, 长度范围[1, 512]"
+        },
+        "extra_info": {
+          "type": "string",
+          "title": "[可选]. Device自定义信息"
+        },
+        "driver": {
+          "$ref": "#/definitions/rasDriver",
+          "title": "[可选].　设备驱动信息"
+        }
+      }
+    },
+    "deviceUpdateDeviceResp": {
+      "type": "object",
+      "properties": {
+        "response_header": {
+          "$ref": "#/definitions/apiResponseHeader"
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "device": {
+          "$ref": "#/definitions/rasDevice"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+        }
+      },
+      "additionalProperties": {},
+      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := \u0026pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    },
+    "rasDevice": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "设备id"
+        },
+        "devicekind_id": {
+          "type": "string",
+          "title": "所属设备类型id"
+        },
+        "name": {
+          "type": "string",
+          "title": "设备名称"
+        },
+        "desc": {
+          "type": "string",
+          "title": "设备描述"
+        },
+        "extra_info": {
+          "type": "string",
+          "title": "用户自定义信息"
+        },
+        "cluster": {
+          "$ref": "#/definitions/apiCluster",
+          "title": "设备接入点"
+        },
+        "verify": {
+          "$ref": "#/definitions/rasVerification",
+          "title": "设备鉴权信息"
+        },
+        "driver": {
+          "$ref": "#/definitions/rasDriver",
+          "title": "设备驱动信息"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "更新时间."
+        }
+      }
+    },
+    "rasDeviceInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "设备id"
+        },
+        "devicekind": {
+          "$ref": "#/definitions/rasDeviceKind",
+          "title": "所属设备类型"
+        },
+        "name": {
+          "type": "string",
+          "title": "设备名称"
+        },
+        "desc": {
+          "type": "string",
+          "title": "设备描述"
+        },
+        "extra_info": {
+          "type": "string",
+          "title": "用户自定义信息"
+        },
+        "cluster": {
+          "$ref": "#/definitions/apiCluster",
+          "title": "设备接入点"
+        },
+        "verify": {
+          "$ref": "#/definitions/rasVerification",
+          "title": "设备鉴权信息"
+        },
+        "driver": {
+          "$ref": "#/definitions/rasDriver",
+          "title": "设备驱动信息"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "更新时间."
+        }
+      },
+      "title": "包含设备所属devicekind的详细信息"
+    },
+    "rasDeviceKind": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "设备类型id"
+        },
+        "name": {
+          "type": "string",
+          "title": "设备类型名称"
+        },
+        "desc": {
+          "type": "string",
+          "title": "设备类型描述"
+        },
+        "verify_method": {
+          "$ref": "#/definitions/rasVerifyMethod",
+          "title": "鉴权方式"
+        },
+        "ingress_types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasIngressType"
+          },
+          "title": "接入驱动类型"
+        },
+        "iot_type": {
+          "$ref": "#/definitions/rasIotType",
+          "title": "IOT驱动类型"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "更新时间."
+        }
+      }
+    },
+    "rasDriver": {
+      "type": "object",
+      "properties": {
+        "driver_id": {
+          "type": "string",
+          "description": "唯一标识, 系统内部生成, 不可作为参数输入."
+        },
+        "ingresses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasIngress"
+          },
+          "description": "[optional] 接入流信息."
+        },
+        "iot": {
+          "$ref": "#/definitions/rasIot",
+          "description": "IoT信息."
+        },
+        "enable": {
+          "type": "boolean",
+          "description": "[require] 驱动开关, V1.0.0版本必须为true."
+        }
+      },
+      "description": "设备驱动定义."
+    },
+    "rasIngress": {
+      "type": "object",
+      "properties": {
+        "ingress_id": {
+          "type": "string",
+          "description": "唯一标识, 系统内部生成."
+        },
+        "name": {
+          "type": "string",
+          "description": "[optional] 接入源名称."
+        },
+        "description": {
+          "type": "string",
+          "description": "[optional] 接入源描述."
+        },
+        "information": {
+          "$ref": "#/definitions/rasIngressInformation",
+          "description": "[optional] 接入源描述信息."
+        },
+        "status": {
+          "$ref": "#/definitions/rasIngressStatus",
+          "description": "接入源状态, 不可作为参数输入."
+        }
+      },
+      "description": "接入源信息定义."
+    },
+    "rasIngressInformation": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/rasIngressType",
+          "description": "[require] 接入源类型, 与接入源信息."
+        },
+        "rtmp": {
+          "$ref": "#/definitions/rasRTMPIngress"
+        },
+        "rtsp": {
+          "$ref": "#/definitions/rasRTSPIngress"
+        },
+        "webrtc": {
+          "$ref": "#/definitions/rasWebRTCIngress"
+        }
+      },
+      "description": "接入信息描述."
+    },
+    "rasIngressStatus": {
+      "type": "string",
+      "enum": [
+        "INGRESS_STATUS_UNKNOWN",
+        "AVAILABLE",
+        "UNAVALIABLE"
+      ],
+      "default": "INGRESS_STATUS_UNKNOWN",
+      "description": "接入源状态定义, 不可作为参数输入.\n\n - INGRESS_STATUS_UNKNOWN: 未知状态.\n - AVAILABLE: 可用状态.\n - UNAVALIABLE: 异常状态."
+    },
+    "rasIngressType": {
+      "type": "string",
+      "enum": [
+        "INGRESS_TYPE_UNKNOWN",
+        "RTSP",
+        "RTMP",
+        "WEBRTC"
+      ],
+      "default": "INGRESS_TYPE_UNKNOWN",
+      "description": "接入源类型定义.\n\n - INGRESS_TYPE_UNKNOWN: 未知类型, 禁止作为输入参数.\n - RTSP: RTSP接入流类型, 关联参数RTSPIngress.\n - RTMP: RTMP推流类型, 关联参数RTMPIngress.\n - WEBRTC: WebRTC推流类型, 关联参数WebRTCIngress."
+    },
+    "rasIngressVerification": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "$ref": "#/definitions/rasIngressVerificationMethod",
+          "description": "[require] 鉴权类型."
+        }
+      },
+      "description": "接入源鉴权信息."
+    },
+    "rasIngressVerificationMethod": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "TOKEN"
+      ],
+      "default": "NONE",
+      "description": "接入源鉴权类型.\n\n - NONE: 无, 仅用于RTSP类型的接入类型.\n - TOKEN: token鉴权, 仅用于RTMP类型的接入类型."
+    },
+    "rasIot": {
+      "type": "object",
+      "properties": {
+        "iot_id": {
+          "type": "string",
+          "description": "唯一标识."
+        },
+        "name": {
+          "type": "string",
+          "title": "Iot名称，需要指定"
+        },
+        "device_sn": {
+          "type": "string",
+          "title": "设备Sn"
+        },
+        "information": {
+          "$ref": "#/definitions/rasIotInformation",
+          "title": "Iot信息"
+        },
+        "status": {
+          "$ref": "#/definitions/rasIotStatus",
+          "title": "Iot接入状态，　不可作为输入参数"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "首次接入时间"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "更新时间"
+        }
+      },
+      "description": "Iot信息定义."
+    },
+    "rasIotInformation": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/rasIotType",
+          "title": "类型，由设备的devicekind决定，不可输入"
+        },
+        "symphony": {
+          "$ref": "#/definitions/rasSymphonyIot"
+        }
+      },
+      "title": "Iot平台接入信息"
+    },
+    "rasIotStatus": {
+      "type": "string",
+      "enum": [
+        "IOT_STATUS_UNKNOWN",
+        "IOT_STATUS_AVAILABLE",
+        "IOT_STATUS_UNAVAILABLE"
+      ],
+      "default": "IOT_STATUS_UNKNOWN",
+      "description": "- IOT_STATUS_UNKNOWN: 未知状态\n - IOT_STATUS_AVAILABLE: 可用状态\n - IOT_STATUS_UNAVAILABLE: 不可用状态",
+      "title": "设备接入Iot平台状态"
+    },
+    "rasIotType": {
+      "type": "string",
+      "enum": [
+        "IOT_TYPE_UNKNOWN",
+        "SYMPHONY"
+      ],
+      "default": "IOT_TYPE_UNKNOWN",
+      "description": "设备IoT类型定义.\n\n - IOT_TYPE_UNKNOWN: 未知类型, 禁止作为输入参数.\n - SYMPHONY: SYMPHONY IoT类型."
+    },
+    "rasProtocolType": {
+      "type": "string",
+      "enum": [
+        "TCP",
+        "UDP"
+      ],
+      "default": "TCP",
+      "description": "网络传输协议类型.\n\n - TCP: TCP协议.\n - UDP: UDP协议."
+    },
+    "rasRTMPIngress": {
+      "type": "object",
+      "properties": {
+        "publish_url": {
+          "type": "string",
+          "description": "RTMP推流地址, 系统自动生成, 不可作为参数输入."
+        },
+        "url": {
+          "type": "string",
+          "description": "RTSP拉流地址, 系统内部地址, 不可作为参数输入."
+        },
+        "verification": {
+          "$ref": "#/definitions/rasIngressVerification",
+          "description": "[require] 鉴权信息."
+        }
+      },
+      "description": "RTMP接入源信息."
+    },
+    "rasRTSPIngress": {
+      "type": "object",
+      "properties": {
+        "source_url": {
+          "type": "string",
+          "description": "[require] 用户输入的RTSP流地址."
+        },
+        "protocol_type": {
+          "$ref": "#/definitions/rasProtocolType",
+          "description": "[require] 网络传输协议类型."
+        },
+        "url": {
+          "type": "string",
+          "description": "RTSP拉流地址, 系统内部地址, 不可作为参数输入."
+        },
+        "verification": {
+          "$ref": "#/definitions/rasIngressVerification",
+          "description": "[require] 鉴权信息."
+        }
+      },
+      "description": "RTSP接入源信息."
+    },
+    "rasSymphonyIot": {
+      "type": "object",
+      "properties": {
+        "registry_id": {
+          "type": "string",
+          "title": "symphony租户id"
+        },
+        "extra_info": {
+          "type": "string",
+          "title": "其他信息"
+        }
+      },
+      "title": "symphony iot接入信息"
+    },
+    "rasTokenExpiration": {
+      "type": "string",
+      "enum": [
+        "TokenExpiration_UNSET",
+        "HOURS_1",
+        "MINUTES_30",
+        "MINUTES_15",
+        "NO_EXPIRED"
+      ],
+      "default": "TokenExpiration_UNSET",
+      "description": "token有效时间.\n\n - TokenExpiration_UNSET: 不可作为参数输入.\n - HOURS_1: 有效时长一小时.\n - MINUTES_30: 有效时长30分钟.\n - MINUTES_15: 有效时长15分钟.\n - NO_EXPIRED: 永远不过期."
+    },
+    "rasUserInfo": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "调用IAM接口CreateUser返回"
+        },
+        "ak": {
+          "type": "string"
+        },
+        "sk": {
+          "type": "string"
+        }
+      }
+    },
+    "rasVerification": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "$ref": "#/definitions/rasVerifyMethod",
+          "title": "设备鉴权方式"
+        },
+        "user_info": {
+          "$ref": "#/definitions/rasUserInfo"
+        }
+      }
+    },
+    "rasVerifyMethod": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_METHOD",
+        "USER"
+      ],
+      "default": "UNKNOWN_METHOD",
+      "description": "- UNKNOWN_METHOD: 未知类型, 禁止作为输入参数.\n - USER: 通过IAM鉴权, 默认鉴权方式",
+      "title": "设备鉴权方式"
+    },
+    "rasWebRTCIngress": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "RTSP拉流地址, 系统内部地址, 不可作为参数输入."
+        }
+      }
+    },
+    "rasWebRTCSDPType": {
+      "type": "string",
+      "enum": [
+        "OFFER",
+        "ANSWER"
+      ],
+      "default": "OFFER"
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code]."
+        },
+        "message": {
+          "type": "string",
+          "description": "A developer-facing error message, which should be in English. Any\nuser-facing error message should be localized and sent in the\n[google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client."
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          },
+          "description": "A list of messages that carry the error details.  There is a common set of\nmessage types for APIs to use."
+        }
+      },
+      "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors)."
+    }
+  }
+}

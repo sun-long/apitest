@@ -1,0 +1,1045 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "ras_bot_manager.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "RasBotManager"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/CreateBotInstance": {
+      "post": {
+        "summary": "创建bot instance\n一个instance 是一个bot module的部署实例\nroute prefix= internal_prefix=ras action=CreateBotInstance version=v1",
+        "operationId": "RasBotManager_CreateBotInstance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_managerCreateBotInstanceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/bot_managerCreateBotInstanceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "RasBotManager"
+        ]
+      }
+    },
+    "/v1/DeleteBot": {
+      "post": {
+        "summary": "删除bot\nroute prefix= internal_prefix=ras action=DeleteBot version=v1",
+        "operationId": "RasBotManager_DeleteBot",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_managerDeleteBotResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/bot_managerDeleteBotRequest"
+            }
+          }
+        ],
+        "tags": [
+          "RasBotManager"
+        ]
+      }
+    },
+    "/v1/DeleteBotInstance": {
+      "post": {
+        "summary": "删除bot instance\nroute prefix= internal_prefix=ras action=DeleteBotInstance version=v1",
+        "operationId": "RasBotManager_DeleteBotInstance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_managerDeleteBotInstanceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/bot_managerDeleteBotInstanceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "RasBotManager"
+        ]
+      }
+    },
+    "/v1/EdgeReportBotState": {
+      "post": {
+        "summary": "边manager 上报bot状态，包括探活、pipeline等信息\nroute prefix= internal_prefix=ras action=EdgeReportBotState version=v1",
+        "operationId": "RasBotManager_EdgeReportBotState",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_managerReportEdgeBotStateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/bot_managerReportEdgeBotStateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "RasBotManager"
+        ]
+      }
+    },
+    "/v1/GetBot": {
+      "get": {
+        "summary": "action + version + prefix 查询bot\nroute prefix= internal_prefix=ras action=GetBot version=v1",
+        "operationId": "RasBotManager_GetBot",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_managerGetBotResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "prefix",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "RasBotManager"
+        ]
+      }
+    },
+    "/v1/ListBot": {
+      "get": {
+        "summary": "中心manager bot查询，center manager拥有所有bot信息\nroute prefix= internal_prefix=ras action=ListBot version=v1",
+        "operationId": "RasBotManager_ListBot",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_managerListBotResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "bot_name",
+            "description": "按name过滤",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "cluster_id",
+            "description": "按cluster_id过滤",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "description": "按status过滤",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "BotStatus_Unknown",
+              "Pending",
+              "Running"
+            ],
+            "default": "BotStatus_Unknown"
+          },
+          {
+            "name": "paging.offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.total",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "drop_fields",
+            "description": "bot 字段很多 不用的字段可以设置drop_fields 减小请求",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "RasBotManager"
+        ]
+      }
+    },
+    "/v1/UpsertBot": {
+      "post": {
+        "summary": "创建或者更新bot\nroute prefix= internal_prefix=ras action=UpsertBot version=v1",
+        "operationId": "RasBotManager_UpsertBot",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_managerUpsertBotResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/bot_managerUpsertBotRequest"
+            }
+          }
+        ],
+        "tags": [
+          "RasBotManager"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Bot_ImplementsEndpoint": {
+      "type": "object",
+      "properties": {
+        "service": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Bot_LivenessLivenessType": {
+      "type": "string",
+      "enum": [
+        "LivenessType_Unknown",
+        "TCP",
+        "HTTP"
+      ],
+      "default": "LivenessType_Unknown"
+    },
+    "Bot_ResourceARS": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "Bot_ResourceIPS": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "feature_version": {
+          "type": "string"
+        },
+        "object_type": {
+          "type": "string"
+        }
+      }
+    },
+    "Bot_ResourceSFD": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "feature_version": {
+          "type": "string"
+        }
+      }
+    },
+    "Bot_ResourceVPS": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "Bot_RouteRouteType": {
+      "type": "string",
+      "enum": [
+        "RouteType_Unknown",
+        "Public",
+        "Private",
+        "Local"
+      ],
+      "default": "RouteType_Unknown"
+    },
+    "ServiceRoute": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "methods": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "headers": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "strip_path": {
+          "type": "boolean"
+        }
+      }
+    },
+    "SpecService": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "connect_timeout": {
+          "type": "string",
+          "format": "int64"
+        },
+        "read_timeout": {
+          "type": "string",
+          "format": "int64"
+        },
+        "write_timeout": {
+          "type": "string",
+          "format": "int64"
+        },
+        "url": {
+          "type": "string"
+        },
+        "routes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServiceRoute"
+          }
+        }
+      }
+    },
+    "apiCluster": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "云信息的唯一标识，比如：hangzhou1, shenzhen"
+        },
+        "name": {
+          "type": "string",
+          "title": "云信息的中文名称，用于展示给用户选择使用"
+        },
+        "type": {
+          "$ref": "#/definitions/apiClusterType",
+          "title": "云的类型，中心云或者边缘云。bot 仅能部署在边缘云中"
+        },
+        "public_ingress": {
+          "type": "string",
+          "title": "云的外部通信地址，通常是面向用户的公网域名"
+        },
+        "private_ingress": {
+          "type": "string",
+          "title": "云的内部通信地址，通常是内部各个云之间通信使用"
+        },
+        "site_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "集群区域 id"
+        },
+        "infra_cluster_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "对应 infra 中 cluster 的 id"
+        },
+        "l4_ingress": {
+          "type": "string",
+          "title": "公网 4 层的地址"
+        }
+      }
+    },
+    "apiClusterType": {
+      "type": "string",
+      "enum": [
+        "CT_UNKNOWN",
+        "CT_CENTER",
+        "CT_EDGE"
+      ],
+      "default": "CT_UNKNOWN",
+      "title": "- CT_CENTER: 中心云，ras 整个系统中只有一个中心云\n - CT_EDGE: 边云，bot 只能部署在边云"
+    },
+    "apiPaging": {
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "bot_managerCreateBotInstanceRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "bot名字"
+        },
+        "version": {
+          "type": "string",
+          "title": "bot版本"
+        },
+        "module_name": {
+          "type": "string",
+          "title": "instance 的module name"
+        },
+        "cluster_id": {
+          "type": "string",
+          "title": "instance cluster id"
+        }
+      }
+    },
+    "bot_managerCreateBotInstanceResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        }
+      }
+    },
+    "bot_managerDeleteBotInstanceRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "bot名字"
+        },
+        "version": {
+          "type": "string",
+          "title": "bot版本"
+        },
+        "module_name": {
+          "type": "string",
+          "title": "instance 的module name"
+        },
+        "cluster_id": {
+          "type": "string",
+          "title": "instance cluster id"
+        }
+      }
+    },
+    "bot_managerDeleteBotInstanceResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        }
+      }
+    },
+    "bot_managerDeleteBotRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "bot名字"
+        },
+        "version": {
+          "type": "string",
+          "title": "bot版本"
+        }
+      }
+    },
+    "bot_managerDeleteBotResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        }
+      }
+    },
+    "bot_managerEdgeBotState": {
+      "type": "object",
+      "properties": {
+        "bot_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "status": {
+          "$ref": "#/definitions/rasBotStatus"
+        }
+      }
+    },
+    "bot_managerGetBotResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "bots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasBot"
+          }
+        }
+      }
+    },
+    "bot_managerListBotResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "bots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasBot"
+          }
+        },
+        "paging": {
+          "$ref": "#/definitions/apiPaging"
+        }
+      }
+    },
+    "bot_managerReportEdgeBotStateRequest": {
+      "type": "object",
+      "properties": {
+        "edge_bot_status": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/bot_managerEdgeBotState"
+          }
+        },
+        "cluster_id": {
+          "type": "string"
+        }
+      }
+    },
+    "bot_managerReportEdgeBotStateResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        }
+      }
+    },
+    "bot_managerUpsertBotRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "bot名字"
+        },
+        "version": {
+          "type": "string",
+          "title": "bot版本"
+        },
+        "desc": {
+          "type": "string",
+          "title": "bot描述"
+        },
+        "support_device_kind": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "bot支持的设备类型"
+        },
+        "bot_applets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasBot_Applet"
+          },
+          "title": "bot applet"
+        },
+        "implements": {
+          "$ref": "#/definitions/rasBot_Implements",
+          "title": "绑定设备时必须，指定 bot 实现 ras 约定接口的服务调用方式"
+        },
+        "policy": {
+          "$ref": "#/definitions/rasBot_Policy"
+        },
+        "policy_group": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasBot_PolicyGroup"
+          }
+        },
+        "bot_modules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasBot_Module"
+          },
+          "title": "bot module 不允许修改"
+        }
+      }
+    },
+    "bot_managerUpsertBotResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+        }
+      },
+      "additionalProperties": {},
+      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := \u0026pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    },
+    "protobufNullValue": {
+      "type": "string",
+      "enum": [
+        "NULL_VALUE"
+      ],
+      "default": "NULL_VALUE",
+      "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\n The JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
+    },
+    "rasBot": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "bot名字"
+        },
+        "version": {
+          "type": "string",
+          "title": "bot版本"
+        },
+        "desc": {
+          "type": "string",
+          "title": "bot描述"
+        },
+        "support_device_kind": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "bot支持的设备类型"
+        },
+        "bot_applets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasBot_Applet"
+          },
+          "title": "bot applets"
+        },
+        "policy": {
+          "$ref": "#/definitions/rasBot_Policy"
+        },
+        "policy_group": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasBot_PolicyGroup"
+          }
+        },
+        "implements": {
+          "$ref": "#/definitions/rasBot_Implements",
+          "title": "绑定设备时必须，指定 bot 实现 ras 约定接口的服务调用方式"
+        },
+        "bot_modules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasBot_Module"
+          },
+          "title": "bot module信息"
+        },
+        "bot_instances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasBot_Instance"
+          },
+          "title": "bot 部署实例信息"
+        }
+      }
+    },
+    "rasBotStatus": {
+      "type": "string",
+      "enum": [
+        "BotStatus_Unknown",
+        "Pending",
+        "Running"
+      ],
+      "default": "BotStatus_Unknown"
+    },
+    "rasBot_Applet": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "desc": {
+          "type": "string"
+        }
+      }
+    },
+    "rasBot_Implements": {
+      "type": "object",
+      "properties": {
+        "assignment_interface": {
+          "$ref": "#/definitions/Bot_ImplementsEndpoint"
+        },
+        "data_collecting_interface": {
+          "$ref": "#/definitions/Bot_ImplementsEndpoint"
+        }
+      }
+    },
+    "rasBot_Instance": {
+      "type": "object",
+      "properties": {
+        "cluster": {
+          "$ref": "#/definitions/apiCluster",
+          "title": "bot该实例部署的位置信息"
+        },
+        "status": {
+          "$ref": "#/definitions/rasBotStatus",
+          "title": "bot该实例的状态"
+        },
+        "module_name": {
+          "type": "string",
+          "title": "bot该实例的module_name"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "rasBot_Liveness": {
+      "type": "object",
+      "properties": {
+        "liveness_type": {
+          "$ref": "#/definitions/Bot_LivenessLivenessType",
+          "title": "探活类型"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32",
+          "title": "探活路径"
+        },
+        "path": {
+          "type": "string"
+        },
+        "interval": {
+          "type": "integer",
+          "format": "int32",
+          "title": "两次探测的间隔"
+        },
+        "ready_delay": {
+          "type": "integer",
+          "format": "int32",
+          "title": "第一次探测等待的时间，如果bot启动需要一些时间，可以设置"
+        }
+      }
+    },
+    "rasBot_Module": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "服务名称，可以随意命名"
+        },
+        "hostname": {
+          "type": "string",
+          "title": "请求这个 service 的访问地址，一般是 k8s"
+        },
+        "version": {
+          "type": "string",
+          "title": "服务版本号，遵循语义化版本定义规则"
+        },
+        "singleton": {
+          "type": "boolean",
+          "title": "服务部署位置信息"
+        },
+        "liveness": {
+          "$ref": "#/definitions/rasBot_Liveness",
+          "title": "服务健康检查信息"
+        },
+        "routes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasBot_Route"
+          },
+          "title": "服务在业务7层网关中的暴露的接口信息，ingress接口\r\npath需要为完整路径"
+        },
+        "resources": {
+          "$ref": "#/definitions/rasBot_Resource",
+          "title": "bot依赖的resource配置"
+        }
+      }
+    },
+    "rasBot_Policy": {
+      "type": "object",
+      "properties": {
+        "specs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasBot_PolicySpec"
+          }
+        }
+      }
+    },
+    "rasBot_PolicyGroup": {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "$ref": "#/definitions/rasBot_PolicyGroupSpec"
+        }
+      }
+    },
+    "rasBot_PolicyGroupSpec": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "policies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "rasBot_PolicySpec": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "desc": {
+          "type": "string"
+        }
+      }
+    },
+    "rasBot_Resource": {
+      "type": "object",
+      "properties": {
+        "ips": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Bot_ResourceIPS"
+          },
+          "title": "IPS配置"
+        },
+        "sfd": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Bot_ResourceSFD"
+          },
+          "title": "sfd配置"
+        },
+        "vps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Bot_ResourceVPS"
+          },
+          "title": "vps配置"
+        },
+        "ars": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Bot_ResourceARS"
+          },
+          "title": "ars配置"
+        }
+      }
+    },
+    "rasBot_Route": {
+      "type": "object",
+      "properties": {
+        "route_type": {
+          "$ref": "#/definitions/Bot_RouteRouteType"
+        },
+        "version": {
+          "type": "string"
+        },
+        "spec": {
+          "$ref": "#/definitions/rasBot_RouteSpec"
+        }
+      }
+    },
+    "rasBot_RouteSpec": {
+      "type": "object",
+      "properties": {
+        "services": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SpecService"
+          }
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code]."
+        },
+        "message": {
+          "type": "string",
+          "description": "A developer-facing error message, which should be in English. Any\nuser-facing error message should be localized and sent in the\n[google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client."
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          },
+          "description": "A list of messages that carry the error details.  There is a common set of\nmessage types for APIs to use."
+        }
+      },
+      "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors)."
+    }
+  }
+}

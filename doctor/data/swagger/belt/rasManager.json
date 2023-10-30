@@ -1,0 +1,1841 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "ras_manager.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "RasManager"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/CallbackAssignmentState": {
+      "post": {
+        "summary": "内部接口，用于边缘上报 bot_assignment 的状态\nroute: prefix=, internal_prefix=ras, action=CallbackAssignmentState, version=v1",
+        "operationId": "RasManager_CallbackAssignmentState",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ras_managerCallbackAssignmentStateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ras_managerCallbackAssignmentStateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "RasManager"
+        ]
+      }
+    },
+    "/v1/CallbackDataCollectingTaskStatus": {
+      "post": {
+        "summary": "CallbackDataCollectingTaskStatus 设置回流作业状态.\nroute: prefix=data/collecting, internal_prefix=, action=CallbackDataCollectingTaskStatus, version=v1",
+        "operationId": "RasManager_CallbackDataCollectingTaskStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ras_managerCallbackDataCollectingTaskStatusResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ras_managerCallbackDataCollectingTaskStatusRequest"
+            }
+          }
+        ],
+        "tags": [
+          "RasManager"
+        ]
+      }
+    },
+    "/v1/CountDevices": {
+      "get": {
+        "summary": "CountDevices 返回 account 下的 device 总数.\nroute: prefix=ras, internal_prefix=, action=CountDevices, version=v1",
+        "operationId": "RasManager_CountDevices",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ras_managerCountDevicesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "spu_names",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "RasManager"
+        ]
+      }
+    },
+    "/v1/CreateAssignment": {
+      "post": {
+        "summary": "CreateAssignment 为指定的 device 创建 bot_assignment(推理能力).\nroute: prefix=ras, internal_prefix=, action=CreateAssignment, version=v1",
+        "operationId": "RasManager_CreateAssignment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ras_managerCreateAssignmentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ras_managerCreateAssignmentRequest"
+            }
+          }
+        ],
+        "tags": [
+          "RasManager"
+        ]
+      }
+    },
+    "/v1/CreateDataCollectingTask": {
+      "post": {
+        "summary": "CreateDataCollectingTask 发起回流作业.\nroute: prefix=data/collecting, internal_prefix=, action=CreateDataCollectingTask, version=v1",
+        "operationId": "RasManager_CreateDataCollectingTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ras_managerCreateDataCollectingTaskResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ras_managerCreateDataCollectingTaskRequest"
+            }
+          }
+        ],
+        "tags": [
+          "RasManager"
+        ]
+      }
+    },
+    "/v1/DeleteAssignment": {
+      "post": {
+        "summary": "DeleteAssignment 移除 bot_assignment\nroute: prefix=ras, internal_prefix=, action=DeleteAssignment, version=v1",
+        "operationId": "RasManager_DeleteAssignment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ras_managerDeleteAssignmentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ras_managerDeleteAssignmentRequest"
+            }
+          }
+        ],
+        "tags": [
+          "RasManager"
+        ]
+      }
+    },
+    "/v1/DeleteDataCollectingTask": {
+      "post": {
+        "summary": "DeleteDataCollectingTask 根据task_id删除回流作业\nroute: prefix=data/collecting, internal_prefix=, action=DeleteDataCollectingTask, version=v1",
+        "operationId": "RasManager_DeleteDataCollectingTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ras_managerDeleteDataCollectingTaskResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ras_managerDeleteDataCollectingTaskRequest"
+            }
+          }
+        ],
+        "tags": [
+          "RasManager"
+        ]
+      }
+    },
+    "/v1/DeleteDevice": {
+      "post": {
+        "summary": "DeleteDevice 删除设备信息. 同时校验设备是否有使用 ras 的资源, 如果有资源绑定关系, 不允许删除设备\nroute: prefix=ras, internal_prefix=, action=DeleteDevice, version=v1",
+        "operationId": "RasManager_DeleteDevice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ras_managerDeleteDeviceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ras_managerDeleteDeviceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "RasManager"
+        ]
+      }
+    },
+    "/v1/GetAssignment": {
+      "get": {
+        "summary": "GetAssignment 获取 bot_assignment 的信息\nroute: prefix=ras, internal_prefix=, action=GetAssignment, version=v1",
+        "operationId": "RasManager_GetAssignment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ras_managerGetAssignmentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "device_id",
+            "description": "bot_assignment 应用在 device 上.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "spu_name",
+            "description": "对外不暴露. 内部调用时需要指定 spu_name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "verbose",
+            "description": "optional, 是否输出详细结果，如 elements 信息等，默认 false.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "RasManager"
+        ]
+      }
+    },
+    "/v1/GetDataCollectingTask": {
+      "get": {
+        "summary": "GetDataCollectingTask 根据task_id获取回流作业\nroute: prefix=data/collecting, internal_prefix=, action=GetDataCollectingTask, version=v1",
+        "operationId": "RasManager_GetDataCollectingTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ras_managerGetDataCollectingTaskResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "RasManager"
+        ]
+      }
+    },
+    "/v1/GetDeviceDetail": {
+      "get": {
+        "summary": "GetDeviceDetail 获取单个设备信息, 包含设备绑定的 ras 信息.\nroute: prefix=ras, internal_prefix=, action=GetDeviceDetail, version=v1",
+        "operationId": "RasManager_GetDeviceDetail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ras_managerGetDeviceDetailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "device_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "RasManager"
+        ]
+      }
+    },
+    "/v1/ListAccountDeviceSpus": {
+      "get": {
+        "summary": "ListAccountDeviceSpus 获取 account 下所有 device 订阅的 spu 列表\nroute: prefix=ras, internal_prefix=, action=ListAccountDeviceSpus, version=v1",
+        "operationId": "RasManager_ListAccountDeviceSpus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ras_managerListAccountDeviceSpusResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "RasManager"
+        ]
+      }
+    },
+    "/v1/ListAllDeviceDetails": {
+      "get": {
+        "summary": "ListAllDeviceDetails 获取所有 account 的设备列表, 包含设备绑定的 ras 信息.\nroute: prefix=ras, internal_prefix=, action=ListAllDeviceDetails, version=v1",
+        "operationId": "RasManager_ListAllDeviceDetails",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ras_managerListAllDeviceDetailsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "spu_names",
+            "description": "[required] 至少传入一个spu_name.",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "paging.offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.total",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "RasManager"
+        ]
+      }
+    },
+    "/v1/ListAssignments": {
+      "get": {
+        "summary": "ListAssignments 获取 bot_assignment 的列表，支持以 bot_name 和 device_id 过滤\nroute: prefix=ras, internal_prefix=, action=ListAssignments, version=v1",
+        "operationId": "RasManager_ListAssignments",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ras_managerListAssignmentsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "device_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "verbose",
+            "description": "optional, 是否输出详细结果，如 elements 信息等，默认 false.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "paging.offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.total",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "spu_name",
+            "description": "optional, 不对外暴露。仅 rpc 调用时可传",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "RasManager"
+        ]
+      }
+    },
+    "/v1/ListDataCollectingTask": {
+      "get": {
+        "summary": "ListDataCollectingTask 获取回流作业列表\nroute: prefix=data/collecting, internal_prefix=, action=ListDataCollectingTask, version=v1",
+        "operationId": "RasManager_ListDataCollectingTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ras_managerListDataCollectingTaskResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "paging.offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.total",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "RasManager"
+        ]
+      }
+    },
+    "/v1/ListDeviceDetails": {
+      "get": {
+        "summary": "ListDeviceDetails 获取设备列表, 包含设备绑定的 ras 信息.\nroute: prefix=ras, internal_prefix=, action=ListDeviceDetails, version=v1",
+        "operationId": "RasManager_ListDeviceDetails",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ras_managerListDeviceDetailsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "spu_names",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "filter_with_spu",
+            "description": "仅展示绑定了 spu 的设备列表. 默认为 false",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "paging.offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.total",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "RasManager"
+        ]
+      }
+    },
+    "/v1/UpdateAssignment": {
+      "post": {
+        "summary": "UpdateAssignment 更新 bot_assignment 的配置\nroute: prefix=ras, internal_prefix=, action=UpdateAssignment, version=v1",
+        "operationId": "RasManager_UpdateAssignment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ras_managerUpdateAssignmentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ras_managerUpdateAssignmentRequest"
+            }
+          }
+        ],
+        "tags": [
+          "RasManager"
+        ]
+      }
+    },
+    "/v1/UpdateDevice": {
+      "post": {
+        "summary": "UpdateDevice 更新设备信息. 同时检查设备是否已经绑定 ras 资源，如果有资源绑定关系，不允许修改设备.\nroute: prefix=ras, internal_prefix=, action=UpdateDevice, version=v1",
+        "operationId": "RasManager_UpdateDevice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ras_managerUpdateDeviceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ras_managerUpdateDeviceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "RasManager"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "CallbackAssignmentStateRequestCBState": {
+      "type": "object",
+      "properties": {
+        "assignment_id": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/rasAssignmentState"
+        },
+        "elements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasBotAssignmentElement"
+          }
+        }
+      }
+    },
+    "apiCluster": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "云信息的唯一标识，比如：hangzhou1, shenzhen"
+        },
+        "name": {
+          "type": "string",
+          "title": "云信息的中文名称，用于展示给用户选择使用"
+        },
+        "type": {
+          "$ref": "#/definitions/apiClusterType",
+          "title": "云的类型，中心云或者边缘云。bot 仅能部署在边缘云中"
+        },
+        "public_ingress": {
+          "type": "string",
+          "title": "云的外部通信地址，通常是面向用户的公网域名"
+        },
+        "private_ingress": {
+          "type": "string",
+          "title": "云的内部通信地址，通常是内部各个云之间通信使用"
+        },
+        "site_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "集群区域 id"
+        },
+        "infra_cluster_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "对应 infra 中 cluster 的 id"
+        },
+        "l4_ingress": {
+          "type": "string",
+          "title": "公网 4 层的地址"
+        }
+      }
+    },
+    "apiClusterType": {
+      "type": "string",
+      "enum": [
+        "CT_UNKNOWN",
+        "CT_CENTER",
+        "CT_EDGE"
+      ],
+      "default": "CT_UNKNOWN",
+      "title": "- CT_CENTER: 中心云，ras 整个系统中只有一个中心云\n - CT_EDGE: 边云，bot 只能部署在边云"
+    },
+    "apiPaging": {
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+        }
+      },
+      "additionalProperties": {},
+      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := \u0026pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    },
+    "protobufNullValue": {
+      "type": "string",
+      "enum": [
+        "NULL_VALUE"
+      ],
+      "default": "NULL_VALUE",
+      "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\n The JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
+    },
+    "rasACL": {
+      "type": "object",
+      "properties": {
+        "ad": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "expire_time": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "rasAssignment": {
+      "type": "object",
+      "properties": {
+        "assignment_id": {
+          "type": "string",
+          "title": "有 ras 内部生成，表示 Assignment 的唯一标识"
+        },
+        "spu_name": {
+          "type": "string",
+          "title": "表示 Assignment 启动时使用的 spu 名称"
+        },
+        "account_id": {
+          "type": "string",
+          "title": "账户的 id, 从 ingress 获取"
+        },
+        "device_id": {
+          "type": "string",
+          "title": "设备 ID, 用户指定为哪个设备启动 BotAssignment"
+        },
+        "assignment_config": {
+          "type": "object",
+          "description": "assignment_config 与 bot 对应. 由用户根据 bot 的使用文档传入."
+        },
+        "rotate_config": {
+          "$ref": "#/definitions/rasRotateConfig",
+          "description": "rotate_config 用户指定 device 在 bot 中资源占用的回收逻辑."
+        },
+        "state": {
+          "$ref": "#/definitions/rasAssignmentState",
+          "description": "表示 BotAssignment 的状态."
+        },
+        "elements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasBotAssignmentElement"
+          },
+          "description": "BotAssignmentDetail 表示 BotAssignment 的详细状态信息."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "BotAssignment 的创建时间"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "BotAssignment 的修改时间"
+        }
+      },
+      "description": "对用户暴露的 assignment 的定义."
+    },
+    "rasAssignmentState": {
+      "type": "string",
+      "enum": [
+        "AS_UNKNOWN",
+        "AS_EL_PENDING",
+        "AS_EL_RUNNING",
+        "AS_SUCCEED",
+        "AS_FAILED",
+        "EL_TERMINATED"
+      ],
+      "default": "AS_UNKNOWN",
+      "description": "- AS_UNKNOWN: [assignment]由于某些原因造成获取不到 assignment 的当前状态.\n - AS_EL_PENDING: [assignment/element] 已经被接受，但是内部资源在准备中.\n - AS_EL_RUNNING: [assignment/element] 正在运行.\n - AS_SUCCEED: [assignment] 运行完成，所有 element 都已 terminated, 且 code 均为0.\n - AS_FAILED: [assignment] 运行失败，所有 element 都已 terminated, 至少有一个 code 不为0.\n - EL_TERMINATED: [element] 因完成或出错而终止.",
+      "title": "表示 BotAssignment 的状态"
+    },
+    "rasBotAssignmentElement": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "$ref": "#/definitions/rasAssignmentState",
+          "title": "state: PENDING RUNNING TERMINATED"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "status code, zero means succes, others are failure."
+        },
+        "message": {
+          "type": "string"
+        },
+        "meta": {
+          "type": "object"
+        }
+      },
+      "description": "BotAssignmentElement 表示 assignment 内部的运行单位."
+    },
+    "rasCephConfig": {
+      "type": "object",
+      "properties": {
+        "access_key": {
+          "type": "string"
+        },
+        "secret_key": {
+          "type": "string"
+        },
+        "bucket": {
+          "type": "string"
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "protocol": {
+          "type": "string"
+        }
+      }
+    },
+    "rasDataCollectingTask": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "optional 作业名称."
+        },
+        "desc": {
+          "type": "string",
+          "description": "optional 任务描述."
+        },
+        "spu_name": {
+          "type": "string"
+        },
+        "task_id": {
+          "type": "string"
+        },
+        "siphon_job_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "time_config": {
+          "$ref": "#/definitions/rasTimeConfig"
+        },
+        "target_config": {
+          "$ref": "#/definitions/rasTargetConfig"
+        },
+        "data_type": {
+          "$ref": "#/definitions/rasDataType"
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "event_filter": {
+          "$ref": "#/definitions/rasEventFilter"
+        },
+        "status": {
+          "$ref": "#/definitions/rasDataCollectingTaskStatus",
+          "description": "任务状态."
+        },
+        "auth_id": {
+          "type": "string"
+        },
+        "result_detail": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/rasDataCollectingTaskStatus"
+          },
+          "description": "optional response 中填充结果的详细描述."
+        },
+        "acl": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasACL"
+          }
+        },
+        "callback_url": {
+          "type": "string",
+          "title": "optional Monolith callback url,\nhttp method: post,\nrequest body sample: {\"callback_url\":\"http://10.4.6.66:8080/\", \"task_id\":\"37121b81-f89b-41ad-aa3a-dde6f2077cc7\", \"status\":{\"state\":6}},\nresponse content_type: \"application/json\""
+        }
+      }
+    },
+    "rasDataCollectingTaskState": {
+      "type": "string",
+      "enum": [
+        "Unset",
+        "Created",
+        "InProcess",
+        "UploadFailed",
+        "Uploaded",
+        "Submited",
+        "SubmitFailed",
+        "SyncFailed",
+        "Completed"
+      ],
+      "default": "Unset",
+      "description": " - Created: 已创建.\n - InProcess: 处理中.\n - UploadFailed: [bot callback]上传失败.\n - Uploaded: [bot callback]上传成功.\n - Submited: 已提交至SenseData.\n - SubmitFailed: 提交至SenseData失败.\n - SyncFailed: 提取失败.\n - Completed: 提取成功."
+    },
+    "rasDataCollectingTaskStatus": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "$ref": "#/definitions/rasDataCollectingTaskState"
+        },
+        "state_message": {
+          "type": "string"
+        }
+      }
+    },
+    "rasDataType": {
+      "type": "string",
+      "enum": [
+        "Video",
+        "Structural"
+      ],
+      "default": "Video"
+    },
+    "rasDevice": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "设备id"
+        },
+        "devicekind_id": {
+          "type": "string",
+          "title": "所属设备类型id"
+        },
+        "name": {
+          "type": "string",
+          "title": "设备名称"
+        },
+        "desc": {
+          "type": "string",
+          "title": "设备描述"
+        },
+        "extra_info": {
+          "type": "string",
+          "title": "用户自定义信息"
+        },
+        "cluster": {
+          "$ref": "#/definitions/apiCluster",
+          "title": "设备接入点"
+        },
+        "verify": {
+          "$ref": "#/definitions/rasVerification",
+          "title": "设备鉴权信息"
+        },
+        "driver": {
+          "$ref": "#/definitions/rasDriver",
+          "title": "设备驱动信息"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "更新时间."
+        }
+      }
+    },
+    "rasDeviceDetail": {
+      "type": "object",
+      "properties": {
+        "device": {
+          "$ref": "#/definitions/rasDevice"
+        },
+        "device_kind": {
+          "$ref": "#/definitions/rasDeviceKind"
+        },
+        "spus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasDeviceDetailSPU"
+          }
+        }
+      }
+    },
+    "rasDeviceDetailSPU": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        }
+      }
+    },
+    "rasDeviceKind": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "设备类型id"
+        },
+        "name": {
+          "type": "string",
+          "title": "设备类型名称"
+        },
+        "desc": {
+          "type": "string",
+          "title": "设备类型描述"
+        },
+        "verify_method": {
+          "$ref": "#/definitions/rasVerifyMethod",
+          "title": "鉴权方式"
+        },
+        "ingress_types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasIngressType"
+          },
+          "title": "接入驱动类型"
+        },
+        "iot_types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasIoTType"
+          },
+          "title": "IOT驱动类型"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "更新时间."
+        }
+      }
+    },
+    "rasDriver": {
+      "type": "object",
+      "properties": {
+        "driver_id": {
+          "type": "string",
+          "description": "唯一标识, 系统内部生成, 不可作为参数输入."
+        },
+        "ingresses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasIngress"
+          },
+          "description": "[optional] 接入流信息."
+        },
+        "enable": {
+          "type": "boolean",
+          "description": "[require] 驱动开关, V1.0.0版本必须为true."
+        }
+      },
+      "description": "设备驱动定义."
+    },
+    "rasEventFilter": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "json中字段的完整层级路径, 连接符为\".\", 例: `{\"key\": \"data.confidence\"}`."
+        },
+        "value": {
+          "description": "支持null, float64, string, bool, struct, array类型."
+        },
+        "operator": {
+          "$ref": "#/definitions/rasEventFilterOperator",
+          "description": "支持共8个操作符, value为array类型时, operator须为IN或NIN."
+        }
+      }
+    },
+    "rasEventFilterOperator": {
+      "type": "string",
+      "enum": [
+        "EQ",
+        "GT",
+        "GTE",
+        "LT",
+        "LTE",
+        "NE",
+        "IN",
+        "NIN"
+      ],
+      "default": "EQ",
+      "title": "- EQ: 等于\n - GT: 大于\n - GTE: 大于等于\n - LT: 小于\n - LTE: 小于等于\n - NE: 不等于\n - IN: 包含于\n - NIN: 不包含于"
+    },
+    "rasIngress": {
+      "type": "object",
+      "properties": {
+        "ingress_id": {
+          "type": "string",
+          "description": "唯一标识, 系统内部生成."
+        },
+        "name": {
+          "type": "string",
+          "description": "[optional] 接入源名称."
+        },
+        "description": {
+          "type": "string",
+          "description": "[optional] 接入源描述."
+        },
+        "information": {
+          "$ref": "#/definitions/rasIngressInformation",
+          "description": "[optional] 接入源描述信息."
+        },
+        "status": {
+          "$ref": "#/definitions/rasIngressStatus",
+          "description": "接入源状态, 不可作为参数输入."
+        }
+      },
+      "description": "接入源信息定义."
+    },
+    "rasIngressInformation": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/rasIngressType",
+          "description": "[require] 接入源类型, 与接入源信息."
+        },
+        "rtmp": {
+          "$ref": "#/definitions/rasRTMPIngress"
+        },
+        "rtsp": {
+          "$ref": "#/definitions/rasRTSPIngress"
+        }
+      },
+      "description": "接入信息描述."
+    },
+    "rasIngressStatus": {
+      "type": "string",
+      "enum": [
+        "INGRESS_STATUS_UNKNOWN",
+        "AVAILABLE",
+        "UNAVALIABLE"
+      ],
+      "default": "INGRESS_STATUS_UNKNOWN",
+      "description": "接入源状态定义, 不可作为参数输入.\n\n - INGRESS_STATUS_UNKNOWN: 未知状态.\n - AVAILABLE: 可用状态.\n - UNAVALIABLE: 异常状态."
+    },
+    "rasIngressType": {
+      "type": "string",
+      "enum": [
+        "INGRESS_TYPE_UNKNOWN",
+        "RTSP",
+        "RTMP"
+      ],
+      "default": "INGRESS_TYPE_UNKNOWN",
+      "description": "接入源类型定义.\n\n - INGRESS_TYPE_UNKNOWN: 未知类型, 禁止作为输入参数.\n - RTSP: RTSP接入流类型, 关联参数RTSPIngress.\n - RTMP: RTMP推流类型, 关联参数RTMPIngress."
+    },
+    "rasIngressVerification": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "$ref": "#/definitions/rasIngressVerificationMethod",
+          "description": "[require] 鉴权类型."
+        }
+      },
+      "description": "接入源鉴权信息."
+    },
+    "rasIngressVerificationMethod": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "TOKEN"
+      ],
+      "default": "NONE",
+      "description": "接入源鉴权类型.\n\n - NONE: 无, 仅用于RTSP类型的接入类型.\n - TOKEN: token鉴权, 仅用于RTMP类型的接入类型."
+    },
+    "rasIoTType": {
+      "type": "string",
+      "enum": [
+        "IOT_TYPE_UNKNOWN"
+      ],
+      "default": "IOT_TYPE_UNKNOWN",
+      "description": "设备IoT类型定义.\n\n - IOT_TYPE_UNKNOWN: 未知类型, 禁止作为输入参数."
+    },
+    "rasLustreConfig": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        }
+      }
+    },
+    "rasProtocolType": {
+      "type": "string",
+      "enum": [
+        "TCP",
+        "UDP"
+      ],
+      "default": "TCP",
+      "description": "网络传输协议类型.\n\n - TCP: TCP协议.\n - UDP: UDP协议."
+    },
+    "rasRTMPIngress": {
+      "type": "object",
+      "properties": {
+        "publish_url": {
+          "type": "string",
+          "description": "RTMP推流地址, 系统自动生成, 不可作为参数输入."
+        },
+        "url": {
+          "type": "string",
+          "description": "RTSP拉流地址, 系统内部地址, 不可作为参数输入."
+        },
+        "verification": {
+          "$ref": "#/definitions/rasIngressVerification",
+          "description": "[require] 鉴权信息."
+        }
+      },
+      "description": "RTMP接入源信息."
+    },
+    "rasRTSPIngress": {
+      "type": "object",
+      "properties": {
+        "source_url": {
+          "type": "string",
+          "description": "[require] 用户输入的RTSP流地址."
+        },
+        "protocol_type": {
+          "$ref": "#/definitions/rasProtocolType",
+          "description": "[require] 网络传输协议类型."
+        },
+        "url": {
+          "type": "string",
+          "description": "RTSP拉流地址, 系统内部地址, 不可作为参数输入."
+        },
+        "verification": {
+          "$ref": "#/definitions/rasIngressVerification",
+          "description": "[require] 鉴权信息."
+        }
+      },
+      "description": "RTSP接入源信息."
+    },
+    "rasRotateConfig": {
+      "type": "object",
+      "properties": {
+        "retention": {
+          "$ref": "#/definitions/rasRotateConfigDuration",
+          "title": "保留时长，单位：小时"
+        }
+      },
+      "description": "RotateConfig 用户指定 device 占用的 bot 资源的清理周期."
+    },
+    "rasRotateConfigDuration": {
+      "type": "object",
+      "properties": {
+        "day": {
+          "type": "integer",
+          "format": "int32",
+          "title": "范围 1-30"
+        }
+      }
+    },
+    "rasTargetConfig": {
+      "type": "object",
+      "properties": {
+        "target_type": {
+          "$ref": "#/definitions/rasTargetType"
+        },
+        "lustre_config": {
+          "$ref": "#/definitions/rasLustreConfig"
+        },
+        "ceph_config": {
+          "$ref": "#/definitions/rasCephConfig"
+        },
+        "cluster_name": {
+          "type": "string"
+        }
+      }
+    },
+    "rasTargetType": {
+      "type": "string",
+      "enum": [
+        "Ceph",
+        "Lustre"
+      ],
+      "default": "Ceph"
+    },
+    "rasTimeConfig": {
+      "type": "object",
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "description": "required. 任务需要数据的开始日期,如2022-10-01."
+        },
+        "end_date": {
+          "type": "string",
+          "description": "required. 任务需要数据的结束日期,区间左闭右开， 如2022-10-10."
+        },
+        "windows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasTimeConfigWindow"
+          },
+          "description": "optional. 不为空时必须成对出现.回流时间区间内的切片配置，任务会回流时间区间内 每个window 内的数据，如11，12 表示该次任务回流2022-10-01 到 2022-10-10 每天11点到12点的数据."
+        }
+      }
+    },
+    "rasTimeConfigWindow": {
+      "type": "object",
+      "properties": {
+        "start_time": {
+          "type": "string",
+          "format": "int64",
+          "description": "任务生效周期内实际执行时间段的开始时间,值为零点到该时间的秒数,如15:00:00,该值为15*3600."
+        },
+        "end_time": {
+          "type": "string",
+          "format": "int64",
+          "description": "任务生效周期内实际执行时间段的结束时间."
+        }
+      }
+    },
+    "rasUserInfo": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "调用IAM接口CreateUser返回"
+        },
+        "ak": {
+          "type": "string"
+        },
+        "sk": {
+          "type": "string"
+        }
+      }
+    },
+    "rasVerification": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "$ref": "#/definitions/rasVerifyMethod",
+          "title": "设备鉴权方式"
+        },
+        "user_info": {
+          "$ref": "#/definitions/rasUserInfo"
+        }
+      }
+    },
+    "rasVerifyMethod": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_METHOD",
+        "USER"
+      ],
+      "default": "UNKNOWN_METHOD",
+      "description": "- UNKNOWN_METHOD: 未知类型, 禁止作为输入参数.\n - USER: 通过IAM鉴权, 默认鉴权方式",
+      "title": "设备鉴权方式"
+    },
+    "ras_managerCallbackAssignmentStateRequest": {
+      "type": "object",
+      "properties": {
+        "states": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CallbackAssignmentStateRequestCBState"
+          }
+        }
+      }
+    },
+    "ras_managerCallbackAssignmentStateResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rpcStatus"
+          }
+        }
+      }
+    },
+    "ras_managerCallbackDataCollectingTaskStatusRequest": {
+      "type": "object",
+      "properties": {
+        "cluster_id": {
+          "type": "string"
+        },
+        "task_id": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/rasDataCollectingTaskStatus"
+        }
+      }
+    },
+    "ras_managerCallbackDataCollectingTaskStatusResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        }
+      }
+    },
+    "ras_managerCountDevicesResponse": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int32",
+          "title": "account 下总的设备数量"
+        },
+        "subscribe_total": {
+          "type": "integer",
+          "format": "int32",
+          "title": "account 下订阅了 spu 的设备总数"
+        }
+      }
+    },
+    "ras_managerCreateAssignmentRequest": {
+      "type": "object",
+      "properties": {
+        "device_id": {
+          "type": "string",
+          "description": "bot_assignment 应用在 device 上."
+        },
+        "assignment_config": {
+          "type": "object"
+        },
+        "rotate_config": {
+          "$ref": "#/definitions/rasRotateConfig"
+        }
+      }
+    },
+    "ras_managerCreateAssignmentResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "assignment": {
+          "$ref": "#/definitions/rasAssignment"
+        }
+      }
+    },
+    "ras_managerCreateDataCollectingTaskRequest": {
+      "type": "object",
+      "properties": {
+        "task": {
+          "$ref": "#/definitions/rasDataCollectingTask"
+        }
+      }
+    },
+    "ras_managerCreateDataCollectingTaskResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "task_id": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ras_managerDeleteAssignmentRequest": {
+      "type": "object",
+      "properties": {
+        "device_id": {
+          "type": "string",
+          "description": "bot_assignment 应用在 device 上."
+        },
+        "spu_name": {
+          "type": "string",
+          "title": "optional 不对外暴露，仅 rpc 调用时使用。"
+        }
+      }
+    },
+    "ras_managerDeleteAssignmentResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        }
+      }
+    },
+    "ras_managerDeleteDataCollectingTaskRequest": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string"
+        }
+      }
+    },
+    "ras_managerDeleteDataCollectingTaskResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        }
+      }
+    },
+    "ras_managerDeleteDeviceRequest": {
+      "type": "object",
+      "properties": {
+        "device_id": {
+          "type": "string"
+        }
+      }
+    },
+    "ras_managerDeleteDeviceResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        }
+      }
+    },
+    "ras_managerGetAssignmentResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "assignment": {
+          "$ref": "#/definitions/rasAssignment"
+        }
+      }
+    },
+    "ras_managerGetDataCollectingTaskResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "task": {
+          "$ref": "#/definitions/rasDataCollectingTask"
+        }
+      }
+    },
+    "ras_managerGetDeviceDetailResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "device_detail": {
+          "$ref": "#/definitions/rasDeviceDetail"
+        }
+      }
+    },
+    "ras_managerListAccountDeviceSpusResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "spus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ras_managerListAccountDeviceSpusResponseSPU"
+          }
+        }
+      }
+    },
+    "ras_managerListAccountDeviceSpusResponseSPU": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        }
+      }
+    },
+    "ras_managerListAllDeviceDetailsResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "paging": {
+          "$ref": "#/definitions/apiPaging"
+        },
+        "device_detail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasDeviceDetail"
+          }
+        }
+      }
+    },
+    "ras_managerListAssignmentsResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "paging": {
+          "$ref": "#/definitions/apiPaging"
+        },
+        "assignments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasAssignment"
+          }
+        }
+      }
+    },
+    "ras_managerListDataCollectingTaskResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "paging": {
+          "$ref": "#/definitions/apiPaging"
+        },
+        "tasks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasDataCollectingTask"
+          }
+        }
+      }
+    },
+    "ras_managerListDeviceDetailsResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "paging": {
+          "$ref": "#/definitions/apiPaging"
+        },
+        "device_detail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rasDeviceDetail"
+          }
+        }
+      }
+    },
+    "ras_managerUpdateAssignmentRequest": {
+      "type": "object",
+      "properties": {
+        "device_id": {
+          "type": "string",
+          "description": "bot_assignment 应用在 device 上."
+        },
+        "assignment_config": {
+          "type": "object"
+        },
+        "rotate_config": {
+          "$ref": "#/definitions/rasRotateConfig"
+        }
+      }
+    },
+    "ras_managerUpdateAssignmentResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        }
+      }
+    },
+    "ras_managerUpdateDeviceRequest": {
+      "type": "object",
+      "properties": {
+        "device_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "desc": {
+          "type": "string"
+        },
+        "driver": {
+          "$ref": "#/definitions/rasDriver"
+        },
+        "extra_info": {
+          "type": "string"
+        }
+      }
+    },
+    "ras_managerUpdateDeviceResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "device_detail": {
+          "$ref": "#/definitions/rasDeviceDetail"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code]."
+        },
+        "message": {
+          "type": "string",
+          "description": "A developer-facing error message, which should be in English. Any\nuser-facing error message should be localized and sent in the\n[google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client."
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          },
+          "description": "A list of messages that carry the error details.  There is a common set of\nmessage types for APIs to use."
+        }
+      },
+      "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors)."
+    }
+  }
+}

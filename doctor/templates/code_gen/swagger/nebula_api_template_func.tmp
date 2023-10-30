@@ -1,0 +1,10 @@
+
+    def $$%%FUNC_NAME%%$$(self$$%%PARAM_FUNC_LIST%%$$, verify=False):
+        param = self.defines.$$%%FUNC_NAME%%$$_param()
+$$%%PATH_CODE%%$$
+$$%%PARAM_CODE%%$$
+$$%%BODY_CODE%%$$
+        logging.info("$$%%DESC%%$$")
+        resp = self.request(param, verify=verify)
+        self.log_resp_info(resp, title_msg="$$%%DESC%%$$")
+        return NebulaRet(resp)

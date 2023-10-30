@@ -1,0 +1,58 @@
+# ras-manager
+device,all,https://{{center_host}},/device
+rasManager,all,https://{{center_host}}
+botManager,all,https://{{center_host}}
+ctidService,all,https://{{ctid_host}},/verify/atom/bio-face/engine
+rasCluster,all,https://{{center_host}}
+deviceIotCenter,all,https://{{center_host}},/device
+# ids
+face,all,https://{{edge_host}},/face
+identity,all,https://{{edge_host}},/identity
+ocr,all,https://{{edge_host}},/ocr
+watermark,all,https://{{edge_host}},/watermark
+# ras-runtime-proxy
+ipsApplet,all,https://{{center_host}},/ips/algo
+ipsOcr,all,https://{{center_host}},/ips/ocr
+viperApplet,all,https://{{center_host}}
+viperOcr,all,https://{{center_host}}
+# sfd,all,https://{{center_host}}
+# aide
+adapter,all,https://{{center_host}}
+viperOpenApi,all,https://{{center_host}}
+# console
+auth,all,https://{{console_host}},/api
+authInternalAuth,all,https://{{console_host}},/internal
+notification,all,https://{{console_host}},/api
+notificationInternal,all,https://{{console_host}},/internal
+user,all,https://{{console_host}},/api
+order,all,https://{{console_host}},/api
+orderInternal,all,https://{{console_host}},/internal
+product,all,https://{{console_host}},/api
+oplog,all,https://{{console_host}},/internal
+bill,all,https://{{console_host}},/api
+billInternal,all,https://{{console_host}},/internal
+rechargeLog,all,https://{{console_host}},/internal
+spuop,all,https://{{console_host}},/internal
+
+
+# iam
+authIam,all,https://{{console_host}},/iam
+# lottery
+lottery,all,https://{{edge_host}},/lottery
+# video
+#ctid
+videoManager,all,https://{{edge_host}},/video
+# galaxyOpenAPI
+galaxyProduct,all,https://{{edge_host}}
+galaxyOplog,all,https://{{edge_host}}
+galaxyBeltProduct,all,https://{{edge_host}}
+galaxyBeltOplog,all,https://{{edge_host}}
+# argusApi
+argusDb,all,https://{{center_host}}
+argusIps,all,https://{{center_host}}
+argusPedestrian,all,https://{{center_host}}
+argusRrs,all,https://{{center_host}}
+argusDatacenter,all,https://{{center_host}}
+
+# road
+roadInspection,all,https://{{center_host}},/road-inspection-pro

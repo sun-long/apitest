@@ -1,0 +1,1316 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: '{{ include "nova-ingress-kong.fullname" . }}'
+  labels:
+    '{{- include "nova-ingress-kong.labels" . | nindent 4 }}'
+data:
+  kong.yml:
+    _format_version: "3.0"
+    _transform: true
+
+    services:
+      - name: iam-proxy
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://identity-access-management-service-auth.iam.svc.cluster.local:8080"
+        routes:
+          - name: iam-route
+            methods:
+              - POST
+              - GET
+            strip_path: true
+            paths:
+              - /iam
+            plugins:
+              - name: rate-limiting
+                enabled: true
+                config:
+                  second: 10
+                  policy: local
+                  limit_by: ip
+      - name: console-user-VerifyUserRegisterInfo
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/user_accounts/verify_user_register_info"
+        routes:
+          - name: console-user-VerifyUserRegisterInfo
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["VerifyUserRegisterInfo"]}
+            paths:
+              - /api
+      - name: console-user-SendSmsCode
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/users/code"
+        routes:
+          - name: console-user-SendSmsCode
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["SendSmsCode"]}
+            paths:
+              - /api
+      - name: console-user-SendCurrentUserSmsCode
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/users/current_user/code"
+        routes:
+          - name: console-user-SendCurrentUserSmsCode
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["SendCurrentUserSmsCode"]}
+            paths:
+              - /api
+      - name: console-user-VerifySmsCode
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/users/code/verify"
+        routes:
+          - name: console-user-VerifySmsCode
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["VerifySmsCode"]}
+            paths:
+              - /api
+      - name: console-user-VerifyCurrentUserSmsCode
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/users/current_user/code/verify"
+        routes:
+          - name: console-user-VerifyCurrentUserSmsCode
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["VerifyCurrentUserSmsCode"]}
+            paths:
+              - /api
+      - name: console-user-GetUserBaseInfo
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/users/base_info"
+        routes:
+          - name: console-user-GetUserBaseInfo
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["GetUserBaseInfo"]}
+            paths:
+              - /api
+      - name: console-user-UpdateUserBaseInfo
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/users/base_info"
+        routes:
+          - name: console-user-UpdateUserBaseInfo
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["UpdateUserBaseInfo"]}
+            paths:
+              - /api
+      - name: console-user-GetUserAssociatedInfoByID
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/users/associated_info/user_id"
+        routes:
+          - name: console-user-GetUserAssociatedInfoByID
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["GetUserAssociatedInfoByID"]}
+            paths:
+              - /api
+      - name: console-user-CreateUserAKSK
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/users/user_id/accesskeys"
+        routes:
+          - name: console-user-CreateUserAKSK
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["CreateUserAKSK"]}
+            paths:
+              - /api
+      - name: console-user-DeleteAccessKey
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/users/user_id/accesskeys/access_key_id"
+        routes:
+          - name: console-user-DeleteAccessKey
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["DeleteAccessKey"]}
+            paths:
+              - /api
+      - name: console-user-SecuritySetUpdateUserCellphone
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/users/security_set/cellphone"
+        routes:
+          - name: console-user-SecuritySetUpdateUserCellphone
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["SecuritySetUpdateUserCellphone"]}
+            paths:
+              - /api
+      - name: console-user-SecuritySetUpdateUserEmail
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/users/security_set/email"
+        routes:
+          - name: console-user-SecuritySetUpdateUserEmail
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["SecuritySetUpdateUserEmail"]}
+            paths:
+              - /api
+      - name: console-user-UserLoginForgotPassword
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/user_accounts/login_forgot_poassword"
+        routes:
+          - name: console-user-UserLoginForgotPassword
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["UserLoginForgotPassword"]}
+            paths:
+              - /api
+      - name: console-user-UserFirstLoginUpdateNewPassword
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/users/login_update_new_poassword"
+        routes:
+          - name: console-user-UserFirstLoginUpdateNewPassword
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["UserFirstLoginUpdateNewPassword"]}
+            paths:
+              - /api
+      - name: console-user-ListAccountSubscriptions
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/user_accounts/subscriptions"
+        routes:
+          - name: console-user-ListAccountSubscriptions
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ListAccountSubscriptions"]}
+            paths:
+              - /api
+      - name: console-AddPendingAuditInfo-Service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-internal-console:10011/v1/AddPendingAuditInfo"
+        routes:
+          - name: console-AddPendingAuditInfo-Route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["AddPendingAuditInfo"]}
+            paths:
+              - /api
+            plugins:
+              - name: rate-limiting
+                enabled: true
+                config:
+                  second: 5
+                  policy: local
+                  limit_by: ip
+      - name: console-user-SecuritySetUpdateUserPassword
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/users/security_set/password"
+        routes:
+          - name: console-user-SecuritySetUpdateUserPassword
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["SecuritySetUpdateUserPassword"]}
+            paths:
+              - /api
+      - name: console-user-ExportUserAKSKExcel
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/users/user_id/accesskeys/excel_export"
+        routes:
+          - name: console-user-ExportUserAKSKExcel
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ExportUserAKSKExcel"]}
+            paths:
+              - /api
+      - name: console-user-ExampleGenerateSampleCode
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/example/generate_code"
+        routes:
+          - name: console-user-ExampleGenerateSampleCode
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ExampleGenerateSampleCode"]}
+            paths:
+              - /api
+      - name: console-user-ExampleGet
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/example/get"
+        routes:
+          - name: console-user-ExampleGet
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ExampleGet"]}
+            paths:
+              - /api
+      - name: console-user-ExampleList
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/example/list"
+        routes:
+          - name: console-user-ExampleList
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ExampleList"]}
+            paths:
+              - /api
+      - name: console-order-CreateOrder
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/order"
+        routes:
+          - name: console-order-CreateOrder
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["CreateOrder"]}
+            paths:
+              - /api
+      - name: console-order-CreateOrderByCode
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/order_by_name"
+        routes:
+          - name: console-order-CreateOrderByCode
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["CreateOrderByCode"]}
+            paths:
+              - /api
+      - name: console-order-UnsubscribeOrder
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/unsubscribe_order"
+        routes:
+          - name: console-order-UnsubscribeOrder
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["UnsubscribeOrder"]}
+            paths:
+              - /api
+      - name: console-order-UnsubscribeOrderByCode
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/unsubscribe_order_by_name"
+        routes:
+          - name: console-order-UnsubscribeOrderByCode
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["UnsubscribeOrderByCode"]}
+            paths:
+              - /api
+      - name: console-wallet-GetAmount
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/amount"
+        routes:
+          - name: console-wallet-GetAmount
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["GetAmount"]}
+            paths:
+              - /api
+      - name: console-ListMonthlyBill
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/monthlybills"
+        routes:
+          - name: console-ListMonthlyBill
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ListMonthlyBill"]}
+            paths:
+              - /api
+      - name: console-ListDailyBill
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/dailybills"
+        routes:
+          - name: console-ListDailyBill
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ListDailyBill"]}
+            paths:
+              - /api
+      - name: console-ListVps
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/vps"
+        routes:
+          - name: console-ListVps
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ListVps"]}
+            paths:
+              - /api
+      - name: console-GetVpStatUsage
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/vp_stat_usage"
+        routes:
+          - name: console-GetVpStatUsage
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["GetVpStatUsage"]}
+            paths:
+              - /api
+      - name: console-ExampleCategoryList
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/example_category/list"
+        routes:
+          - name: console-ExampleCategoryList
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ExampleCategoryList"]}
+            paths:
+              - /api
+      - name: console-ExampleCategoryCreate
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/example_category/create"
+        routes:
+          - name: console-ExampleCategoryCreate
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["ExampleCategoryCreate"]}
+            paths:
+              - /api
+      - name: console-GetSPUSubscribed
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-console.nova-platform:9421/console/v1/spu_subscribed"
+        routes:
+          - name: console-GetSPUSubscribed
+            methods:
+              - GET
+            strip_path: true #剥离配置的前缀
+            headers: {"X-Sensenova-Action": ["GetSPUSubscribed"]}
+            paths:
+              - /api
+      - name: nova-chat-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-chat-bizwrapper:8180/v1/llm/chat"
+        routes:
+          - name: nova-chat-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /v1/llm/internal/chat
+            plugins:
+              - name: request-size-limiting
+                enabled: true
+                config:
+                  allowed_payload_size: 2
+              - name: rate-limit
+                config:
+                  plugin_config: "disable"
+      - name: nova-chat-completions-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-chat-bizwrapper:8180"
+        routes:
+          - name: nova-chat-completions-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /v1/llm/chat-completions
+            plugins:
+              - name: request-size-limiting
+                enabled: true
+                config:
+                  allowed_payload_size: 2
+          - name: nova-chat-completions-origin-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /v1/llm/chat-completions/origin
+            plugins:
+              - name: request-size-limiting
+                enabled: true
+                config:
+                  allowed_payload_size: 2
+          - name: nova-chat-sessions-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /v1/llm/chat/sessions
+            plugins:
+              - name: request-size-limiting
+                enabled: true
+                config:
+                  allowed_payload_size: 2
+          - name: nova-chat-conversations-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /v1/llm/chat-conversations
+            plugins:
+              - name: request-size-limiting
+                enabled: true
+                config:
+                  allowed_payload_size: 2
+      - name: nova-asyn-proxy-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-asyn-proxy:8080"
+        routes:
+          - name: nova-asyn-proxy-invoke-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            regex_priority: 6
+            paths:
+              - ~/v1/llm/chat-completions/invoke$
+            plugins:
+              - name: request-size-limiting
+                enabled: true
+                config:
+                  allowed_payload_size: 2
+          - name: nova-asyn-proxy-retrieve-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            regex_priority: 6
+            paths:
+              - ~/v1/llm/chat-completions/retrieve$
+            plugins:
+              - name: request-size-limiting
+                enabled: true
+                config:
+                  allowed_payload_size: 2
+      - name: nova-kbs-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-chat-bizwrapper:8080"
+        routes:
+          - name: nova-create-kb-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            regex_priority: 4
+            paths:
+              - ~/v1/llm/knowledge-bases$
+            plugins:
+              - name: request-size-limiting
+                enabled: true
+                config:
+                  allowed_payload_size: 20
+          - name: nova-upload-kb-file-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            regex_priority: 6
+            paths:
+              - ~/v1/llm/knowledge-bases/(?<id>.+)/files$
+            plugins:
+              - name: request-size-limiting
+                enabled: true
+                config:
+                  allowed_payload_size: 20
+          - name: nova-download-kb-file-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            regex_priority: 6
+            paths:
+              - ~/v1/llm/knowledge-bases/(?<kb_id>.+)/files/(?<file_id>.+)$
+          - name: nova-delete-kb-file-route
+            methods:
+              - DELETE
+            strip_path: false #剥离配置的前缀
+            paths:
+              - ~/v1/llm/knowledge-bases/(?<kb_id>.+)/files/(?<file_id>.+)$
+          - name: nova-list-kbs-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            paths:
+              - ~/v1/llm/knowledge-bases$
+            plugins:
+              - name: rate-limit
+                config:
+                  plugin_config: "disable"
+          - name: nova-get-kb-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            regex_priority: 0
+            paths:
+              - ~/v1/llm/knowledge-bases/(?<id>.+)$
+            plugins:
+              - name: rate-limit
+                config:
+                  plugin_config: "disable"
+          - name: nova-update-kb-route
+            methods:
+              - PUT
+            strip_path: false #剥离配置的前缀
+            regex_priority: 0
+            paths:
+              - ~/v1/llm/knowledge-bases/(?<id>.+)$
+          - name: nova-delete-kb-route
+            methods:
+              - DELETE
+            strip_path: false #剥离配置的前缀
+            paths:
+              - ~/v1/llm/knowledge-bases/(?<id>.+)$
+      - name: nova-datasets-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-finetunes-dataset:8080"
+        routes:
+          - name: nova-create-datasets-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            paths:
+              - /v1/llm/fine-tune/datasets
+          - name: nova-create-datasets-files-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            paths:
+              - ~/v1/llm/fine-tune/datasets/(?<id>.+)/files
+          - name: nova-get-dataset-files-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            regex_priority: 6
+            paths:
+              - ~/v1/llm/fine-tune/datasets/(?<id>.+)/files/(?<file_id>.+)$
+          - name: nova-list-datasets-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前
+            paths:
+              - /v1/llm/fine-tune/datasets
+          - name: nova-get-datasets-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            regex_priority: 0
+            paths:
+              - ~/v1/llm/fine-tune/datasets/(?<id>.+)$
+          - name: nova-delete-datasets-route
+            methods:
+              - DELETE
+            strip_path: false #剥离配置的前缀
+            paths:
+              - ~/v1/llm/fine-tune/datasets/(?<id>.+)$
+          - name: nova-put-datasets-route
+            methods:
+              - PUT
+            strip_path: false #剥离配置的前缀
+            paths:
+              - ~/v1/llm/fine-tune/datasets/(?<id>.+)$
+          - name: nova-get-imgen-datasets-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            regex_priority: 6
+            paths:
+              - ~/v1/imgen/datasets/(?<id>.+)$
+          - name: nova-delete-imgen-datasets-route
+            methods:
+              - DELETE
+            strip_path: false #剥离配置的前缀
+            paths:
+              - ~/v1/imgen/datasets/(?<id>.+)$
+          - name: nova-post-imgen-datasets-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            regex_priority: 6
+            paths:
+              - ~/v1/imgen/datasets/(?<id>.+)$
+          - name: nova-create-imgen-datasets-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            paths:
+              - /v1/imgen/datasets
+          - name: nova-list-imgen-datasets-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            paths:
+              - /v1/imgen/datasets
+      - name: nova-imgen-finetune-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-img-finetune-manager:8080"
+        routes:
+          - name: nova-imgen-finetune-create-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            paths:
+              - /v1/imgen/internal/finetune
+          - name: nova-imgen-finetune-cancel-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            paths:
+              - /v1/imgen/internal/finetune/cancel
+          - name: nova-imgen-finetune-get-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            regex_priority: 6
+            paths:
+              - /v1/imgen/internal/finetune/(?<task_id>.+)$
+          - name: nova-imgen-finetune-list-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            paths:
+              - /v1/imgen/internal/finetune
+          - name: nova-imgen-finetune-process-route
+            methods:
+              - POST
+            hosts:
+              - '{{ .Values.proxy.internalapi }}'
+            strip_path: false #剥离配置的前缀
+            paths:
+              - /v1/imgen/internal/finetune/progress
+            plugins:
+              - name: rate-limit
+                config:
+                  plugin_config: "disable"
+              - name: value-point
+                config:
+                  plugin_config: "disable"
+      - name: nova-models-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-models:8081"
+        routes:
+          - name: nova-list-models-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            regex_priority: 0
+            paths:
+              - ~/v1/llm/models$
+          - name: nova-get-models-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            regex_priority: 6
+            paths:
+              - ~/v1/llm/models/(?<id>.+)$
+          - name: nova-delete-models-route
+            methods:
+              - DELETE
+            strip_path: false #剥离配置的前缀
+            paths:
+              - ~/v1/llm/models/(?<id>.+)$
+          - name: nova-imgen-models-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            regex_priority: 0
+            paths:
+              - ~/v1/imgen/models$
+          - name: nova-get-imgen-models-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            regex_priority: 6
+            paths:
+              - ~/v1/imgen/models/(?<id>.+)$
+          - name: nova-delete-imgen-models-route
+            methods:
+              - DELETE
+            strip_path: false #剥离配置的前缀
+            regex_priority: 6
+            paths:
+              - ~/v1/imgen/models/(?<id>.+)$
+      - name: nova-finetunes-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-finetunes-manager:8080"
+        routes:
+          - name: nova-create-finetunes-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            paths:
+              - /v1/llm/fine-tunes
+          - name: nova-list-finetunes-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            paths:
+              - /v1/llm/fine-tunes
+          - name: nova-get-finetunes-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            paths:
+              - ~/v1/llm/fine-tunes/(?<fine_tune_id>.+)$
+          - name: nova-cancel-finetunes-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            paths:
+              - ~/v1/llm/fine-tunes/(?<fine_tune_id>.+)/cancel
+          - name: nova-delete-finetunes-route
+            methods:
+              - DELETE
+            strip_path: false #剥离配置的前缀
+            paths:
+              - ~/v1/llm/fine-tunes/(?<fine_tune_id>.+)$
+          - name: nova-create-finetunes-servings-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            paths:
+              - /v1/llm/fine-tune/servings
+          - name: nova-list-finetunes-servings-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            paths:
+              - /v1/llm/fine-tune/servings
+          - name: nova-get-finetunes-servings-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            paths:
+              - ~/v1/llm/fine-tune/servings/(?<serving_id>.+)$
+          - name: nova-cancel-finetunes-servings-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            paths:
+              - ~/v1/llm/fine-tune/servings/(?<serving_id>.+)/cancel
+          - name: nova-relaunch-finetunes-servings-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            paths:
+              - ~/v1/llm/fine-tune/servings/(?<serving_id>.+)/relaunch
+          - name: nova-delete-finetunes-servings-route
+            methods:
+              - DELETE
+            strip_path: false #剥离配置的前缀
+            paths:
+              - ~/v1/llm/fine-tune/servings/(?<serving_id>.+)$
+      - name: nova-files-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-files:8080"
+        routes:
+          - name: nova-files-list-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            paths:
+              - /v1/files
+          - name: nova-files-download-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            paths:
+              - /v1/files
+            plugins:
+              - name: request-size-limiting
+                enabled: true
+                config:
+                  allowed_payload_size: 200
+          - name: nova-files-get-route
+            regex_priority: 8
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            paths:
+              - ~/v1/files/(?<file_id>.+)$
+          - name: nova-files-delete-route
+            methods:
+              - DELETE
+            strip_path: false #剥离配置的前缀
+            paths:
+              - ~/v1/files/(?<file_id>.+)$
+          - name: nova-files-get-content-route
+            regex_priority: 10
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            paths:
+              - ~/v1/files/(?<file_id>.+)/content
+      - name: bot-manager-compare-rating-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://bot-manager.nova-bot.svc:50000/api/v3/compareRating"
+        routes:
+          - name: bot-manager-compare-rating-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            paths:
+              - /v1/llm/internal/compare-rating
+            plugins:
+              - name: rate-limit
+                config:
+                  plugin_config: "disable"
+      - name: bot-manager-new-topic-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://bot-manager.nova-bot.svc:50000/api/v3/newTopic"
+        routes:
+          - name: bot-manager-new-topic-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            paths:
+              - /v1/llm/internal/new-topic
+            plugins:
+              - name: rate-limit
+                config:
+                  plugin_config: "disable"
+      - name: bot-manager-rewrite-output-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://bot-manager.nova-bot.svc:50000/api/v3/rewriteOutput"
+        routes:
+          - name: bot-manager-rewrite-output-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            paths:
+              - /v1/llm/internal/rewrite-output
+            plugins:
+              - name: rate-limit
+                config:
+                  plugin_config: "disable"
+      - name: x-proxy-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://x-proxy.nova-x:8080"
+        routes:
+          - name: x-proxy-feedback-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            paths:
+              - /v1/llm/internal/feedback
+            plugins:
+              - name: rate-limit
+                config:
+                  plugin_config: "disable"
+          - name: x-proxy-new-session-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            paths:
+              - /v1/llm/internal/new-session
+            plugins:
+              - name: rate-limit
+                config:
+                  plugin_config: "disable"
+      - name: x-proxy-internal-chat-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://x-proxy.nova-x:8080/v1/llm/chat"
+        routes:
+          - name: x-proxy-internal-chat-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /v1/llm/internal/chat
+            plugins:
+              - name: request-size-limiting
+                enabled: true
+                config:
+                  allowed_payload_size: 2
+              - name: rate-limit
+                config:
+                  plugin_config: "disable"
+      - name: nova-clotho-code-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-clotho-code:8080"
+        routes:
+          - name: nova-clotho-code-chat-completions-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /v1/llm/code/chat-completions
+      - name: nova-clotho-multimodal-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-clotho-multimodal:8080"
+        routes:
+          - name: nova-clotho-multimodal-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /v1/llm/internal/multi-chat
+            plugins:
+              - name: rate-limit
+                config:
+                  plugin_config: "disable"
+              - name: request-size-limiting
+                enabled: true
+                config:
+                  allowed_payload_size: 64
+      - name: nova-clotho-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-clotho:8080"
+        routes:
+          - name: nova-clotho-role-play-chat-completions-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /v1/llm/internal/role-play/chat-completions
+            plugins:
+              - name: rate-limit
+                config:
+                  plugin_config: "disable"
+      - name: nova-clotho-maka-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-clotho-maka:8080"
+        routes:
+          - name: nova-clotho-list-generation-tasks-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /v1/imgen/internal/generation_tasks
+          - name: nova-clotho-generation-tasks-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /v1/imgen/internal/generation_tasks
+            plugins:
+              - name: request-size-limiting
+                enabled: true
+                config:
+                  allowed_payload_size: 20
+          - name: nova-clotho-get-generation-tasks-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            regex_priority: 6
+            paths:
+              - ~/v1/imgen/internal/generation_tasks/(?<task_id>.+)$
+          - name: nova-clotho-img-to-txt-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /v1/imgen/internal/img2txt
+            plugins:
+              - name: request-size-limiting
+                enabled: true
+                config:
+                  allowed_payload_size: 20
+      - name: nova-cv-mingmou-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-cv-mingmou:8080"
+        routes:
+          - name: nova-cv-model-list-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /v1/cv/models
+          - name: nova-cv-model-route
+            methods:
+              - GET
+            strip_path: false #剥离配置的前缀
+            regex_priority: 6
+            response_buffering: false
+            paths:
+              - ~/v1/cv/models/(?<id>.+)$
+          - name: nova-cv-2d-classify-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /v1/cv/2d_classify
+          - name: nova-cv-2d-detect-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /v1/cv/2d_detect
+          - name: nova-cv-2d-detect-classify-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /v1/cv/2d_detect_classify
+          - name: nova-cv-2d-detect-segment-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /v1/cv/2d_detect_segment
+          - name: nova-cv-2d-segment-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /v1/cv/2d_segment
+          - name: nova-cv-3d-detect-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /v1/cv/3d_detect
+      - name: nova-sensitive-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://ner.nova-bot:47000/api/v4/sensitiveWordsDetect"
+        routes:
+          - name: nova-sensitive-route
+            methods:
+              - POST
+            strip_path: true #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /v1/sensitive/words-detect
+            plugins:
+              - name: rate-limit
+                config:
+                  plugin_config: "disable"
+      - name: nova-embedings-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-embeddings.nova-platform:8080"
+        routes:
+          - name: nova-embedings-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /v1/llm/embeddings
+      - name: nova-generation-results-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://nova-asynq-worker:80"
+        routes:
+          - name: nova-generation-results-route
+            methods:
+              - POST
+            strip_path: false #剥离配置的前缀
+            response_buffering: false
+            paths:
+              - /maka/generation_results
+            plugins:
+              - name: rate-limit
+                config:
+                  plugin_config: "disable"
+              - name: value-point
+                config:
+                  plugin_config: "disable"
+      - name: nova-default-option-service
+        connect_timeout: 2000
+        read_timeout: 300000
+        write_timeout: 300000
+        url: "http://default-route:8000"
+        routes:
+          - name: nova-default-option-route
+            methods:
+              - OPTIONS
+            strip_path: false #剥离配置的前缀
+            paths:
+              - /
+
+    plugins:
+      - name: authentication
+        enabled: true
+      - name: custom-response
+        enabled: true
+      - name: rate-limit
+        enabled: true
+        config:
+          redis:
+            mode: '{{ .Values.dep.redis.mode | quote }}'
+            cluster:
+              password: '{{ include "redis.password" . }}'
+              host: ['{{ include "redis.address" . }}']
+              port: '{{ include "redis.port" . }}'
+      - name: value-point
+        enabled: true
+        config:
+          redis:
+            mode: '{{ .Values.dep.redis.mode | quote }}'
+            cluster:
+              password: '{{ include "redis.password" . }}'
+              host: ['{{ include "redis.address" . }}']
+              port: '{{ include "redis.port" . }}'
+      - name: prometheus-nova
+        enabled: true
+        config:
+          status_code_metrics: true
+          latency_metrics: true
+          upstream_health_metrics: true
+          bandwidth_metrics: true
+          per_consumer: true
+      - name: cors
+        enabled: true
+        config:
+          origins:
+          - "*"
+          methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - PATCH
+          - OPTIONS
+          headers:
+          - Accept
+          - Accept-Version
+          - Content-Length
+          - Content-MD5
+          - Content-Type
+          - Date
+          - X-Sensenova-Action
+          - X-Sensenova-Version
+          - X-Sensenova-Token
+          - X-Sensenova-Signature
+          - Authorization
+          credentials: true
+          max_age: 3600

@@ -1,0 +1,1594 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "IDS Face Service",
+    "version": "v1.2.0"
+  },
+  "tags": [
+    {
+      "name": "FaceService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/face/add_person": {
+      "post": {
+        "summary": "添加人员信息到指定人员库.\nroute prefix=ids internal_prefix=ids action=AddPerson version=v1",
+        "operationId": "FaceService_AddPerson",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/faceAddPersonResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/faceAddPersonRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FaceService"
+        ]
+      }
+    },
+    "/v1/face/add_person_face": {
+      "post": {
+        "summary": "增加人员的人脸图.\nroute prefix=ids internal_prefix=ids action=AddPersonFace version=v1",
+        "operationId": "FaceService_AddPersonFace",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/faceAddPersonFaceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/faceAddPersonFaceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FaceService"
+        ]
+      }
+    },
+    "/v1/face/compare_image": {
+      "post": {
+        "summary": "人脸 1:1 比对接口, 输入两张图片, 进行特征比对.\nroute prefix=ids internal_prefix=ids action=CompareImage version=v1",
+        "operationId": "FaceService_CompareImage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/faceCompareImageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/faceCompareImageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FaceService"
+        ]
+      }
+    },
+    "/v1/face/create_person_db": {
+      "post": {
+        "summary": "创建人员库.\nroute prefix=ids internal_prefix=ids action=CreatePersonDB version=v1",
+        "operationId": "FaceService_CreatePersonDB",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/faceCreatePersonDBResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/faceCreatePersonDBRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FaceService"
+        ]
+      }
+    },
+    "/v1/face/create_tag": {
+      "post": {
+        "summary": "创建人员在库中的业务标签.\nroute prefix=ids internal_prefix=ids action=CreateTag version=v1",
+        "operationId": "FaceService_CreateTag",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/faceCreateTagResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/faceCreateTagRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FaceService"
+        ]
+      }
+    },
+    "/v1/face/delete_person": {
+      "post": {
+        "summary": "获取人员详细信息.\nroute prefix=ids internal_prefix=ids action=DeletePerson version=v1",
+        "operationId": "FaceService_DeletePerson",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/faceDeletePersonResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/faceDeletePersonRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FaceService"
+        ]
+      }
+    },
+    "/v1/face/delete_person_db": {
+      "post": {
+        "summary": "删除指定人员库.\nroute prefix=ids internal_prefix=ids action=DeletePersonDB version=v1",
+        "operationId": "FaceService_DeletePersonDB",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/faceDeletePersonDBResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/faceDeletePersonDBRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FaceService"
+        ]
+      }
+    },
+    "/v1/face/delete_person_face": {
+      "post": {
+        "summary": "删除人员的人脸特征.\nroute prefix=ids internal_prefix=ids action=DeletePersonFace version=v1",
+        "operationId": "FaceService_DeletePersonFace",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/faceDeletePersonFaceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/faceDeletePersonFaceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FaceService"
+        ]
+      }
+    },
+    "/v1/face/delete_tag": {
+      "post": {
+        "summary": "删除人员标签.\nroute prefix=ids internal_prefix=ids action=DeleteTag version=v1",
+        "operationId": "FaceService_DeleteTag",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/faceDeleteTagResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/faceDeleteTagRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FaceService"
+        ]
+      }
+    },
+    "/v1/face/detect_liveness": {
+      "post": {
+        "summary": "提供图片静默活体检测.\nroute prefix=ids internal_prefix=ids action=DetectLiveness version=v1",
+        "operationId": "FaceService_DetectLiveness",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/faceDetectLivenessResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/faceDetectLivenessRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FaceService"
+        ]
+      }
+    },
+    "/v1/face/get_person": {
+      "get": {
+        "summary": "获取人员详细信息.\nroute prefix=ids internal_prefix=ids action=GetPerson version=v1",
+        "operationId": "FaceService_GetPerson",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/faceGetPersonResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "db_id",
+            "description": "人员库标识.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "person_id",
+            "description": "根据业务填入的人员标识获取人员详情.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "FaceService"
+        ]
+      }
+    },
+    "/v1/face/list_person": {
+      "get": {
+        "summary": "列举人员.\nroute prefix=ids internal_prefix=ids action=ListPerson version=v1",
+        "operationId": "FaceService_ListPerson",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/faceListPersonResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "db_id",
+            "description": "人员库标识.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "filter.person_id",
+            "description": "根据人员标识过滤.\n[EN] Filter with person id.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page.offset",
+            "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条, 默认值为0. 作为输出时,\n返回本次请求返回的第一条记录实际位置(一般与输入一致).\n[EN] Optional, start position, value: \u003e = 0, 0 is the first line; the default value is 0.\nIn response, actual offset of the first returned record is returned\n(generally equals to the offset in request).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page.limit",
+            "description": "长度, 默认取值范围[1,100], 默认为10, 如果超出范围, 则返回失败.\n[EN] Length, default value range [1,100], if it is out of the range, error will be returned.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page.total",
+            "description": "可选, 请求无须填此参数, 响应时系统填写.\n[EN] Optional, this parameter is not required for request, but will be filled in response.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page.marker",
+            "description": "可选, 分页书签信息, 适用于大数据量深分页, 响应更快. 第一页列举传空, 后续列举需回传应答结果中对应字段值, 当传递该字段时,优先使用（此时忽略offset）.\n[EN], Page bookmark.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page.backward",
+            "description": "当使用marker分页时生效， true: 往上一页翻页, false: 往下一页翻页.\n[EN] valid when paging with marker, true: turn the page backward, false: turn the page forward.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "FaceService"
+        ]
+      }
+    },
+    "/v1/face/list_person_db": {
+      "get": {
+        "summary": "列举人员库.\nroute prefix=ids internal_prefix=ids action=ListPersonDB version=v1",
+        "operationId": "FaceService_ListPersonDB",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/faceListPersonDBResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page.offset",
+            "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条, 默认值为0. 作为输出时,\n返回本次请求返回的第一条记录实际位置(一般与输入一致).\n[EN] Optional, start position, value: \u003e = 0, 0 is the first line; the default value is 0.\nIn response, actual offset of the first returned record is returned\n(generally equals to the offset in request).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page.limit",
+            "description": "长度, 默认取值范围[1,100], 默认为10, 如果超出范围, 则返回失败.\n[EN] Length, default value range [1,100], if it is out of the range, error will be returned.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page.total",
+            "description": "可选, 请求无须填此参数, 响应时系统填写.\n[EN] Optional, this parameter is not required for request, but will be filled in response.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page.marker",
+            "description": "可选, 分页书签信息, 适用于大数据量深分页, 响应更快. 第一页列举传空, 后续列举需回传应答结果中对应字段值, 当传递该字段时,优先使用（此时忽略offset）.\n[EN], Page bookmark.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page.backward",
+            "description": "当使用marker分页时生效， true: 往上一页翻页, false: 往下一页翻页.\n[EN] valid when paging with marker, true: turn the page backward, false: turn the page forward.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "FaceService"
+        ]
+      }
+    },
+    "/v1/face/list_tag": {
+      "get": {
+        "summary": "列举人员标签.\nroute prefix=ids internal_prefix=ids action=ListTag version=v1",
+        "operationId": "FaceService_ListTag",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/faceListTagResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "db_id",
+            "description": "列举指定库支持的人员标签.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "page.offset",
+            "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条, 默认值为0. 作为输出时,\n返回本次请求返回的第一条记录实际位置(一般与输入一致).\n[EN] Optional, start position, value: \u003e = 0, 0 is the first line; the default value is 0.\nIn response, actual offset of the first returned record is returned\n(generally equals to the offset in request).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page.limit",
+            "description": "长度, 默认取值范围[1,100], 默认为10, 如果超出范围, 则返回失败.\n[EN] Length, default value range [1,100], if it is out of the range, error will be returned.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page.total",
+            "description": "可选, 请求无须填此参数, 响应时系统填写.\n[EN] Optional, this parameter is not required for request, but will be filled in response.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page.marker",
+            "description": "可选, 分页书签信息, 适用于大数据量深分页, 响应更快. 第一页列举传空, 后续列举需回传应答结果中对应字段值, 当传递该字段时,优先使用（此时忽略offset）.\n[EN], Page bookmark.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page.backward",
+            "description": "当使用marker分页时生效， true: 往上一页翻页, false: 往下一页翻页.\n[EN] valid when paging with marker, true: turn the page backward, false: turn the page forward.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "FaceService"
+        ]
+      }
+    },
+    "/v1/face/search_person": {
+      "post": {
+        "summary": "提供人员库特征检索.\nroute prefix=ids internal_prefix=ids action=SearchPerson version=v1",
+        "operationId": "FaceService_SearchPerson",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/faceSearchPersonResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/faceSearchPersonRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FaceService"
+        ]
+      }
+    },
+    "/v1/face/update_person": {
+      "post": {
+        "summary": "修改人员信息，包括人员备注信息、标签，更新会覆盖原信息.\nroute prefix=ids internal_prefix=ids action=UpdatePerson version=v1",
+        "operationId": "FaceService_UpdatePerson",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/faceUpdatePersonResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/faceUpdatePersonRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FaceService"
+        ]
+      }
+    },
+    "/v1/face/update_person_db": {
+      "post": {
+        "summary": "更新指定人员库信息, 包括库名和特征版本.\nroute prefix=ids internal_prefix=ids action=UpdatePersonDB version=v1",
+        "operationId": "FaceService_UpdatePersonDB",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/faceUpdatePersonDBResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/faceUpdatePersonDBRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FaceService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "faceAddPersonFaceRequest": {
+      "type": "object",
+      "properties": {
+        "db_id": {
+          "type": "string",
+          "format": "uint64",
+          "description": "人员库标识."
+        },
+        "person_id": {
+          "type": "string",
+          "description": "用户创建人员信息(人员入库)时传入的人员唯一标识."
+        },
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "description": "用户人脸图片, 可加密字段."
+        },
+        "auto_rotate": {
+          "type": "boolean",
+          "description": "是否开启自动旋转检测, 如果为真, 当检测不到人脸时会进行旋转后继续检测, 消耗更多资源, 响应会更慢."
+        },
+        "min_quality_level": {
+          "$ref": "#/definitions/wrapperQualityLevel",
+          "description": "输入图片中人脸最低质量等级要求, 低于该质量等级报错, 默认不做质量等级过滤."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "加密信息, 根据请求消息种设置的加密参数加密指定字段."
+        }
+      }
+    },
+    "faceAddPersonFaceResponse": {
+      "type": "object",
+      "properties": {
+        "face_id": {
+          "type": "string",
+          "description": "人脸标识, 对应一个人脸特征."
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "belt通用错误模型结构, 出现错误时不为空."
+        }
+      }
+    },
+    "faceAddPersonRequest": {
+      "type": "object",
+      "properties": {
+        "db_id": {
+          "type": "string",
+          "format": "uint64",
+          "description": "人员库标识."
+        },
+        "person_id": {
+          "type": "string",
+          "description": "用户指定的人员标识, 不超过64B."
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "byte"
+          },
+          "description": "图片数据, 可加密字段, 最多支持5张."
+        },
+        "extra_info": {
+          "type": "string",
+          "description": "人员备注信息, 敏感隐私信息需要先做脱敏处理, 不超过256B."
+        },
+        "auto_rotate": {
+          "type": "boolean",
+          "description": "是否开启自动旋转检测, 如果为真, 当检测不到人脸时会进行旋转后继续检测, 消耗更多资源, 响应会更慢."
+        },
+        "min_quality_level": {
+          "$ref": "#/definitions/wrapperQualityLevel",
+          "description": "输入图片中人脸最低质量等级要求, 低于该质量等级报错, 默认不做质量等级过滤."
+        },
+        "tag_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          },
+          "description": "人员标签列表."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "加密信息, 根据请求消息种设置的加密参数加密指定字段."
+        }
+      }
+    },
+    "faceAddPersonResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "belt通用错误模型结构, 出现错误时不为空."
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/faceImageResult"
+          },
+          "description": "每张图的入库结果."
+        }
+      }
+    },
+    "faceCompareImageRequest": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "description": "待比对验证的图片,支持的图片格式包括 JPG(JPEG), BMP, PNG, 不超过4M, Base64编码传输."
+        },
+        "base_image": {
+          "type": "string",
+          "format": "byte",
+          "description": "作为比对参考的图片."
+        },
+        "auto_rotate": {
+          "type": "boolean",
+          "description": "是否开启自动旋转检测, 如果为真, 当检测不到人脸时会进行旋转后继续检测, 消耗更多资源, 响应会更慢."
+        },
+        "min_quality_level": {
+          "$ref": "#/definitions/wrapperQualityLevel",
+          "description": "输入图片中人脸最低质量等级要求, 低于该质量等级报错, 默认不做质量等级过滤."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "敏感信息加密数据, 此处仅对请求图片二进制数据加密, 默认为空: 不加密."
+        }
+      },
+      "title": "人脸比对接口请求体"
+    },
+    "faceCompareImageResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "title": "belt通用错误模型结构, 出现错误时不为空.\nhttps://gitlab.sz.sensetime.com/belt/crd/ras-protocols/common/-/blob/master/error_info.proto"
+        },
+        "score": {
+          "type": "number",
+          "format": "float",
+          "description": "比对分数."
+        },
+        "feature_version": {
+          "type": "integer",
+          "format": "int32",
+          "description": "比对使用的特征版本."
+        }
+      }
+    },
+    "faceCreatePersonDBRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "必填, 不超过64个字符, 不可重复."
+        },
+        "description": {
+          "type": "string",
+          "description": "人员库描述信息, 不超过64个字符."
+        }
+      }
+    },
+    "faceCreatePersonDBResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "belt通用错误模型结构, 出现错误时不为空."
+        },
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "description": "人员库标识, 系统生成."
+        }
+      }
+    },
+    "faceCreateTagRequest": {
+      "type": "object",
+      "properties": {
+        "db_id": {
+          "type": "string",
+          "format": "uint64",
+          "description": "库标识, 在指定库创建业务标签."
+        },
+        "name": {
+          "type": "string",
+          "description": "标签名称, 唯一, 不超过64B.\n[EN] Unique tag name, no more than 64B."
+        },
+        "description": {
+          "type": "string",
+          "description": "描述信息, 可选, 不超过256B.\n[EN] Description, optional, no more than 256B."
+        }
+      },
+      "description": "人员业务标签创建请求.\n[EN] Request to create a tag."
+    },
+    "faceCreateTagResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "belt通用错误模型结构, 出现错误时不为空."
+        },
+        "tag_id": {
+          "type": "string",
+          "format": "uint64",
+          "description": "标签名称, 唯一.\n[EN] Tag identifier."
+        }
+      },
+      "description": "人员标签创建应答.\n[EN] Response to create a tag."
+    },
+    "faceDeletePersonDBRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "description": "人员库标识."
+        }
+      }
+    },
+    "faceDeletePersonDBResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "belt通用错误模型结构, 出现错误时不为空."
+        }
+      }
+    },
+    "faceDeletePersonFaceRequest": {
+      "type": "object",
+      "properties": {
+        "db_id": {
+          "type": "string",
+          "format": "uint64",
+          "description": "人员库标识."
+        },
+        "person_id": {
+          "type": "string",
+          "description": "用户创建人员信息(人员入库)时传入的人员唯一标识."
+        },
+        "face_id": {
+          "type": "string",
+          "description": "人脸标识, 对应一个人脸特征."
+        }
+      }
+    },
+    "faceDeletePersonFaceResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "belt通用错误模型结构, 出现错误时不为空."
+        }
+      }
+    },
+    "faceDeletePersonRequest": {
+      "type": "object",
+      "properties": {
+        "db_id": {
+          "type": "string",
+          "format": "uint64",
+          "description": "人员库标识."
+        },
+        "person_id": {
+          "type": "string",
+          "description": "根据业务填入的人员标识删除人员."
+        }
+      }
+    },
+    "faceDeletePersonResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "belt通用错误模型结构, 出现错误时不为空."
+        }
+      }
+    },
+    "faceDeleteTagRequest": {
+      "type": "object",
+      "properties": {
+        "db_id": {
+          "type": "string",
+          "format": "uint64",
+          "description": "库标识."
+        },
+        "tag_id": {
+          "type": "string",
+          "format": "uint64",
+          "description": "人员标签标识.\n[EN] Tag identifier."
+        }
+      },
+      "description": "人员标签删除请求.\n[EN] Request to delete a tag."
+    },
+    "faceDeleteTagResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "belt通用错误模型结构, 出现错误时不为空."
+        }
+      },
+      "description": "人员标签删除应答.\n[EN] Response to delete a tag."
+    },
+    "faceDetectLivenessRequest": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "description": "图片数据, 支持的图片格式包括 JPG(JPEG), BMP, PNG, 图片大小不超过4M, 建议图片分辨率不小于8*8px且不超过5000*5000px, Base64编码传输.\n如果需要加密, 请使用EncryptInfo."
+        },
+        "min_quality_level": {
+          "$ref": "#/definitions/wrapperQualityLevel",
+          "description": "最低检测质量等级, 低于此配置不做活体检测, 以防结果不可信."
+        },
+        "disable_defake": {
+          "type": "boolean",
+          "description": "禁用深伪检测标志, 禁用后性能提升,安全性下降, 默认值: false, 不禁用."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "敏感信息加密数据, 为空时不加密, 加密字段参考其中 encrypted_fields."
+        }
+      },
+      "title": "活体检测请求消息体"
+    },
+    "faceDetectLivenessResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "title": "belt通用错误模型结构, 出现错误时不为空.\nhttps://gitlab.sz.sensetime.com/belt/crd/ras-protocols/common/-/blob/master/error_info.proto"
+        },
+        "is_liveness": {
+          "type": "boolean",
+          "description": "是否活体, 后端根据模型推荐阈值判断返回作为参考, true: 活体, false: 非活体, 非活体时返回活体攻击方式."
+        },
+        "liveness_score": {
+          "type": "number",
+          "format": "float",
+          "description": "活体检测分数, 分数越高, 活体可能性越大, 具体参考文档."
+        },
+        "liveness_attack_type": {
+          "$ref": "#/definitions/faceLivenessAttackType",
+          "description": "如果不是活体, 返回攻击类型."
+        },
+        "defake_score": {
+          "type": "number",
+          "format": "float",
+          "description": "深伪分数, 分数越高, 伪造可能性越大, 若禁用深伪检测则忽略该字段."
+        },
+        "quality_level": {
+          "$ref": "#/definitions/wrapperQualityLevel",
+          "description": "实际检测的质量信息, 当请求中设置了质量等级阈值时返回."
+        },
+        "quality_items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/wrapperQualityItem"
+          },
+          "description": "人脸质量信息列表, 当请求中设置了最低质量等级时返回低质量的维度."
+        }
+      }
+    },
+    "faceFaceInfo": {
+      "type": "object",
+      "properties": {
+        "face_id": {
+          "type": "string",
+          "description": "人脸标识, 对应一个人脸特征."
+        },
+        "image_url": {
+          "type": "string",
+          "description": "图片访问URL, 获取人员详情时返回."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间, 系统生成, 查询时返回.\n[EN] Creation time."
+        }
+      }
+    },
+    "faceGetPersonResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "belt通用错误模型结构, 出现错误时不为空."
+        },
+        "person": {
+          "$ref": "#/definitions/facePerson",
+          "description": "人员详细情况."
+        },
+        "face_infos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/faceFaceInfo"
+          },
+          "description": "人脸信息列表."
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/idsfaceTag"
+          },
+          "description": "人员标签列表."
+        }
+      }
+    },
+    "faceImageResult": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "belt通用错误模型结构, 出现错误时不为空."
+        },
+        "face_id": {
+          "type": "string",
+          "description": "人脸标识, 对应图片中一个人脸特征."
+        }
+      }
+    },
+    "faceListPersonDBResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "belt通用错误模型结构, 出现错误时不为空."
+        },
+        "person_dbs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/facePersonDB"
+          },
+          "description": "该账户所有的人员库信息.\n[EN] Person DBs owned."
+        },
+        "page": {
+          "$ref": "#/definitions/wrapperPage",
+          "description": "分页信息.\n[EN] Page information."
+        }
+      }
+    },
+    "faceListPersonResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "belt通用错误模型结构, 出现错误时不为空."
+        },
+        "page": {
+          "$ref": "#/definitions/wrapperPage",
+          "description": "分页信息.\n[EN] Page information."
+        },
+        "persons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/facePerson"
+          },
+          "description": "该人员库所有的人员信息.\n[EN] Persons of this person DB owned."
+        }
+      }
+    },
+    "faceListTagResponse": {
+      "type": "object",
+      "properties": {
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/idsfaceTag"
+          },
+          "description": "标签信息.\n[EN] Tag information."
+        },
+        "page": {
+          "$ref": "#/definitions/wrapperPage",
+          "description": "分页信息.\n[EN] Page information."
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "belt通用错误模型结构, 出现错误时不为空."
+        }
+      },
+      "description": "人员标签列举应答.\n[EN] Response to list tags."
+    },
+    "faceLivenessAttackType": {
+      "type": "string",
+      "enum": [
+        "LIVENESS_ATTACK_TYPE_NONE",
+        "PHOTO",
+        "SCREEN_SHOT",
+        "MASK_PAPER",
+        "MASK_3D",
+        "HEAD_MODEL_3D",
+        "FACE_REPLACE_AI",
+        "ADVERSARIAL_ATTACK"
+      ],
+      "default": "LIVENESS_ATTACK_TYPE_NONE",
+      "description": "- LIVENESS_ATTACK_TYPE_NONE: 未检测到攻击.\n - PHOTO: 照片.\n - SCREEN_SHOT: 屏幕翻拍.\n - MASK_PAPER: 纸质面具.\n - MASK_3D: 三维面具.\n - HEAD_MODEL_3D: 三维头模.\n - FACE_REPLACE_AI: AI换脸.\n - ADVERSARIAL_ATTACK: 对抗攻击（如T型眼镜).",
+      "title": "活体攻击类别, 活体攻击方式--1：照片，2：屏幕翻拍，3：纸质面具，4：三维面具，5：三维头模，6：AI换脸，7：对抗攻击（如T型眼镜），8：其他"
+    },
+    "facePerson": {
+      "type": "object",
+      "properties": {
+        "person_id": {
+          "type": "string",
+          "description": "用户指定的人员标识, 不超过64B."
+        },
+        "extra_info": {
+          "type": "string",
+          "description": "信息, 列举时不返回."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间, 系统生成.\n[EN] Creation time."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "更新时间, 系统生成.\n[EN] Updating time."
+        }
+      }
+    },
+    "facePersonDB": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "description": "库ID, 创建库时系统自动生成."
+        },
+        "name": {
+          "type": "string",
+          "description": "库名称.\n[EN] Database name."
+        },
+        "description": {
+          "type": "string",
+          "description": "库存储的特征版本号, 范围: 所有我们支持的特征版本号, 如:24101,24103.\n[EN] Feature version number of database storage, range: all feature version numbers we support, e.g.: 24101, 24103.\nint32 feature_version = 3;\n库描述.\n[EN] Database description."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "库的创建时间.\n[EN] Creation time of database."
+        }
+      }
+    },
+    "facePersonFilter": {
+      "type": "object",
+      "properties": {
+        "person_id": {
+          "type": "string",
+          "description": "根据人员标识过滤.\n[EN] Filter with person id."
+        }
+      },
+      "title": "人员过滤条件"
+    },
+    "faceSearchPersonRequest": {
+      "type": "object",
+      "properties": {
+        "db_id": {
+          "type": "string",
+          "format": "uint64",
+          "description": "人员库标识."
+        },
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "description": "待搜索图片，可加密字段."
+        },
+        "top_k": {
+          "type": "integer",
+          "format": "int32",
+          "description": "返回相似度排名最前的指定人员数."
+        },
+        "min_score": {
+          "type": "number",
+          "format": "float",
+          "description": "可选, 结果需要满足的最低相似度. 范围: [0.0, 1.0], (默认为0.0).\n[EN] Optional, the lowest similarity the results need to meet. Range: [0.0, 1.0], (0.0 by default)."
+        },
+        "auto_rotate": {
+          "type": "boolean",
+          "description": "是否开启自动旋转检测, 如果为真, 当检测不到人脸时会进行旋转后继续检测, 消耗更多资源, 响应会更慢."
+        },
+        "min_quality_level": {
+          "$ref": "#/definitions/wrapperQualityLevel",
+          "description": "人脸质量控制, 当低于指定的质量等级时不做搜索."
+        },
+        "detect_liveness": {
+          "type": "boolean",
+          "description": "是否做活体检测, 默认不做活体检测."
+        },
+        "tag_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uint64"
+          },
+          "description": "根据标签信息做后过滤(先特征检索再过滤), 不填则不进行过滤."
+        },
+        "with_detail": {
+          "type": "boolean",
+          "description": "是否返回人员详细信息(人脸图片地址,额外信息等), 默认为 false, 只返回人员标识、比中人脸标识和分数."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "加密信息, 根据请求消息种设置的加密参数加密指定字段传输."
+        }
+      },
+      "description": "人员搜索请求."
+    },
+    "faceSearchPersonResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "title": "belt通用错误模型结构, 出现错误时不为空.\nhttps://gitlab.sz.sensetime.com/belt/crd/ras-protocols/common/-/blob/master/error_info.proto"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/faceSearchResult"
+          },
+          "title": "人员搜索结果信息列表"
+        }
+      },
+      "description": "人员搜索应答."
+    },
+    "faceSearchResult": {
+      "type": "object",
+      "properties": {
+        "person": {
+          "$ref": "#/definitions/facePerson",
+          "description": "人员信息."
+        },
+        "tag_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uint64"
+          },
+          "description": "人员标签信息, 当请求需要返回详细信息时返回."
+        },
+        "face_id": {
+          "type": "string",
+          "description": "比中的人脸标识."
+        },
+        "score": {
+          "type": "number",
+          "format": "float",
+          "description": "相似度, 范围: [0.0, 1.0].\n[EN] Similarity, range: [0.0, 1.0]."
+        }
+      }
+    },
+    "faceTagList": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          },
+          "description": "人员标签标识列表."
+        }
+      }
+    },
+    "faceUpdatePersonDBRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "description": "人员库标识."
+        },
+        "name": {
+          "type": "string",
+          "description": "库名称，非必填."
+        },
+        "description": {
+          "type": "string",
+          "description": "库描述信息, 非必填."
+        }
+      }
+    },
+    "faceUpdatePersonDBResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "belt通用错误模型结构, 出现错误时不为空."
+        }
+      }
+    },
+    "faceUpdatePersonRequest": {
+      "type": "object",
+      "properties": {
+        "db_id": {
+          "type": "string",
+          "format": "uint64",
+          "description": "人员库标识."
+        },
+        "person_id": {
+          "type": "string",
+          "description": "根据业务填入的人员标识获取人员详情."
+        },
+        "extra_info": {
+          "type": "string",
+          "description": "人员备注信息, 敏感隐私信息需要先做脱敏处理, 不超过256B."
+        },
+        "tag_list": {
+          "$ref": "#/definitions/faceTagList",
+          "description": "更新人员标签信息, 可选字段, 如果不传则不更新, 如果标签标识列表传空则删除该人员标签."
+        }
+      }
+    },
+    "faceUpdatePersonResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "belt通用错误模型结构, 出现错误时不为空."
+        }
+      }
+    },
+    "idsfaceTag": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "description": "人员标签标识, 唯一, 系统自动生成.\n[EN] Person tag identifier."
+        },
+        "name": {
+          "type": "string",
+          "description": "标签名称, 唯一, 不超过64B.\n[EN] Unique tag name, no more than 128B."
+        }
+      },
+      "description": "人员标签信息.\n[EN] Person tag."
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+        }
+      },
+      "additionalProperties": {},
+      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := \u0026pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code]."
+        },
+        "message": {
+          "type": "string",
+          "description": "A developer-facing error message, which should be in English. Any\nuser-facing error message should be localized and sent in the\n[google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client."
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          },
+          "description": "A list of messages that carry the error details.  There is a common set of\nmessage types for APIs to use."
+        }
+      },
+      "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors)."
+    },
+    "wrapperEncryptAlgorithm": {
+      "type": "string",
+      "enum": [
+        "ENCRPT_ALGORITHM_NONE",
+        "AES_256_CBC",
+        "AES_256_GCM"
+      ],
+      "default": "ENCRPT_ALGORITHM_NONE",
+      "description": "加密算法.\n\n - ENCRPT_ALGORITHM_NONE: 不加密.\n - AES_256_CBC: AES 256 CBC加密.\n - AES_256_GCM: AES 256 GCM加密."
+    },
+    "wrapperEncryptInfo": {
+      "type": "object",
+      "properties": {
+        "algorithm": {
+          "$ref": "#/definitions/wrapperEncryptAlgorithm",
+          "description": "加密算法, 目前支持AES_256_CBC."
+        },
+        "version": {
+          "type": "integer",
+          "format": "int32",
+          "description": "可选, 加密算法版本."
+        },
+        "encrypted_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "可选, 该消息中加密 JSON (协议原始字段名)字段列表, 仅支持与此结构平级的字段."
+        },
+        "data": {
+          "type": "string",
+          "format": "byte",
+          "description": "加密数据信息, 由包含该结构体的请求或应答消息中上述加密字段消息体 JSON 对象序列化后加密得到.\n如果加密算法指定为 AES_256_CBC, 前 16B 字节为 IV 向量, 其他为用该IV向量得到的加密密文数据.\n如果加密算法指定为 AES_256_GCM, 前 12B 字节为随机 NONCE."
+        }
+      },
+      "description": "加密信息消息体, 如果请求中包含此字段, 对应应答消息也会做相应的加密, 具体加密字段参考具体的API定义."
+    },
+    "wrapperPage": {
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条, 默认值为0. 作为输出时,\n返回本次请求返回的第一条记录实际位置(一般与输入一致).\n[EN] Optional, start position, value: \u003e = 0, 0 is the first line; the default value is 0.\nIn response, actual offset of the first returned record is returned\n(generally equals to the offset in request)."
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "description": "长度, 默认取值范围[1,100], 默认为10, 如果超出范围, 则返回失败.\n[EN] Length, default value range [1,100], if it is out of the range, error will be returned."
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32",
+          "description": "可选, 请求无须填此参数, 响应时系统填写.\n[EN] Optional, this parameter is not required for request, but will be filled in response."
+        },
+        "marker": {
+          "type": "string",
+          "description": "可选, 分页书签信息, 适用于大数据量深分页, 响应更快. 第一页列举传空, 后续列举需回传应答结果中对应字段值, 当传递该字段时,优先使用（此时忽略offset）.\n[EN], Page bookmark."
+        },
+        "backward": {
+          "type": "boolean",
+          "description": "当使用marker分页时生效， true: 往上一页翻页, false: 往下一页翻页.\n[EN] valid when paging with marker, true: turn the page backward, false: turn the page forward."
+        }
+      },
+      "description": "数据表查询分页.\n[EN] DB request paging."
+    },
+    "wrapperQualityItem": {
+      "type": "object",
+      "properties": {
+        "quality_type": {
+          "$ref": "#/definitions/wrapperQualityType",
+          "description": "质量评估类型."
+        },
+        "value": {
+          "type": "number",
+          "format": "float",
+          "description": "分数、度数或分辨率等数值."
+        }
+      },
+      "description": "质量评估维度键值对."
+    },
+    "wrapperQualityLevel": {
+      "type": "string",
+      "enum": [
+        "QUALITY_LEVEL_NONE",
+        "LOW",
+        "NORMAL",
+        "HIGH",
+        "EXTREMELY_HIGH"
+      ],
+      "default": "QUALITY_LEVEL_NONE",
+      "description": "人脸质量控制等级.\n\n - QUALITY_LEVEL_NONE: 不做质量检测.\n - LOW: 低质量,NORMAL,HIGH,EXTREMELY_HIGH三种质量等级之外的情形(出现以下四种情况的一种即可):\n- 角度不正(BAD_ANGLE).\n- 黑白照片(GRAY).\n- 戴口罩遮挡(OCCLUSION_RESPIRATOR).\n- 存在光照差(LIGHT_DARK/LIGHT_BRIGHT), 模糊(BLUR), 额头遮挡(OCCLUSION_FORHEAD),戴有色眼镜遮挡(OCCLUSION_SUNGLASSES),\n  其他遮挡(OCCLUSION_OTHERS), 张嘴(MOUTH_OPEN)至少两种类型的质量异常\n - NORMAL: 普通质量等级,角度正, 非黑白照片， 存在光照差(过曝或过暗), 模糊, 张嘴, 额头遮挡,戴有色眼镜遮挡,其他遮挡其中一种类型的质量异常.\n - HIGH: 高质量等级, 光照良好（无弱光且无强光), 清晰, 仅戴普通透明眼镜, 角度正, 不张嘴, 非黑白照片.\n - EXTREMELY_HIGH: 极高质量等级, 光照良好, 清晰, 无任何遮挡（不戴眼镜）, 角度正, 不张嘴, 非黑白照片."
+    },
+    "wrapperQualityType": {
+      "type": "string",
+      "enum": [
+        "QUALITY_TYPE_NONE",
+        "PUPIL_DISTANCE",
+        "CLARITY",
+        "LIGHT_DARK",
+        "LIGHT_BRIGHT",
+        "INTEGRITY_EYEBROW",
+        "INTEGRITY_NOSE",
+        "INTEGRITY_MOUTH",
+        "INTEGRITY_CHEEK",
+        "HEAD_YAW",
+        "HEAD_PITCH",
+        "HEAD_ROLL",
+        "MOUTH_CLOSED",
+        "EYES_OPEN"
+      ],
+      "default": "QUALITY_TYPE_NONE",
+      "description": "人脸质量维度.\n\n - QUALITY_TYPE_NONE: 正常.\n - PUPIL_DISTANCE: 瞳距.\n - CLARITY: 清晰程度，0到1分数.\n - LIGHT_DARK: 光照过暗程度，0到1分数.\n - LIGHT_BRIGHT: 光照过亮程度，0到1分数.\n - INTEGRITY_EYEBROW: 完整度（眉毛），0到1分数.\n - INTEGRITY_NOSE: 完整度（鼻子），0到1分数.\n - INTEGRITY_MOUTH: 完整度（嘴巴），0到1分数.\n - INTEGRITY_CHEEK: 完整度（面颊），0到1分数.\n - HEAD_YAW: 偏航角，角度值.\n - HEAD_PITCH: 俯仰角，角度值.\n - HEAD_ROLL: 翻滚角，角度值.\n - MOUTH_CLOSED: 闭嘴程度，0到1分数.\n - EYES_OPEN: 睁眼程度，0到1分数."
+    }
+  }
+}

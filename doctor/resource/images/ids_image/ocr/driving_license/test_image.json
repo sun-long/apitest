@@ -1,0 +1,10 @@
+{
+    "image_path_t": [
+        "//Users/weishuting/code/belt-beta-new/doctor/resource/images/ids_image/ocr/driving_license/gray_driving_first.jpg",
+        "//Users/weishuting/code/belt-beta-new/doctor/resource/images/ids_image/ocr/driving_license/Y_left1.jpg",
+        "//Users/weishuting/code/belt-beta-new/doctor/resource/images/ids_image/ocr/driving_license/driver_full_01.bmp",
+        "//Users/weishuting/code/belt-beta-new/doctor/resource/images/ids_image/ocr/driving_license/Y_left2.jpg",
+        "//Users/weishuting/code/belt-beta-new/doctor/resource/images/ids_image/ocr/driving_license/driver_full_02.jpg"
+    ],
+    "image_path_f": []
+}

@@ -1,0 +1,271 @@
+syntax = "proto3";
+
+option go_package = "gitlab.sz.sensetime.com/belt/crd/ids-wrapper-service/api/ws";
+option optimize_for = LITE_RUNTIME;
+
+package belt.api.ids.ws;
+
+enum MessageType {
+  // 缺省值
+  MESSAGE_TYPE_UNKNOWN = 0;
+  // 客户端上传图片帧消息.
+  FRAME_MESSAGE = 1;
+  // 服务端数据采集请求.
+  COLLECT_REQUEST = 2;
+  // 服务端反馈检测结果,包括检测完成, 异常报错, 校准提示.
+  DETECT_RESULT = 3;
+  // 上报客户端信息, 包括sdk信息, 系统版本号, 设备信息, 统计信息等.
+  CLIENT_INFO = 4;
+}
+
+message ClientMessage {
+  // 客户端的消息标识.
+  int64 msg_id = 1;
+  // 对应的服务端的msg_id
+  int64 server_msg_id = 2;
+  // 标记消息类型, 不是必需, 按照下面字段定义的实际类型判断就可以.
+  MessageType message_type = 3;
+  // 图片采集上传消息.
+  FrameMessage frame_message = 4;
+  // 上报客户端信息
+  ClientInfo client_info = 5;
+}
+
+// 二维图像坐标, 注意: 坐标系与输入图像相同.
+// [EN] Coordinates of two-dimensional image. Note: the coordinate system is the same as the input image.
+message Vertex {
+  // X 轴坐标.
+  int32 x = 1;
+  // Y 轴坐标.
+  int32 y = 2;
+}
+
+// 多边形边界.
+// [EN] Bounding poly.
+message BoundingPoly {
+  // 多边形顶点.
+  // 注意: 仅包含两个顶点, 目标区域被解释为矩形, 第一个为左上角坐标, 第二个为右下角坐标.
+  // [EN] Polygon vertices.
+  // Note when vertices only contains two vertices, the polygon is interoperate as rectangular, the
+  // first is the coordinate in upper left corner and the second is in the lower right corner.
+  repeated Vertex vertices = 1;
+}
+
+message Rectangle {
+  // 起始点 X 轴坐标.
+  int32 left = 1;
+  // 起始点 Y 轴坐标.
+  int32 top = 2;
+  // 矩形宽度.
+  int32 width = 3;
+  // 矩形高度.
+  int32 height = 4;
+}
+
+message Resolution {
+  // 屏幕宽.
+  int32 width = 3;
+  // 屏幕高.
+  int32 height = 4;
+}
+
+message ClientInfo {
+  // SDK 版本号信息, 如 v1.0.0.
+  string sdk_version = 1;
+  // 系统平台, 支持ios, android, harmony.
+  string platform = 2;
+  // 操作系统版本号.
+  string os_version = 3;
+  // 设备型号.
+  string device = 4;
+  // 分辨率信息.
+  Resolution resolution = 7;
+  // 检测区域矩形框, 为空时需要在FrameMessage传递.
+  Rectangle roi = 10;
+}
+
+// 服务端向客户端发送.
+message ServerMessage {
+  // 此消息标识, 客户端应答中回传, 可以用来判断客户端上传图片是对应哪个检测阶段.
+  int64 msg_id = 1;
+  // 标记消息类型, 不是必需, 按照下面字段定义的实际类型判断就可以.
+  MessageType message_type = 2;
+  // 数据采集请求.
+  CollectRequest collect_request = 3;
+  // 人脸检测校准结果.
+  DetectResult detect_result = 4;
+}
+
+message CollectRequest {
+  // 跳帧配置.
+  FrameConfig frame_config = 1;
+  // 交互动作类型, 用于前端引导用户做出对应的动作.
+  int32 action_type = 2;
+  // 默认提示文本("请将人脸保持在框内", "请左右摇头", "请上下点头", "请张嘴", "请眨眼", "请向左摇头", "请向右摇头"),
+  // 客户端可直接按默认提示引导用户做动作.
+  string default_hint = 3;
+  // 打光颜色顺序, 为空则不做打光处理.
+  repeated ColorConfig color_configs = 4;
+}
+
+message DetectResult {
+  // 检测错误码.
+  ErrCode err_code = 1;
+  // 错误提示文本("未检测到人脸", "请靠近", "请不要离开框内"),
+  string err_msg = 2;
+  // 状态，表示收到此结果时连接的状态.
+  Status status = 3;
+  // 图片选帧回传消息，用于身份证扫描在结束时返回质量选帧.
+  bytes image = 4;
+  // 检测对象类型.
+  Label label = 5;
+}
+
+// client向server发送frame
+message FrameMessage {
+  // 图片二进制, 支持JPG.
+  bytes image = 1;
+  // 目标检测框
+  Rectangle roi = 2;
+  // 图片时间戳
+  Timestamp timestamp = 3;
+  // 图片打光颜色, 如果是炫彩打光需要告知当前帧颜色.
+  int32 color = 4;
+  // 检测对象类型.
+  Label label = 5;
+}
+
+message Timestamp {
+  // 秒数，Unix时间
+  int32 seconds = 1;
+  // 一秒内的纳秒数
+  int32 nanos = 2;
+}
+
+// 选帧策略
+enum SelectPolicy {
+  // 默认按照跳帧间隔定时选帧方式.
+  SELECT_POLICY_DEFAULT = 0;
+  // 阶段首尾选帧, 阶段是指同一个动作, 或者炫彩打光同一个颜色阶段, 多阶段首阶段只选择尾帧, 最后阶段只选择首帧.
+  SELECT_STAGE_START_END = 1;
+}
+
+enum Label {
+  // 缺省值
+  LABEL_UNKNOWN = 0;
+  // 身份证正反面标识，如果是身份证扫描需要告知当前帧为扫描何面, 1为正面(人像面)，2为反面(国徽面).
+  IDCARD_FRONT = 1;
+  IDCARD_BACK = 2;
+  // 身份证扫描双面，用于标识第一面扫描完成后需要保持连接，继续进行第二名扫描.
+  IDCARD_BOTH_SIDES = 3;
+  // 人脸
+  FACE = 10;
+  // 银行卡
+  BANKCARD = 20;
+}
+
+// 帧数据传输配置.
+message FrameConfig {
+  // 抽帧间隔，单位：ms.
+  int32 frame_interval = 1;
+  // 最大抽帧数.
+  int32 max_frame_count = 2;
+  // 选帧策略, 目前用于炫彩打光.
+  SelectPolicy select_policy = 3;
+}
+
+message ColorConfig {
+  // 如果有打光需求, 设置每种颜色打光时间，单位：ms.
+  int32 color_duration = 1;
+  // 打光颜色, 当前支持颜色如下：
+  // 85,0,255(Purple): 0x5500FF(5570815),
+  // 102,255,0(Green): 0x66FF00(6749952),
+  // 230,255,0(Yellow): 0xE6FF00(15138560),
+  // 255,0,0(Red): 0xFF0000(16711680).
+  int32 color = 2;
+}
+
+enum ImageFormat {
+  // 未知格式
+  IMAGE_FORMAT_UNKNOWN = 0;
+  JPG = 1;
+  PNG = 2;
+  BMP = 3;
+}
+
+enum ErrCode {
+  // 检测完成，通过与否都将写入结果.
+  OK = 0;
+  // 客户端出错, 通常是数据有误.
+  CLIENT_EXCEPTION = 1;
+  // 服务端出错, 通常是内部处理失败.
+  SERVER_EXCEPTION = 2;
+  // 流程超时.
+  TIMEOUT = 3;
+  // 耗完检测帧数.
+  REACH_MAX_FRAME_COUNT = 4;
+
+  // 人脸检测正常.
+  FACE_DETECT_OK = 100;
+  // 无人脸检出.
+  NO_FACE_DETECTED = 101;
+  // 无人脸检出.
+  MULTIPLE_FACES_DETECTED = 102;
+  // 人脸偏离检测ROI框.
+  FACE_NOT_IN_ROI = 103;
+  // 人脸太小, 距离镜头太远.
+  FACE_TOO_SMALL = 104;
+  // 人脸质量低下.
+  FACE_LOW_QUALITY = 105;
+  // 人脸存在遮挡.
+  FACE_OCCLUSION = 106;
+  // 人脸未朝前.
+  FACE_NOT_FORWARD = 107;
+
+  // 无身份证检出.
+  NO_IDCARD_DETECTED = 201;
+  // 多个身份证检出.
+  MULTIPLE_IDCARDS_DETECTED = 202;
+  // 身份证偏离检测ROI框.
+  IDCARD_NOT_IN_ROI = 203;
+  // 身份证太小, 距离镜头太远.
+  IDCARD_TOO_SMALL = 204;
+  // 身份证未对齐.
+  IDCARD_NOT_ALIGNED = 205;
+  // 身份证非指定面.
+  IDCARD_NOT_REQUIRED_SIDE = 206;
+  // 身份证非原件.
+  IDCARD_NOT_ORIGINAL = 207;
+  // 身份证遮挡.
+  IDCARD_OCCLUSION = 211;
+  // 身份证强光.
+  IDCARD_BRIGHT = 212;
+  // 身份证弱光.
+  IDCARD_DARK = 213;
+  // 身份证模糊.
+  IDCARD_BLUR = 214;
+  // 身份证被剪裁，不完整.
+  IDCARD_CROPPED = 215;
+  // 身份证存在字段非法.
+  IDCARD_FIELD_INVALID = 216;
+  // 身份证需要翻面.
+  IDCARD_TURN_SIDE = 220;
+
+  // 无银行卡检出.
+  NO_BANKCARD_DETECTED = 301;
+  // 多个银行卡检出.
+  MULTIPLE_BANKCARDS_DETECTED = 302;
+  // 银行卡偏离检测ROI框.
+  BANKCARD_NOT_IN_ROI = 303;
+  // 银行卡太小, 距离镜头太远.
+  BANKCARD_TOO_SMALL = 304;
+  // 银行卡存在字段非法.
+  BANKCARD_FIELD_INVALID = 305;
+}
+
+enum Status {
+  // 结束
+  END = 0;
+  // 保持
+  ONGOING = 1;
+}

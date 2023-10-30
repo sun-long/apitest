@@ -1,0 +1,1152 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "IDS Identity Service",
+    "version": "v1.3.0"
+  },
+  "tags": [
+    {
+      "name": "IdentityService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "内部接口, 上报健康信息给RAS [INTERNAL].\nroute prefix=ids internal_prefix=ids action=CheckHealth version=v1",
+        "operationId": "IdentityService_CheckHealth",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/identityCheckHealthResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "IdentityService"
+        ]
+      }
+    },
+    "/v1/h5/identity/get_session_config": {
+      "post": {
+        "summary": "H5 调用的内部接口, 获取H5全流程相关配置[INTERNAL].\nroute prefix=ids internal_prefix=ids action=H5GetSessionConfig version=v1",
+        "operationId": "IdentityService_H5GetSessionConfig",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/identityGetSessionConfigResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/identityGetSessionConfigRequest"
+            }
+          }
+        ],
+        "tags": [
+          "IdentityService"
+        ]
+      }
+    },
+    "/v1/h5/identity/update_idcard": {
+      "post": {
+        "summary": "H5 三要素身份核验, 根据权威源校验身份证号和姓名是否匹配, 并比对请求中人脸图片和权威库图片[INTERNAL].\nroute prefix=ids internal_prefix=ids action=H5UpdateIDCard version=v1",
+        "operationId": "IdentityService_H5UpdateIDCard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/identityH5UpdateIDCardResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/identityH5UpdateIDCardRequest"
+            }
+          }
+        ],
+        "tags": [
+          "IdentityService"
+        ]
+      }
+    },
+    "/v1/identity/compare_face_idcard": {
+      "post": {
+        "summary": "将手持身份证照中的被拍人的脸和身份证上的人脸进行比对，判断是否为同一人.\nroute prefix=ids internal_prefix=ids action=CompareFaceIDCard version=v1",
+        "operationId": "IdentityService_CompareFaceIDCard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/identityCompareFaceIDCardResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/identityCompareFaceIDCardRequest"
+            }
+          }
+        ],
+        "tags": [
+          "IdentityService"
+        ]
+      }
+    },
+    "/v1/identity/create_session": {
+      "post": {
+        "summary": "创建一个检测会话.\nroute prefix=ids internal_prefix=ids action=CreateSession version=v1",
+        "operationId": "IdentityService_CreateSession",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/idsidentityCreateSessionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/idsidentityCreateSessionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "IdentityService"
+        ]
+      }
+    },
+    "/v1/identity/get_session_liveness_result": {
+      "post": {
+        "summary": "获取活体检测会话的最终结果.\nroute prefix=ids internal_prefix=ids action=GetSessionLivenessResult version=v1",
+        "operationId": "IdentityService_GetSessionLivenessResult",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/identityGetSessionResultResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/identityGetSessionResultRequest"
+            }
+          }
+        ],
+        "tags": [
+          "IdentityService"
+        ]
+      }
+    },
+    "/v1/identity/get_session_verification_result": {
+      "post": {
+        "summary": "获取身份核验检测会话的最终结果.\nroute prefix=ids internal_prefix=ids action=GetSessionVerificationResult version=v1",
+        "operationId": "IdentityService_GetSessionVerificationResult",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/identityGetSessionResultResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/identityGetSessionResultRequest"
+            }
+          }
+        ],
+        "tags": [
+          "IdentityService"
+        ]
+      }
+    },
+    "/v1/identity/verify_bankcard": {
+      "post": {
+        "summary": "银行卡四要素核验.\nroute prefix=ids internal_prefix=ids action=VerifyBankcard version=v1",
+        "operationId": "IdentityService_VerifyBankcard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/identityVerifyBankcardResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/identityVerifyBankcardRequest"
+            }
+          }
+        ],
+        "tags": [
+          "IdentityService"
+        ]
+      }
+    },
+    "/v1/identity/verify_enterprise": {
+      "post": {
+        "summary": "企业四要素核验.\nroute prefix=ids internal_prefix=ids action=VerifyEnterprise version=v1",
+        "operationId": "IdentityService_VerifyEnterprise",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/identityVerifyEnterpriseResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/identityVerifyEnterpriseRequest"
+            }
+          }
+        ],
+        "tags": [
+          "IdentityService"
+        ]
+      }
+    },
+    "/v1/identity/verify_idcard": {
+      "post": {
+        "summary": "身份证, 姓名二要素身份核验, 根据权威源校验身份证号和姓名是否匹配.\nroute prefix=ids internal_prefix=ids action=VerifyIDCard version=v1",
+        "operationId": "IdentityService_VerifyIDCard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/identityVerifyIDCardResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/identityVerifyIDCardRequest"
+            }
+          }
+        ],
+        "tags": [
+          "IdentityService"
+        ]
+      }
+    },
+    "/v1/identity/verify_idcard_face": {
+      "post": {
+        "summary": "身份证, 姓名, 人脸图三要素身份核验, 根据权威源校验身份证号和姓名是否匹配, 并比对请求中人脸图片和权威库图片.\nroute prefix=ids internal_prefix=ids action=VerifyIDCardFace version=v1",
+        "operationId": "IdentityService_VerifyIDCardFace",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/identityVerifyIDCardFaceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/identityVerifyIDCardFaceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "IdentityService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "identityActionImage": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "description": "BASE64编码的JPG图片."
+        },
+        "action": {
+          "$ref": "#/definitions/wrapperActionType",
+          "description": "按动作留存时的动作类型."
+        }
+      }
+    },
+    "identityBankcardVerifyInfo": {
+      "type": "object",
+      "properties": {
+        "bankcard_number": {
+          "type": "string",
+          "description": "银行卡号."
+        },
+        "name": {
+          "type": "string",
+          "description": "持卡人姓名."
+        },
+        "idcard_number": {
+          "type": "string",
+          "description": "持卡人身份证号."
+        },
+        "mobile": {
+          "type": "string",
+          "description": "预留手机号码, 可选."
+        }
+      }
+    },
+    "identityCertificateType": {
+      "type": "string",
+      "enum": [
+        "CERTIFICATE_TYPE_NONE",
+        "IDCARD"
+      ],
+      "default": "CERTIFICATE_TYPE_NONE",
+      "description": "证件类型.\n\n - CERTIFICATE_TYPE_NONE: 不检测任何类型证件.\n - IDCARD: 身份证."
+    },
+    "identityCheckHealthResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "belt通用错误模型结构, 出现错误时不为空."
+        }
+      }
+    },
+    "identityCompareFaceIDCardRequest": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "description": "手持身份证图片数据, 参考统一的图片限制."
+        },
+        "auto_rotate": {
+          "type": "boolean",
+          "description": "是否开启自动旋转检测, 如果为真, 当检测不到人脸时会进行旋转后继续检测, 消耗更多资源, 响应会更慢."
+        },
+        "min_quality_level": {
+          "$ref": "#/definitions/idswrapperQualityLevel",
+          "description": "输入图片最低质量等级要求, 低于该质量等级报错, 默认不做质量等级过滤."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "字段加密信息, 对有加密需求的用户需要填写, 不传表示不加密."
+        }
+      }
+    },
+    "identityCompareFaceIDCardResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "title": "belt通用错误模型结构, 出现错误时不为空.\nhttps://gitlab.sz.sensetime.com/belt/crd/ras-protocols/common/-/blob/master/error_info.proto"
+        },
+        "score": {
+          "type": "number",
+          "format": "float",
+          "description": "人脸比对分数."
+        }
+      }
+    },
+    "identityEnterpriseVerifyInfo": {
+      "type": "object",
+      "properties": {
+        "enterprise_name": {
+          "type": "string",
+          "description": "企业名称."
+        },
+        "enterprise_no": {
+          "type": "string",
+          "description": "统一社会信用代码或工商注册号."
+        },
+        "artificial_person": {
+          "type": "string",
+          "description": "法定代表人."
+        },
+        "idcard_number": {
+          "type": "string",
+          "description": "法人身份证号."
+        }
+      }
+    },
+    "identityGetSessionConfigRequest": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string",
+          "description": "会话标识."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "加密设置, 设置后对应答消息体中的 session 字段整体加密."
+        }
+      },
+      "description": "获取端侧检测会话信息."
+    },
+    "identityGetSessionConfigResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "belt通用错误模型结构, 出现错误时不为空."
+        },
+        "session": {
+          "$ref": "#/definitions/idsidentitySession",
+          "description": "返回用户配置的session配置信息."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "加密信息, 应答消息体中的 session 字段整体加密."
+        }
+      },
+      "description": "获取检测会话配置应答消息体."
+    },
+    "identityGetSessionResultRequest": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string",
+          "description": "创建会话时返回的会话标识."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "加密设置, 此处无需加密请求体, 设置后对应答消息体中的 session_result 字段整体加密."
+        }
+      },
+      "description": "获取检测会话结果."
+    },
+    "identityGetSessionResultResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "belt通用错误模型结构, 出现错误时不为空."
+        },
+        "session_result": {
+          "$ref": "#/definitions/identitySessionResult",
+          "description": "该检测会话最终的结果信息."
+        },
+        "extra_info": {
+          "type": "string",
+          "description": "回传业务额外信息."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "加密信息, 建议直接对 session_result 字段整体加密."
+        }
+      },
+      "description": "获取检测会话结果."
+    },
+    "identityH5SessionConfig": {
+      "type": "object",
+      "properties": {
+        "template_id": {
+          "type": "string",
+          "description": "H5 模板标识, 用户在控制台设置了H5模板后可使用, 未设置则需要填写后边其他字段."
+        },
+        "redirect_url": {
+          "type": "string",
+          "description": "H5 流程结束后的跳转 URL."
+        },
+        "logo_url": {
+          "type": "string",
+          "description": "业务方定制标志 URL."
+        },
+        "page_title": {
+          "type": "string",
+          "description": "页面标题."
+        }
+      },
+      "description": "H5 检测会话配置."
+    },
+    "identityH5UpdateIDCardRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "姓名, 需要进行UTF-8编码."
+        },
+        "idcard_number": {
+          "type": "string",
+          "description": "身份证号."
+        },
+        "expiry_date": {
+          "type": "string",
+          "description": "可选, 过期日期, 来自身份证背面信息\"有效期限\", 格式为: YYYY-MM-DD, 例如: 2023-12-30, 或者\"长期\"."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "字段加密信息, 对有加密需求的用户需要填写, 不传表示不加密."
+        }
+      },
+      "description": "H5更新身份证信息请求体."
+    },
+    "identityH5UpdateIDCardResponse": {
+      "type": "object",
+      "description": "更新身份证信息."
+    },
+    "identityIDVerification": {
+      "type": "object",
+      "properties": {
+        "certificate_types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/identityCertificateType"
+          },
+          "description": "[DEPRECATED] 检测证件类型, 目前仅 H5 身份核验全流程需要识别身份证时配置, 默认为空: 不做证件OCR."
+        },
+        "name": {
+          "type": "string",
+          "description": "姓名, UTF-8编码字符串, 不做身份证OCR时需要填写姓名信息, 最大长度支持 64B."
+        },
+        "idcard_number": {
+          "type": "string",
+          "description": "身份证号, 不做身份证OCR时需要填写姓名信息."
+        },
+        "expiry_date": {
+          "type": "string",
+          "description": "可选, 有效截止日期, 来自身份证背面信息\"有效期限\", 格式为: YYYY-MM-DD, 例如: 2023-12-30, 当身份证上为\"长期\"时填写\"0000\"."
+        },
+        "certificate_type": {
+          "$ref": "#/definitions/identityCertificateType",
+          "description": "需要做OCR检测的证件类型, 默认不做OCR检测, 此时需要填写name和idcard_number等字段."
+        },
+        "min_quality_level": {
+          "$ref": "#/definitions/idsocrQualityLevel",
+          "description": "当配置做身份证OCR时, 最低身份证质量等级要求, 当低于该质量等级时报错(四个级别：EXTREMELY_LOW\u003cLOW\u003cNORMAL\u003cHIGH), 默认不填不做质量控制."
+        }
+      }
+    },
+    "identityQualityImage": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "description": "BASE64编码的JPG图片."
+        },
+        "quality": {
+          "type": "number",
+          "format": "float",
+          "description": "按质量留存时的图片质量."
+        }
+      },
+      "description": "按照图片质量排序返回的留存图片."
+    },
+    "identitySessionResult": {
+      "type": "object",
+      "properties": {
+        "verify_result": {
+          "$ref": "#/definitions/identityVerifyResult",
+          "description": "身份核验结果, 如果请求了身份核验, 返回核验结果."
+        },
+        "is_liveness": {
+          "type": "boolean",
+          "description": "根据服务端默认阈值判断是否活体, true: 活体, false: 非活体, 非活体时返回活体攻击方式."
+        },
+        "liveness_score": {
+          "type": "number",
+          "format": "float",
+          "description": "活体检测分数, 分数越高, 活体的概率越大."
+        },
+        "quality_images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/identityQualityImage"
+          },
+          "description": "按质量选择图片留存, 最多支持 5 张."
+        },
+        "action_images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/identityActionImage"
+          },
+          "description": "按活体动作留存的图片."
+        },
+        "idcard": {
+          "$ref": "#/definitions/ocrIDCard",
+          "description": "身份证识别信息, 如果有设置身份证识别则返回, 其中姓名, 身份证号."
+        },
+        "user_updated_idcard": {
+          "$ref": "#/definitions/ocrIDCard",
+          "description": "用户手动输入更新身份信息,如果输入用作身份核验."
+        },
+        "idcard_front_image": {
+          "type": "string",
+          "format": "byte",
+          "description": "人像面留存图片."
+        },
+        "idcard_back_image": {
+          "type": "string",
+          "format": "byte",
+          "description": "身份证国徽面留存图片."
+        },
+        "process_video_url": {
+          "type": "string",
+          "description": "留存视频文件的URL [EXPERIMENTAL]."
+        }
+      }
+    },
+    "identityVerifyBankcardRequest": {
+      "type": "object",
+      "properties": {
+        "verify_info": {
+          "$ref": "#/definitions/identityBankcardVerifyInfo",
+          "description": "银行卡待核验信息."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "字段加密信息, 对有加密需求的用户需要填写, 不传表示不加密."
+        }
+      }
+    },
+    "identityVerifyBankcardResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "title": "belt通用错误模型结构, 出现错误时不为空.\nhttps://gitlab.sz.sensetime.com/belt/crd/ras-protocols/common/-/blob/master/error_info.proto"
+        },
+        "verify_result": {
+          "$ref": "#/definitions/identityVerifyResult",
+          "description": "MATCH: 信息匹配,通过核验; MISMATCH: 信息不匹配, 未通过核验."
+        },
+        "description": {
+          "type": "string",
+          "description": "结果描述."
+        }
+      }
+    },
+    "identityVerifyEnterpriseRequest": {
+      "type": "object",
+      "properties": {
+        "verify_info": {
+          "$ref": "#/definitions/identityEnterpriseVerifyInfo",
+          "description": "待核验企业信息."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "字段加密信息, 对有加密需求的用户需要填写, 不传表示不加密."
+        }
+      }
+    },
+    "identityVerifyEnterpriseResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "title": "belt通用错误模型结构, 出现错误时不为空.\nhttps://gitlab.sz.sensetime.com/belt/crd/ras-protocols/common/-/blob/master/error_info.proto"
+        },
+        "verify_result": {
+          "$ref": "#/definitions/identityVerifyResult",
+          "description": "MATCH: 信息匹配,通过核验; MISMATCH: 信息不匹配, 未通过核验."
+        },
+        "description": {
+          "type": "string",
+          "description": "结果描述."
+        }
+      }
+    },
+    "identityVerifyIDCardFaceRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "姓名, 需要进行UTF-8编码."
+        },
+        "idcard_number": {
+          "type": "string",
+          "description": "身份证号."
+        },
+        "expiry_date": {
+          "type": "string",
+          "description": "可选, 过期日期, 来自身份证背面信息\"有效期限\", 格式为: YYYY-MM-DD, 例如: 2023-12-30, 或者\"长期\"."
+        },
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "description": "人脸图片数据, 参考统一的图片限制."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "字段加密信息, 对有加密需求的用户需要填写, 不传表示不加密."
+        }
+      }
+    },
+    "identityVerifyIDCardFaceResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "title": "belt通用错误模型结构, 出现错误时不为空.\nhttps://gitlab.sz.sensetime.com/belt/crd/ras-protocols/common/-/blob/master/error_info.proto"
+        },
+        "verify_result": {
+          "$ref": "#/definitions/identityVerifyResult",
+          "description": "认证状态--1：正常, 2匹配或该身份证号不存在, 2, 异常, 请查看错误码."
+        },
+        "score": {
+          "type": "number",
+          "format": "float",
+          "title": "人脸比对分数. 中心源0.7, 一所源0.9, 同时拉伸到0.95"
+        }
+      }
+    },
+    "identityVerifyIDCardRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "姓名, 需要进行UTF-8编码."
+        },
+        "idcard_number": {
+          "type": "string",
+          "description": "身份证号."
+        },
+        "expiry_date": {
+          "type": "string",
+          "description": "可选, 过期日期, 来自身份证背面信息\"有效期限\", 格式为: YYYY-MM-DD, 例如: 2023-12-30, 或者\"长期\"."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "字段加密信息, 对有加密需求的用户需要填写, 不传表示不加密."
+        }
+      },
+      "description": "身份证信息验证请求体."
+    },
+    "identityVerifyIDCardResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "title": "belt通用错误模型结构, 出现错误时不为空.\nhttps://gitlab.sz.sensetime.com/belt/crd/ras-protocols/common/-/blob/master/error_info.proto"
+        },
+        "verify_result": {
+          "$ref": "#/definitions/identityVerifyResult",
+          "title": "认证状态--1：正常, 2匹配或该身份证号不存在, 2, 异常, 请查看错误码, 权威库无次身份证记录等"
+        }
+      }
+    },
+    "identityVerifyResult": {
+      "type": "string",
+      "enum": [
+        "VERIFY_RESULT_UNKNOWN",
+        "MATCH",
+        "INVALID_IDCARD_INFO",
+        "FACE_UNMATCH",
+        "MISMATCH"
+      ],
+      "default": "VERIFY_RESULT_UNKNOWN",
+      "description": "权威源核验结果,具体取值参考接口说明.\n\n - VERIFY_RESULT_UNKNOWN: 核验异常.\n - MATCH: 身份证等信息核验匹配, 通过核验.\n - INVALID_IDCARD_INFO: 身份信息无效,包括:姓名与身份证号不匹配,身份信息无效,证件挂失.\n - FACE_UNMATCH: 人脸比对不匹配.\n - MISMATCH: 信息不匹配, 未通过权威源核验."
+    },
+    "idsidentityCreateSessionRequest": {
+      "type": "object",
+      "properties": {
+        "session": {
+          "$ref": "#/definitions/idsidentitySession",
+          "description": "创建检测会话的相关信息, 支持加密传输."
+        },
+        "encrypt_info": {
+          "$ref": "#/definitions/wrapperEncryptInfo",
+          "description": "字段加密信息, 有加密需求的用户需要填写, 对session 字段加密, 不传表示不加密."
+        }
+      },
+      "description": "创建端侧检测会话."
+    },
+    "idsidentityCreateSessionResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "belt通用错误模型结构, 出现错误时不为空."
+        },
+        "session_id": {
+          "type": "string",
+          "description": "创建成功后返回一个会话标识."
+        },
+        "biz_token": {
+          "type": "string",
+          "description": "端侧调用接口的令牌."
+        },
+        "verification_url": {
+          "type": "string",
+          "description": "H5 调用地址, 包含token参数."
+        }
+      },
+      "title": "创建检测会话结果,"
+    },
+    "idsidentitySession": {
+      "type": "object",
+      "properties": {
+        "session_type": {
+          "$ref": "#/definitions/wrapperSessionType",
+          "title": "当前会话类型"
+        },
+        "uuid": {
+          "type": "string",
+          "description": "端侧传递的通用唯一标识."
+        },
+        "candidate_actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/wrapperActionType"
+          },
+          "description": "可选, 定制候选的交互动作组, 设置后从该组动作中随机下发 n 个动作, n 由 action_number 参数决定.\n可按需定制, 如简单动作组[\"BLINK_EYES\",\"OPEN_MOUTH\"], 复杂候选组[\"BLINK_EYES\",\"OPEN_MOUTH\",\"SHAKE_HEAD\",\"NOD_HEAD\"].\n不填则不做交互动作活体."
+        },
+        "action_number": {
+          "type": "integer",
+          "format": "int32",
+          "description": "设置用户交互动作个数, 当设置了候选动作组时有效, 支持最少1个动作, 默认为1, 填0或者不填视为1."
+        },
+        "disable_color_liveness": {
+          "type": "boolean",
+          "description": "可选, 是否禁用炫彩活体，false: 不禁用，开启炫彩活体, true: 禁用炫彩活体, 默认为 false."
+        },
+        "pick_images_by_quality_number": {
+          "type": "integer",
+          "format": "int32",
+          "description": "按质量选图留存数量, 最少留存1张, 支持最多5张, 默认为1, 填0或者不填, 选1张留存."
+        },
+        "pick_images_per_action_number": {
+          "type": "integer",
+          "format": "int32",
+          "description": "每个动作选图留存数量, 默认0, 不留存, 支持最多每个动作2张."
+        },
+        "h5_config": {
+          "$ref": "#/definitions/identityH5SessionConfig",
+          "description": "启动 H5 流程的配置信息."
+        },
+        "id_verification": {
+          "$ref": "#/definitions/identityIDVerification",
+          "description": "可选，启动身份核验流程需要配置."
+        },
+        "extra_info": {
+          "type": "string",
+          "description": "可选, 透传业务额外信息, 不超过1024字节."
+        },
+        "save_process_video": {
+          "type": "boolean",
+          "description": "可选, 默认或不填时不留存视频，仅传true 时留存过程视频 [EXPERIMENTAL]."
+        }
+      }
+    },
+    "idsocrQualityLevel": {
+      "type": "string",
+      "enum": [
+        "QUALITY_LEVEL_NONE",
+        "EXTREMELY_LOW",
+        "LOW",
+        "NORMAL",
+        "HIGH"
+      ],
+      "default": "QUALITY_LEVEL_NONE",
+      "description": "卡证质量控制等级.\n\n - QUALITY_LEVEL_NONE: 无质量等级，预留.\n - EXTREMELY_LOW: 极低质量, 证件存在被遮挡, 被裁剪的任一情况.\n - LOW: 低质量, 无遮挡, 不存在裁剪, 存在光照和模糊维度均不通过的情况.\n - NORMAL: 普通质量, 无遮挡, 不存在裁剪, 可存在光照或模糊其中一个维度略差的情况.\n - HIGH: 高质量, 无遮挡, 未被裁剪, 光照良好, 清晰, 即不存在任何遮挡, 无任何裁剪, 无光照过强或过暗,模糊等情况."
+    },
+    "idswrapperQualityLevel": {
+      "type": "string",
+      "enum": [
+        "QUALITY_LEVEL_NONE",
+        "LOW",
+        "NORMAL",
+        "HIGH",
+        "EXTREMELY_HIGH"
+      ],
+      "default": "QUALITY_LEVEL_NONE",
+      "description": "人脸质量控制等级.\n\n - QUALITY_LEVEL_NONE: 不做质量检测.\n - LOW: 低质量,NORMAL,HIGH,EXTREMELY_HIGH三种质量等级之外的情形(出现以下四种情况的一种即可):\n- 角度不正(BAD_ANGLE).\n- 黑白照片(GRAY).\n- 戴口罩遮挡(OCCLUSION_RESPIRATOR).\n- 存在光照差(LIGHT_DARK/LIGHT_BRIGHT), 模糊(BLUR), 额头遮挡(OCCLUSION_FORHEAD),戴有色眼镜遮挡(OCCLUSION_SUNGLASSES),\n  其他遮挡(OCCLUSION_OTHERS), 张嘴(MOUTH_OPEN)至少两种类型的质量异常\n - NORMAL: 普通质量等级,角度正, 非黑白照片， 存在光照差(过曝或过暗), 模糊, 张嘴, 额头遮挡,戴有色眼镜遮挡,其他遮挡其中一种类型的质量异常.\n - HIGH: 高质量等级, 光照良好（无弱光且无强光), 清晰, 仅戴普通透明眼镜, 角度正, 不张嘴, 非黑白照片.\n - EXTREMELY_HIGH: 极高质量等级, 光照良好, 清晰, 无任何遮挡（不戴眼镜）, 角度正, 不张嘴, 非黑白照片."
+    },
+    "ocrIDCard": {
+      "type": "object",
+      "properties": {
+        "side": {
+          "$ref": "#/definitions/ocrIDCardSide",
+          "description": "身份证正反面."
+        },
+        "name": {
+          "type": "string",
+          "description": "姓名."
+        },
+        "sex": {
+          "type": "string",
+          "description": "性别."
+        },
+        "nation": {
+          "type": "string",
+          "description": "民族."
+        },
+        "birth_date": {
+          "type": "string",
+          "description": "出生日期,格式为 YYYY-MM-DD, 如2022-12-30."
+        },
+        "address": {
+          "type": "string",
+          "description": "身份证地址."
+        },
+        "number": {
+          "type": "string",
+          "description": "身份证号码."
+        },
+        "authority": {
+          "type": "string",
+          "description": "签发结构, 身份证背面信息."
+        },
+        "expiry_date": {
+          "type": "string",
+          "description": "过期日期, 来自身份证背面信息\"有效期限\", 格式为: YYYY-MM-DD, 例如: 2023-12-30, 或者\"长期\"."
+        },
+        "issue_date": {
+          "type": "string",
+          "description": "签发日期, 身份证背面信息\"有效期限\", 格式为: YYYY-MM-DD, 例如: 2003-12-30."
+        },
+        "idcard_source": {
+          "$ref": "#/definitions/ocrIDCardSource",
+          "description": "身份证来源信息."
+        },
+        "image": {
+          "type": "string",
+          "format": "byte",
+          "description": "身份证裁剪图."
+        },
+        "front_image": {
+          "type": "string",
+          "format": "byte",
+          "description": "身份证裁剪图（正面），当前仅限于session中保存使用[INTERNAL]."
+        },
+        "back_image": {
+          "type": "string",
+          "format": "byte",
+          "description": "身份证裁剪图（反面），当前仅限于session中保存使用[INTERNAL]."
+        }
+      }
+    },
+    "ocrIDCardSide": {
+      "type": "string",
+      "enum": [
+        "AUTO",
+        "FRONT",
+        "BACK"
+      ],
+      "default": "AUTO",
+      "description": " - AUTO: 请求时自动识别正反面.\n - FRONT: 身份证正面.\n - BACK: 身份证反面."
+    },
+    "ocrIDCardSource": {
+      "type": "string",
+      "enum": [
+        "ID_CARD_SOURCE_NONE",
+        "ORIGIN",
+        "PHOTO_COPY",
+        "PS",
+        "REVERSION",
+        "TEMPORARY",
+        "ID_CARD_SOURCE_OTHER"
+      ],
+      "default": "ID_CARD_SOURCE_NONE",
+      "description": "- ID_CARD_SOURCE_NONE: 无来源信息.\n - ORIGIN: 原件.\n - PHOTO_COPY: 复印件.\n - PS: 水印(ps?).\n - REVERSION: 翻拍.\n - TEMPORARY: 临时身份证.\n - ID_CARD_SOURCE_OTHER: 其他.",
+      "title": "身份证来源类型：原件, 黑白复印（主要指黑白复印，彩色复印效果一般）, 水印PS, 翻拍, 其他, 临时身份证, 未知"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+        }
+      },
+      "additionalProperties": {},
+      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := \u0026pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code]."
+        },
+        "message": {
+          "type": "string",
+          "description": "A developer-facing error message, which should be in English. Any\nuser-facing error message should be localized and sent in the\n[google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client."
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          },
+          "description": "A list of messages that carry the error details.  There is a common set of\nmessage types for APIs to use."
+        }
+      },
+      "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors)."
+    },
+    "wrapperActionType": {
+      "type": "string",
+      "enum": [
+        "ACTION_TYPE_NONE",
+        "BLINK_EYES",
+        "OPEN_MOUTH",
+        "SHAKE_HEAD",
+        "NOD_HEAD"
+      ],
+      "default": "ACTION_TYPE_NONE",
+      "description": " - ACTION_TYPE_NONE: 不做任何动作, 仅用于打开相机检测开始后校准人脸位置.\n - BLINK_EYES: 以下为交互动作步骤, 眨眼.\n - OPEN_MOUTH: 张嘴\n - SHAKE_HEAD: 摇头, 不区分左右.\n - NOD_HEAD: 点头."
+    },
+    "wrapperEncryptAlgorithm": {
+      "type": "string",
+      "enum": [
+        "ENCRPT_ALGORITHM_NONE",
+        "AES_256_CBC",
+        "AES_256_GCM"
+      ],
+      "default": "ENCRPT_ALGORITHM_NONE",
+      "description": "加密算法.\n\n - ENCRPT_ALGORITHM_NONE: 不加密.\n - AES_256_CBC: AES 256 CBC加密.\n - AES_256_GCM: AES 256 GCM加密."
+    },
+    "wrapperEncryptInfo": {
+      "type": "object",
+      "properties": {
+        "algorithm": {
+          "$ref": "#/definitions/wrapperEncryptAlgorithm",
+          "description": "加密算法, 目前支持AES_256_CBC."
+        },
+        "version": {
+          "type": "integer",
+          "format": "int32",
+          "description": "可选, 加密算法版本."
+        },
+        "encrypted_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "可选, 该消息中加密 JSON (协议原始字段名)字段列表, 仅支持与此结构平级的字段."
+        },
+        "data": {
+          "type": "string",
+          "format": "byte",
+          "description": "加密数据信息, 由包含该结构体的请求或应答消息中上述加密字段消息体 JSON 对象序列化后加密得到.\n如果加密算法指定为 AES_256_CBC, 前 16B 字节为 IV 向量, 其他为用该IV向量得到的加密密文数据.\n如果加密算法指定为 AES_256_GCM, 前 12B 字节为随机 NONCE."
+        }
+      },
+      "description": "加密信息消息体, 如果请求中包含此字段, 对应应答消息也会做相应的加密, 具体加密字段参考具体的API定义."
+    },
+    "wrapperSessionType": {
+      "type": "string",
+      "enum": [
+        "IDENTITY_VERIFICATION",
+        "LIVENESS",
+        "H5_LIVENESS",
+        "IDCARD_SCAN",
+        "BANKCARD_SCAN"
+      ],
+      "default": "IDENTITY_VERIFICATION",
+      "description": "会话类型.\n\n - IDENTITY_VERIFICATION: H5 身份核验流程会话, 可以包括身份证识别, 活体检测, 权威源核验.\n - LIVENESS: SDK 实时活体检测流程会话.\n - H5_LIVENESS: H5 实时活体检测流程会话.\n - IDCARD_SCAN: SDK OCR 身份证扫描会话.\n - BANKCARD_SCAN: SDK OCR 银行卡扫描会话."
+    }
+  }
+}

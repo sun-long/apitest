@@ -1,0 +1,13 @@
+
+def $$%%FUNC_NAME%%$$_param():
+    """  $$%%DESC%%$$  """
+    param = {
+        "url": "$$%%URL%%$$",
+        "module": "$$%%MODULE_NAME%%$$",
+        "headers": {"Content-Type": "application/json"},
+        "method": "$$%%METHOD_NAME%%$$",
+        "params": $$%%PARAMS_DICT%%$$,
+        "data": $$%%DATA_DICT%%$$,
+        "response": {},
+    }
+    return param

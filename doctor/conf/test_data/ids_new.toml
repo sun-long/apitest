@@ -1,0 +1,849 @@
+[EnvInfo]
+    Service ='Host.Ocr.jicheng_new'
+    ak_sk='Key.jicheng_ak_sk_performance'
+    user_token='Key.user_token1'
+[ConfigMap]
+    test_topk=[
+        'Face.Face1_n.top_k.top_k1',
+        'Face.Face1_n.top_k.top_k2',
+    ]
+test_person_id=[
+        'Face.Face1_n.person_id.person_id_true1',
+        'Face.Face1_n.person_id.person_id_true2',
+        'Face.Face1_n.person_id.person_id_true3',
+        'Face.Face1_n.person_id.person_id_true4',
+] 
+ test_hold_idcard_format=[
+       'Identity.hold_idcard.jpg',
+       'Identity.hold_idcard.bmp',
+       'Identity.hold_idcard.png'
+
+ ]
+ test_hold_idcard_common=[
+       'Identity.hold_idcard.jpg'
+ ]
+ test_hold_idcard_rotate=[
+       'Identity.hold_idcard.jpg_90',
+       'Identity.hold_idcard.jpg_180',
+       'Identity.hold_idcard.jpg_270',
+ ]
+ 
+ test_hold_idcard_error_format=[
+        'Identity.hold_idcard.error_format'
+ ]
+ test_hold_idcard_outsize=[
+    'Identity.hold_idcard.jpg_outsize'
+ ]
+ test_hold_idcard_low_resolution=[
+    'Identity.hold_idcard.low_resolution',
+ ]
+test_person_id_not_true=[
+    'Face.Face1_n.person_id.person_id_not_true1',
+    'Face.Face1_n.person_id.person_id_not_true2',
+    'Face.Face1_n.person_id.person_id_not_true3',
+    'Face.Face1_n.person_id.person_id_not_true4',
+    'Face.Face1_n.person_id.person_id_not_true5',
+    'Face.Face1_n.person_id.person_id_not_true6',
+    'Face.Face1_n.person_id.person_id_not_true7',
+]
+test_person_id_not_in_db=[
+    'Face.Face1_n.person_id.person_id_true1',
+]
+
+test_hold_idcard_fake=[
+    'Identity.hold_idcard.one_fake_idcard_print',
+    'Identity.hold_idcard.one_fake_idcard_ps',
+    'Identity.hold_idcard.one_fake_idcard_tmp_idcard',
+]
+
+test_hold_idcard_no_idcard=[
+    'Identity.hold_idcard.paper',
+    'Identity.hold_idcard.idcard_back_01',
+    'Identity.hold_idcard.idcard_back_02',
+    'Identity.hold_idcard.two_face',
+]
+
+test_hold_idcard_cropped=[
+    'Identity.hold_idcard.idcard_cropped_2',
+    #'Identity.hold_idcard.idcard_cropped_3',
+    "Identity.hold_idcard.idcard_cropped_4"
+]
+
+test_hold_idcard_no_face=[
+    'Identity.hold_idcard.paper',
+    'Identity.hold_idcard.idcard_back_01',
+]
+
+test_hold_idcard_one_face=[
+    'Identity.hold_idcard.one_idcard',
+]
+
+test_hold_idcard_multiple_face=[
+    'Identity.hold_idcard.multiple_faces',
+
+]
+test_hold_idcard_small_face=[
+    
+    'Identity.hold_idcard.small_face',
+]
+
+test_hold_idcard_no_face_in_idcard=[
+    'Identity.hold_idcard.paper',
+    'Identity.hold_idcard.idcard_back_01',
+]
+
+test_hold_idcard=[
+    'Identity.hold_idcard.true_hold_idcard_1',
+    'Identity.hold_idcard.true_hold_idcard_3',
+    'Identity.hold_idcard.true_hold_idcard_4',
+    'Identity.hold_idcard.true_hold_idcard_6',
+    'Identity.hold_idcard.true_hold_idcard_7',
+    
+]
+test_hold_idcard_1v1_not_suit=[
+    'Identity.hold_idcard.true_hold_idcard_1_not_suit_4',
+]
+test_hold_idcard_many_idcard=[
+    'Identity.hold_idcard.two_idcard'
+
+]
+
+test_hold_idcard_1v1_suit=[
+    'Identity.hold_idcard.true_hold_idcard_1',
+]
+
+ test_tag_search_person=[
+        'Face.Face1_n.tags.tag1',
+        'Face.Face1_n.tags.tag2',
+        'Face.Face1_n.tags.tag3',
+        'Face.Face1_n.tags.tag4',
+        'Face.Face1_n.tags.tag5',
+        'Face.Face1_n.tags.tag6',
+        'Face.Face1_n.tags.tag7',        
+        'Face.Face1_n.tags.tag8',
+        'Face.Face1_n.tags.tag9',
+    ]  
+    test_tag_update_person=[       
+        'Face.Face1_n.tags.tag1',
+        'Face.Face1_n.tags.tag2',
+        'Face.Face1_n.tags.tag3',
+        'Face.Face1_n.tags.tag4',
+        'Face.Face1_n.tags.tag5',
+        'Face.Face1_n.tags.tag6',
+        'Face.Face1_n.tags.tag7',     
+    ]   
+
+    test_invalid_tag_update_person=[       
+        'Face.Face1_n.tags.tag8',
+        'Face.Face1_n.tags.tag9',
+    ]   
+
+    test_extra_info=[
+        'Face.Face1_n.extra_info.info1',
+    ]   
+
+    test_invalid_extra_info=[
+        'Face.Face1_n.extra_info.info2',
+    ]
+    testImage_ocr_bankcard_format=[
+        'Ocr.Bankcard.testImage.debit_card_jpg',
+        'Ocr.Bankcard.testImage.debit_card_bmp',
+        'Ocr.Bankcard.testImage.debit_card_png',
+    ]
+    testImage_ocr_bankcard_roi=[
+        'Ocr.Bankcard.testImage.debit_card_jpg',
+    ]
+    testImage_ocr_bankcard_type=[
+        'Ocr.Bankcard.testImage.debit_card_jpg',
+        'Ocr.Bankcard.testImage.pay_card'    
+    ]
+    testImage_ocr_bankcard_common=[
+        'Ocr.Bankcard.testImage.debit_card_jpg',
+    ]
+    testImage_ocr_business_license=[
+        'Ocr.BusinessLicense.testImage.jpg',
+        'Ocr.BusinessLicense.testImage.bmp',
+        'Ocr.BusinessLicense.testImage.png',
+        'Ocr.BusinessLicense.testImage.personal',
+    ]
+    testImage_ocr_business_roi=[
+        'Ocr.BusinessLicense.testImage.jpg',
+    ]
+
+    testImage_ocr_business_license_common=[
+        'Ocr.BusinessLicense.testImage.jpg',
+    ]    
+    
+    testImage_ocr_driving_license_01=[
+        'Ocr.DrivingLicense.testImage.driver_full_jpg',
+        'Ocr.DrivingLicense.testImage.driver_full_bmp',  
+        'Ocr.DrivingLicense.testImage.driver_full_png',        
+
+    ]
+
+    testImage_ocr_driving_license_roi=[
+        'Ocr.DrivingLicense.testImage.driver_full_jpg',
+
+    ]
+
+    
+    testImage_ocr_driving_license_second=[
+        'Ocr.DrivingLicense.testImage.gray_driving_second',
+    ]
+    testImage_ocr_driving_license_first=[
+        'Ocr.DrivingLicense.testImage.gray_driving_first',
+    ]    
+    testImage_ocr_driving_license_common=[
+        'Ocr.DrivingLicense.testImage.driver_full_jpg',
+    ]
+    testImage_ocr_hk_macau_exit_entry_permit_roi=[
+        'Ocr.HKMacauExitEntryPermit.testImage.hk_macau_exit_entry_permit_jpeg',
+    ]
+    testImage_ocr_hk_macau_exit_entry_permit=[
+        'Ocr.HKMacauExitEntryPermit.testImage.hk_macau_exit_entry_permit_jpeg',
+        'Ocr.HKMacauExitEntryPermit.testImage.hk_macau_exit_entry_permit_bmp',
+        'Ocr.HKMacauExitEntryPermit.testImage.hk_macau_exit_entry_permit_png',
+    ]
+    testImage_ocr_hk_macau_exit_entry_permit_common=[
+        'Ocr.HKMacauExitEntryPermit.testImage.hk_macau_exit_entry_permit_jpeg',
+    ]    
+    testImage_ocr_taiwan_exit_entry_permit=[
+        'Ocr.TaiwanExitEntryPermit.testImage.taiwan_exit_entry_permit_jpeg_3',
+        'Ocr.TaiwanExitEntryPermit.testImage.taiwan_exit_entry_permit_bmp_3',
+        'Ocr.TaiwanExitEntryPermit.testImage.taiwan_exit_entry_permit_png_3',
+        'Ocr.TaiwanExitEntryPermit.testImage.taiwan_exit_entry_permit_jpg_2',
+        'Ocr.TaiwanExitEntryPermit.testImage.taiwan_exit_entry_permit_bmp_2',
+        'Ocr.TaiwanExitEntryPermit.testImage.taiwan_exit_entry_permit_png_2',
+        
+    ]
+    testImage_ocr_taiwan_exit_entry_permit_roi=[
+        'Ocr.TaiwanExitEntryPermit.testImage.taiwan_exit_entry_permit_png_3',
+    ]
+    testImage_ocr_taiwan_exit_entry_permit_common=[
+        'Ocr.TaiwanExitEntryPermit.testImage.taiwan_exit_entry_permit_png_2',
+    ]
+
+    testImage_ocr_idcard_01=[
+        'Ocr.Idcard.testImage.idcard_front_jpg',
+        'Ocr.Idcard.testImage.idcard_front_bmp',
+        'Ocr.Idcard.testImage.idcard_front_png',
+    ]
+    testImage_ocr_idcard_02=[
+        'Ocr.Idcard.testImage.idcard_back_jpg',
+        'Ocr.Idcard.testImage.idcard_back_bmp',
+        'Ocr.Idcard.testImage.idcard_back_png',
+    ]
+    testImage_ocr_idcard_03=[
+#        'Ocr.Idcard.testImage.idcard_quality',
+        'Ocr.Idcard.testImage.idcard_front_jpg',
+    ]
+    testImage_ocr_idcard_04=[
+        'Ocr.Idcard.testImage.idcard_tmp_front',
+    ]
+    testImage_ocr_idcard_common=[
+        'Ocr.Idcard.testImage.idcard_front_jpg',
+    ]
+    testImage_ocr_idcard_roi=[
+        'Ocr.Idcard.testImage.idcard_front_jpg',
+        'Ocr.Idcard.testImage.idcard_back_jpg',
+    ]
+
+    testImage_ocr_idcard_quality=[
+        'Ocr.Idcard.testImage.idcard_front_jpg',
+        'Ocr.Idcard.testImage.idcard_back_jpg',    
+        'Ocr.Idcard.testImage.idcard_high_quality',        
+    ]  
+    testImage_ocr_idcard_rect_roi=[
+        'Ocr.Idcard.testImage.idcard_front_jpg',
+        'Ocr.Idcard.testImage.idcard_back_jpg',
+        'Ocr.Idcard.testImage.idcard_tmp_front',
+        'Ocr.Idcard.testImage.idcard_tmp_back',       
+    ]
+    testImage_ocr_idcard_back_long_time=[
+        'Ocr.Idcard.testImage.idcard_back_long_time',        
+    ]     
+
+    testImage_ocr_passport=[
+        'Ocr.Passport.testImage.jpg',
+        'Ocr.Passport.testImage.bmp',
+        'Ocr.Passport.testImage.png'
+    ]
+
+
+    testImage_ocr_passpor_roi=[
+        'Ocr.Passport.testImage.jpg',
+    ]
+
+    testImage_ocr_passport_common=[
+        'Ocr.Passport.testImage.jpg',
+    ]
+
+    testImage_ocr_vehicle_license_01=[
+        'Ocr.VehicleLicense.testImage.full_jpg',
+        'Ocr.VehicleLicense.testImage.full_bmp',
+        'Ocr.VehicleLicense.testImage.full_png'    
+    ]
+    testImage_ocr_vehicle_license_roi=[
+        'Ocr.VehicleLicense.testImage.full_bmp',
+    ]
+    testImage_ocr_vehicle_license_first=[
+        'Ocr.VehicleLicense.testImage.first',
+    ]
+    testImage_ocr_vehicle_license_second=[
+        'Ocr.VehicleLicense.testImage.second',
+    ]
+    
+    testImage_ocr_vehicle_license_extra=[
+        'Ocr.VehicleLicense.testImage.extra',        
+    ]
+
+    testImage_ocr_vehicle_license_common=[
+        'Ocr.VehicleLicense.testImage.full_jpg',
+    ]    
+    
+
+    testImage_ocr_beyond_size=[
+        'Ocr.Common.testImage.beyond_size',
+    ]
+    testVerifyIDCard_official=[
+        'Identity.Verify_idcard.official_ruanzhihua',
+    ]
+    testVerifyIDCard_official_suit_wrong=[
+        'Identity.Verify_idcard.official_name_not_suit',
+    ]
+    testVerifyIDCard_official_number_wrong=[
+        'Identity.Verify_idcard.official_id_number_1',
+        'Identity.Verify_idcard.official_id_number_20',
+        'Identity.Verify_idcard.official_id_number_16',
+        'Identity.Verify_idcard.official_id_number_s',
+        'Identity.Verify_idcard.official_id_number_large',
+        
+    ]
+    testVerifyIDCard_official_name_wrong=[
+        'Identity.Verify_idcard.name_wrong_0',
+        'Identity.Verify_idcard.name_wrong_1',
+
+
+    ]
+    testVerifyIDCard_official_birth_wrong=[
+        'Identity.Verify_idcard.official_birth_is_illegal_19781330',
+        'Identity.Verify_idcard.official_birth_is_illegal_19781032',
+        'Identity.Verify_idcard.official_birth_is_illegal_18881330',
+    ]
+    expiry_date_right=[
+        'Identity.expiry_date.date1',
+        'Identity.expiry_date.date2',
+        'Identity.expiry_date.date3',
+        'Identity.expiry_date.date4',
+        'Identity.expiry_date.date5',
+        'Identity.expiry_date.date6',
+        ]
+
+    expiry_date_wrong=[
+        'Identity.expiry_date_wrong.date1',
+        'Identity.expiry_date_wrong.date2',
+        'Identity.expiry_date_wrong.date3',
+        'Identity.expiry_date_wrong.date4',
+        'Identity.expiry_date_wrong.date5',
+        ]
+        
+    testVerifyIDCard_common=[
+        'Identity.Verify_idcard.official_tester'
+    ]
+    testVerifyIDCardFace_common_image_beyond_sie=[
+
+    ]
+    testVerifyIDCardFace_official=[
+        'Identity.Verify_idcard_face.official_tester_jpeg',
+        'Identity.Verify_idcard_face.official_tester_png',
+        'Identity.Verify_idcard_face.official_tester_bmp',
+    ]  
+    testVerifyIDCardFace_official_resize=[
+        'Identity.Verify_idcard_face.official_tester_jpeg_1M',
+        'Identity.Verify_idcard_face.official_tester_bmp_1M',
+        'Identity.Verify_idcard_face.official_tester_png_1M',        
+        'Identity.Verify_idcard_face.official_tester_jpeg_130',
+        'Identity.Verify_idcard_face.official_tester_bmp_130',
+        'Identity.Verify_idcard_face.official_tester_png_130',
+        'Identity.Verify_idcard_face.official_tester_jpeg_50',
+#        'Identity.Verify_idcard_face.official_tester_bmp_50',
+        'Identity.Verify_idcard_face.official_tester_png_50',
+        'Identity.Verify_idcard_face.official_tester_jpeg_25',
+#        'Identity.Verify_idcard_face.official_tester_bmp_25',
+        'Identity.Verify_idcard_face.official_tester_png_25',
+#        'Identity.Verify_idcard_face.official_tester_jpeg_10',
+#        'Identity.Verify_idcard_face.official_tester_bmp_10',
+#        'Identity.Verify_idcard_face.official_tester_png_10',
+
+    ]   
+
+
+
+
+    testVerifyIDCardFace_suit_wrong=[
+        'Identity.Verify_idcard_face.name_not_suit',
+ 
+    ]   
+
+    testVerifyIDCardFace_image_suit_wrong=[
+        'Identity.Verify_idcard_face.image_not_suit',
+ 
+    ]   
+    
+
+
+
+    testVerifyIDCardFace_common=[
+        'Identity.Verify_idcard_face.official_tester_jpeg'
+    ] 
+
+    testImages_format=[
+        'Face.Face1_1.format_jpeg',
+        'Face.Face1_1.format_bmp',
+        'Face.Face1_1.format_png'
+    ] 
+    testImages_multiple_faces=[
+        'Face.Face1_1.two_face1',
+        'Face.Face1_1.two_face2',
+        'Face.Face1_1.two_face3',
+        
+    ]
+    testImages_same=[
+        'Face.Face1_1.same',
+       # 'Face.Face1_1.same1',
+        #'Face.Face1_1.same2',
+    ]
+    testImages_similar=[
+        'Face.Face1_1.similar2'    
+    ]    
+    testImages_different=[
+        'Face.Face1_1.different1',
+    ]
+
+    testImages_badQuality=[
+        'Face.Face1_1.badQuality2'
+    ]       
+    testImage_rotate=[
+        'Face.Face1_1.rotate_90',
+        'Face.Face1_1.rotate_180',
+        'Face.Face1_1.rotate_270'
+    ]
+    test_watermark=[
+        'Watermark.testImage.image1',
+        'Watermark.testImage.image3'
+    ]
+    test_have_watermarked=[
+        'Watermark.testImage.image2',
+    ]  
+    test_watermark_accuracy=[
+        #'Watermark.testImage.image_compress',
+        #'Watermark.testImage.image_cut',
+        'Watermark.testImage.image_qiye_weixin',
+        
+    ]   
+
+[Key]
+    [Key.jicheng_ak_sk_performance]
+        ak="2JqJpDoEeowMT4JCf7Fp516HGzU"
+        sk="Ymd86eMxnfZnOCFRXDv2PZNQgLhqld0N"  
+
+    [Key.shenchan_ak_sk_accuracy]
+        ak="2JZYBoWoY5t1hVraIAXt0MBb2J4"
+        sk="drE6lSMVUCGc87sLqnbQpuLXq4uwVO7z"        
+
+    [Key.jicheng_ak_sk_dev_test]
+        ak="2K4RvSfiLaHYhok1fHIWWq9eDsy"
+        sk="ZZFLjZ7p7UZ4HnEMA09FY6Kr1YAxlEoS"  
+[Host]        
+
+    [Host.Ocr]
+        ocr_test="http://10.10.18.109:58250"
+        ocr_test_new="https://crd-test.sensetime.com/ids-wrapper"
+        ocr_dev="http://10.10.18.109:58249"
+        chunneng="http://10.9.1.28:8066"
+        ingress="https://crd-test.sensetime.com/ids-wrapper"
+        jicheng="https://172.20.26.107"
+        jicheng_new="https://alb-dcc-1-cn-shanghai-1.test-sensebelt.com"
+        jicheng_new_dev="https://alb-dcc-1-cn-shanghai-1.dev-sensebelt.com"
+        shengchan="https://alb-dcc-1-cn-shanghai-1.sensebelt.com"
+[Ocr]
+    [Ocr.Bankcard]
+        [Ocr.Bankcard.testImage]
+            paper="ocr/bankcard/paper.jpg"
+            debit_card_jpg="ocr/bankcard/debit_card.jpg"
+            debit_card_bmp="ocr/bankcard/debit_card.bmp"
+            debit_card_png="ocr/bankcard/debit_card.png"
+            quasi_credit_card="ocr/bankcard/quasi_credit_card.jpg"
+            credit_card="ocr/bankcard/credit_card.jpg"
+            pay_card="ocr/bankcard/pay_card.jpeg" 
+
+    [Ocr.BusinessLicense]
+        [Ocr.BusinessLicense.testImage] 
+            jpg="ocr/business_license/business_duty.jpg"
+            bmp="ocr/business_license/business_duty.bmp"
+            png="ocr/business_license/business_duty.png"
+            personal="ocr/business_license/business_personal.jpg"
+            
+
+
+    [Ocr.DrivingLicense]
+        [Ocr.DrivingLicense.testImage] 
+            driver_full_jpg="ocr/driving_license/driver_full_01.jpg"
+            driver_full_bmp="ocr/driving_license/driver_full_01.bmp"
+            driver_full_png="ocr/driving_license/driver_full_01.png"
+            gray_driving_first="ocr/driving_license/gray_driving_first.jpg"
+            gray_driving_second="ocr/driving_license/second.jpg"
+
+    [Ocr.HKMacauExitEntryPermit]
+        [Ocr.HKMacauExitEntryPermit.testImage] 
+            hk_macau_exit_entry_permit_jpeg="ocr/hk_macau_exit_entry_permit/hk.jpeg"
+            hk_macau_exit_entry_permit_bmp="ocr/hk_macau_exit_entry_permit/hk.bmp"
+            hk_macau_exit_entry_permit_png="ocr/hk_macau_exit_entry_permit/hk.png"
+            
+    [Ocr.TaiwanExitEntryPermit]
+        [Ocr.TaiwanExitEntryPermit.testImage] 
+            taiwan_exit_entry_permit_png_mosaic="ocr/taiwan_exit_entry_permit/taiwan1_mosaic.png"
+            taiwan_exit_entry_permit_jpg="ocr/taiwan_exit_entry_permit/taiwan1.jpg"
+            taiwan_exit_entry_permit_bmp="ocr/taiwan_exit_entry_permit/taiwan1.bmp"
+            taiwan_exit_entry_permit_png="ocr/taiwan_exit_entry_permit/taiwan1.png"
+            taiwan_exit_entry_permit_jpg_2="ocr/taiwan_exit_entry_permit/taiwan2.jpg"
+            taiwan_exit_entry_permit_bmp_2="ocr/taiwan_exit_entry_permit/taiwan2.bmp"
+            taiwan_exit_entry_permit_png_2="ocr/taiwan_exit_entry_permit/taiwan2.png"
+            taiwan_exit_entry_permit_png_3="ocr/taiwan_exit_entry_permit/taiwan_exit_entry_permit_01.png"
+            taiwan_exit_entry_permit_jpeg_3="ocr/taiwan_exit_entry_permit/taiwan_exit_entry_permit_01.jpeg"
+            taiwan_exit_entry_permit_bmp_3="ocr/taiwan_exit_entry_permit/taiwan_exit_entry_permit_01.bmp"
+
+            
+
+
+    [Ocr.Idcard]
+        [Ocr.Idcard.testImage] 
+            idcard_front_jpg="ocr/idcard/normal/idcard_front_03.jpg"
+            idcard_front_bmp="ocr/idcard/normal/idcard_front_03.bmp"
+            idcard_front_png="ocr/idcard/normal/idcard_front_03.png" 
+            idcard_back_jpg="ocr/idcard/normal/idcard_back_02.jpg"
+            idcard_high_quality="ocr/idcard/normal/idcard_53.png"
+            idcard_back_bmp="ocr/idcard/normal/idcard_back_02.bmp"
+            idcard_back_png="ocr/idcard/normal/idcard_back_02.png"  
+            idcard_quality="ocr/idcard/normal/idcard_front_04.jpg"
+            idcard_tmp_back="ocr/idcard/temp/idcard_temp_back.jpg"
+            idcard_tmp_front="ocr/idcard/temp/idcard_temp_front.jpg"
+            idcard_back_long_time="ocr/idcard/normal/idcard_back_01.jpg"
+    [Ocr.Passport]
+        [Ocr.Passport.testImage] 
+            jpg="ocr/passport/passport_02.jpg"
+            bmp="ocr/passport/passport_02.bmp"
+            png="ocr/passport/passport_02.png"
+            jpeg="ocr/passport/passport_02.jpg"
+
+    [Ocr.VehicleLicense]  
+        [Ocr.VehicleLicense.testImage] 
+            full_jpg="ocr/vehicle_license/vehicle_01.jpg"
+            full_bmp="ocr/vehicle_license/vehicle_01.bmp"
+            full_png="ocr/vehicle_license/vehicle_01.png"
+            first="ocr/vehicle_license/first.jpg"
+            second="ocr/vehicle_license/gray_vehicle_second.jpg"
+            extra="ocr/vehicle_license/extra.jpg"
+            first_and_extra="ocr/vehicle_license/X_right_back1.jpg"
+
+[Identity]  
+        [Identity.Verify_idcard]  
+            [Identity.Verify_idcard.suit]
+                name="吴小林"
+                id_card_number="362502198609246255"
+            [Identity.Verify_idcard.not_suit]
+                name="吴小林"
+                id_card_number="362502198609246222"
+            [Identity.Verify_idcard.official_jinyang]
+                name="金阳"
+                id_card_number="11010219781027232X"
+            [Identity.Verify_idcard.official_tester]
+                name="阮志华"
+                id_card_number="445224200107155710"
+            [Identity.Verify_idcard.official_name_not_suit]
+                name="金大阳"
+                id_card_number="11010219781027232X"
+            [Identity.Verify_idcard.official_birth_is_illegal_19781032]
+                name="金阳"
+                id_card_number="11010219781032232X"
+            [Identity.Verify_idcard.official_birth_is_illegal_19781330]
+                name="金阳"
+                id_card_number="11010219781032232X"
+            [Identity.Verify_idcard.official_birth_is_illegal_18881330]
+                name="金阳"
+                id_card_number="11010219781032232X"
+
+            [Identity.Verify_idcard.official_id_number_large]
+                name="金阳"
+                id_card_number="11010219781032232232323232232332321212323"
+            [Identity.Verify_idcard.official_id_number_1]
+                name="金阳"
+                id_card_number="0"
+            [Identity.Verify_idcard.official_id_number_16]
+                name="金阳"
+                id_card_number="1101021978103223"
+
+            [Identity.Verify_idcard.official_id_number_20]
+                name="金阳"
+                id_card_number="36250219860924625522"
+
+            [Identity.Verify_idcard.official_id_number_s]
+                name="金阳"
+                id_card_number="11010219781032232s"    
+
+            [Identity.Verify_idcard.official_ruanzhihua]
+                name="阮志华"
+                id_card_number="445224200107155710"
+            [Identity.Verify_idcard.name_wrong_0]
+                name=" 金阳"
+                id_card_number="445224200107155710"
+            [Identity.Verify_idcard.name_wrong_1]
+                name="a*bc"
+                id_card_number="445224200107155710"
+
+
+        [Identity.Verify_idcard_face]  
+            [Identity.Verify_idcard_face.suit]  
+                name="吴小林"
+                id_card_number="362502198609246255"
+                image="identify/myself.png"
+            [Identity.Verify_idcard_face.not_suit]  
+                name="吴小林"
+                id_card_number="362502198609246222"
+                image="identify/other.jpg"
+            [Identity.Verify_idcard_face.official_jinyang]
+                name="金阳"
+                id_card_number="11010219781027232X"
+                image="identify/jinyang.jpg"
+            [Identity.Verify_idcard_face.official_tester_png]
+                name="阮志华"
+                id_card_number="445224200107155710"
+                image="identify/tester.png"
+            [Identity.Verify_idcard_face.official_tester_jpeg]
+                name="阮志华"
+                id_card_number="445224200107155710"
+                image="identify/tester.jpeg"
+            [Identity.Verify_idcard_face.official_tester_bmp]
+                name="阮志华"
+                id_card_number="445224200107155710"
+                image="identify/tester.bmp"
+            [Identity.Verify_idcard_face.name_not_suit]
+                name="阮华"
+                id_card_number="445224200107155710"
+                image="identify/tester.bmp"     
+            [Identity.Verify_idcard_face.image_not_suit]
+                name="阮志华"
+                id_card_number="445224200107155710"
+                image="identify/jinyang.jpg"         
+            [Identity.Verify_idcard_face.official_tester_png_130]
+                name="阮志华"
+                id_card_number="445224200107155710"
+                image="identify/tester_130.png"
+            [Identity.Verify_idcard_face.official_tester_jpeg_130]
+                name="阮志华"
+                id_card_number="445224200107155710"
+                image="identify/tester_130.jpeg"
+            [Identity.Verify_idcard_face.official_tester_bmp_130]
+                name="阮志华"
+                id_card_number="445224200107155710"
+                image="identify/tester_130.bmp"
+            [Identity.Verify_idcard_face.official_tester_png_50]
+                name="阮志华"
+                id_card_number="445224200107155710"
+                image="identify/tester_50.png"
+            [Identity.Verify_idcard_face.official_tester_jpeg_50]
+                name="阮志华"
+                id_card_number="445224200107155710"
+                image="identify/tester_50.jpeg"
+            [Identity.Verify_idcard_face.official_tester_bmp_50]
+                name="阮志华"
+                id_card_number="445224200107155710"
+                image="identify/tester_50.bmp"
+            [Identity.Verify_idcard_face.official_tester_png_25]
+                name="阮志华"
+                id_card_number="445224200107155710"
+                image="identify/tester_25.png"
+            [Identity.Verify_idcard_face.official_tester_jpeg_25]
+                name="阮志华"
+                id_card_number="445224200107155710"
+                image="identify/tester_25.jpeg"
+            [Identity.Verify_idcard_face.official_tester_bmp_25]
+                name="阮志华"
+                id_card_number="445224200107155710"
+                image="identify/tester_25.bmp"
+            [Identity.Verify_idcard_face.official_tester_png_10]
+                name="阮志华"
+                id_card_number="445224200107155710"
+                image="identify/tester_10.png"
+            [Identity.Verify_idcard_face.official_tester_jpeg_10]
+                name="阮志华"
+                id_card_number="445224200107155710"
+                image="identify/tester_10.jpeg"
+            [Identity.Verify_idcard_face.official_tester_bmp_10]
+                name="阮志华"
+                id_card_number="445224200107155710"
+                image="identify/tester_10.bmp"
+
+            [Identity.Verify_idcard_face.official_tester_png_1M]
+                name="阮志华"
+                id_card_number="445224200107155710"
+                image="identify/tester_1M.png"
+            [Identity.Verify_idcard_face.official_tester_jpeg_1M]
+                name="阮志华"
+                id_card_number="445224200107155710"
+                image="identify/tester_1M.jpeg"
+            [Identity.Verify_idcard_face.official_tester_bmp_1M]
+                name="阮志华"
+                id_card_number="445224200107155710"
+                image="identify/tester_1M.bmp"
+
+            [Identity.Verify_idcard_face.official_ruanzhihua]
+                name="阮志华"
+                id_card_number="445224200107155710"
+                image="identify/阮志华.png"
+        [Identity.expiry_date] 
+            date1="2030-01-31"
+            date2="2030-12-05"
+            date3="3000-01-25"
+            date4="2030-1-31"
+            date5="2030-12-5"
+            date6="3000-1-2"
+        [Identity.expiry_date_wrong] 
+            date1="203-01-31"
+            date2="2034-01-35"
+            date3="2035-00-30"
+            date4="2035-00-35"
+            date5="035-00-35"
+            
+        [Identity.hold_idcard]
+            jpg="hold_idcard/hold_idcard_5.jpg"
+            bmp="hold_idcard/hold_idcard_5.bmp"
+            png="hold_idcard/hold_idcard_5.png"
+            jpg_90="hold_idcard/hold_idcard_5_90.jpg"
+            jpg_180="hold_idcard/hold_idcard_5_180.jpg"
+            jpg_270="hold_idcard/hold_idcard_5_270.jpg"
+            jpg_outsize="hold_idcard/hold_idcard_5_beyond_size.jpg"
+            error_format="hold_idcard/error_format.png"
+            low_resolution="hold_idcard/hold_idcard_5_low_resolution.jpg"
+            paper="hold_idcard/paper.jpg"
+            one_fake_idcard_print="hold_idcard/idcard_9.jpg"
+            one_fake_idcard_ps="hold_idcard/idcard_cover_85.png"
+            one_fake_idcard_tmp_idcard="hold_idcard/idcard_temp_front.jpg"
+            one_idcard="hold_idcard/idcard_front_03.png"
+            two_idcard="hold_idcard/two_idcard.jpg"
+            two_face="hold_idcard/twoface.jpg"            
+            many_faces="hold_idcard/many_faces.jpg"
+            multiple_faces="hold_idcard/multiple_faces.jpg"
+            idcard_cropped="hold_idcard/idcard_cropped.jpg"
+            idcard_cropped_2="hold_idcard/cropped_idcard.png"
+            idcard_cropped_3="hold_idcard/cropped_idcard1.jpg"
+            idcard_back_01="hold_idcard/idcard_back_01.jpg"
+            idcard_back_02="hold_idcard/idcard_back_02.png"
+            true_hold_idcard_1_not_suit="hold_idcard/hold_idcard_1_not_suit.jpg"
+            true_hold_idcard_1_not_suit_2="hold_idcard/hold_idcard_1_not_suit_2.jpg"
+            true_hold_idcard_1_not_suit_4="hold_idcard/true_hold_idcard_1_not_suit_4.jpg"
+            small_face="hold_idcard/hold_idcard_1_small_face.jpg"
+            true_hold_idcard_1="hold_idcard/hold_idcard_1.jpg"
+            true_hold_idcard_3="hold_idcard/hold_idcard_3.jpg"
+            true_hold_idcard_4="hold_idcard/hold_idcard_4.jpg"
+            true_hold_idcard_6="hold_idcard/hold_idcard_6.jpg"
+            true_hold_idcard_7="hold_idcard/hold_idcard_7.jpg"
+            idcard_cropped_4="hold_idcard/hold_idcard_3_cropped.jpg"
+
+            
+
+[Face]  
+        [Face.Face1_1]
+            [Face.Face1_1.same]
+                base_image="face1v1/single_face_01.jpeg"
+                image="face1v1/single_face_01.jpeg"
+            [Face.Face1_1.same1]
+                base_image="face1vn/black.png"
+                image="face1vn/black.png"
+            [Face.Face1_1.same2]
+                base_image="face1vn/base_noface.png"
+                image="face1vn/base_noface.png"
+            [Face.Face1_1.two_face1]
+                base_image= "hold_idcard/many_faces.jpg"
+                image="hold_idcard/many_faces.jpg"
+
+            [Face.Face1_1.two_face2]
+                base_image="hold_idcard/multiple_faces.jpg"
+                image="hold_idcard/multiple_faces.jpg"
+
+            [Face.Face1_1.two_face3]
+                base_image="hold_idcard/many_faces.jpg"
+                image="hold_idcard/multiple_faces.jpg"
+              
+            [Face.Face1_1.similar1]
+                base_image="face1v1/face_same1_one.png"
+                image="face1v1/face_same1_another.png"     
+            [Face.Face1_1.similar2]
+                base_image="face1v1/single_face_01.jpeg"
+                image="face1v1/single_face_02.jpeg"  
+            [Face.Face1_1.different1]
+                base_image="face1v1/xianchang_different1_another.png"
+                image="face1v1/xianchang_different1_one.png"  
+            [Face.Face1_1.format_jpeg]
+                base_image="face1v1/single_face_02.jpeg"
+                image="face1v1/single_face_02.jpeg"
+            [Face.Face1_1.format_bmp]
+                base_image="face1v1/single_face_02.bmp"
+                image="face1v1/single_face_02.bmp"
+            [Face.Face1_1.format_png]
+                base_image="face1v1/single_face_02.png"
+                image="face1v1/single_face_02.png"                                
+            [Face.Face1_1.badQuality1]
+                base_image="face1v1/111.jpg"
+                image="face1v1/111.jpg"
+            [Face.Face1_1.badQuality2]
+                base_image="face1v1/base_mask_fuzzy.jpg"
+                image="face1v1/base_mask_fuzzy.jpg"
+            [Face.Face1_1.rotate_90]
+                base_image="face1v1/single_face_02.jpeg"
+                image="face1v1/single_face_02_90.jpeg"
+            [Face.Face1_1.rotate_180]
+                base_image="face1v1/single_face_02.jpeg"
+                image="face1v1/single_face_02_180.jpeg"
+            [Face.Face1_1.rotate_270]
+                base_image="face1v1/single_face_02.jpeg"
+                image="face1v1/single_face_02_270.jpeg"
+        [Face.Face1_n]
+            [Face.Face1_n.tags]
+                tag1=["t1"]
+                tag2=["t1","t2"]
+                tag3=["t2","t1"]
+                tag4=["t1","t2","t3"]
+                tag5=["t4","t5","t6"]
+                tag6=["t1","t2","t3","t4","t5","t6"]
+                tag7=["t6","t7"]
+                tag8=[]
+                tag9=["t9"]
+            [Face.Face1_n.top_k]
+                top_k0=0
+                top_k1=1
+                top_k2=2
+            [Face.Face1_n.extra_info]
+                info1="更新后的extra_info"
+                info2=123
+            [Face.Face1_n.person_id]
+                person_id_true1="test_person_id"
+                person_id_true2="123test_person_id"
+                person_id_true3="_123test_person_id"
+                person_id_true4="_123test_person_id_"
+                person_id_not_true1="person id"
+                person_id_not_true2=" person id"
+                person_id_not_true3="person id "
+                person_id_not_true4="person@id "
+                person_id_not_true5="/person.id "
+                person_id_not_true6="=person.id "
+                person_id_not_true7=".person.id "
+[Watermark]
+        [Watermark.testImage]
+            image1="watermark/paper.jpg"
+            image2="watermark/paper_sensetime.jpg"
+            image3="watermark/base_too_dark.jpg"
+            image4="watermark/base_too_dark_sensetime.jpg"
+            image_compress="watermark/paper_sensetime_compress.png"
+            image_cut="watermark/paper_sensetime_cut.png"
+            image_qiye_weixin="watermark/paper_sensetime_qiye_weixin.png"

@@ -1,0 +1,1886 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "cloud_service.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "BotRoadProServer"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "健康检查.",
+        "operationId": "BotRoadProServer_Health",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadHealthResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/dicts/administrative-level": {
+      "get": {
+        "summary": "道路行政级别 prefix=road-inspection-pro version=v1\nAction=ListAdministrativeLevel",
+        "operationId": "BotRoadProServer_ListAdministrativeLevel",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadListDictResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/dicts/coordinate-system": {
+      "get": {
+        "summary": "坐标系列表 prefix=road-inspection-pro version=v1\nAction=ListCoordinateSystem",
+        "operationId": "BotRoadProServer_ListCoordinateSystem",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadListDictResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/dicts/country": {
+      "get": {
+        "summary": "国家列表 prefix=road-inspection-pro version=v1 Action=ListCountry",
+        "operationId": "BotRoadProServer_ListCountry",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadListDictResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/dicts/function-level": {
+      "get": {
+        "summary": "道路功能级别 prefix=road-inspection-pro version=v1 Action=ListFunctionLevel",
+        "operationId": "BotRoadProServer_ListFunctionLevel",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadListDictResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/dicts/label-type": {
+      "get": {
+        "summary": "道路病害类型 prefix=road-inspection-pro version=v1 Action=ListLabelType",
+        "operationId": "BotRoadProServer_ListLabelType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadListDictResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/dicts/pavement-level": {
+      "get": {
+        "summary": "路面类型 prefix=road-inspection-pro version=v1 Action=ListPavementLevel",
+        "operationId": "BotRoadProServer_ListPavementLevel",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadListDictResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/dicts/province": {
+      "get": {
+        "summary": "省份列表 prefix=road-inspection-pro version=v1 Action=ListProvince",
+        "operationId": "BotRoadProServer_ListProvince",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadListDictResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "country",
+            "description": "国家.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/dicts/road-type": {
+      "get": {
+        "summary": "道路类型 prefix=road-inspection-pro version=v1 Action=ListRoadType",
+        "operationId": "BotRoadProServer_ListRoadType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadListDictResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/events/delete": {
+      "post": {
+        "summary": "删除道路事件 prefix=road-inspection-pro version=v1 Action=DeleteEvent",
+        "operationId": "BotRoadProServer_DeleteEvent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadDeleteEventResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/bot_roadDeleteEventRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/events/history": {
+      "get": {
+        "summary": "道路事件历史 prefix=road-inspection-pro version=v1 Action=ListEventHistory",
+        "operationId": "BotRoadProServer_ListEventHistory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadGetEventHistoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "aggregation_id",
+            "description": "聚合ID.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "paging.offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.total",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/events/list": {
+      "get": {
+        "summary": "道路事件列表 prefix=road-inspection-pro version=v1 Action=ListEvent",
+        "operationId": "BotRoadProServer_ListEvents",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadListEventsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "start_time",
+            "description": "[必填]开始时间 \"2006-01-02T15:04:05Z07:00\".",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "end_time",
+            "description": "[必填]结束时间 \"2006-01-02T15:04:05Z07:00\".",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "device_id",
+            "description": "[可选]设备id.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "label",
+            "description": "病害类型.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "section_id",
+            "description": "路段id.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "aggregation_id",
+            "description": "病害聚合id.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "paging.offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.total",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/road": {
+      "get": {
+        "summary": "查询道路 prefix=road-inspection-pro version=v1 Action=GetRoad",
+        "operationId": "BotRoadProServer_GetRoad",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadRoad"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "id.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "BotRoadProServer"
+        ]
+      },
+      "post": {
+        "summary": "创建道路 prefix=road-inspection-pro version=v1 Action=CreateRoad",
+        "operationId": "BotRoadProServer_CreateRoad",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/bot_roadCreateRoadRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/road/delete": {
+      "post": {
+        "summary": "删除道路 prefix=road-inspection-pro version=v1 Action=DeleteRoad",
+        "operationId": "BotRoadProServer_DeleteRoad",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadCommonResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/bot_roadIDRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/road/list": {
+      "get": {
+        "summary": "道路列表 prefix=road-inspection-pro version=v1 Action=ListRoad",
+        "operationId": "BotRoadProServer_ListRoad",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadListRoadResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "function_level",
+            "description": "[可选]功能等级.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "administrative_level",
+            "description": "[可选]行政级别.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "road_type",
+            "description": "[可选]道路类型.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pavement_type",
+            "description": "[可选]路面类型.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "paging.offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.total",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/road/selections": {
+      "get": {
+        "summary": "道路列表下拉选项,全量不分页,只返回id和 identifier-name\nprefix=road-inspection-pro version=v1 Action=ListRoadSelections",
+        "operationId": "BotRoadProServer_ListRoadSelectionItems",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadListRoadSelectionsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/road/update": {
+      "post": {
+        "summary": "更新道路 prefix=road-inspection-pro version=v1 Action=UpdateRoad",
+        "operationId": "BotRoadProServer_UpdateRoad",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadCommonResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/bot_roadRoad"
+            }
+          }
+        ],
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/section": {
+      "get": {
+        "summary": "查询路段 prefix=road-inspection-pro version=v1 Action=GetSection",
+        "operationId": "BotRoadProServer_GetSection",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadSection"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "id.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "BotRoadProServer"
+        ]
+      },
+      "post": {
+        "summary": "创建路段 prefix=road-inspection-pro version=v1 Action=CreateSection",
+        "operationId": "BotRoadProServer_CreateSection",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/bot_roadCreateSectionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/section/delete": {
+      "post": {
+        "summary": "删除路段 prefix=road-inspection-pro version=v1 Action=DeleteSection",
+        "operationId": "BotRoadProServer_DeleteSection",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadCommonResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/bot_roadIDRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/section/list": {
+      "get": {
+        "summary": "路段列表 prefix=road-inspection-pro version=v1 Action=ListSection",
+        "operationId": "BotRoadProServer_ListSection",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadListSectionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "paging.offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.total",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/section/selections": {
+      "get": {
+        "summary": "路段列表下拉选项,全量不分页,只返回id和name prefix=road-inspection-pro\nversion=v1 Action=ListSectionSelection",
+        "operationId": "BotRoadProServer_ListSectionSelection",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadListSectionSelectionsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/section/update": {
+      "post": {
+        "summary": "更新路段 prefix=road-inspection-pro version=v1 Action=UpdateSection",
+        "operationId": "BotRoadProServer_UpdateSection",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadCommonResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/bot_roadUpdateSectionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/stake": {
+      "get": {
+        "summary": "查询路桩 prefix=road-inspection-pro version=v1 Action=GetStake",
+        "operationId": "BotRoadProServer_GetStake",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadStake"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "id.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "BotRoadProServer"
+        ]
+      },
+      "post": {
+        "summary": "创建路桩 prefix=road-inspection-pro version=v1 Action=CreateStake",
+        "operationId": "BotRoadProServer_CreateStake",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/bot_roadCreateStakeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/stake/delete": {
+      "post": {
+        "summary": "删除路桩 prefix=road-inspection-pro version=v1 Action=DeleteStake",
+        "operationId": "BotRoadProServer_DeleteStake",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadCommonResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/bot_roadIDRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/stake/list": {
+      "get": {
+        "summary": "路桩列表 prefix=road-inspection-pro version=v1 Action=ListStake",
+        "operationId": "BotRoadProServer_ListStake",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadListStakeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "section_id",
+            "description": "路段id.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "stake_serial_number",
+            "description": "路桩编号支持前缀匹配.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "paging.offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paging.total",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    },
+    "/v1/stake/update": {
+      "post": {
+        "summary": "更新路桩 prefix=road-inspection-pro version=v1 Action=UpdateStake",
+        "operationId": "BotRoadProServer_UpdateStake",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bot_roadCommonResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/bot_roadUpdateStakeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BotRoadProServer"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apiPaging": {
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "bot_roadAggregation": {
+      "type": "object",
+      "properties": {
+        "aggregation_id": {
+          "type": "string",
+          "description": "聚合id."
+        },
+        "first_capture_time": {
+          "type": "string",
+          "format": "uint64",
+          "description": "首次检测时间 以毫秒为单位的时间戳."
+        },
+        "last_capture_time": {
+          "type": "string",
+          "format": "uint64",
+          "description": "最新检测时间 以毫秒为单位的时间戳."
+        }
+      },
+      "description": "聚合信息."
+    },
+    "bot_roadCommonResponse": {
+      "type": "object"
+    },
+    "bot_roadCreateRoadRequest": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "description": "道路编号."
+        },
+        "name": {
+          "type": "string",
+          "description": "道路名称."
+        },
+        "short_name": {
+          "type": "string",
+          "description": "道路简称."
+        },
+        "function_level": {
+          "type": "string",
+          "description": "功能等级."
+        },
+        "administrative_level": {
+          "type": "string",
+          "description": "行政等级."
+        },
+        "road_type": {
+          "type": "string",
+          "description": "道路类型."
+        },
+        "pavement_type": {
+          "type": "string",
+          "description": "路面类型."
+        }
+      },
+      "description": "创建道路."
+    },
+    "bot_roadCreateSectionRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "路段名称."
+        },
+        "road_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "道路id."
+        },
+        "province": {
+          "type": "string",
+          "description": "省份."
+        },
+        "country": {
+          "type": "string",
+          "description": "国家."
+        },
+        "starting_point": {
+          "type": "string",
+          "description": "起点."
+        },
+        "terminal_point": {
+          "type": "string",
+          "title": "终点"
+        }
+      },
+      "description": "创建路段请求."
+    },
+    "bot_roadCreateStakeRequest": {
+      "type": "object",
+      "properties": {
+        "coordinate_system": {
+          "type": "string",
+          "description": "坐标系."
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double",
+          "description": "经度."
+        },
+        "latitude": {
+          "type": "number",
+          "format": "double",
+          "description": "纬度."
+        },
+        "section_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "路段id."
+        },
+        "stake_serial_number": {
+          "type": "string",
+          "description": "路桩编号."
+        }
+      },
+      "description": "创建路桩请求."
+    },
+    "bot_roadDeleteEventRequest": {
+      "type": "object",
+      "properties": {
+        "aggregation_id": {
+          "type": "string",
+          "description": "事件聚合id."
+        }
+      }
+    },
+    "bot_roadDeleteEventResponse": {
+      "type": "object"
+    },
+    "bot_roadDirection": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "枚举值 UP DOWN UNKNOWN."
+        },
+        "desc": {
+          "type": "string",
+          "description": "上行 下行  未知."
+        },
+        "from_to": {
+          "type": "string",
+          "description": "起点-\u003e终点."
+        }
+      },
+      "description": "行驶方向."
+    },
+    "bot_roadEventBreakSize": {
+      "type": "object",
+      "properties": {
+        "size": {
+          "type": "number",
+          "format": "float",
+          "description": "面积数值."
+        },
+        "type": {
+          "type": "string",
+          "description": "面积单位."
+        }
+      },
+      "description": "病害面积信息."
+    },
+    "bot_roadEventDevice": {
+      "type": "object",
+      "properties": {
+        "device_id": {
+          "type": "string",
+          "description": "设备id."
+        },
+        "device_sn": {
+          "type": "string",
+          "description": "设备序列号."
+        },
+        "capture_source": {
+          "type": "string",
+          "description": "车牌号."
+        }
+      },
+      "description": "设备信息."
+    },
+    "bot_roadEventImage": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "图片地址."
+        },
+        "size": {
+          "$ref": "#/definitions/bot_roadImageSize",
+          "description": "图片尺寸."
+        },
+        "rectangle": {
+          "$ref": "#/definitions/bot_roadRectangle",
+          "description": "病害ROI位置."
+        }
+      },
+      "description": "图片信息."
+    },
+    "bot_roadEventLabel": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "病害类型名称."
+        },
+        "desc": {
+          "type": "string",
+          "description": "病害类型描述."
+        }
+      },
+      "description": "病害类型."
+    },
+    "bot_roadEventRoad": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "description": "道路编号."
+        },
+        "name": {
+          "type": "string",
+          "description": "道路名称."
+        },
+        "type_name": {
+          "type": "string",
+          "description": "道路类型."
+        },
+        "type_desc": {
+          "type": "string",
+          "description": "道路类型描述."
+        }
+      },
+      "description": "道路信息."
+    },
+    "bot_roadEventSection": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "路段id."
+        },
+        "name": {
+          "type": "string",
+          "description": "路段名称."
+        }
+      },
+      "description": "路段信息."
+    },
+    "bot_roadEventStake": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "description": "虚拟桩号."
+        }
+      },
+      "description": "虚拟桩."
+    },
+    "bot_roadGeoPoint": {
+      "type": "object",
+      "properties": {
+        "lat": {
+          "type": "number",
+          "format": "float",
+          "description": "纬度."
+        },
+        "lon": {
+          "type": "number",
+          "format": "float",
+          "description": "经度."
+        }
+      },
+      "description": "经纬度坐标点."
+    },
+    "bot_roadGetEventHistoryResponse": {
+      "type": "object",
+      "properties": {
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/bot_roadRoadEvent"
+          },
+          "description": "数据."
+        },
+        "paging": {
+          "$ref": "#/definitions/apiPaging",
+          "description": "分页信息."
+        }
+      },
+      "description": "病害历史返回值."
+    },
+    "bot_roadHealthResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "bot_roadIDRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "id."
+        }
+      }
+    },
+    "bot_roadIDResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "id."
+        }
+      }
+    },
+    "bot_roadImageSize": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "integer",
+          "format": "int64",
+          "description": "宽像素值."
+        },
+        "height": {
+          "type": "integer",
+          "format": "int64",
+          "description": "高像素值."
+        }
+      },
+      "description": "图片大小."
+    },
+    "bot_roadListDictResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/bot_roadSelectionItem"
+          },
+          "description": "选项数据."
+        }
+      },
+      "description": "通用下拉选项返回值."
+    },
+    "bot_roadListEventsResponse": {
+      "type": "object",
+      "properties": {
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/bot_roadRoadEvent"
+          },
+          "description": "数据."
+        },
+        "paging": {
+          "$ref": "#/definitions/apiPaging",
+          "description": "分页信息."
+        }
+      },
+      "description": "事件列表返回值."
+    },
+    "bot_roadListRoadResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/bot_roadRoadVo"
+          },
+          "description": "道路数据."
+        },
+        "paging": {
+          "$ref": "#/definitions/apiPaging",
+          "description": "分页信息."
+        }
+      }
+    },
+    "bot_roadListRoadSelectionsResponse": {
+      "type": "object",
+      "properties": {
+        "roads": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/bot_roadRoadSelection"
+          },
+          "description": "道路数据."
+        }
+      },
+      "description": "可选道路下拉列表."
+    },
+    "bot_roadListSectionResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/bot_roadSection"
+          },
+          "description": "路段信息."
+        },
+        "paging": {
+          "$ref": "#/definitions/apiPaging",
+          "description": "分页信息."
+        }
+      },
+      "description": "路段列表返回值."
+    },
+    "bot_roadListSectionSelectionsResponse": {
+      "type": "object",
+      "properties": {
+        "sections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/bot_roadSectionSelection"
+          },
+          "description": "路段数据."
+        }
+      },
+      "description": "可选下拉列表."
+    },
+    "bot_roadListStakeResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/bot_roadStake"
+          },
+          "description": "路桩数据."
+        },
+        "paging": {
+          "$ref": "#/definitions/apiPaging",
+          "description": "分页信息."
+        }
+      },
+      "description": "路桩列表返回值."
+    },
+    "bot_roadRectangle": {
+      "type": "object",
+      "properties": {
+        "left": {
+          "type": "integer",
+          "format": "int64",
+          "description": "距离左边的像素值."
+        },
+        "top": {
+          "type": "integer",
+          "format": "int64",
+          "description": "距离上班的像素值."
+        },
+        "width": {
+          "type": "integer",
+          "format": "int64",
+          "description": "宽度."
+        },
+        "height": {
+          "type": "integer",
+          "format": "int64",
+          "description": "高度."
+        }
+      },
+      "description": "ROI框."
+    },
+    "bot_roadRoad": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "道路id."
+        },
+        "identifier": {
+          "type": "string",
+          "description": "道路编号."
+        },
+        "name": {
+          "type": "string",
+          "description": "道路名称."
+        },
+        "short_name": {
+          "type": "string",
+          "description": "道路简称."
+        },
+        "function_level": {
+          "type": "string",
+          "description": "功能等级."
+        },
+        "administrative_level": {
+          "type": "string",
+          "description": "行政级别."
+        },
+        "road_type": {
+          "type": "string",
+          "description": "道路类型."
+        },
+        "pavement_type": {
+          "type": "string",
+          "title": "路面类型"
+        }
+      }
+    },
+    "bot_roadRoadEvent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "事件id."
+        },
+        "label": {
+          "$ref": "#/definitions/bot_roadEventLabel",
+          "description": "事件类型."
+        },
+        "stake": {
+          "$ref": "#/definitions/bot_roadEventStake",
+          "description": "[可选]虚拟路桩信息."
+        },
+        "road": {
+          "$ref": "#/definitions/bot_roadEventRoad",
+          "description": "[可选]道路信息."
+        },
+        "section": {
+          "$ref": "#/definitions/bot_roadEventSection",
+          "description": "[可选]路段信息."
+        },
+        "direction": {
+          "$ref": "#/definitions/bot_roadDirection",
+          "description": "[可选]行驶方向."
+        },
+        "location": {
+          "$ref": "#/definitions/bot_roadGeoPoint",
+          "description": "位置信息."
+        },
+        "breakage_size": {
+          "$ref": "#/definitions/bot_roadEventBreakSize",
+          "description": "病害面积."
+        },
+        "aggregation": {
+          "$ref": "#/definitions/bot_roadAggregation",
+          "description": "聚合信息."
+        },
+        "capture_time": {
+          "type": "string",
+          "format": "int64",
+          "description": "检测时间 以毫秒单位的时间戳."
+        },
+        "quality": {
+          "type": "number",
+          "format": "float",
+          "description": "置信度 0-1."
+        },
+        "image": {
+          "$ref": "#/definitions/bot_roadEventImage",
+          "description": "图片信息."
+        },
+        "device": {
+          "$ref": "#/definitions/bot_roadEventDevice",
+          "description": "设备信息."
+        }
+      },
+      "description": "道路检测事件."
+    },
+    "bot_roadRoadSelection": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "道路id."
+        },
+        "name": {
+          "type": "string",
+          "description": "道路 [编号 名称]."
+        }
+      },
+      "description": "可选道路."
+    },
+    "bot_roadRoadVo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "道路id."
+        },
+        "identifier": {
+          "type": "string",
+          "description": "道路编号."
+        },
+        "name": {
+          "type": "string",
+          "description": "道路名称."
+        },
+        "short_name": {
+          "type": "string",
+          "description": "道路简称."
+        },
+        "function_level": {
+          "type": "string",
+          "description": "功能等级."
+        },
+        "function_level_desc": {
+          "type": "string",
+          "description": "功能等级描述."
+        },
+        "administrative_level": {
+          "type": "string",
+          "description": "行政级别."
+        },
+        "administrative_level_desc": {
+          "type": "string",
+          "description": "行政级别描述."
+        },
+        "road_type": {
+          "type": "string",
+          "description": "道路类型."
+        },
+        "road_type_desc": {
+          "type": "string",
+          "description": "道路类型描述."
+        },
+        "pavement_type": {
+          "type": "string",
+          "title": "路面类型"
+        },
+        "pavement_type_desc": {
+          "type": "string",
+          "title": "路面类型"
+        }
+      },
+      "description": "道路信息."
+    },
+    "bot_roadSection": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "路段ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "路段名字."
+        },
+        "road_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "道路ID."
+        },
+        "road_name": {
+          "type": "string",
+          "description": "道路名称."
+        },
+        "road_identifier": {
+          "type": "string",
+          "description": "公路编号."
+        },
+        "province": {
+          "type": "string",
+          "description": "省份."
+        },
+        "country": {
+          "type": "string",
+          "description": "国家."
+        },
+        "starting_point": {
+          "type": "string",
+          "description": "起点."
+        },
+        "terminal_point": {
+          "type": "string",
+          "description": "终点."
+        }
+      }
+    },
+    "bot_roadSectionSelection": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "路段id."
+        },
+        "name": {
+          "type": "string",
+          "description": "路段名称."
+        }
+      },
+      "description": "可选路段."
+    },
+    "bot_roadSelectionItem": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "选项."
+        },
+        "value": {
+          "type": "string",
+          "description": "选项值."
+        }
+      },
+      "title": "下拉列表选项"
+    },
+    "bot_roadStake": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "桩号系统ID."
+        },
+        "stake_serial_number": {
+          "type": "string",
+          "description": "路桩编号."
+        },
+        "coordinate_system": {
+          "type": "string",
+          "description": "坐标系."
+        },
+        "longitude": {
+          "type": "number",
+          "format": "float",
+          "description": "经度 0代表无效 required."
+        },
+        "latitude": {
+          "type": "number",
+          "format": "float",
+          "description": "纬度,required."
+        },
+        "section_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "路段ID."
+        },
+        "section_name": {
+          "type": "string",
+          "description": "所属路段."
+        },
+        "road_identifier": {
+          "type": "string",
+          "description": "所属公路编号."
+        }
+      }
+    },
+    "bot_roadUpdateSectionRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "路段名称."
+        },
+        "road_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "道路id."
+        },
+        "province": {
+          "type": "string",
+          "description": "省份."
+        },
+        "country": {
+          "type": "string",
+          "description": "国家."
+        },
+        "starting_point": {
+          "type": "string",
+          "description": "起点."
+        },
+        "terminal_point": {
+          "type": "string",
+          "title": "终点"
+        }
+      },
+      "description": "创建路段请求."
+    },
+    "bot_roadUpdateStakeRequest": {
+      "type": "object",
+      "properties": {
+        "stake_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "路桩id."
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double",
+          "description": "经度."
+        },
+        "latitude": {
+          "type": "number",
+          "format": "double",
+          "description": "纬度."
+        }
+      },
+      "description": "更新路桩请求."
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

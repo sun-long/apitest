@@ -1,0 +1,1990 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "service.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/ips/compare_feature": {
+      "post": {
+        "operationId": "CompareFeature",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/lamborCompareFeatureResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/lamborCompareFeatureRequest"
+            }
+          }
+        ],
+        "tags": [
+          "LamborService"
+        ]
+      }
+    },
+    "/v1/ips/compare_image": {
+      "post": {
+        "operationId": "CompareImage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/lamborCompareImageResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/lamborCompareImageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "LamborService"
+        ]
+      }
+    },
+    "/v1/ips/face_detect": {
+      "post": {
+        "operationId": "FaceDetect",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/lamborFaceDetectResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/lamborFaceDetectRequest"
+            }
+          }
+        ],
+        "tags": [
+          "LamborService"
+        ]
+      }
+    },
+    "/v1/ips/face_detect_and_extract": {
+      "post": {
+        "operationId": "FaceDetectAndExtract",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/lamborFaceDetectAndExtractResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/lamborFaceDetectAndExtractRequest"
+            }
+          }
+        ],
+        "tags": [
+          "LamborService"
+        ]
+      }
+    },
+    "/v1/ips/face_detect_and_extract_all": {
+      "post": {
+        "operationId": "FaceDetectAndExtractAll",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/lamborFaceDetectAndExtractAllResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/lamborFaceDetectAndExtractAllRequest"
+            }
+          }
+        ],
+        "tags": [
+          "LamborService"
+        ]
+      }
+    },
+    "/v1/ips/face_extract_with_bounding": {
+      "post": {
+        "operationId": "FaceExtractWithBounding",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/lamborFaceExtractWithBoundingResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/lamborFaceExtractWithBoundingRequest"
+            }
+          }
+        ],
+        "tags": [
+          "LamborService"
+        ]
+      }
+    },
+    "/v1/ips/face_extract_with_overlap": {
+      "post": {
+        "operationId": "FaceDetectAndExtractWithOverlap",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/lamborFaceDetectAndExtractResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/lamborFaceDetectAndExtractWithOverlapRequest"
+            }
+          }
+        ],
+        "tags": [
+          "LamborService"
+        ]
+      }
+    },
+    "/v1/ips/struct_detect": {
+      "post": {
+        "operationId": "StructDetect",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/lamborStructDetectResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/lamborStructDetectRequest"
+            }
+          }
+        ],
+        "tags": [
+          "LamborService"
+        ]
+      }
+    },
+    "/v1/ips/struct_detect_and_extract": {
+      "post": {
+        "operationId": "StructDetectAndExtract",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/lamborStructDetectAndExtractResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/lamborStructDetectAndExtractRequest"
+            }
+          }
+        ],
+        "tags": [
+          "LamborService"
+        ]
+      }
+    },
+    "/v1/ips/struct_extract_with_bounding": {
+      "post": {
+        "operationId": "StructExtractWithBounding",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/lamborStructExtractWithBoundingResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/lamborStructExtractWithBoundingRequest"
+            }
+          }
+        ],
+        "tags": [
+          "LamborService"
+        ]
+      }
+    },
+    "/v1/ocr/template": {
+      "post": {
+        "operationId": "OCRTemplate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/lamborOCRTemplateResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/lamborOCRTemplateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "LamborService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "FeatureBatchSearchMultiReqSearchConfig": {
+      "type": "object",
+      "properties": {
+        "db_type": {
+          "$ref": "#/definitions/typeDBType",
+          "description": "group 对应的 sfd.db 类型：static/centerdynamic/auxdynamic/spacetime\n非 argus team 一般只使用 static 和 centerdynamic."
+        },
+        "group_id": {
+          "type": "string"
+        },
+        "top_k": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "threshold": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "MatrixOrder": {
+      "type": "string",
+      "enum": [
+        "ROW_MAJOR",
+        "COLUMN_MAJOR"
+      ],
+      "default": "ROW_MAJOR"
+    },
+    "categoryCategory": {
+      "type": "string",
+      "enum": [
+        "Unset",
+        "Face",
+        "Pedestrain"
+      ],
+      "default": "Unset"
+    },
+    "commonapisAngle": {
+      "type": "object",
+      "properties": {
+        "yaw": {
+          "type": "number",
+          "format": "float",
+          "description": "对象姿态变化角度, 单位是度.\n[EN] Yawing angle, with the unit - degree."
+        },
+        "pitch": {
+          "type": "number",
+          "format": "float",
+          "description": "对象俯仰变化角度, 单位是度.\n[EN] Pitching angle, with the unit - degree."
+        },
+        "roll": {
+          "type": "number",
+          "format": "float",
+          "description": "对象平面旋转角度, 单位是度.\n[EN] Rolling angle, with the unit - degree."
+        }
+      }
+    },
+    "commonapisBoundingPoly": {
+      "type": "object",
+      "properties": {
+        "vertices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonapisVertex"
+          },
+          "description": "多边形顶点.\n注意: 目标区域为矩形时, 仅包含两个顶点, 第一个为左上角坐标, 第二个为右下角坐标.\n[EN] Polygon vertices. Note that it only contains two vertices - the\nfirst is the coordinate in upper left corner and the second is in the\nlower right corner - when the target area is rectangular."
+        }
+      },
+      "description": "目标检测结果多边形边界.\n[EN] Bounding poly for target detection result."
+    },
+    "commonapisBoundingPolyF": {
+      "type": "object",
+      "properties": {
+        "vertices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonapisVertex2F"
+          },
+          "description": "多边形顶点.\n注意: 坐标点为[0.0, 1.0]之间的任意浮点数, 表示相对宽或高的位置.\n[EN] Polygon vertices. Note: The coordinate point can be any floating point\nbetween [0.0, 1.0], indicating a relatively wide or high position."
+        }
+      },
+      "description": "多边形, 可用于表示ROI [SINCE v2.0.0].\n[EN] Polygon, can be used to represent ROI [SINCE v2.0.0]."
+    },
+    "commonapisEventRule": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/commonapisEventType",
+          "description": "事件类型.\n[EN] Event type."
+        },
+        "rule_id": {
+          "type": "string",
+          "description": "可选, 规则ID (注: 如下发任务时未指定则自动生成).\n[EN] Optional, rule ID (note: automatically generated if unspecified when creating tasks)."
+        },
+        "roi": {
+          "$ref": "#/definitions/commonapisBoundingPolyF",
+          "description": "可选, ROI区域.\n- 对于使用多边形作为区域的事件, 一般传入至少4个点, 顺时针方向, 不要求闭合, 不填或置空表示全画面;\n- 对于跨线事件, 必须传入两个点表示参考线, 建议参考线尽量穿过画面中部区域, 以达到更好的检测效果;\n- 各点的坐标为画面下的百分比坐标(如顶点\u003cx=0.1, y=0.1\u003e可以表示1920x1080分标率画面下\u003cx=192,y=108\u003e的点), 前后端根据实际分辨率进行换算.\n[EN] Optional, ROI zone.\n- For events using polygons as zones, 4 points at least are generally passed in clockwise direction, representing the whole image with no required closing, no filling or blank;\n- For cross-line events, 2 points must be introduced to represent the reference line. It is suggested that the reference line should pass through the middle area of the image as far as possible to achieve a better detection effect;\n- The coordinate of each point is a percentage under the image (for example, vertices \u003cx=0.1, y=0.1\u003e can represent points \u003cx=192, y=108\u003e under the resolution of 1920 x 1080), and the front and back ends can be converted according to the actual resolution."
+        },
+        "duration": {
+          "type": "string",
+          "description": "可选, 时长, 事件的时长告警阈值. json中是字符串类型, 例如填写5s表示5秒.\n- 此参数用于逗留事件、徘徊事件及违停事件, 其和Worker配置文件中的min_duration共同起作用，只有同时大于这两者时，才会上报告警事件, 如果不配或置空，则只使用min_duration配置. 其他事件不需要此参数, 不填或置空即可.\n[EN] Optional, duration, event time interval threshold. json is a string type. For example, filling 5s means 5 seconds.\n- It is used for pedestrian stay, pedestrian hover and vehicle park events, and works together with min_duration parameter in worker config file, only exceed these two parameters at same time, the worker will report corresponding event, min_duration alone in worker config is used if this paramter is not filled or blank. Other events do not need it, leave it bland or not filled."
+        },
+        "direction": {
+          "$ref": "#/definitions/commonapisVector",
+          "description": "可选, 方向. 用于跨线事件. 此为非范化向量坐标(图像坐标系), 例如(-1,0)表示左, (1,0)表示右, (0,-1)表示上, (0,1)表示下, (1,1)表示右下, (0,0)表示不限定方向. 不填或置空表示业务不要求方向.\n[EN] Optional, direction. Used for cross-line events. This is a non-normalized vectorial coordinate (image coordinate system). For example (-1,0) means left, (1,0) means right, (0,-1) means upward side, (0,1) means lower side, (1,1) means lower right, (0,0) means unlimited direction. Blank indicates the task has no direction limitation."
+        }
+      },
+      "description": "VIPER平台事件任务规则 [SINCE v2.0.0].\n[EN] VIPER event rule [SINCE v2.0.0]."
+    },
+    "commonapisEventType": {
+      "type": "string",
+      "enum": [
+        "EVENT_UNKNOWN",
+        "EVENT_PEDESTRIAN_STAY",
+        "EVENT_PEDESTRIAN_HOVER",
+        "EVENT_PEDESTRIAN_CROSS_LINE",
+        "EVENT_PEDESTRIAN_INVADE",
+        "EVENT_VEHICLE_PARK"
+      ],
+      "default": "EVENT_UNKNOWN",
+      "description": "VIPER平台支持事件规则类型 [SINCE v2.0.0].\n[EN] VIPER event types. [SINCE v2.0.0].\n\n - EVENT_UNKNOWN: unknown. 未知.\n[EN] unknown.\n - EVENT_PEDESTRIAN_STAY: pedestrian stay event. 逗留事件.\n[EN] pedestrian stay event.\n - EVENT_PEDESTRIAN_HOVER: pedestrian hover event. 可疑人员徘徊事件.\n[EN] pedestrian hover event.\n - EVENT_PEDESTRIAN_CROSS_LINE: pedestrian cross line event. 越线事件.\n[EN] pedestrian cross line event.\n - EVENT_PEDESTRIAN_INVADE: pedestrian invade event. 区域入侵事件.\n[EN] pedestrian invade event.\n - EVENT_VEHICLE_PARK: vehicle park event. 违停事件.\n[EN] vehicle park event."
+    },
+    "commonapisImage": {
+      "type": "object",
+      "properties": {
+        "format": {
+          "$ref": "#/definitions/commonapisImageFormat",
+          "description": "可选, 图片格式, 一般情况下不需要填写, 系统自动解析.\n[EN] Optional, image format, generally no need to fill in, will be automatically detected by the system."
+        },
+        "data": {
+          "type": "string",
+          "format": "byte",
+          "description": "可选, 原始图片数据, 使用JSON编码是传入图片内容的Base64编码字符串.\n[EN] Optional, the original image data, encoded by JSON, is the Base64 encoded string for the content of input images."
+        },
+        "url": {
+          "type": "string",
+          "description": "可选, 图片网络位置, 部分服务不支持url形式传入, 请查看对应服务接口文档.\n[EN] Optional, network location of the image. Some services do not support url field, and please view the API documentation for reference of relating services."
+        }
+      }
+    },
+    "commonapisImageFormat": {
+      "type": "string",
+      "enum": [
+        "IMAGE_UNKNOWN",
+        "IMAGE_JPEG",
+        "IMAGE_PNG",
+        "IMAGE_BMP",
+        "IMAGE_TIFF",
+        "IMAGE_GIF"
+      ],
+      "default": "IMAGE_UNKNOWN",
+      "description": "图片格式.\n[EN] Image format.\n\n - IMAGE_UNKNOWN: 未知格式.\n[EN] Unspecified format.\n - IMAGE_JPEG: JPEG格式.\n[EN] JPEG format.\n - IMAGE_PNG: PNG格式.\n[EN] PNG format.\n - IMAGE_BMP: BMP格式.\n[EN] BMP format.\n - IMAGE_TIFF: TIFF格式.\n[EN] TIFF format.\n - IMAGE_GIF: GIF格式.\n[EN] GIF format."
+    },
+    "commonapisMatrix": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "columns": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "order": {
+          "$ref": "#/definitions/MatrixOrder"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          }
+        }
+      }
+    },
+    "commonapisObjectFeature": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "特征对象类型, 为对应ObjectType的字符串表示.\n[EN] The feature object type is a string representation of the corresponding Object Type."
+        },
+        "version": {
+          "type": "integer",
+          "format": "int32",
+          "description": "特征模型版本, 对应SDK模型版本号, 如: 24001.\n[EN] Feature model version, corresponding to SDK model version number, e.g: 24001."
+        },
+        "blob": {
+          "type": "string",
+          "format": "byte",
+          "description": "特征数据, 完整标准特征序列化格式, 范围: JSON表示为Base64编码字符串.\n[EN] Feature data in standard feature serialization format, range: JSON is represented as a Base64 encoded string."
+        }
+      },
+      "description": "SenseTime通用特征格式.\n[EN] SenseTime common feature format."
+    },
+    "commonapisObjectType": {
+      "type": "string",
+      "enum": [
+        "OBJECT_UNKNOWN",
+        "OBJECT_FACE",
+        "OBJECT_PEDESTRIAN",
+        "OBJECT_AUTOMOBILE",
+        "OBJECT_CYCLIST",
+        "OBJECT_HUMAN_POWERED_VEHICLE",
+        "OBJECT_SCENARIO",
+        "OBJECT_CROWD",
+        "OBJECT_ALGO",
+        "OBJECT_SNAPSHOT",
+        "OBJECT_FACE_EXTEND_PEDESTRIAN",
+        "OBJECT_EVENT",
+        "OBJECT_MULTI_PACH",
+        "OBJECT_SCENARIO_CITY_MANAGEMENT",
+        "OBJECT_FACE_PEDESTRIAN",
+        "OBJECT_SCENARIO_AUTOMOBILE_THROW",
+        "OBJECT_MULTI_FACE_PACH",
+        "OBJECT_TRAFFIC_AUTOMOBILE_COUNT",
+        "OBJECT_TRAFFIC_MULTI_PACH",
+        "OBJECT_HUMAN_ACTION",
+        "OBJECT_TRAFFIC_ANOMALY_EVENT",
+        "OBJECT_TRAFFIC_CAMERA_VISION_INFO"
+      ],
+      "default": "OBJECT_UNKNOWN",
+      "description": "VIPER平台支持物体对象类型.\nObjectType与字符串表示的标准映射如下见对应枚举项注释.\n[EN] VIPER object types.\nThe standard mapping between ObjectType and string representations is shown in the corresponding enumerations in the items below.\n\n - OBJECT_UNKNOWN: unknown. 未知.\n[EN] unknown.\n - OBJECT_FACE: face. 人脸. 输入和输出类型, 输入类型用于创建任务时的枚举, 输出类型用于输出数据对象的枚举.\n[EN] face. Input and output types; input type is used for enumeration when creating tasks, while output type is used for enumeration when outputting data objects.\n - OBJECT_PEDESTRIAN: pedestrian. 人体. 仅为输出类型 [SINCE v1.4.0].\n[EN] pedestrian. pedestrian and other human body. Output type only [SINCE v1.4.0].\n - OBJECT_AUTOMOBILE: automobile. 机动车. 仅为输出类型 [SINCE v1.4.0].\n[EN] automobile. Output type only [SINCE v1.4.0].\n - OBJECT_CYCLIST: cyclist. 骑手, 对象框包含非机动车和人. 仅为输出类型 [SINCE v1.4.0].\n[EN] cyclist. cyclist, target frame include human powered vehicle and human body. Output type only [SINCE v1.4.0].\n - OBJECT_HUMAN_POWERED_VEHICLE: human_powered_vehicle. 非机动车. 仅为输出类型 [SINCE v1.4.0].\n[EN] human_powered_vehicle. Non-motor vehicle. Output type only [SINCE v1.4.0].\n - OBJECT_SCENARIO: scenario. 场景识别. 仅为输出类型 [SINCE v2.0.0].\n[EN] scenario. Scene recognition. Output type only [SINCE v2.0.0].\n - OBJECT_CROWD: crowd. 人群识别. 输入和输出类型 [SINCE v2.0.0].\n[EN] crowd. Crowd recognition. Both input and output types [SINCE v2.0.0].\n - OBJECT_ALGO: algo. 算法仓. 输入和输出类型 [SINCE v2.3.0].\n[EN] algo. Algo store object. Both input and output types [SINCE v2.3.0].\n - OBJECT_SNAPSHOT: snapshot. 抓拍. 仅为输入类型 [SINCE v3.1.0].\n[EN] snapshot. snapshot image from video. Input type only [SINCE v3.1.0].\n - OBJECT_FACE_EXTEND_PEDESTRIAN: face_extend_pedestrian. 人脸人体特殊场景，人体从场景图提取. 仅为输入类型 [SINCE v3.1.0].\n[EN] face_extend_pedestrian. face and pedestrian special scenario,  pedestrian image from panoramic image. Input type only [SINCE v3.1.0].\n - OBJECT_EVENT: event. 事件. 仅为输出类型 [SINCE v3.1.0].\n[EN] event. OutPut type only [SINCE v3.1.0].\n - OBJECT_MULTI_PACH: pedestrian+automobile+cyclist+human_powered_vehicle. 仅为输入类型 [SINCE v1.4.0].\n[EN] pedestrian+automobile+cyclist+human_powered_vehicle. Input type only [SINCE v1.4.0].\n - OBJECT_SCENARIO_CITY_MANAGEMENT: city management scenario. 城管类场景. 仅为输入类型 [SINCE v2.0.0].\n[EN] city management scenario. Input type only [SINCE v2.0.0].\n - OBJECT_FACE_PEDESTRIAN: face+pedestrian. 人脸人体联合pipeline. 仅为输入类型 [SINCE v2.1.0].\n[EN] face+pedestrian. Face and pedestrian association pipeline. Input type only [SINCE v2.1.0].\n - OBJECT_SCENARIO_AUTOMOBILE_THROW: city management scenario - automobile throw. 城管类场景-车辆抛撒. 仅作为输入类型 [EXPERIMENTAL].\n[EN] city management scenario - automobile throw. autiombile throwing pipeline. Input type only [EXPERIMENTAL].\n - OBJECT_MULTI_FACE_PACH: face+pedestrian+automobile+cyclist+human_powered_vehicle. 仅为输入类型 [SINCE v2.2.0].\n[EN] face+pedestrian+automobile+cyclist+human_powered_vehicle. Input type only [SINCE v2.2.0].\n - OBJECT_TRAFFIC_AUTOMOBILE_COUNT: traffic automobile count. 交通车辆计数. 仅为输入类型 [INTERNAL] [EXPERIMENTAL].\n[EN] traffic automobile count. Input type only [INTERNAL] [EXPERIMENTAL].\n - OBJECT_TRAFFIC_MULTI_PACH: pedestrian+automobile+cyclist+human_powered_vehicle. 仅为输入类型 [INTERNAL] [EXPERIMENTAL].\n[EN] pedestrian+automobile+cyclist+human_powered_vehicle. Input type only [INTERNAL] [EXPERIMENTAL].\n - OBJECT_HUMAN_ACTION: city management - human action. 城管类应用-行人动作识别，仅作为输入类型 [SINCE v3.0.0].\n[EN]  city management - human action. Input type only [SINCE v3.0.0].\n - OBJECT_TRAFFIC_ANOMALY_EVENT: Traffic anomaly event. 交通异常事件. 仅为输入类型 [INTERNAL] [EXPERIMENTAL].\n[EN] Traffic anomaly event. Input type only [INTERNAL] [EXPERIMENTAL].\n - OBJECT_TRAFFIC_CAMERA_VISION_INFO: Traffic camera vision information. 交通场景相机视觉信息. 输入和输出类型 [INTERNAL] [EXPERIMENTAL].\n[EN] Traffic camera vision information. Both input and output types [INTERNAL] [EXPERIMENTAL]."
+    },
+    "commonapisPortraitImageLocation": {
+      "type": "object",
+      "properties": {
+        "panoramic_image_size": {
+          "$ref": "#/definitions/commonapisSize",
+          "description": "全景大图大小.\n[EN] Panoramic image size."
+        },
+        "portrait_image_in_panoramic": {
+          "$ref": "#/definitions/commonapisBoundingPoly",
+          "description": "抓拍小图相对全景大图的位置.\n[EN] The relative position of captured images to the panoramic images."
+        },
+        "portrait_in_panoramic": {
+          "$ref": "#/definitions/commonapisBoundingPoly",
+          "description": "可选, 抓拍对象相对于大图的位置.\n当本字段非空时, 应使用本字段获取抓拍对象在大图中的位置, 并且此时\nportrait_image_in_panoramic可能为空, 且小图可能不属于大图的子区域 [SINCE v1.3.0].\n[EN] Optional, relative position of captured objects to the large images.\nWhen this field is not null, use this field to obtain the position of the object captured in the large image.\nThe portrait_image_in_panoramic may be null, and the small image may not belongs to the sub-region of the large image at this time [SINCE v1.3.0]."
+        }
+      }
+    },
+    "commonapisScenarioType": {
+      "type": "string",
+      "enum": [
+        "ST_UNKNOWN",
+        "ST_STALL",
+        "ST_FIRE",
+        "ST_SLOGAN",
+        "ST_LANDSCAPE_LAMP",
+        "ST_CLUTTER",
+        "ST_ROAD_CLEAN",
+        "ST_SOIL",
+        "ST_GARBAGE",
+        "ST_SHARED_BICYCLE",
+        "ST_SHARED_BICYCLE_MISORDER",
+        "ST_INDOOR",
+        "ST_SMOKING"
+      ],
+      "default": "ST_UNKNOWN",
+      "description": "场景类型 [SINCE v2.0.0].\n[EN] Scenario type [SINCE v2.0.0].\n\n - ST_UNKNOWN: 下任务时, 不能使用这个参数.\n[EN] This parameter cannot be used when issue tasks.\n - ST_STALL: 违规占道经营.\n[EN] Illegal roadside stall business.\n - ST_FIRE: 烟火.\n[EN] Fireworks.\n - ST_SLOGAN: 臧疆标语检测.\n[EN] Tibetan and uygur slogans detection.\n - ST_LANDSCAPE_LAMP: 景观灯损坏.\n[EN] Landscape lamp damaged.\n - ST_CLUTTER: 工地堆放不当.\n[EN] Improper stacking at the construction site.\n - ST_ROAD_CLEAN: 路面清洁（车辆抛洒）.\n[EN] Road surface cleaning (the engineering automobile spraying).\n - ST_SOIL: 工地泥土覆盖.\n[EN] Construction site covered by soil.\n - ST_GARBAGE: 打包垃圾检测 [EXPERIMENTAL].\n[EN] Packed garbage detection [EXPERIMENTAL].\n - ST_SHARED_BICYCLE: 共享单车分类 [EXPERIMENTAL].\n[EN] Shared bicycle classification [EXPERIMENTAL].\n - ST_SHARED_BICYCLE_MISORDER: 共享单车乱序摆放 [EXPERIMENTAL].\n[EN] Shared bicycle misorder [EXPERIMENTAL].\n - ST_INDOOR: 在岗检测 [EXPERIMENTAL].\n[EN] judge officer whether in site [EXPERIMENTAL].\n - ST_SMOKING: 抽烟检测 [EXPERIMENTAL].\n[EN] smoking classification."
+    },
+    "commonapisSize": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "height": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "description": "二维图像大小.\n[EN] The size of two-dimensional image."
+    },
+    "commonapisStatusCode": {
+      "type": "string",
+      "enum": [
+        "OK",
+        "SYSTEM_UNKNOWN_ERROR",
+        "SYSTEM_NETWORK_ERROR",
+        "SYSTEM_STORAGE_ERROR",
+        "SYSTEM_LICENSE_ERROR",
+        "DB_NOT_FOUND",
+        "DB_KEY_NOT_FOUND",
+        "DB_ALREADY_EXISTS",
+        "DB_KEY_ALREADY_EXISTS",
+        "FACE_NOT_FOUND_FIRST",
+        "FACE_NOT_FOUND_SECOND",
+        "FACE_NOT_FOUND",
+        "FACE_BAD_QUALITY",
+        "IMAGE_UNKNOWN_FILE_FORMAT",
+        "IMAGE_UNKNOWN_PIXEL_FORMAT",
+        "IMAGE_SIZE_TOO_SMALL",
+        "IMAGE_SIZE_TOO_LARGE",
+        "OBJECT_NOT_FOUND",
+        "OBJECT_BAD_QUALITY"
+      ],
+      "default": "OK",
+      "description": "公共状态码.\n[EN] Common status code.\n\n - OK: 成功.\n[EN] succeed.\n - SYSTEM_UNKNOWN_ERROR: 未知系统错误.\n[EN] Unknown system error.\n - SYSTEM_NETWORK_ERROR: 网络错误.\n[EN] Network error.\n - SYSTEM_STORAGE_ERROR: 存储系统错误.\n[EN] Storage system error.\n - SYSTEM_LICENSE_ERROR: 授权错误.\n[EN] License error.\n - DB_NOT_FOUND: 指定数据库未找到.\n[EN] The specified database was not found.\n - DB_KEY_NOT_FOUND: 指定主键未找到.\n[EN] The specified master key was not found.\n - DB_ALREADY_EXISTS: 指定数据库已存在.\n[EN] The specified database already exists.\n - DB_KEY_ALREADY_EXISTS: 指定主键已存在.\n[EN] The specified master key already exists.\n - FACE_NOT_FOUND_FIRST: 人脸比对第一张图无人脸.\n[EN] No face found in the first image through face recognition.\n - FACE_NOT_FOUND_SECOND: 人脸比对第二张图无人脸.\n[EN] No face found in the second image through face recognition.\n - FACE_NOT_FOUND: 图中无人脸.\n[EN] No face found in the image.\n - FACE_BAD_QUALITY: 图像人脸质量太差.\n[EN] The bad quality of face in the image.\n - IMAGE_UNKNOWN_FILE_FORMAT: 未知或不支持的图片文件格式.\n[EN] Unknown or unsupported image file format.\n - IMAGE_UNKNOWN_PIXEL_FORMAT: 未知或不支持的图片颜色空间格式.\n[EN] Unknown or unsupported image color space format.\n - IMAGE_SIZE_TOO_SMALL: 图片尺寸过小.\n[EN] The image size is too small.\n - IMAGE_SIZE_TOO_LARGE: 图片尺寸过大.\n[EN] The image size is too large.\n - OBJECT_NOT_FOUND: 指定物体未找到.\n[EN] The specific object was not found.\n - OBJECT_BAD_QUALITY: 物体质量太差.\n[EN] The object quality is too bad."
+    },
+    "commonapisVector": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "format": "float"
+        },
+        "y": {
+          "type": "number",
+          "format": "float"
+        }
+      },
+      "description": "二维图像向量.\n注意: 坐标系与输入图像相同.\n[EN] Vectors of tw-dimensional image. Note: the coordinate system is the same as the input image."
+    },
+    "commonapisVertex": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "y": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "description": "二维图像坐标, 注意: 坐标系与输入图像相同.\n[EN] Coordinates of two-dimensional image. Note: the coordinate system is the same as the input image."
+    },
+    "commonapisVertex2F": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "format": "float"
+        },
+        "y": {
+          "type": "number",
+          "format": "float"
+        }
+      },
+      "description": "二维图像坐标(可用于表示百分比以适应不同分辨率) [SINCE v2.0.0].\n[EN] Coordinates of two-dimensional image (can be used to represent\npercentages to accommodate different resolutions) [SINCE v2.0.0]."
+    },
+    "face_extractDetectAndFeatureExtractResponse": {
+      "type": "object",
+      "properties": {
+        "face_info": {
+          "$ref": "#/definitions/image_processObjectAnnotation",
+          "description": "人脸检测信息.\n[EN] Face detection information."
+        },
+        "feature": {
+          "$ref": "#/definitions/commonapisObjectFeature",
+          "description": "人脸特征信息.\n[EN] Face feature information."
+        }
+      },
+      "description": "人脸检测+提特征请求.\n[EN] Face detect and feature extract response."
+    },
+    "face_extractExtractWithBoundingResponse": {
+      "type": "object",
+      "properties": {
+        "align_score": {
+          "type": "number",
+          "format": "float",
+          "description": "人脸对齐质量分数(0-1.0之间).\n[EN] Face alignment quality score (range: 0-1.0)."
+        },
+        "feature": {
+          "$ref": "#/definitions/commonapisObjectFeature",
+          "description": "人脸特征信息.\n[EN] Face feature information."
+        },
+        "face_score": {
+          "type": "number",
+          "format": "float",
+          "description": "人脸质量分, v1.4.0之后版本用此分数过滤低质量图片, 不用原有的quality字段 [SINCE v1.4.0] .\n[EN] Face quality score: after v1.4.0, use this score to filter low-quality images without the previous quality field [SINCE v1.4.0]."
+        }
+      },
+      "description": "指定区域人脸提特征请求回复.\n[EN] Extract with bounding response."
+    },
+    "face_extractFaceDetectMode": {
+      "type": "string",
+      "enum": [
+        "Default",
+        "Slow"
+      ],
+      "default": "Default",
+      "description": "人脸检测策略 [SINCE v1.4.0].\n[EN] Face detection mode [SINCE v1.4.0].\n\n - Default: 默认先用快的检测模型, 如果没有检测出结果, 用慢模型.\n[EN] By default, the fast detection model is used first. If no result is detected, the slow model is used.\n - Slow: 直接使用慢但更准确的模型.\n[EN] Slow but more accurate model."
+    },
+    "face_extractFaceSelectionMode": {
+      "type": "string",
+      "enum": [
+        "LargestFace"
+      ],
+      "default": "LargestFace",
+      "description": "人脸选择策略枚举 [SINCE v1.3.0].\n[EN] Enumeration of face selection mode [SINCE v1.3.0].\n\n - LargestFace: 最大的人脸.\n[EN] The largest face."
+    },
+    "image_processAutomobileAnnotation": {
+      "type": "object",
+      "properties": {
+        "quality": {
+          "type": "number",
+          "format": "float",
+          "description": "特征质量(注: 如对象不含特征则返回0) [DEPRECATED].\n[EN] Feature quality [not supported now] [DEPRECATED]."
+        },
+        "rectangle": {
+          "$ref": "#/definitions/commonapisBoundingPoly",
+          "description": "机动车位置框.\n[EN] The rectangle bounding indicate the position of automobile."
+        },
+        "track_id": {
+          "type": "string",
+          "format": "int64",
+          "description": "物体跟踪ID, 仅保证本次视频源连接中递增, 全局或重连后不唯一 [DEPRECATED].\n[EN] The object tracking ID, auto increment in this same video source connection, is not unique in global or reconnection [DEPRECATED]."
+        },
+        "attributes_with_score": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/viperimage_processAttributeWithScore"
+          },
+          "description": "机动车属性信息, 带属性分数.\n[EN] Automobile attribute information with attribute score."
+        }
+      },
+      "description": "[SINCE v1.4.0].\n机动车对象注释.\n[EN] [SINCE v1.4.0].\nAutomobile annotation."
+    },
+    "image_processCrowdAnnotation": {
+      "type": "object",
+      "properties": {
+        "quantity": {
+          "type": "string",
+          "format": "int64",
+          "description": "行人数量.\n[EN] The number of pedestrians."
+        },
+        "incident": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/image_processCrowdIncident"
+          },
+          "description": "告警事件.\n[EN] Alarm incident."
+        },
+        "density_size": {
+          "$ref": "#/definitions/commonapisSize",
+          "description": "可选，是否输出由下发任务的配置决定(由CrowdConfig.density_map_mode决定).密度图长宽尺寸 [SINCE v2.2.0].\n[EN] Optional, whether output depends on the configuration of task(Depends on CrowdConfig.density_map_mode).Size of density_map [SINCE v2.2.0]."
+        },
+        "density_map": {
+          "type": "string",
+          "format": "byte",
+          "description": "可选，是否输出由下发任务的配置决定(由CrowdConfig.density_map_mode决定).密度图数据,是一个长乘宽大小的灰度矩阵 [SINCE v2.2.0].\n[EN] Optional, whether output  depends on the configuration of task(Depends on CrowdConfig.density_map_mode).Data of density_map,a gray matrix [SINCE v2.2.0]."
+        },
+        "strand_map": {
+          "$ref": "#/definitions/commonapisImage",
+          "description": "可选，是否输出由下发任务的配置决定(由CrowdConfig.strand_map_mode决定).滞留图数据,是一个用JPEG编码的灰度图 [SINCE v2.2.0].\n[EN] Optional, whether output depends on the configuration of task(Depends on CrowdConfig.density_map_mode).Data of strand_map,a gray image encoding by JPEG [SINCE v2.2.0]."
+        }
+      },
+      "description": "[SINCE v2.0.0].\n人群注释.\n[EN] [SINCE v2.0.0].\nCrowd annotation."
+    },
+    "image_processCrowdIncident": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "告警事件ID.\n[EN] Alarm incident ID."
+        },
+        "type": {
+          "$ref": "#/definitions/image_processIncidentType",
+          "description": "告警事件类型.\n[EN] Alarm incident type."
+        },
+        "status": {
+          "$ref": "#/definitions/image_processIncidentStatus",
+          "description": "告警事件状态.\n[EN] Alarm incident status."
+        },
+        "start_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "告警事件开始时间.\n[EN] Start time of alarm incident."
+        },
+        "stop_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "告警事件结束时间.\n[EN] End time of alarm incident."
+        },
+        "update_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "告警事件最近一次更新的时间.\n[EN] The latest updated time of alarm incident."
+        }
+      },
+      "description": "[SINCE v2.0.0].\n[EN] [SINCE v2.0.0]."
+    },
+    "image_processCyclistAnnotation": {
+      "type": "object",
+      "properties": {
+        "quality": {
+          "type": "number",
+          "format": "float",
+          "description": "特征质量(注: 如对象不含特征则返回0) [DEPRECATED].\n[EN] Feature quality [not supported now] [DEPRECATED]."
+        },
+        "rectangle": {
+          "$ref": "#/definitions/commonapisBoundingPoly",
+          "description": "骑手与非机动车位置框.\n[EN] The rectangle bounding indicate the position of cyclist and human powered vehicle."
+        },
+        "track_id": {
+          "type": "string",
+          "format": "int64",
+          "description": "物体跟踪ID, 仅保证本次视频源连接中递增, 全局或重连后不唯一 [DEPRECATED].\n[EN] The object tracking ID, auto increment in this same video source connection, is not unique in  global or reconnection [DEPRECATED]."
+        },
+        "attributes_with_score": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/viperimage_processAttributeWithScore"
+          },
+          "description": "骑手与非机动车属性信息, 带属性分数.\n[EN] The attribute information of cyclist and human powered vehicle with attribute score."
+        }
+      },
+      "description": "[SINCE v1.4.0].\n骑手与非机动车注释.\n[EN] [SINCE v1.4.0].\nCyclist annotation."
+    },
+    "image_processEventAnnotation": {
+      "type": "object",
+      "properties": {
+        "event_id": {
+          "type": "string",
+          "description": "全局唯一事件ID.\n[EN] Globally unique event ID."
+        },
+        "rule": {
+          "$ref": "#/definitions/commonapisEventRule",
+          "description": "触发规则.\n[EN] Trigger rule."
+        },
+        "rectangle": {
+          "$ref": "#/definitions/commonapisBoundingPoly",
+          "description": "物体位置框.\n[EN] The rectangle bounding indicate the object's  position."
+        },
+        "event_status": {
+          "$ref": "#/definitions/image_processEventStatus",
+          "description": "事件状态 [SINCE v2.2.0].\n[EN] event status [SINCE v2.2.0]."
+        }
+      },
+      "title": "[SINCE v2.0.0].\n事件注释.\n[EN] [SINCE v2.0.0].\nEvent annotation"
+    },
+    "image_processEventStatus": {
+      "type": "string",
+      "enum": [
+        "EVENT_START",
+        "EVENT_CONTINUE"
+      ],
+      "default": "EVENT_START",
+      "description": "结构化事件状态 [SINCE v2.2.0].\n[EN] structural event status [SINCE v2.2.0].\n\n - EVENT_START: 开始.\n[EN] Start.\n - EVENT_CONTINUE: 进行中.\n[EN] In progress."
+    },
+    "image_processFaceAnnotation": {
+      "type": "object",
+      "properties": {
+        "quality": {
+          "type": "number",
+          "format": "float",
+          "description": "特征质量(注: 如对象不含特征则返回0) [DEPRECATED].\n[EN] Feature quality (Note: return 0 if the object has no features) [DEPRECATED]."
+        },
+        "rectangle": {
+          "$ref": "#/definitions/commonapisBoundingPoly",
+          "description": "人脸位置框相对于抓拍图坐标.\n[EN] The rectangle bounding indicate the position of the face  which corresponding to the captured image."
+        },
+        "track_id": {
+          "type": "string",
+          "format": "int64",
+          "description": "物体跟踪ID, 仅保证本次视频源连接中递增, 全局或重连后不唯一 [DEPRECATED].\n[EN] The object tracking ID, ensuring that this video source connection is incremental only, is not unique after global reconnection [DEPRECATED]."
+        },
+        "angle": {
+          "$ref": "#/definitions/commonapisAngle",
+          "description": "人脸角度信息.\n[EN] Face angle information."
+        },
+        "landmarks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonapisVertex"
+          },
+          "description": "人脸关键点位置信息.\n[EN] Position information of face key points."
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "[DEPRECATED], 人脸属性信息.\n[EN] [DEPRECATED], Face attribute information."
+        },
+        "attributes_with_score": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/viperimage_processAttributeWithScore"
+          },
+          "description": "人脸属性信息, 带属性分数 [SINCE v1.3.0].\n[EN] Face attribute information with attribute score [SINCEv1.3.0]."
+        },
+        "face_score": {
+          "type": "number",
+          "format": "float",
+          "description": "人脸质量分, v1.4.0之后版本用此分数过滤低质量图片,不用原有的quality字段 [SINCE v1.4.0].\n[EN] The face quality score is used in versions after v1.4.0 to filter low-quality images instead of original quality field [SINCEv1.4.0]."
+        }
+      },
+      "title": "人脸注释.\n[EN] Face annotation"
+    },
+    "image_processHumanPoweredVehicleAnnotation": {
+      "type": "object",
+      "properties": {
+        "quality": {
+          "type": "number",
+          "format": "float",
+          "description": "特征质量(注: 如对象不含特征则返回0) [DEPRECATED].\n[EN] Feature quality [not supported now] [DEPRECATED]."
+        },
+        "rectangle": {
+          "$ref": "#/definitions/commonapisBoundingPoly",
+          "description": "非机动车位置框.\n[EN] The rectangle bounding indicate the position of human powered vehicle."
+        },
+        "track_id": {
+          "type": "string",
+          "format": "int64",
+          "description": "物体跟踪ID, 仅保证本次视频源连接中递增, 全局或重连后不唯一 [DEPRECATED].\n[EN] The object tracking ID, auto increment in this same video source connection, is not unique in global or reconnection [DEPRECATED]."
+        },
+        "attributes_with_score": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/viperimage_processAttributeWithScore"
+          },
+          "description": "非机动车属性信息, 带属性分数.\n[EN] The attribute information of human powered vehicle with attribute score."
+        }
+      },
+      "description": "[SINCE v1.4.0].\n非机动车对象注释.\n[EN] [SINCE v1.4.0].\nHuman powered vehicle annotation."
+    },
+    "image_processIncidentStatus": {
+      "type": "string",
+      "enum": [
+        "INCIDENT_START",
+        "INCIDENT_CONTINUE",
+        "INCIDENT_STOP"
+      ],
+      "default": "INCIDENT_START",
+      "description": "人群事件状态 [SINCE v2.0.0].\n[EN] Crowd event status [SINCE v2.0.0].\n\n - INCIDENT_START: 开始.\n[EN] Start.\n - INCIDENT_CONTINUE: 进行中.\n[EN] In progress.\n - INCIDENT_STOP: 结束.\n[EN] Stop."
+    },
+    "image_processIncidentType": {
+      "type": "string",
+      "enum": [
+        "INCIDENT_CROWD",
+        "INCIDENT_STRAND"
+      ],
+      "default": "INCIDENT_CROWD",
+      "description": "人群事件类型 [SINCE v2.0.0].\n[EN] Crowd event type [SINCE v2.0.0].\n\n - INCIDENT_CROWD: 过密.\n[EN] Overcrowding.\n - INCIDENT_STRAND: 滞留.\n[EN] Strand."
+    },
+    "image_processObjectAnnotation": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/commonapisObjectType",
+          "description": "目标类型.\n[EN] Objetc type."
+        },
+        "face": {
+          "$ref": "#/definitions/image_processFaceAnnotation",
+          "description": "人脸信息.\n[EN] Face information."
+        },
+        "pedestrian": {
+          "$ref": "#/definitions/image_processPedestrianAnnotation",
+          "description": "行人信息 [SINCE v1.4.0].\n[EN] Pedestrian information [SINCE v1.4.0]."
+        },
+        "automobile": {
+          "$ref": "#/definitions/image_processAutomobileAnnotation",
+          "description": "机动车信息 [SINCE v1.4.0].\n[EN] Automobile information [SINCE v1.4.0]."
+        },
+        "human_powered_vehicle": {
+          "$ref": "#/definitions/image_processHumanPoweredVehicleAnnotation",
+          "description": "非机动车信息 [SINCE v1.4.0].\n[EN] Human powered vehicle information [SINCE v1.4.0]."
+        },
+        "cyclist": {
+          "$ref": "#/definitions/image_processCyclistAnnotation",
+          "description": "骑手与非机动车信息 [SINCE v1.4.0].\n[EN] Cyclist and human powered vehicle information [SINCE v1.4.0]."
+        },
+        "scenario": {
+          "$ref": "#/definitions/image_processScenarioAnnotation",
+          "description": "场景识别信息 [SINCE v2.0.0].\n[EN] Scenario identification information [SINCE v2.0.0]."
+        },
+        "crowd": {
+          "$ref": "#/definitions/image_processCrowdAnnotation",
+          "description": "人群识别信息 [SINCE v2.0.0].\n[EN] Crowd identification information [SINCE v2.0.0]."
+        },
+        "event": {
+          "$ref": "#/definitions/image_processEventAnnotation",
+          "description": "事件触发信息 [SINCE v2.0.0].\n[EN] Event trigger information [SINCE v2.0.0]."
+        },
+        "portrait_image_location": {
+          "$ref": "#/definitions/commonapisPortraitImageLocation",
+          "description": "抓拍图相对于大图的坐标信息.\n[EN] The captured image corresponding to the coordinate information of large images."
+        },
+        "object_id": {
+          "type": "string",
+          "description": "全局唯一对象ID, 同一个对象的多个部分(如人脸和对应的行人)\n并且在同一个跟踪过程的不同图片, 共享同一个object_id [SINCE v1.3.0].\n[EN] Globally unique object ID, multiple parts of the same object (such as faces and corresponding pedestrians)\nand different images in the same tracking process share the same object_id [SINCE v1.3.0]."
+        },
+        "associations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/image_processObjectAssociation"
+          },
+          "description": "关联对象列表, 如其中object_id为空,\n则关联对象object_id与本对象object_id一致.\n[SINCE v2.1.0].\n[EN] The list of associated objects, if the object_id is null,\nthe object_id of the associated object is consistent with the object_id of this object [SINCE v2.1.0]."
+        }
+      },
+      "description": "目标注释.\n[EN] Object annotation."
+    },
+    "image_processObjectAssociation": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/commonapisObjectType",
+          "description": "关联目标类型.\n[EN] Type of associated object."
+        },
+        "object_id": {
+          "type": "string",
+          "description": "可选, 关联目标对象object_id, 如为空则与本对象一致.\n[EN] Optional, associated object with object_id; if it is empty, it is consistent with this object."
+        }
+      },
+      "description": "关联对象 [SINCE v2.1.0].\n[EN] Associated objects [SINCE v2.1.0]."
+    },
+    "image_processPedestrianAnnotation": {
+      "type": "object",
+      "properties": {
+        "quality": {
+          "type": "number",
+          "format": "float",
+          "description": "特征质量(注: 如对象不含特征则返回0) [DEPRECATED].\n[EN] Feature quality (Note: return 0 if the object has no features) [DEPRECATED]."
+        },
+        "rectangle": {
+          "$ref": "#/definitions/commonapisBoundingPoly",
+          "description": "人体位置框.\n[EN] The rectangle bounding indicate the position of human body."
+        },
+        "track_id": {
+          "type": "string",
+          "format": "int64",
+          "description": "物体跟踪ID, 仅保证本次视频源连接中递增, 全局或重连后不唯一 [DEPRECATED].\n[EN] The object tracking ID, auto increment in this same video source connection, is not unique in global or reconnection [DEPRECATED]."
+        },
+        "attributes_with_score": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/viperimage_processAttributeWithScore"
+          },
+          "description": "人体属性信息, 带属性分数.\n[EN] Human body attribute information with attribute score."
+        }
+      },
+      "description": "[SINCE v1.4.0].\n行人对象注释.\n[EN] [SINCE v1.4.0].\nPedestrian annotation."
+    },
+    "image_processScenarioAnnotation": {
+      "type": "object",
+      "properties": {
+        "objects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/image_processScenarioObject"
+          },
+          "description": "场景识别对象.\n[EN] Scenario object recognition."
+        }
+      },
+      "description": "[SINCE v2.0.0].\n场景注释.\n[EN] [SINCE v2.0.0].\nScenario annotation."
+    },
+    "image_processScenarioObject": {
+      "type": "object",
+      "properties": {
+        "quality": {
+          "type": "number",
+          "format": "float",
+          "description": "检测质量.\n[EN] Detect quality."
+        },
+        "rectangle": {
+          "$ref": "#/definitions/commonapisBoundingPoly",
+          "description": "物体位置框.\n[EN] The rectangle bounding indicate the object's position."
+        },
+        "scenario_type": {
+          "$ref": "#/definitions/commonapisScenarioType",
+          "description": "场景类型.\n[EN] Scenario type."
+        },
+        "attributes_with_score": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/viperimage_processAttributeWithScore"
+          },
+          "description": "属性信息, 带属性分数.\n[EN] Attribute information with attribute score."
+        }
+      },
+      "description": "[SINCE v2.0.0].\n场景对象.\n[EN] [SINCE v2.0.0].\nScenario object."
+    },
+    "lamborCompareFeatureRequest": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/requestRequestHeader",
+          "description": "Feature Compare only for face."
+        },
+        "one": {
+          "$ref": "#/definitions/commonapisObjectFeature"
+        },
+        "other": {
+          "$ref": "#/definitions/commonapisObjectFeature"
+        },
+        "feature_version": {
+          "type": "string"
+        }
+      }
+    },
+    "lamborCompareFeatureResponse": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/responseResponseHeader"
+        },
+        "score": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "lamborCompareImageRequest": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/requestRequestHeader",
+          "description": "Image Compare only for face."
+        },
+        "one": {
+          "$ref": "#/definitions/commonapisImage"
+        },
+        "other": {
+          "$ref": "#/definitions/commonapisImage"
+        },
+        "detect_mode": {
+          "$ref": "#/definitions/face_extractFaceDetectMode"
+        },
+        "feature_version": {
+          "type": "string"
+        }
+      }
+    },
+    "lamborCompareImageResponse": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/responseResponseHeader"
+        },
+        "score": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "lamborDBDeleteResponse": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/responseResponseHeader"
+        },
+        "result": {
+          "$ref": "#/definitions/vipercommonapisResult"
+        }
+      }
+    },
+    "lamborDBNewResponse": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/responseResponseHeader"
+        },
+        "result": {
+          "$ref": "#/definitions/vipercommonapisResult"
+        }
+      }
+    },
+    "lamborFaceDetectAndExtractAllRequest": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/requestRequestHeader"
+        },
+        "image": {
+          "$ref": "#/definitions/commonapisImage"
+        },
+        "detect_mode": {
+          "$ref": "#/definitions/face_extractFaceDetectMode",
+          "description": "检测模式 [SINCE v1.4.0].\n[EN] Batch detection mode [SINCE v1.4.0]."
+        },
+        "feature_version": {
+          "type": "string"
+        }
+      }
+    },
+    "lamborFaceDetectAndExtractAllResponse": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/responseResponseHeader"
+        },
+        "result": {
+          "$ref": "#/definitions/vipercommonapisResult"
+        },
+        "responses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/face_extractDetectAndFeatureExtractResponse"
+          }
+        }
+      }
+    },
+    "lamborFaceDetectAndExtractRequest": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/requestRequestHeader"
+        },
+        "image": {
+          "$ref": "#/definitions/commonapisImage"
+        },
+        "face_selection": {
+          "$ref": "#/definitions/face_extractFaceSelectionMode",
+          "description": "人脸选择策略 [SINCE v1.3.0].\n[EN] Face selection mode [SINCE v1.3.0]."
+        },
+        "detect_mode": {
+          "$ref": "#/definitions/face_extractFaceDetectMode",
+          "description": "检测模式 [SINCE v1.4.0].\n[EN] Batch detection mode [SINCE v1.4.0]."
+        },
+        "feature_version": {
+          "type": "string"
+        }
+      }
+    },
+    "lamborFaceDetectAndExtractResponse": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/responseResponseHeader"
+        },
+        "result": {
+          "$ref": "#/definitions/vipercommonapisResult"
+        },
+        "response": {
+          "$ref": "#/definitions/face_extractDetectAndFeatureExtractResponse"
+        }
+      }
+    },
+    "lamborFaceDetectAndExtractWithOverlapRequest": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/requestRequestHeader"
+        },
+        "image": {
+          "$ref": "#/definitions/commonapisImage"
+        },
+        "bounding": {
+          "$ref": "#/definitions/commonapisBoundingPoly"
+        },
+        "feature_version": {
+          "type": "string"
+        }
+      }
+    },
+    "lamborFaceDetectRequest": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/requestRequestHeader"
+        },
+        "image": {
+          "$ref": "#/definitions/commonapisImage"
+        },
+        "detect_mode": {
+          "$ref": "#/definitions/face_extractFaceDetectMode",
+          "description": "检测模式 [SINCE v1.4.0].\n[EN] Batch detection mode [SINCE v1.4.0]."
+        },
+        "feature_version": {
+          "type": "string"
+        }
+      }
+    },
+    "lamborFaceDetectResponse": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/responseResponseHeader"
+        },
+        "result": {
+          "$ref": "#/definitions/vipercommonapisResult"
+        },
+        "response": {
+          "$ref": "#/definitions/viperface_extractFaceDetectResponse"
+        }
+      }
+    },
+    "lamborFaceExtractWithBoundingRequest": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/requestRequestHeader"
+        },
+        "image": {
+          "$ref": "#/definitions/commonapisImage"
+        },
+        "bounding": {
+          "$ref": "#/definitions/commonapisBoundingPoly"
+        },
+        "crop_image": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "可选, [未实现].\n[EN] Optional, [unrealized]."
+        },
+        "feature_version": {
+          "type": "string"
+        }
+      }
+    },
+    "lamborFaceExtractWithBoundingResponse": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/responseResponseHeader"
+        },
+        "result": {
+          "$ref": "#/definitions/vipercommonapisResult"
+        },
+        "response": {
+          "$ref": "#/definitions/face_extractExtractWithBoundingResponse"
+        }
+      }
+    },
+    "lamborFeature": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "feature_id": {
+          "type": "string"
+        },
+        "person_id": {
+          "type": "string"
+        },
+        "feature": {
+          "type": "string"
+        }
+      }
+    },
+    "lamborFeatureAddResponse": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/responseResponseHeader"
+        },
+        "result": {
+          "$ref": "#/definitions/vipercommonapisResult"
+        }
+      }
+    },
+    "lamborFeatureBatchSearchMultiRes": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/responseResponseHeader"
+        },
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/lamborSingleGroupSearchRes"
+          }
+        }
+      }
+    },
+    "lamborFeatureDeleteResponse": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/responseResponseHeader"
+        },
+        "result": {
+          "$ref": "#/definitions/vipercommonapisResult"
+        }
+      }
+    },
+    "lamborFeatureGetResponse": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/responseResponseHeader"
+        },
+        "result": {
+          "$ref": "#/definitions/vipercommonapisResult"
+        },
+        "feature": {
+          "$ref": "#/definitions/lamborFeature"
+        }
+      }
+    },
+    "lamborFeatureSearchResponse": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/responseResponseHeader"
+        },
+        "result": {
+          "$ref": "#/definitions/vipercommonapisResult"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/lamborResult"
+          }
+        }
+      }
+    },
+    "lamborFeatureSimilarResultInGroup": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/vipercommonapisResult"
+        },
+        "similar_features": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/lamborResult"
+          }
+        }
+      },
+      "title": "FeatureSimilarResultInGroup 一个 feature 在一个 group 中搜索的结果"
+    },
+    "lamborFeatureUpsertResponse": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/responseResponseHeader"
+        },
+        "result": {
+          "$ref": "#/definitions/vipercommonapisResult"
+        }
+      }
+    },
+    "lamborOCRTemplateRequest": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/requestRequestHeader"
+        },
+        "region_type": {
+          "$ref": "#/definitions/ocr_extractOCRRegionType"
+        },
+        "type": {
+          "type": "string"
+        },
+        "image": {
+          "$ref": "#/definitions/commonapisImage"
+        }
+      }
+    },
+    "lamborOCRTemplateResponse": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/responseResponseHeader"
+        },
+        "result": {
+          "$ref": "#/definitions/vipercommonapisResult"
+        },
+        "response": {
+          "$ref": "#/definitions/ocr_extractTemplateResponse"
+        }
+      }
+    },
+    "lamborResult": {
+      "type": "object",
+      "properties": {
+        "feature": {
+          "$ref": "#/definitions/lamborFeature"
+        },
+        "score": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "lamborSingleGroupSearchRes": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/vipercommonapisResult"
+        },
+        "group_id": {
+          "type": "string"
+        },
+        "feature_results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/lamborFeatureSimilarResultInGroup"
+          }
+        }
+      },
+      "title": "SingleGroupSearchRes search multi 中单个 group 的搜索结果"
+    },
+    "lamborStructDetectAndExtractRequest": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/requestRequestHeader"
+        },
+        "image": {
+          "$ref": "#/definitions/commonapisImage"
+        },
+        "mode": {
+          "$ref": "#/definitions/struct_extractPachDetectMode"
+        },
+        "feature_version": {
+          "type": "string"
+        }
+      }
+    },
+    "lamborStructDetectAndExtractResponse": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/responseResponseHeader"
+        },
+        "result": {
+          "$ref": "#/definitions/vipercommonapisResult"
+        },
+        "response": {
+          "$ref": "#/definitions/struct_extractDetectAndExtractResponse"
+        }
+      }
+    },
+    "lamborStructDetectRequest": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/requestRequestHeader"
+        },
+        "image": {
+          "$ref": "#/definitions/commonapisImage"
+        },
+        "mode": {
+          "$ref": "#/definitions/struct_extractPachDetectMode"
+        },
+        "feature_version": {
+          "type": "string"
+        }
+      }
+    },
+    "lamborStructDetectResponse": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/responseResponseHeader"
+        },
+        "result": {
+          "$ref": "#/definitions/vipercommonapisResult"
+        },
+        "response": {
+          "$ref": "#/definitions/struct_extractDetectResponse"
+        }
+      }
+    },
+    "lamborStructExtractWithBoundingRequest": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/requestRequestHeader"
+        },
+        "image": {
+          "$ref": "#/definitions/commonapisImage"
+        },
+        "bounding": {
+          "$ref": "#/definitions/commonapisBoundingPoly"
+        },
+        "object_type": {
+          "$ref": "#/definitions/commonapisObjectType"
+        },
+        "crop_image": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "可选, [未实现].\n[EN] Optional, [unrealized]."
+        },
+        "feature_version": {
+          "type": "string"
+        }
+      }
+    },
+    "lamborStructExtractWithBoundingResponse": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "$ref": "#/definitions/responseResponseHeader"
+        },
+        "result": {
+          "$ref": "#/definitions/vipercommonapisResult"
+        },
+        "response": {
+          "$ref": "#/definitions/struct_extractObjectAnnotationWithFeature"
+        }
+      }
+    },
+    "ocr_extractOCRArea": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "区域名字，默认为main.\n[EN] Default value is main."
+        },
+        "valid": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "是否符合校验.\n[EN] if valid."
+        },
+        "texts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ocr_extractOCRCompositeText"
+          },
+          "description": "文本内容.\n[EN] Text Content."
+        },
+        "score": {
+          "type": "number",
+          "format": "float",
+          "description": "区域分数.\n[EN] Area score."
+        },
+        "roi": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonapisVertex2F"
+          },
+          "description": "区域坐标\n[EN] Area coordinates."
+        }
+      },
+      "description": "区域结构，抽象概念. [SINCE v3.0.0].\n[EN] Abstraction. [SINCE v3.0.0]."
+    },
+    "ocr_extractOCRCellPosition": {
+      "type": "object",
+      "properties": {
+        "top_left_row": {
+          "type": "integer",
+          "format": "int32",
+          "description": "单元格左上行坐标.\n[EN] the top-left row of the cell."
+        },
+        "top_left_col": {
+          "type": "integer",
+          "format": "int32",
+          "description": "单元格左上列坐标.\n[EN] the top-left column of the cell."
+        },
+        "bottom_right_row": {
+          "type": "integer",
+          "format": "int32",
+          "description": "单元格右下行坐标.\n[EN] the bottom-right row of the cell."
+        },
+        "bottom_right_col": {
+          "type": "integer",
+          "format": "int32",
+          "description": "单元格右下列坐标.\n[EN] the bottom-right column of the cell."
+        }
+      },
+      "description": "OCR单元格位置结构, 仅用于GENERAL_TABLE类型. [SINCE v3.1.0].\n[EN] OCR cell position struct, only used in GENERAL_TABLE type. [SINCE v3.1.0]."
+    },
+    "ocr_extractOCRChar": {
+      "type": "object",
+      "properties": {
+        "val": {
+          "type": "string",
+          "description": "单字内容.\n[EN] Word content."
+        },
+        "roi": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonapisVertex2F"
+          },
+          "description": "文字框.\n[EN] Text bounding box."
+        },
+        "score": {
+          "type": "number",
+          "format": "float",
+          "description": "文字分数.\n[EN] Text score."
+        },
+        "valid": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "是否符合校验.\n[EN] If valid."
+        }
+      },
+      "description": "OCR文字内容. [SINCE v3.0.0].\n[EN] Word of content in line. [SINCE v3.0.0]."
+    },
+    "ocr_extractOCRCompositeText": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "默认继承自area的名字.\n[EN] Default inherits from the name of the area ."
+        },
+        "content": {
+          "type": "string",
+          "description": "单行的情况下，content就是文本的内容；多行时，content为多行的结果融合，使用空格做分隔符.\n[EN] In the case of a single line, content is whole text content; In the case of multiple\nlines, content is the result of multiple lines, using spaces as separators."
+        },
+        "subtexts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ocr_extractOCRText"
+          },
+          "description": "多行情况下每一行的内容存在subtext中.\n[EN] In the case of multiple lines, the content of each line exists in subtext."
+        },
+        "roi": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonapisVertex2F"
+          },
+          "description": "单行情况为文本框，多行的情况下为Subtext的Roi并集的最小水平外切矩形框.\n[EN] The single-line case is a text bounding box, and the multi-line case is the minimum horizontal\ncircumscribed rectangle of the Subtext Roi union."
+        },
+        "score": {
+          "type": "number",
+          "format": "float",
+          "description": "文本分数.\n[EN] Text score."
+        },
+        "valid": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "是否符合校验.\n[EN] if valid."
+        },
+        "multiline": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "是否包含subtext.\n[EN] if contain subtext."
+        },
+        "chars": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ocr_extractOCRChar"
+          },
+          "description": "单个文字内容数组.\n[EN] Single char in content."
+        },
+        "cell_position": {
+          "$ref": "#/definitions/ocr_extractOCRCellPosition",
+          "description": "单元格位置, 用于通用表格识别.\n[EN] Cell positions, used in general table recognition."
+        }
+      },
+      "description": "文本结构. [SINCE v3.0.0].\n[EN]  Text struct. [SINCE v3.0.0]."
+    },
+    "ocr_extractOCRObject": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Object的类型.\n[EN] object type."
+        },
+        "areas": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ocr_extractOCRArea"
+          },
+          "description": "抽象概念，便于理解框中区域的内容.\n[EN] An abstraction which is helpful to understand the context in the area."
+        },
+        "landmarks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonapisVertex2F"
+          },
+          "description": "表格线画线使用.\n[EN] Using to draw table line."
+        },
+        "rectify_matrix": {
+          "$ref": "#/definitions/commonapisMatrix",
+          "description": "校正矩阵\n[EN] The rectify matrix."
+        },
+        "document_retrieve_feature": {
+          "$ref": "#/definitions/commonapisObjectFeature",
+          "title": "文档检索特征\n[EN] document retrieve feature"
+        },
+        "object_detect_info": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": "目标检测信息\n[EN] object detection info"
+        }
+      },
+      "description": "OCR对象，可以是一个身份证或护照等. [SINCE v3.0.0].\n[EN] OCR object such as ID Card or Passport etc. [SINCE v3.0.0]."
+    },
+    "ocr_extractOCRRegionType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_REGION",
+        "CHINA",
+        "UK",
+        "HK",
+        "MACAO"
+      ],
+      "default": "UNKNOWN_REGION",
+      "description": "地区类型. [SINCE v3.0.0].\n[EN] Region type. [SINCE v3.0.0].\n\n - UNKNOWN_REGION: 未知地区.\n[EN] Unknown region.\n - CHINA: 中国.\n[EN] China.\n - UK: 英国.\n[EN] United Kingdom.\n - HK: 香港.\n[EN] Hong Kong.\n - MACAO: 澳门.\n[EN] Macao."
+    },
+    "ocr_extractOCRText": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "单行内容.\n[EN] Single line of content."
+        },
+        "roi": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonapisVertex2F"
+          },
+          "description": "文本框.\n[EN] text bounding box."
+        },
+        "score": {
+          "type": "number",
+          "format": "float",
+          "description": "文本分数.\n[EN] Text score."
+        },
+        "valid": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "是否符合校验.\n[EN] if valid."
+        }
+      },
+      "description": "OCR单行内容. [SINCE v3.0.0].\n[EN] Single line of content in multiple lines. [SINCE v3.0.0]."
+    },
+    "ocr_extractTemplateResponse": {
+      "type": "object",
+      "properties": {
+        "objects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ocr_extractOCRObject"
+          },
+          "description": "一张图片中可能存在多个对象，所以返回体为数组形式.\n[EN] Considering to case of multiple document in one image, so the response for one image is a array."
+        }
+      },
+      "description": "模板OCR返回体，对应一张图片的结果. [SINCE v3.0.0].\n[EN] OCR Template response for one image. [SINCE v3.0.0]."
+    },
+    "requestRequestHeader": {
+      "type": "object",
+      "properties": {
+        "trace": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "responseResponseHeader": {
+      "type": "object",
+      "properties": {
+        "errno": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "trace": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "struct_extractDetectAndExtractResponse": {
+      "type": "object",
+      "properties": {
+        "objects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/struct_extractObjectAnnotationWithFeature"
+          }
+        }
+      },
+      "description": "[SINCE v1.4.0].\n检测并提取特征请求回复.\n[EN] [SINCE v1.4.0].\nDetect and extract response."
+    },
+    "struct_extractDetectResponse": {
+      "type": "object",
+      "properties": {
+        "object_infos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/image_processObjectAnnotation"
+          },
+          "description": "检测信息数组.\n[EN] Detection information array."
+        }
+      },
+      "description": "[SINCE v1.4.0].\n检测请求回复.\n[EN] [SINCE v1.4.0].\nDetect response."
+    },
+    "struct_extractObjectAnnotationWithFeature": {
+      "type": "object",
+      "properties": {
+        "object_info": {
+          "$ref": "#/definitions/image_processObjectAnnotation",
+          "description": "对象位置及属性信息.\n[EN] Object location and attribute information."
+        },
+        "feature": {
+          "$ref": "#/definitions/commonapisObjectFeature",
+          "description": "可选, 对于支持提取特征的对象类型，返回其特征.\n[EN] Optional, for object types that support feature extract, return their features."
+        }
+      },
+      "description": "[SINCE v1.4.0].\n带特征的对象注释.\n[EN] [SINCE v1.4.0].\nObject annotation with feature."
+    },
+    "struct_extractPachDetectMode": {
+      "type": "string",
+      "enum": [
+        "Default",
+        "Panonamic",
+        "Portrait"
+      ],
+      "default": "Default",
+      "description": "结构化检测策略 [SINCE v2.2.0].\n[EN] Structure detection mode [SINCE v2.2.0].\n\n - Default: 默认如果图像的长或宽大于阈值使用大图模型， 都小于阈值使用小图模型.\n[EN] By default, if the length or width of the image is greater than the threshold, using the large image model, otherwise the small image model.\n - Panonamic: 全景图检测模式，使用大图检测模型.\n[EN] Panorama detection mode, using large image detection model.\n - Portrait: 小图检测模式，异步模式只使用小图模型.\n[EN] Small image detection model, Asynchronous mode only uses small image model."
+    },
+    "typeDBType": {
+      "type": "string",
+      "enum": [
+        "Unset",
+        "Static",
+        "CenterDynamic",
+        "AuxDynamic",
+        "Spacetime"
+      ],
+      "default": "Unset",
+      "title": "- Static: Static 静态库\n - CenterDynamic: 动态库\n - AuxDynamic: 辅助点库\n - Spacetime: 时空库"
+    },
+    "vipercommonapisResult": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "通用服务、系统错误码, 对应HTTP错误及语义见系统标准错误表.\n若为业务特定错误, code应返回0, 详情见status及对应错误.\n[EN] For common service and system error codes, see the system standard error table corresponding HTTP errors and semantics.\nFor business-specific errors, code will return 0. For details, see status and corresponding errors."
+        },
+        "error": {
+          "type": "string",
+          "description": "错误详细描述.\n[EN] Detailed description of the error."
+        },
+        "status": {
+          "$ref": "#/definitions/commonapisStatusCode",
+          "description": "业务错误码.\n[EN] Business error code."
+        }
+      },
+      "description": "通用处理结果返回. 通常在Batch类请求中返回每个子请求的错误状态.\n[EN] General processing results returned. Error status of each sub-request is usually returned in Batch mode requests."
+    },
+    "viperface_extractFaceDetectResponse": {
+      "type": "object",
+      "properties": {
+        "face_info": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/image_processObjectAnnotation"
+          },
+          "description": "检测信息数组.\n[EN] Detection information array."
+        }
+      },
+      "description": "人脸检测请求回复.\n[EN] Face detect response."
+    },
+    "viperimage_processAttributeType": {
+      "type": "string",
+      "enum": [
+        "DISCRIMINATION",
+        "REGRESSION",
+        "CLASSIFICATION"
+      ],
+      "default": "DISCRIMINATION",
+      "description": "属性类型.\n[EN] Attribute type.\n\n - DISCRIMINATION: 判别问题, 对应的category与属性名相同, 对应的value为属性为真的置信度,\n范围: [0.0, 1.0], 如smile: 0.8.\n[EN] For discrimination problems, the corresponding category is the same as the attribute name, and the corresponding value is the confidence that the attribute is true,\nrange: [0.0, 1.0], such as smile: 0.8.\n - REGRESSION: 回归问题, 对应category与属性名相同, 对应value为取值, 如age: 25.\n[EN] For regression problems, the corresponding category is the same as the attribute name, and the corresponding value is the value, such as age: 25.\n - CLASSIFICATION: 分类问题, 对应category为可能取值中置信度最高的分类名称, 对应value\n为置信度, 范围: [0.0, 1.0].\n[EN] For classification problems, the corresponding category is the classification name with the highest confidence among possible values, and the corresponding value is the confidence, range: [0.0, 1.0]."
+    },
+    "viperimage_processAttributeWithScore": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/viperimage_processAttributeType",
+          "description": "属性类型.\n[EN] Attribute type."
+        },
+        "category": {
+          "type": "string",
+          "description": "属性分类取值.\n[EN] Attribute category value."
+        },
+        "value": {
+          "type": "number",
+          "format": "float",
+          "description": "属性置信度或回归问题取值.\n[EN] Attribute confidence value or regression problem value."
+        },
+        "roi": {
+          "$ref": "#/definitions/commonapisBoundingPoly",
+          "description": "属性对应的对象所在位置 [SINCE v2.1.0].\n[EN] The position of the object corresponding to the attribute [SINCE v2.1.0]."
+        }
+      },
+      "description": "带分数的属性类型.\n[EN] Attribute with score."
+    }
+  }
+}

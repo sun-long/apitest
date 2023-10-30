@@ -1,0 +1,16 @@
+
+    def test_api_$$%%METHOD_NAME%%$$(self, config_obj, $$%%API_OBJ%%$$):
+        """  $$%%TEST_FUNC_DESC%%$$ """
+$$%%PARAM_CODE%%$$
+        resp = $$%%API_OBJ%%$$.$$%%API_FUNC%%$$($$%%PARAM_LIST%%$$)
+        assert resp.status_code == 200
+
+    @pytest.mark.parametrize("invalidParam", [
+$$%%INVALID_PARAM_LIST%%$$
+    ])
+    def test_api_$$%%METHOD_NAME%%$$InvalidParam(self, invalidParam, config_obj, $$%%API_OBJ%%$$):
+        """  $$%%TEST_FUNC_DESC%%$$ """
+$$%%PARAM_CODE%%$$
+$$%%INVALID_PARAM_REPLACE%%$$
+        resp = $$%%API_OBJ%%$$.$$%%API_FUNC%%$$($$%%PARAM_LIST%%$$)
+        assert resp.status_code != 200

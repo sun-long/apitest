@@ -1,0 +1,63 @@
+[ConfigMap]
+   client_info = [
+       'Clients.Aiot.ec1', #205
+#       'Clients.Aiot.ec2', #206
+   ]
+   camera_info = [
+       'Clients.SubDevice.Camera_hikvision',
+#       'Clients.SubDevice.NVR2'
+   ]
+
+[EnvInfo]
+    [EnvInfo.NebulaCloud]
+        Service = "http://nebula.staging.sensetime.com"
+    [EnvInfo.NebulaEdge]
+        Service = 'https://%s:5043'
+
+[Clients]
+    [Clients.Aiot]    # aiot的端
+        [Clients.Aiot.ec1]
+            ip = '10.151.5.205'
+            port = '22'
+        [Clients.Aiot.ec2]
+            ip = '10.151.5.206'
+            port = '22'
+
+    # 测试用的摄像头、抓拍机配置 用于修改配置
+    [Clients.SubDevice]
+        [Clients.SubDevice.Camera_hikvision] # 海康 #命名有规范　摄像头Camera开头　抓拍机Snap开头　NVR
+            ip = '10.4.7.20'
+            port = 80
+            username = 'admin'
+            password = 'ADMIN1234'
+            rtsp = 'rtsp://admin:ADMIN1234@10.4.7.20:554'
+            capture = 'capture://14495936/admin:ADMIN1234@10.4.7.20'
+            brand = 'HIKVISION'  # UNKNOWN/HIKVISION/DAHUA
+            kind = 'CAMERA'
+        [Clients.SubDevice.Camera_dahua] # 大华
+            ip = '10.151.116.116'
+            port = 37777
+            username = 'admin'
+            password = 'SenseNebula2021'
+            rtsp = 'rtsp://admin:SenseNebula2021@10.151.116.116:554'
+            brand = 'DAHUA'  # UNKNOWN/HIKVISION/DAHUA
+        [Clients.SubDevice.NVR1]
+            ip = "10.4.10.71"
+            port = 80  # x86则是8000
+            port_x86 = 8000
+            username = "admin"
+            password = "t2mksense"
+            brand = 'HIKVISION'
+        [Clients.SubDevice.NVR2] # 大华nvr
+            ip = "10.4.10.79"
+            port = 37777
+            username = "admin"
+            password = "t2mksense"
+            brand = 'DAHUA'
+        [Clients.SubDevice.NVR3]
+            ip = "10.4.7.16"
+            port = 80  # x86则是8000
+            port_x86 = 8000
+            username = "admin"
+            password = "ADMIN1234"
+            brand = 'HIKVISION'

@@ -1,0 +1,17 @@
+
+    def $$%%FUNC_NAME%%$$Api(self$$%%PARAM_LIST%%$$, loginToken=None, sendRequest=True, print_log=True, interface_desc=None):
+        """  $$%%DESC%%$$ """
+        """  $$%%TITLE%%$$ API """
+        """  $$%%STRUCTURE%%$$
+        """
+        """  $$%%RESPONSE%%$$
+        """
+        intef = collections.interface("$$%%SWAGGER_NAME%%$$", "$$%%API_NAME%%$$")
+        intef.set_print_log(print_log)
+        intef.set_description(interface_desc)
+        if loginToken:
+            intef.set_headers(self.TOKEN_NAME, self.TOKEN_VALUE % loginToken)
+$$%%PARAM_CODE%%$$
+$$%%FULL_PATH_CODE%%$$
+$$%%BODY_CODE%%$$
+        return intef.request() if sendRequest else intef

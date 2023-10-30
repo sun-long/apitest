@@ -1,0 +1,63 @@
+# test_case目录分类
+# ras-manager
+ras,device
+ras,rasManager
+ras,botManager
+ras,rasCluster
+ras,deviceIotCenter
+# ids
+ids,face
+ids,identity
+ids,ocr
+ids,watermark
+# ras-runtime-proxy
+runtimeProxy, ipsApplet
+runtimeProxy, ipsOcr
+runtimeProxy, viperApplet
+runtimeProxy, viperOcr
+#runtimeProxy, sfd
+# aide
+aide, adapter
+aide, viperOpenApi
+# console
+# ctid
+console,auth
+console,authInternalAuth
+console,notification
+console,notificationInternal
+console,user
+console,order
+console,orderInternal
+console,product
+console,oplog
+console,authIam
+console,bill
+console,billInternal
+console,rechargeLog
+console,spuop
+ctidService,twoPhotosVerify
+ctidService,twoPhotosFeatureVerify
+ctidService,photoFeatureVerify
+ctidService,featureExtract
+ctidService,featureCompare
+ctidService,faceQualityCheck
+ctidService,faceDetect
+ctidService,helloWorld
+
+# lottery
+lottery, lottery
+# video
+video,videoManager
+# galaxyOpenAPI
+galaxy,galaxyOplog
+galaxy,galaxyProduct
+galaxy,galaxyBeltOplog
+galaxy,galaxyBeltProduct
+# argus
+argus,argusDb
+argus,argusIps
+argus,argusPedestrian
+argus,argusRrs
+argus,argusDatacenter
+# road
+road,roadInspection

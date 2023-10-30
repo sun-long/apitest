@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+
+import pytest
+from commonlib.cache_dict import CacheDict
+from commonlib.log_utils import log
+$$%%API_IMPORT_LIST%%$$
+$$%%API_OBJ_FUNCTION%%$$
+
+@pytest.fixture(scope="class")
+def cache_obj():
+    obj = CacheDict()
+    yield obj

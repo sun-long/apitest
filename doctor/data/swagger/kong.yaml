@@ -1,0 +1,752 @@
+_format_version: "3.0"
+_transform: true
+
+services:
+  - name: ras-device-center-CreateDeviceKind
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-device-center:8082/device/v1/CreateDeviceKind
+    routes:
+      - name: CreateDeviceKind
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["CreateDeviceKind"]}
+        paths:
+          - /device
+  - name: ras-device-center-DeleteDeviceKind
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-device-center:8082/device/v1/DeleteDeviceKind
+    routes:
+      - name: DeleteDeviceKind
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["DeleteDeviceKind"]}
+        paths:
+          - /device
+  - name: ras-device-center-UpdateDeviceKind
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-device-center:8082/device/v1/UpdateDeviceKind
+    routes:
+      - name: UpdateDeviceKind
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["UpdateDeviceKind"]}
+        paths:
+          - /device
+  - name: ras-device-center-GetDeviceKinds
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-device-center:8082/device/v1/GetDeviceKinds
+    routes:
+      - name: GetDeviceKinds
+        methods:
+          - GET
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["GetDeviceKinds"]}
+        paths:
+          - /device
+  - name: ras-device-center-GetDeviceKind
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-device-center:8082/device/v1/GetDeviceKind
+    routes:
+      - name: GetDeviceKind
+        methods:
+          - GET
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["GetDeviceKind"]}
+        paths:
+          - /device
+  - name: ras-device-center-CreateDevice
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-device-center:8082/device/v1/CreateDevice
+    routes:
+      - name: CreateDevice
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["CreateDevice"]}
+        paths:
+          - /device
+  - name: ras-device-center-BatchCreateDevices
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-device-center:8082/device/v1/BatchCreateDevices
+    routes:
+      - name: BatchCreateDevices
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["BatchCreateDevices"]}
+        paths:
+          - /device
+  - name: ras-device-center-DeleteDevice
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-device-center:8082/device/v1/DeleteDevice
+    routes:
+      - name: DeleteDevice
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["DeleteDevice"]}
+        paths:
+          - /device
+  - name: ras-device-center-UpdateDevice
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-device-center:8082/device/v1/UpdateDevice
+    routes:
+      - name: UpdateDevice
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["UpdateDevice"]}
+        paths:
+          - /device
+  - name: ras-device-center-GetDevices
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-device-center:8082/device/v1/GetDevices
+    routes:
+      - name: GetCenterDevices
+        methods:
+          - GET
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["GetCenterDevices"]}
+        paths:
+          - /device
+  - name: ras-device-center-GetDevice
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-device-center:8082/device/v1/GetDevice
+    routes:
+      - name: GetCenterDevice
+        methods:
+          - GET
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["GetCenterDevice"]}
+        paths:
+          - /device
+  - name: ras-device-center-UnbindDevicePolicyGroup
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-device-center:8082/device/v1/UnbindDevicePolicyGroup
+    routes:
+      - name: UnbindDevicePolicyGroup
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["UnbindDevicePolicyGroup"]}
+        paths:
+          - /device
+  - name: ras-device-center-BindDevicePolicyGroup
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-device-center:8082/device/v1/BindDevicePolicyGroup
+    routes:
+      - name: BindDevicePolicyGroup
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["BindDevicePolicyGroup"]}
+        paths:
+          - /device
+  - name: ras-device-center-ListRegistration
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-device-center:8082/device/v1/ListRegistration
+    routes:
+      - name: ListRegistration
+        methods:
+          - GET
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["ListRegistration"]}
+        paths:
+          - /device
+  - name: ras-device-center-GenRTMPAddress
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-device-center:8082/device/v1/GenRTMPAddress
+    routes:
+      - name: GenRTMPAddress
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["GenRTMPAddress"]}
+        paths:
+          - /device
+  - name: ras-device-edge-GetDevices
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-device-edge:8082/device/v1/GetDevices
+    routes:
+      - name: GetEdgeDevices
+        methods:
+          - GET
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["GetEdgeDevices"]}
+        paths:
+          - /device
+  - name: ras-device-edge-GetDevice
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-device-edge:8082/device/v1/GetDevice
+    routes:
+      - name: GetEdgeDevice
+        methods:
+          - GET
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["GetEdgeDevice"]}
+        paths:
+          - /device
+  - name: ingress-test-service-post
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ingress-test-service.sensego-crd-test:5779/belt/test/post
+    routes:
+      - name: testPost
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["TestPost"]}
+        paths:
+          - /ras
+  - name: ingress-test-service-get
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ingress-test-service.sensego-crd-test:5779/belt/test/get
+    routes:
+      - name: testGet
+        methods:
+          - GET
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["TestGet"]}
+        paths:
+          - /ras
+  - name: ras-bot-manager-edge-list-bots
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-bot-manager-edge:8855/v1/ListBot
+    routes:
+      - name: edge-list-bots-get
+        methods:
+          - GET
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["ListBot"]}
+        paths:
+          - /ras-edge
+  - name: ras-bot-manager-center-list-bots
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-bot-manager-center:8855/v1/ListBot
+    routes:
+      - name: center-list-bots-get
+        methods:
+          - GET
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["ListBot"]}
+        paths:
+          - /ras
+  - name: ras-bot-manager-center-get-bots
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-bot-manager-center:8855/v1/GetBot
+    routes:
+      - name: center-get-bots-get
+        methods:
+          - GET
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["GetBot"]}
+        paths:
+          - /ras
+  - name: ras-bot-manager-center-upsert-bots
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-bot-manager-center:8855/v1/UpsertBot
+    routes:
+      - name: center-upsert-bots-post
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["UpsertBot"]}
+        paths:
+          - /ras
+  - name: ras-bot-manager-center-delete-bots
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-bot-manager-center:8855/v1/DeleteBot
+    routes:
+      - name: center-delete-bots-post
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["DeleteBot"]}
+        paths:
+          - /ras
+  - name: ras-bot-manager-center-create-bot-instance
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-bot-manager-center:8855/v1/CreateBotInstance
+    routes:
+      - name: center-create-bot-instance-post
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["CreateBotInstance"]}
+        paths:
+          - /ras
+  - name: ras-bot-manager-center-delete-bot-instance
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ras-bot-manager-center.sensego-crd-test:8855/v1/DeleteBotInstance
+    routes:
+      - name: center-delete-bot-instance-post
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["DeleteBotInstance"]}
+        paths:
+          - /ras
+  - name: "create-easy-bot-assignment-service"
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: "http://ras-manager-center:9091/v1/CreateAssignment"
+    routes:
+    - name: create-easy-bot-assignment-route
+      methods:
+      - POST
+      paths:
+      - /ras/easy-bot-spu-test
+      headers: {"X-Belt-Action": ["CreateEasyBotAssignment"], "X-Belt-Version": ["v1"]}
+      strip_path: true
+  - name: "update-easy-bot-assignment-service"
+    url: "http://ras-manager-center:9091/v1/UpdateAssignment"
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    routes:
+    - name: update-easy-bot-assignment-route
+      methods:
+      - POST
+      paths:
+      - /ras/easy-bot-spu-test
+      headers: {"X-Belt-Action": ["UpdateEasyBotAssignment"], "X-Belt-Version": ["v1"]}
+      strip_path: true
+  - name: "delete-easy-bot-assignment-service"
+    url: "http://ras-manager-center:9091/v1/DeleteAssignment"
+    routes:
+    - name: delete-easy-bot-assignment-route
+      methods:
+      - POST
+      paths:
+      - /ras/easy-bot-spu-test
+      headers: {"X-Belt-Action": ["DeleteEasyBotAssignment"], "X-Belt-Version": ["v1"]}
+      strip_path: true
+  - name: "get-easy-bot-assignment-service"
+    url: "http://ras-manager-center:9091/v1/GetAssignment"
+    routes:
+    - name: get-easy-bot-assignment-route
+      methods:
+      - GET
+      paths:
+      - /ras/easy-bot-spu-test
+      headers: {"X-Belt-Action": ["GetEasyBotAssignment"], "X-Belt-Version": ["v1"]}
+      strip_path: true
+  - name: "list-easy-bot-assignment-service"
+    url: "http://ras-manager-center:9091/v1/ListAssignments"
+    routes:
+    - name: list-assignment-easy-bot-route
+      methods:
+      - GET
+      paths:
+      - /ras/easy-bot-spu-test
+      headers: {"X-Belt-Action": ["ListEasyBotAssignments"], "X-Belt-Version": ["v1"]}
+      strip_path: true
+  - name: "delete-device-service"
+    url: "http://ras-manager-center:9091/v1/DeleteDevice"
+    routes:
+    - name: delete-device-route
+      methods:
+      - POST
+      paths:
+      - /ras
+      headers: {"X-Belt-Action": ["DeleteDevice"], "X-Belt-Version": ["v1"]}
+      strip_path: true
+  - name: "list-device-detail-service"
+    url: "http://ras-manager-center:9091/v1/ListDeviceDetails"
+    routes:
+    - name: list-device-route
+      methods:
+      - GET
+      paths:
+      - /ras
+      headers: {"X-Belt-Action": ["ListDeviceDetails"], "X-Belt-Version": ["v1"]}
+      strip_path: true
+  - name: "get-device-detail-service"
+    url: "http://ras-manager-center:9091/v1/GetDeviceDetail"
+    routes:
+    - name: get-device-detail-route
+      methods:
+      - GET
+      paths:
+      - /ras
+      headers: {"X-Belt-Action": ["GetDeviceDetail"], "X-Belt-Version": ["v1"]}
+      strip_path: true
+  - name: "update-device-service"
+    url: "http://ras-manager-center:9091/v1/UpdateDevice"
+    routes:
+    - name: update-device-route
+      methods:
+      - POST
+      paths:
+      - /ras
+      headers: {"X-Belt-Action": ["UpdateDevice"], "X-Belt-Version": ["v1"]}
+      strip_path: true
+  - name: "count-devices"
+    url: "http://ras-manager-center:9091/v1/CountDevices"
+    routes:
+    - name: count-device-route
+      methods:
+      - GET
+      paths:
+      - /ras
+      headers: {"X-Belt-Action": ["CountDevices"], "X-Belt-Version": ["v1"]}
+      strip_path: true
+  - name: "create-fd-assignment-service"
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: "http://ras-manager-center:9091/v1/CreateAssignment"
+    routes:
+    - name: create-fd-assignment-route
+      methods:
+      - POST
+      paths:
+      - /ras/fell-detective
+      headers: {"X-Belt-Action": ["CreateFellDetectiveAssignment"], "X-Belt-Version": ["v1"]}
+      strip_path: true
+  - name: "update-fd-assignment-service"
+    url: "http://ras-manager-center:9091/v1/UpdateAssignment"
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    routes:
+    - name: update-fd-assignment-route
+      methods:
+      - POST
+      paths:
+      - /ras/fell-detective
+      headers: {"X-Belt-Action": ["UpdateFellDetectiveAssignment"], "X-Belt-Version": ["v1"]}
+      strip_path: true
+  - name: "delete-fd-assignment-service"
+    url: "http://ras-manager-center:9091/v1/DeleteAssignment"
+    routes:
+    - name: delete--fd-assignment-route
+      methods:
+      - POST
+      paths:
+      - /ras/fell-detective
+      headers: {"X-Belt-Action": ["DeleteFellDetectiveAssignment"], "X-Belt-Version": ["v1"]}
+      strip_path: true
+  - name: "get-fd-assignment-service"
+    url: "http://ras-manager-center:9091/v1/GetAssignment"
+    routes:
+    - name: get-fd-assignment-route
+      methods:
+      - GET
+      paths:
+      - /ras/fell-detective
+      headers: {"X-Belt-Action": ["GetFellDetectiveAssignment"], "X-Belt-Version": ["v1"]}
+      strip_path: true
+  - name: "list-fd-assignment-service"
+    url: "http://ras-manager-center:9091/v1/ListAssignments"
+    routes:
+    - name: list-fd-assignment-route
+      methods:
+      - GET
+      paths:
+      - /ras/fell-detective
+      headers: {"X-Belt-Action": ["ListFellDetectiveAssignments"], "X-Belt-Version": ["v1"]}
+      strip_path: true
+  - name: "list-assignment-route-service"
+    url: "http://ras-manager-center:9091/v1/ListAssignments"
+    routes:
+    - name: list-assignment-route
+      methods:
+      - GET
+      paths:
+      - /ras
+      headers: {"X-Belt-Action": ["ListAssignments"], "X-Belt-Version": ["v1"]}
+      strip_path: true
+  - name: get-clusters
+    url: "http://cluster-registry-center.sensego-crd-test:8081/v1/clusters"
+    routes:
+    - name: get-clusters-route
+      methods:
+      - GET
+      paths:
+      - /ras/clusters
+      headers: {"X-Belt-Action": ["GetClusters"], "X-Belt-Version": ["v1"]}
+      strip_path: true
+  - name: ids-wrapper-service-CompareImage
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ids-wrapper-service.sensego-crd-test:8080/v1/face/compare_image
+    routes:
+      - name: face_compare_image
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["CompareImage"]}
+        paths:
+          - /ids
+  - name: ids-wrapper-service-DetectLiveness
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ids-wrapper-service.sensego-crd-test:8080/v1/face/detect_liveness
+    routes:
+      - name: face_detect_liveness
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["DetectLiveness"]}
+        paths:
+          - /ids
+  - name: ids-wrapper-service-VerifyIDCard
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ids-wrapper-service.sensego-crd-test:8080/v1/identity/verify_idcard
+    routes:
+      - name: identity_verify_idcard
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["VerifyIDCard"]}
+        paths:
+          - /ids
+  - name: ids-wrapper-service-VerifyIDCardFace
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ids-wrapper-service.sensego-crd-test:8080/v1/identity/verify_idcard_face
+    routes:
+      - name: identity_verify_idcard
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["VerifyIDCardFace"]}
+        paths:
+          - /ids
+  - name: ids-wrapper-service-CreateSession
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ids-wrapper-service.sensego-crd-test:8080/v1/identity/create_session
+    routes:
+      - name: identity_CreateSession
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["CreateSession"]}
+        paths:
+          - /ids
+  - name: ids-wrapper-service-GetSessionLivenessResult
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ids-wrapper-service.sensego-crd-test:8080/v1/identity/get_session_liveness_result
+    routes:
+      - name: identity_get_session_liveness_result
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["GetSessionLivenessResult"]}
+        paths:
+          - /ids
+  - name: ids-wrapper-service-GetSessionVerificationResult
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ids-wrapper-service.sensego-crd-test:8080/v1/identity/get_session_verification_result
+    routes:
+      - name: identity_get_session_verification_result
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["GetSessionVerificationResult"]}
+        paths:
+          - /ids
+  - name: ids-wrapper-service-OCRIDCard
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ids-wrapper-service.sensego-crd-test:8080/v1/ocr/idcard
+    routes:
+      - name: ocr_idcard
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["OCRIDCard"]}
+        paths:
+          - /ids
+  - name: ids-wrapper-service-OCRBankcard
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ids-wrapper-service.sensego-crd-test:8080/v1/ocr/bankcard
+    routes:
+      - name: ocr_bankcard
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["OCRBankcard"]}
+        paths:
+          - /ids
+  - name: ids-wrapper-service-OCRVehicleLicense
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ids-wrapper-service.sensego-crd-test:8080/v1/ocr/vehicle_license
+    routes:
+      - name: ocr_vehicle_license
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["OCRVehicleLicense"]}
+        paths:
+          - /ids
+  - name: ids-wrapper-service-OCRDrivingLicense
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ids-wrapper-service.sensego-crd-test:8080/v1/ocr/driving_license
+    routes:
+      - name: ocr_driving_license
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["OCRDrivingLicense"]}
+        paths:
+          - /ids
+  - name: ids-wrapper-service-OCRBusinessLicense
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ids-wrapper-service.sensego-crd-test:8080/v1/ocr/business_license
+    routes:
+      - name: ocr_business_license
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["OCRBusinessLicense"]}
+        paths:
+          - /ids
+  - name: ids-wrapper-service-OCRHKMacauExitEntryPermit
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ids-wrapper-service.sensego-crd-test:8080/v1/ocr/hk_macau_exit_entry_permit
+    routes:
+      - name: ocr_hk_macau_exit_entry_permit
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["OCRHKMacauExitEntryPermit"]}
+        paths:
+          - /ids
+  - name: ids-wrapper-service-OCRTaiwanExitEntryPermit
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ids-wrapper-service.sensego-crd-test:8080/v1/ocr/taiwan_exit_entry_permit
+    routes:
+      - name: ocr_taiwan_exit_entry_permit
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["OCRTaiwanExitEntryPermit"]}
+        paths:
+          - /ids
+  - name: ids-wrapper-service-H5OCRIDCard
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: http://ids-wrapper-service.sensego-crd-test:8080/v1/h5/ocr/idcard
+    routes:
+      - name: h5_ocr_idcard
+        methods:
+          - POST
+        strip_path: true #剥离配置的前缀
+        headers: {"X-Belt-Action": ["H5OCRIDCard"]}
+        paths:
+          - /ids
+  - name: ids-wrapper-service-InteractiveLiveness
+    connect_timeout: 2000
+    read_timeout: 300000
+    write_timeout: 300000
+    url: ws://ids-wrapper-service.sensego-crd-test:8080/face-liveness
+    routes:
+      - name: interactive_liveness_websocket
+        strip_path: true #剥离配置的前缀
+        paths:
+          - /ids
+
+plugins:
+   - name: authentication
+     enabled: true
+     config:
+        request_header_key:
+            request_header_action: "X-Belt-Action"
+   - name: rate-limit
+     enabled: true
+     config:
+        redis:
+          mode: "standalone"
+          db_index: 5
+          timeout: 2000
+          standalone:
+            host: "10.4.132.25"
+            port: 6379
+            pass: "123456"
+   - name: value-point
+     enabled: true
+     config:
+       request_header_key:
+         request_header_action: "X-Belt-Action"

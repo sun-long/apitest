@@ -1,0 +1,20 @@
+
+    @pytest.mark.parametrize("invalidParam", [
+    ('field', 'value', 400, 'error msg'),
+$$%%INVALID_PARAM_LIST%%$$
+    ], ids=lambda invalidParam: "%s-%s" % (invalidParam[0],invalidParam[1]))
+    def test_api_$$%%METHOD_NAME%%$$InvalidParam(self, invalidParam, config_obj, $$%%API_OBJ%%$$):
+        """  $$%%TEST_FUNC_DESC%%$$ """
+$$%%PARAM_CODE%%$$
+        intef = $$%%API_OBJ%%$$.$$%%API_FUNC%%$$($$%%PARAM_LIST%%$$sendRequest=False)
+$$%%INVALID_PARAM_CODE%%$$
+$$%%INVALID_BODY_CODE%%$$
+$$%%INVALID_FILE_CODE%%$$
+        resp = intef.request()
+        assert resp.status_code == invalidParam[2]
+        if resp.status_code != 200:
+            assert resp.json_get("error.code") == invalidParam[2]
+            assert resp.json_get("error.message") == invalidParam[3]
+        else:
+            pass
+

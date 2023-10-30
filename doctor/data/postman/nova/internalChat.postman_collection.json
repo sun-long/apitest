@@ -1,0 +1,368 @@
+{
+	"info": {
+		"_postman_id": "4f658493-4d00-44ac-8910-09760e6e9074",
+		"name": "internalChat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11030098",
+		"_collection_link": "https://bold-equinox-386342.postman.co/workspace/NOVA~bbaa01c3-4ced-4a56-957a-56c32b439fb6/collection/11030098-4f658493-4d00-44ac-8910-09760e6e9074?action=share&creator=11030098&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "新建会话",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{akToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"biz_id\": 0,\r\n  \"label\": \"string\",\r\n  \"system_prompt\": [\r\n    {\r\n      \"content\": \"你係一個聰明、有趣嘅人工智能，名叫SenseChat，中文名係「商量」。你嘅回答需要條理清晰、邏輯清楚、內容詳細。你要用純正嘅粤語回答用戶，而且盡量噤用繁體字，咁樣先合符香港地區嘅閱讀習慣。\",\r\n      \"role\": \"system\"\r\n    }\r\n  ],\r\n  \"user_id\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{app_host}}/v1/llm/internal/new-session",
+					"protocol": "https",
+					"host": [
+						"{{app_host}}"
+					],
+					"path": [
+						"v1",
+						"llm",
+						"internal",
+						"new-session"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "有状态会话",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{akToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"action\": \"next\",\r\n  \"biz_id\": 0,\r\n  \"input\": \"您好\",\r\n  \"model\": \"nova-ptc-yue-xl-v1\",\r\n  \"parent_turn_id\": \"string\",\r\n  \"session_id\": \"50f0f8388a4d000\",\r\n  \"stream\": false,\r\n  \"know_ids\": [\"s477c244d9bdc4748b8db97e296721a6f\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{app_host}}/v1/llm/internal/chat",
+					"protocol": "https",
+					"host": [
+						"{{app_host}}"
+					],
+					"path": [
+						"v1",
+						"llm",
+						"internal",
+						"chat"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "error1",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{akToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"action\": \"next\",\r\n  \"biz_id\": 0,\r\n  \"input\": \"您好\",\r\n  \"model\": \"nova-ptc-yue-xl-v1\",\r\n  \"parent_turn_id\": \"string\",\r\n  \"session_id\": \"533b362273ea000\",\r\n  \"stream\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{app_host}}/v1/llm/internal/chat",
+							"protocol": "https",
+							"host": [
+								"{{app_host}}"
+							],
+							"path": [
+								"v1",
+								"llm",
+								"internal",
+								"chat"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "85"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 10 Aug 2023 03:09:40 GMT"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "2685d5ec-d5cf-4a61-9b8f-3f6fdc5c28fc"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 500,\n    \"msg\": \"invalid character '\\\"' after object key:value pair\",\n    \"data\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "重新生成回复评分",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{akToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"biz_id\": 0,\r\n  \"compare_rating\": \"better\",\r\n  \"session_id\": \"5082cec46c46000\",\r\n  \"source_turn_id\": \"5082cec47046000_3\",\r\n  \"turn_id\": \"5080d5f8f959000_2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{app_host}}/v1/llm/internal/compare-rating",
+					"protocol": "https",
+					"host": [
+						"{{app_host}}"
+					],
+					"path": [
+						"v1",
+						"llm",
+						"internal",
+						"compare-rating"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "用户评价",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{akToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"biz_id\": 0,\r\n  \"score\": 0,\r\n  \"session_id\": \"5082cec46c46000\",\r\n  \"tag\": [\r\n    \"string\"\r\n  ],\r\n  \"turn_id\": \"5082cec47046000_2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{app_host}}/v1/llm/internal/feedback",
+					"protocol": "https",
+					"host": [
+						"{{app_host}}"
+					],
+					"path": [
+						"v1",
+						"llm",
+						"internal",
+						"feedback"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "话题切换",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{akToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"biz_id\": 0,\r\n  \"session_id\": \"5082cec46c46000\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{app_host}}/v1/llm/internal/new-topic",
+					"protocol": "https",
+					"host": [
+						"{{app_host}}"
+					],
+					"path": [
+						"v1",
+						"llm",
+						"internal",
+						"new-topic"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "修改答案",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{akToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"biz_id\": 0,\r\n  \"content\": \"lalal\",\r\n  \"session_id\": \"5082cec46c46000\",\r\n  \"turn_id\": \"5082cec47046000_2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{app_host}}/v1/llm/internal/rewrite-output",
+					"protocol": "https",
+					"host": [
+						"{{app_host}}"
+					],
+					"path": [
+						"v1",
+						"llm",
+						"internal",
+						"rewrite-output"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "代码生成",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Sensenova-Signature",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIyUzZsekp5Y0xFc054WUpZZWFZU0hqdEFvbWwiLCJleHAiOjE3MjAwMTE2MTYsIm5iZiI6MTY4ODQ3NTYxMX0.b0DDDc6PxZXbEd_GrVkzJZxLsgvvbIdj_knAFwDr5cY"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"max_new_tokens\": 100,\n    \"messages\": [\n        {\n            \"content\": \"1\",\n            \"role\": \"assistant\"\n        },\n        {\n            \"content\": \"使用python写一个你好函数\",\n            \"role\": \"user\"\n        }\n    ],\n    \"model\": \"novs-ptc-s-v1-code\",\n    \"stop\": \"\",\n    \"n\":2,\n    \"stream\": false,\n    \"temperature\": 0.8\n}"
+				},
+				"url": {
+					"raw": "https://api.stage.sensenova.cn/v1/llm/code/chat-completions",
+					"protocol": "https",
+					"host": [
+						"api",
+						"stage",
+						"sensenova",
+						"cn"
+					],
+					"path": [
+						"v1",
+						"llm",
+						"code",
+						"chat-completions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "多模态",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Sensenova-Signature",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIyUzZsekp5Y0xFc054WUpZZWFZU0hqdEFvbWwiLCJleHAiOjE3MjAwMTE2MTYsIm5iZiI6MTY4ODQ3NTYxMX0.b0DDDc6PxZXbEd_GrVkzJZxLsgvvbIdj_knAFwDr5cY"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"image\": \"\",\n    \"messages\": [\n        {\n            \"role\": \"user\",\n            \"content\": \"你好\"\n        },\n        {\n            \"role\": \"assistant\",\n            \"content\": \"你好\"\n        },\n        {\n            \"role\": \"user\",\n            \"content\": \"图片中有什么\"\n        }\n    ],\n    \"model\": \"nova-ptc-xs-v1\",\n    \"max_new_tokens\": 1024,\n    \"repetition_penalty\": 1.05,\n    \"temperature\": 0.8,\n    \"top_p\": 0.7\n,\"stream\": false\n}"
+				},
+				"url": {
+					"raw": "https://api.stage.sensenova.cn/v1/llm/internal/multi-chat",
+					"protocol": "https",
+					"host": [
+						"api",
+						"stage",
+						"sensenova",
+						"cn"
+					],
+					"path": [
+						"v1",
+						"llm",
+						"internal",
+						"multi-chat"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

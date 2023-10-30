@@ -1,0 +1,1019 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "console-productop-service",
+    "version": "v1.0.0"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/console-internal/v1/all_spuop": {
+      "get": {
+        "summary": "获取所有SPU列表\nroute: prefix=console-internal action=GetAllSPU version=v1",
+        "operationId": "ConsoleSPUopService_GetAllSPU",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productopGetAllSPUResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "code",
+            "description": "spu code.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page_request.offset",
+            "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条; 默认值为0.\n返回本次请求返回的第一条记录实际位置(一般与输入一致).\n[EN] Optional, start position, value: \u003e = 0, 0 is the first line; the\ndefault value is 0. In response, actual offset of the first returned record\nis returned (generally equals to the offset in request).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.limit",
+            "description": "长度, 取值范围[1,100], 如果超出范围, 则返回失败;\n在某些接口中limit范围可能会重新定义, 请以其接口的补充说明为准. [EN] Length,\ndefault value range [1,100], if it is out of the range, error will be\nreturned; as the limit range may be redefined in some APIs, please refer to\nthe supplementary description of these APIs.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.total",
+            "description": "可选, 总数, 请求无须填此参数, 响应时填写.\n[EN] Optional, this parameter is not required for request, but will be\nfilled in response.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ConsoleSPUopService"
+        ]
+      }
+    },
+    "/console-internal/v1/skuop/check": {
+      "post": {
+        "summary": "检查用户是否能订阅指定的SKU(console内部使用)",
+        "operationId": "ConsoleSPUopService_CheckSKUValidForAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productopCheckSKUValidForAccountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/productopCheckSKUValidForAccountRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleSPUopService"
+        ]
+      }
+    },
+    "/console-internal/v1/skuop/check_account_list": {
+      "post": {
+        "summary": "检查输入的白名单账号是否存在\nroute: prefix=console-internal action=CheckAccountList version=v1",
+        "operationId": "ConsoleSPUopService_CheckAccountList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productopCheckAccountListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/productopCheckAccountListRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleSPUopService"
+        ]
+      }
+    },
+    "/console-internal/v1/skuop/filter": {
+      "get": {
+        "summary": "获取单个SKU设置的白名单\nroute: prefix=console-internal action=GetSKUFilter version=v1",
+        "operationId": "ConsoleSPUopService_GetSKUFilter",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productopGetSKUFilterResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "description": "sku name（sku白名单需要以sku name为关键字）.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ConsoleSPUopService"
+        ]
+      },
+      "post": {
+        "summary": "设置单个SKU的白名单\nroute: prefix=console-internal action=SetSKUFilter version=v1",
+        "operationId": "ConsoleSPUopService_SetSKUFilter",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productopSetSKUFilterResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/productopSetSKUFilterRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleSPUopService"
+        ]
+      }
+    },
+    "/console-internal/v1/spu_info_by_policy_name": {
+      "get": {
+        "summary": "根据spu_id或者policy_name获取SPU数据(bot使用)",
+        "operationId": "ConsoleSPUopService_GetSPUInfoByPoliceName",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productopGetSPUInfoByPoliceNameResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "spu_id",
+            "description": "spu id（可选，优先判断）.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "policy_name",
+            "description": "policy name（可选）.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "spu_code",
+            "description": "spu_code（可选）.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ConsoleSPUopService"
+        ]
+      }
+    },
+    "/console-internal/v1/spuop": {
+      "get": {
+        "summary": "获取单个SPU详情\nroute: prefix=console-internal action=GetSPU version=v1",
+        "operationId": "ConsoleSPUopService_GetSPU",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productopGetSPUResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "spu id.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "page_request.offset",
+            "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条; 默认值为0.\n返回本次请求返回的第一条记录实际位置(一般与输入一致).\n[EN] Optional, start position, value: \u003e = 0, 0 is the first line; the\ndefault value is 0. In response, actual offset of the first returned record\nis returned (generally equals to the offset in request).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.limit",
+            "description": "长度, 取值范围[1,100], 如果超出范围, 则返回失败;\n在某些接口中limit范围可能会重新定义, 请以其接口的补充说明为准. [EN] Length,\ndefault value range [1,100], if it is out of the range, error will be\nreturned; as the limit range may be redefined in some APIs, please refer to\nthe supplementary description of these APIs.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.total",
+            "description": "可选, 总数, 请求无须填此参数, 响应时填写.\n[EN] Optional, this parameter is not required for request, but will be\nfilled in response.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ConsoleSPUopService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "ContentBillMode": {
+      "type": "object",
+      "properties": {
+        "postpaid": {
+          "type": "string",
+          "title": "后付费描述，通过 json 字符串存储： {\"产品名称\":\"...\", \"产品项目\": \"...\", \"免费额度\", \"...\"}"
+        },
+        "prepaid": {
+          "type": "string",
+          "title": "预付费描述，是描述资源包的内容，也可以用 json 字符串存储。"
+        }
+      },
+      "title": "付费模式描述"
+    },
+    "SPUContent": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "title": "商品摘要，一句话"
+        },
+        "intro": {
+          "type": "string",
+          "title": "商品简介，一句话"
+        },
+        "functions": {
+          "type": "string",
+          "title": "商品优势描述， 一句话"
+        },
+        "experience": {
+          "type": "string",
+          "title": "商品体验"
+        },
+        "specifications": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "商品规格描述"
+        },
+        "applications": {
+          "type": "string",
+          "title": "应用场景，json 字符串存储"
+        },
+        "bill_mode": {
+          "$ref": "#/definitions/ContentBillMode",
+          "title": "商品价格描述"
+        },
+        "help_doc": {
+          "type": "string",
+          "title": "帮助文档，json 字符串，无论是只存储 url，还是内容 + url 都可以"
+        },
+        "img_url": {
+          "type": "string",
+          "title": "商品图像，存储 url"
+        }
+      },
+      "title": "商品具体描述"
+    },
+    "SPUPurchaseType": {
+      "type": "string",
+      "enum": [
+        "PURCHASE_TYPE_UNSPECIFIED",
+        "PURCHASE_TYPE_PUCHASABLE",
+        "PURCHASE_TYPE_UNPUCHASABLE"
+      ],
+      "default": "PURCHASE_TYPE_UNSPECIFIED",
+      "title": "- PURCHASE_TYPE_UNSPECIFIED: 不限制，只用于搜索的过滤条件\n - PURCHASE_TYPE_PUCHASABLE: 可购买\n - PURCHASE_TYPE_UNPUCHASABLE: 白名单，不可购买"
+    },
+    "SpecValueType": {
+      "type": "string",
+      "enum": [
+        "VALUE_TYPE_UNKNOWN",
+        "VALUE_TYPE_STRING",
+        "VALUE_TYPE_INTEGER",
+        "VALUE_TYPE_DOUBLE"
+      ],
+      "default": "VALUE_TYPE_UNKNOWN",
+      "description": "- VALUE_TYPE_UNKNOWN: 保留位\n - VALUE_TYPE_STRING: 字符串\n - VALUE_TYPE_INTEGER: 整数\n - VALUE_TYPE_DOUBLE: 浮点数",
+      "title": "规格值类型"
+    },
+    "bsscommonListPage": {
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条; 默认值为0.\n返回本次请求返回的第一条记录实际位置(一般与输入一致).\n[EN] Optional, start position, value: \u003e = 0, 0 is the first line; the\ndefault value is 0. In response, actual offset of the first returned record\nis returned (generally equals to the offset in request)."
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "description": "长度, 取值范围[1,100], 如果超出范围, 则返回失败;\n在某些接口中limit范围可能会重新定义, 请以其接口的补充说明为准. [EN] Length,\ndefault value range [1,100], if it is out of the range, error will be\nreturned; as the limit range may be redefined in some APIs, please refer to\nthe supplementary description of these APIs."
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32",
+          "description": "可选, 总数, 请求无须填此参数, 响应时填写.\n[EN] Optional, this parameter is not required for request, but will be\nfilled in response."
+        }
+      }
+    },
+    "commonCategoryStatus": {
+      "type": "string",
+      "enum": [
+        "CATEGORY_UNLIMITED",
+        "CATEGORY_USED",
+        "CATEGORY_DELETED",
+        "CATEGORY_NONE"
+      ],
+      "default": "CATEGORY_UNLIMITED",
+      "description": "- CATEGORY_UNLIMITED: 不限制，只是用来筛选状态用\n - CATEGORY_USED: 类目使用状态\n - CATEGORY_DELETED: 类目删除状态\n - CATEGORY_NONE: 占位符，用于判断最大值，这个值会随时间改变",
+      "title": "类目的状态枚举"
+    },
+    "commonCategoryWithDetail": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "类目编号"
+        },
+        "parent_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "父类目编号"
+        },
+        "path_code": {
+          "type": "string",
+          "title": "类目路径码，这个属性主要便于快速检索\n举例\n大类`特征数据仓库服务`的id为2，parent_id为0（没有上级就是0），那么这个大类的路径码就是$0$2$\n子类`时空特征库`的id为5，parent_id为2，则这个子类的路径码就是$0$2$5$\n那么在搜索所有大类id为2的所有大类子类时就比较方便，直接搜左匹配`$0$2$`，可以用上索引，加快搜索速度，不用嵌套搜索"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int32",
+          "title": "类目级别"
+        },
+        "name": {
+          "type": "string",
+          "title": "类目名称"
+        },
+        "description": {
+          "type": "string",
+          "title": "类目说明"
+        },
+        "status": {
+          "$ref": "#/definitions/commonCategoryStatus",
+          "title": "类目状态"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间, 系统自动生成.\n[EN] Creation time, automatically generated by system."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "修改时间, 系统自动生成.\n[EN] Updated time, automatically generated by system."
+        }
+      },
+      "title": "类目详细信息，主要给get用"
+    },
+    "iamAccountType": {
+      "type": "string",
+      "enum": [
+        "ACCOUNT_TYPE_UNSPECIFIED",
+        "ACCOUNT_TYPE_PERSON",
+        "ACCOUNT_TYPE_ENTERPRISE",
+        "ACCOUNT_TYPE_UNKNOW"
+      ],
+      "default": "ACCOUNT_TYPE_UNSPECIFIED",
+      "title": "- ACCOUNT_TYPE_UNSPECIFIED: 未指定\n - ACCOUNT_TYPE_PERSON: 个人账户\n - ACCOUNT_TYPE_ENTERPRISE: 企业账户\n - ACCOUNT_TYPE_UNKNOW: 未知类型"
+    },
+    "productSPU": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "商品编号"
+        },
+        "code": {
+          "type": "string",
+          "title": "产品定义的商品编号"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonCategoryWithDetail"
+          },
+          "title": "服务项所属类目编号，按照类目级别全都列出\n比如服务属于`特征数据仓库服务 - 静态特征库`，那么这里就有两项类目数据"
+        },
+        "name": {
+          "type": "string",
+          "title": "商品名称"
+        },
+        "content": {
+          "$ref": "#/definitions/SPUContent",
+          "title": "商品具体描述\n这里的值主要给前端界面显示用"
+        },
+        "properties": {
+          "type": "string",
+          "title": "SPU 属性; 原子 API 作为一项属性，还是要单独定义？\n目前考虑在属性里,属性properties是一个json结构，可以在json结构里加一项resource数据来源 {value_point: [API1,API2], other:\"\"}"
+        },
+        "specs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/productSpec"
+          },
+          "title": "SPU规格项列表"
+        },
+        "status": {
+          "$ref": "#/definitions/productSPUStatus",
+          "title": "商品状态"
+        },
+        "sell_attr": {
+          "$ref": "#/definitions/productSellAttr",
+          "title": "售卖属性，当获取单个商品方法中need_detail为true时有值"
+        },
+        "purchase_type": {
+          "$ref": "#/definitions/SPUPurchaseType",
+          "title": "是否是可购买的商品"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间, 系统自动生成.\n[EN] Creation time, automatically generated by system."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "修改时间, 系统自动生成.\n[EN] Updated time, automatically generated by system."
+        }
+      },
+      "title": "商品"
+    },
+    "productSPUStatus": {
+      "type": "string",
+      "enum": [
+        "STATUS_UNLIMITED",
+        "STATUS_DISABLED",
+        "STATUS_ENABLED",
+        "STATUS_DELETED",
+        "STATUS_NONE"
+      ],
+      "default": "STATUS_UNLIMITED",
+      "description": "- STATUS_UNLIMITED: 不限制，只是用来筛选状态用\n - STATUS_DISABLED: 未启用\n - STATUS_ENABLED: 已启用\n - STATUS_DELETED: 删除\n - STATUS_NONE: 占位符，用于判断最大值，这个值会随时间改变",
+      "title": "商品的状态枚举"
+    },
+    "productSellAttr": {
+      "type": "object",
+      "properties": {
+        "spu_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "商品编号"
+        },
+        "attr": {
+          "type": "string",
+          "title": "售卖属性"
+        },
+        "status": {
+          "$ref": "#/definitions/productSellAttrStatus",
+          "title": "售卖属性状态"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间, 系统自动生成.\n[EN] Creation time, automatically generated by system."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "修改时间, 系统自动生成.\n[EN] Updated time, automatically generated by system."
+        }
+      }
+    },
+    "productSellAttrStatus": {
+      "type": "string",
+      "enum": [
+        "STATUS_UNLIMITED",
+        "STATUS_VALID",
+        "STATUS_INVALID",
+        "STATUS_NONE"
+      ],
+      "default": "STATUS_UNLIMITED",
+      "description": "- STATUS_UNLIMITED: 不限制，只是用来筛选状态用\n - STATUS_VALID: 有效\n - STATUS_INVALID: 无效\n - STATUS_NONE: 占位符，用于判断最大值，这个值会随时间改变",
+      "title": "售卖属性状态枚举"
+    },
+    "productSpec": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "规格编号"
+        },
+        "spu_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "SPU id"
+        },
+        "key": {
+          "type": "string",
+          "title": "规格键名称"
+        },
+        "key_name": {
+          "type": "string",
+          "title": "规格键显示名称，主要是前端显示"
+        },
+        "value_type": {
+          "$ref": "#/definitions/SpecValueType",
+          "title": "规格值的类型"
+        },
+        "spec_values": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/productSpecValue"
+          },
+          "title": "规格值列表"
+        },
+        "status": {
+          "$ref": "#/definitions/productSpecStatus",
+          "title": "规格状态"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间, 系统自动生成.\n[EN] Creation time, automatically generated by system."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "修改时间, 系统自动生成.\n[EN] Updated time, automatically generated by system."
+        }
+      },
+      "title": "规格"
+    },
+    "productSpecStatus": {
+      "type": "string",
+      "enum": [
+        "STATUS_UNLIMITED",
+        "STATUS_VALID",
+        "STATUS_INVALID",
+        "STATUS_NONE"
+      ],
+      "default": "STATUS_UNLIMITED",
+      "description": "- STATUS_UNLIMITED: 不限制，只是用来筛选状态用\n - STATUS_VALID: 有效\n - STATUS_INVALID: 无效\n - STATUS_NONE: 占位符，用于判断最大值，这个值会随时间改变",
+      "title": "规格的状态枚举"
+    },
+    "productSpecValue": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "规格值编号"
+        },
+        "spec_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "规格编号"
+        },
+        "value": {
+          "type": "string",
+          "title": "规格值"
+        },
+        "value_name": {
+          "type": "string",
+          "title": "规格值显示名称，主要是前端显示"
+        },
+        "status": {
+          "$ref": "#/definitions/productSpecValueStatus",
+          "title": "规格值状态"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间, 系统自动生成.\n[EN] Creation time, automatically generated by system."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "修改时间, 系统自动生成.\n[EN] Updated time, automatically generated by system."
+        }
+      },
+      "title": "规格值"
+    },
+    "productSpecValueStatus": {
+      "type": "string",
+      "enum": [
+        "STATUS_UNLIMITED",
+        "STATUS_VALID",
+        "STATUS_INVALID",
+        "STATUS_NONE"
+      ],
+      "default": "STATUS_UNLIMITED",
+      "description": "- STATUS_UNLIMITED: 不限制，只是用来筛选状态用\n - STATUS_VALID: 有效\n - STATUS_INVALID: 无效\n - STATUS_NONE: 占位符，用于判断最大值，这个值会随时间改变",
+      "title": "规格值的状态枚举"
+    },
+    "productopAccountCheckResult": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "integer",
+          "format": "int32",
+          "title": "账户检查结果  0：不存在， 1：存在"
+        },
+        "info": {
+          "$ref": "#/definitions/productopAccountSimpleInfo",
+          "title": "账户信息（如果检查不存在则为空）"
+        }
+      }
+    },
+    "productopAccountSimpleInfo": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "account id"
+        },
+        "account_type": {
+          "$ref": "#/definitions/iamAccountType",
+          "title": "账户类型"
+        },
+        "enterprise_name": {
+          "type": "string",
+          "title": "认证主体"
+        }
+      }
+    },
+    "productopCategoryInfo": {
+      "type": "object",
+      "properties": {
+        "category_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "类目ID"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int32",
+          "title": "类目级别"
+        },
+        "name": {
+          "type": "string",
+          "title": "类目系统名"
+        },
+        "display_name": {
+          "type": "string",
+          "title": "类目显示名"
+        }
+      }
+    },
+    "productopCheckAccountListRequest": {
+      "type": "object",
+      "properties": {
+        "all_account_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uint64"
+          },
+          "title": "白名单账户ID列表"
+        }
+      }
+    },
+    "productopCheckAccountListResponse": {
+      "type": "object",
+      "properties": {
+        "all_account_results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/productopAccountCheckResult"
+          },
+          "title": "白名单账户列表"
+        }
+      }
+    },
+    "productopCheckSKUValidForAccountRequest": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "account id"
+        },
+        "sku_name": {
+          "type": "string",
+          "title": "sku name"
+        }
+      }
+    },
+    "productopCheckSKUValidForAccountResponse": {
+      "type": "object"
+    },
+    "productopGetAllSPUResponse": {
+      "type": "object",
+      "properties": {
+        "all_infos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/productopSPUSimpleInfo"
+          },
+          "title": "所有spu信息"
+        },
+        "page_response": {
+          "$ref": "#/definitions/bsscommonListPage",
+          "title": "list请求对应的翻页：offset, limit"
+        }
+      }
+    },
+    "productopGetSKUFilterResponse": {
+      "type": "object",
+      "properties": {
+        "filter_account_type": {
+          "$ref": "#/definitions/productopSKUFilterAccountType",
+          "title": "可见账户类型"
+        },
+        "all_accounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/productopAccountSimpleInfo"
+          },
+          "title": "白名单账户列表"
+        }
+      }
+    },
+    "productopGetSPUInfoByPoliceNameResponse": {
+      "type": "object",
+      "properties": {
+        "spu_info": {
+          "$ref": "#/definitions/productSPU",
+          "title": "spu 数据"
+        },
+        "spu_policy_groups": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uint64"
+          },
+          "title": "spu policy groups"
+        },
+        "device_policy_groups": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uint64"
+          },
+          "title": "device policy groups"
+        },
+        "bot_name": {
+          "type": "string",
+          "title": "关联bot"
+        }
+      }
+    },
+    "productopGetSPUResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "spu id"
+        },
+        "code": {
+          "type": "string",
+          "title": "spu code"
+        },
+        "name": {
+          "type": "string",
+          "title": "spu name"
+        },
+        "all_infos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/productopSKUSimpleInfo"
+          },
+          "title": "所有sku信息"
+        },
+        "page_response": {
+          "$ref": "#/definitions/bsscommonListPage",
+          "title": "list请求对应的翻页：offset, limit"
+        }
+      }
+    },
+    "productopSKUFilterAccountType": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "PERSION",
+        "ENTERPRISE",
+        "ALL"
+      ],
+      "default": "NONE",
+      "title": "- NONE: 无\n - PERSION: 全部个人认证账户\n - ENTERPRISE: 全部企业认证账户\n - ALL: 全部"
+    },
+    "productopSKUSimpleInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "sku id"
+        },
+        "name": {
+          "type": "string",
+          "title": "sku name"
+        },
+        "spec_metric": {
+          "type": "string",
+          "title": "计费模式spec value"
+        },
+        "filter_account_type": {
+          "$ref": "#/definitions/productopSKUFilterAccountType",
+          "title": "可见账户类型"
+        },
+        "num": {
+          "type": "integer",
+          "format": "int32",
+          "title": "白名单账户数量"
+        },
+        "customized": {
+          "type": "boolean",
+          "title": "是否支持自定义"
+        }
+      }
+    },
+    "productopSPUSimpleInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "spu id"
+        },
+        "code": {
+          "type": "string",
+          "title": "spu code"
+        },
+        "name": {
+          "type": "string",
+          "title": "spu name"
+        },
+        "category1": {
+          "$ref": "#/definitions/productopCategoryInfo",
+          "title": "一级类目"
+        },
+        "category2": {
+          "$ref": "#/definitions/productopCategoryInfo",
+          "title": "二级类目"
+        }
+      }
+    },
+    "productopSetSKUFilterRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "sku name（sku白名单需要以sku name为关键字）"
+        },
+        "filter_account_type": {
+          "$ref": "#/definitions/productopSKUFilterAccountType",
+          "title": "可见账户类型"
+        },
+        "all_account_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uint64"
+          },
+          "title": "白名单账户ID列表"
+        }
+      }
+    },
+    "productopSetSKUFilterResponse": {
+      "type": "object"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string",
+          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+        },
+        "value": {
+          "type": "string",
+          "format": "byte",
+          "description": "Must be a valid serialized protocol buffer of the above specified type."
+        }
+      },
+      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\nExample 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\nExample 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := \u0026pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

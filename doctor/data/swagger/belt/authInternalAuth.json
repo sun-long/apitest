@@ -1,0 +1,2323 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "console-internal-auth",
+    "version": "v1.0.0"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/console-internal/v1/account/phone_or_email": {
+      "get": {
+        "summary": "超级管理员获取单个账户的真实手机号码或者邮箱账号\nroute: prefix=console-internal action=AdminGetPhoneOrEmailByAccountID version=v1",
+        "operationId": "ConsoleInternalAuthService_AdminGetPhoneOrEmailByAccountID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userAdminGetPhoneOrEmailByAccountIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_id",
+            "description": "账户ID.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "mode",
+            "description": "模式 0：邮箱 1：手机.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "code",
+            "description": "验证码.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/accounts": {
+      "get": {
+        "summary": "超级管理员获取账户列表\nroute: prefix=console-internal action=AdminGetAccountList version=v1",
+        "operationId": "ConsoleInternalAuthService_AdminGetAccountList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userAdminGetAccountListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_name",
+            "description": "账户名称，可选.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "account_type",
+            "description": "账户类型 必选.\n\n - ACCOUNT_TYPE_UNSPECIFIED: 未指定\n - ACCOUNT_TYPE_PERSON: 个人账户\n - ACCOUNT_TYPE_ENTERPRISE: 企业账户\n - ACCOUNT_TYPE_UNKNOW: 未知类型",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "ACCOUNT_TYPE_UNSPECIFIED",
+              "ACCOUNT_TYPE_PERSON",
+              "ACCOUNT_TYPE_ENTERPRISE",
+              "ACCOUNT_TYPE_UNKNOW"
+            ],
+            "default": "ACCOUNT_TYPE_UNSPECIFIED"
+          },
+          {
+            "name": "status",
+            "description": "认证状态 必选.\n\n - ACCOUNT_STATUS_UNSPECIFIED: 未指定\n - ACCOUNT_STATUS_BERINGCERTIFIED: 认证中\n - ACCOUNT_STATUS_SUCCEEDED: 认证成功\n - ACCOUNT_STATUS_FAILED: 认证失败\n - ACCOUNT_STATUS_CHANGED: 认证变更待审核\n - ACCOUNT_STATUS_CHANGED_FAILED: 认证变更失败\n - ACCOUNT_AUDIT_STATUS_UNCERTIFIED: 未认证审核",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "ACCOUNT_STATUS_UNSPECIFIED",
+              "ACCOUNT_STATUS_BERINGCERTIFIED",
+              "ACCOUNT_STATUS_SUCCEEDED",
+              "ACCOUNT_STATUS_FAILED",
+              "ACCOUNT_STATUS_CHANGED",
+              "ACCOUNT_STATUS_CHANGED_FAILED",
+              "ACCOUNT_AUDIT_STATUS_UNCERTIFIED"
+            ],
+            "default": "ACCOUNT_STATUS_UNSPECIFIED"
+          },
+          {
+            "name": "business_status",
+            "description": "商务分配状态 (全部:-1  未分配:0  已分配:1) 必选.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "account_id",
+            "description": "账户ID.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "user_id",
+            "description": "主账号ID 已经弃用.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "user_name",
+            "description": "user_name 主账号ID.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "enterprise_name",
+            "description": "认证主体.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order",
+            "description": "顺序；默认创建时间降序，可选.\n\n - LIST_ORDER_UNSPECIFIED: 未指定\n - LIST_ORDER_CREATED_TIME_ASC: 创建时间升序排列\n - LIST_ORDER_CREATED_TIME_DESC: 创建时间降序排列\n - LIST_ORDER_NAME_ASC: 名称升序排列\n - LIST_ORDER_NAME_DESC: 名称降序排列\n - LIST_ORDER_SUBMIT_AT_ASC: 提交时间升序排列\n - LIST_ORDER_SUBMIT_AT_DESC: 提交时间降序排列\n - LIST_ORDER_RECHARGE_AT_ASC: 提交充值申请时间升序排列\n - LIST_ORDER_RECHARGE_AT_DESC: 提交充值申请时间降序排列",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "LIST_ORDER_UNSPECIFIED",
+              "LIST_ORDER_CREATED_TIME_ASC",
+              "LIST_ORDER_CREATED_TIME_DESC",
+              "LIST_ORDER_NAME_ASC",
+              "LIST_ORDER_NAME_DESC",
+              "LIST_ORDER_SUBMIT_AT_ASC",
+              "LIST_ORDER_SUBMIT_AT_DESC",
+              "LIST_ORDER_RECHARGE_AT_ASC",
+              "LIST_ORDER_RECHARGE_AT_DESC"
+            ],
+            "default": "LIST_ORDER_UNSPECIFIED"
+          },
+          {
+            "name": "page_request.offset",
+            "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条; 默认值为0.\n返回本次请求返回的第一条记录实际位置(一般与输入一致).\n[EN] Optional, start position, value: \u003e = 0, 0 is the first line; the\ndefault value is 0. In response, actual offset of the first returned record\nis returned (generally equals to the offset in request).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.limit",
+            "description": "长度, 取值范围[1,100], 如果超出范围, 则返回失败;\n在某些接口中limit范围可能会重新定义, 请以其接口的补充说明为准. [EN] Length,\ndefault value range [1,100], if it is out of the range, error will be\nreturned; as the limit range may be redefined in some APIs, please refer to\nthe supplementary description of these APIs.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.total",
+            "description": "可选, 总数, 请求无须填此参数, 响应时填写.\n[EN] Optional, this parameter is not required for request, but will be\nfilled in response.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/accounts/account": {
+      "post": {
+        "summary": "超级管理员更新付费模式、账户的启用和禁用状态\nroute: prefix=console-internal action=AdminUpdateAccount version=v1",
+        "operationId": "ConsoleInternalAuthService_AdminUpdateAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userAdminUpdateAccountRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userAdminUpdateAccountReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/accounts/auth_data": {
+      "get": {
+        "summary": "超级管理员获取单账号审核认证数据\nroute: prefix=console-internal action=AdminGetEnterpriseAccount version=v1",
+        "operationId": "ConsoleInternalAuthService_AdminGetEnterpriseAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userAdminGetEnterpriseAccountRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_id",
+            "description": "账户ID.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/accounts/auth_data/unredacted_info": {
+      "get": {
+        "summary": "超级管理员获取单账号审核认证未脱敏数据(姓名或者手机号)\nroute: prefix=console-internal action=AdminGetEnterpriseAccountUnRedactedInfo version=v1",
+        "operationId": "ConsoleInternalAuthService_AdminGetEnterpriseAccountUnRedactedInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userAdminGetEnterpriseAccountUnRedactedInfoRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mode",
+            "description": "0 获取真实姓名未脱敏信息\n1 获取手机号未脱敏信息\n2 获取邮箱账号未脱敏信息\n3 获取身份证号码未脱敏信息.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "account_id",
+            "description": "账户ID.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/accounts/auth_status": {
+      "post": {
+        "summary": "超级管理员认证审核\nroute: prefix=console-internal action=AdminUpdateAccountStatus version=v1",
+        "operationId": "ConsoleInternalAuthService_AdminUpdateAccountStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userAdminUpdateAccountStatusRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userAdminUpdateAccountStatusReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/accounts/business_assignment": {
+      "post": {
+        "summary": "超级管理员分配商务\nroute: prefix=console-internal action=AdminBusinessAssignment version=v1",
+        "operationId": "ConsoleInternalAuthService_AdminBusinessAssignment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userAdminBusinessAssignmentRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userAdminBusinessAssignmentReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/accounts/industry_info": {
+      "get": {
+        "summary": "超级管理员获取行业信息\nroute: prefix=console action=AdminGetIndustryInfo version=v1",
+        "operationId": "ConsoleInternalAuthService_AdminGetIndustryInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userAdminGetIndustryInfoRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/accounts/user_info": {
+      "get": {
+        "summary": "系统工具 超级管理员用户管理\nroute: prefix=console-internal action=AdminGetAccountUserList version=v1",
+        "operationId": "ConsoleInternalAuthService_AdminGetAccountUserList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userAdminGetAccountUserListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_id",
+            "description": "userID 可选.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "user_name",
+            "description": "用户名 可选.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order",
+            "description": "顺序；默认创建时间降序，可选.\n\n - LIST_ORDER_UNSPECIFIED: 未指定\n - LIST_ORDER_CREATED_TIME_ASC: 创建时间升序排列\n - LIST_ORDER_CREATED_TIME_DESC: 创建时间降序排列\n - LIST_ORDER_NAME_ASC: 名称升序排列\n - LIST_ORDER_NAME_DESC: 名称降序排列\n - LIST_ORDER_SUBMIT_AT_ASC: 提交时间升序排列\n - LIST_ORDER_SUBMIT_AT_DESC: 提交时间降序排列\n - LIST_ORDER_RECHARGE_AT_ASC: 提交充值申请时间升序排列\n - LIST_ORDER_RECHARGE_AT_DESC: 提交充值申请时间降序排列",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "LIST_ORDER_UNSPECIFIED",
+              "LIST_ORDER_CREATED_TIME_ASC",
+              "LIST_ORDER_CREATED_TIME_DESC",
+              "LIST_ORDER_NAME_ASC",
+              "LIST_ORDER_NAME_DESC",
+              "LIST_ORDER_SUBMIT_AT_ASC",
+              "LIST_ORDER_SUBMIT_AT_DESC",
+              "LIST_ORDER_RECHARGE_AT_ASC",
+              "LIST_ORDER_RECHARGE_AT_DESC"
+            ],
+            "default": "LIST_ORDER_UNSPECIFIED"
+          },
+          {
+            "name": "page_request.offset",
+            "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条; 默认值为0.\n返回本次请求返回的第一条记录实际位置(一般与输入一致).\n[EN] Optional, start position, value: \u003e = 0, 0 is the first line; the\ndefault value is 0. In response, actual offset of the first returned record\nis returned (generally equals to the offset in request).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.limit",
+            "description": "长度, 取值范围[1,100], 如果超出范围, 则返回失败;\n在某些接口中limit范围可能会重新定义, 请以其接口的补充说明为准. [EN] Length,\ndefault value range [1,100], if it is out of the range, error will be\nreturned; as the limit range may be redefined in some APIs, please refer to\nthe supplementary description of these APIs.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.total",
+            "description": "可选, 总数, 请求无须填此参数, 响应时填写.\n[EN] Optional, this parameter is not required for request, but will be\nfilled in response.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/cost_management/accounts": {
+      "get": {
+        "summary": "超级管理员获取费用管理账户列表\nroute: prefix=console-internal action=AdminGetCostManagementAccountList version=v1",
+        "operationId": "ConsoleInternalAuthService_AdminGetCostManagementAccountList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userAdminGetCostManagementAccountListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_type",
+            "description": "账户类型 必选.\n\n - ACCOUNT_TYPE_UNSPECIFIED: 未指定\n - ACCOUNT_TYPE_PERSON: 个人账户\n - ACCOUNT_TYPE_ENTERPRISE: 企业账户\n - ACCOUNT_TYPE_UNKNOW: 未知类型",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "ACCOUNT_TYPE_UNSPECIFIED",
+              "ACCOUNT_TYPE_PERSON",
+              "ACCOUNT_TYPE_ENTERPRISE",
+              "ACCOUNT_TYPE_UNKNOW"
+            ],
+            "default": "ACCOUNT_TYPE_UNSPECIFIED"
+          },
+          {
+            "name": "account_id",
+            "description": "账户ID.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "user_id",
+            "description": "主账号ID 已经弃用.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "user_name",
+            "description": "user_name 主账号ID.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "enterprise_name",
+            "description": "认证主体.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "account_level",
+            "description": "账户等级.\n\n - ACCOUNT_LEVEL_A: A级客户 合作超过一年（含），无超过90天（含）逾期应收的公司现有全部客户\n - ACCOUNT_LEVEL_C: C级客户 合作超过一年（含），有超过90天（不含含）逾期、但未超过360天（含）的客户\n - ACCOUNT_LEVEL_D: D级客户 合作超过一年（含），有超过360天（不含）逾期的客户\n - ACCOUNT_LEVEL_N: N级客户 合作不到一年的新客户",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "ACCOUNT_LEVEL_UNDEFINED",
+              "ACCOUNT_LEVEL_A",
+              "ACCOUNT_LEVEL_C",
+              "ACCOUNT_LEVEL_D",
+              "ACCOUNT_LEVEL_N"
+            ],
+            "default": "ACCOUNT_LEVEL_UNDEFINED"
+          },
+          {
+            "name": "only_view_unprocessed_records_accounts",
+            "description": "仅查看有未处理充值申请记录的账户 0:否 1:是.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "order",
+            "description": "顺序；默认创建时间降序，可选.\n\n - LIST_ORDER_UNSPECIFIED: 未指定\n - LIST_ORDER_CREATED_TIME_ASC: 创建时间升序排列\n - LIST_ORDER_CREATED_TIME_DESC: 创建时间降序排列\n - LIST_ORDER_NAME_ASC: 名称升序排列\n - LIST_ORDER_NAME_DESC: 名称降序排列\n - LIST_ORDER_SUBMIT_AT_ASC: 提交时间升序排列\n - LIST_ORDER_SUBMIT_AT_DESC: 提交时间降序排列\n - LIST_ORDER_RECHARGE_AT_ASC: 提交充值申请时间升序排列\n - LIST_ORDER_RECHARGE_AT_DESC: 提交充值申请时间降序排列",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "LIST_ORDER_UNSPECIFIED",
+              "LIST_ORDER_CREATED_TIME_ASC",
+              "LIST_ORDER_CREATED_TIME_DESC",
+              "LIST_ORDER_NAME_ASC",
+              "LIST_ORDER_NAME_DESC",
+              "LIST_ORDER_SUBMIT_AT_ASC",
+              "LIST_ORDER_SUBMIT_AT_DESC",
+              "LIST_ORDER_RECHARGE_AT_ASC",
+              "LIST_ORDER_RECHARGE_AT_DESC"
+            ],
+            "default": "LIST_ORDER_UNSPECIFIED"
+          },
+          {
+            "name": "page_request.offset",
+            "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条; 默认值为0.\n返回本次请求返回的第一条记录实际位置(一般与输入一致).\n[EN] Optional, start position, value: \u003e = 0, 0 is the first line; the\ndefault value is 0. In response, actual offset of the first returned record\nis returned (generally equals to the offset in request).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.limit",
+            "description": "长度, 取值范围[1,100], 如果超出范围, 则返回失败;\n在某些接口中limit范围可能会重新定义, 请以其接口的补充说明为准. [EN] Length,\ndefault value range [1,100], if it is out of the range, error will be\nreturned; as the limit range may be redefined in some APIs, please refer to\nthe supplementary description of these APIs.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.total",
+            "description": "可选, 总数, 请求无须填此参数, 响应时填写.\n[EN] Optional, this parameter is not required for request, but will be\nfilled in response.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/inquiry_accounts": {
+      "get": {
+        "summary": "超级管理员获取账户查询列表\nroute: prefix=console-internal action=AdminGetInquiryAccountList version=v1",
+        "operationId": "ConsoleInternalAuthService_AdminGetInquiryAccountList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userAdminGetInquiryAccountListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_type",
+            "description": "账户类型 必选.\n\n - ACCOUNT_TYPE_UNSPECIFIED: 未指定\n - ACCOUNT_TYPE_PERSON: 个人账户\n - ACCOUNT_TYPE_ENTERPRISE: 企业账户\n - ACCOUNT_TYPE_UNKNOW: 未知类型",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "ACCOUNT_TYPE_UNSPECIFIED",
+              "ACCOUNT_TYPE_PERSON",
+              "ACCOUNT_TYPE_ENTERPRISE",
+              "ACCOUNT_TYPE_UNKNOW"
+            ],
+            "default": "ACCOUNT_TYPE_UNSPECIFIED"
+          },
+          {
+            "name": "account_id",
+            "description": "账户ID.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "user_id",
+            "description": "主账号ID 已经弃用.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "user_name",
+            "description": "user_name 主账号ID.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "enterprise_name",
+            "description": "认证主体.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "only_view_pending_change_accounts",
+            "description": "仅查看有待更新余额的账户 0:否 1:是.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "order",
+            "description": "顺序；默认创建时间降序，可选.\n\n - LIST_ORDER_UNSPECIFIED: 未指定\n - LIST_ORDER_CREATED_TIME_ASC: 创建时间升序排列\n - LIST_ORDER_CREATED_TIME_DESC: 创建时间降序排列\n - LIST_ORDER_NAME_ASC: 名称升序排列\n - LIST_ORDER_NAME_DESC: 名称降序排列\n - LIST_ORDER_SUBMIT_AT_ASC: 提交时间升序排列\n - LIST_ORDER_SUBMIT_AT_DESC: 提交时间降序排列\n - LIST_ORDER_RECHARGE_AT_ASC: 提交充值申请时间升序排列\n - LIST_ORDER_RECHARGE_AT_DESC: 提交充值申请时间降序排列",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "LIST_ORDER_UNSPECIFIED",
+              "LIST_ORDER_CREATED_TIME_ASC",
+              "LIST_ORDER_CREATED_TIME_DESC",
+              "LIST_ORDER_NAME_ASC",
+              "LIST_ORDER_NAME_DESC",
+              "LIST_ORDER_SUBMIT_AT_ASC",
+              "LIST_ORDER_SUBMIT_AT_DESC",
+              "LIST_ORDER_RECHARGE_AT_ASC",
+              "LIST_ORDER_RECHARGE_AT_DESC"
+            ],
+            "default": "LIST_ORDER_UNSPECIFIED"
+          },
+          {
+            "name": "page_request.offset",
+            "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条; 默认值为0.\n返回本次请求返回的第一条记录实际位置(一般与输入一致).\n[EN] Optional, start position, value: \u003e = 0, 0 is the first line; the\ndefault value is 0. In response, actual offset of the first returned record\nis returned (generally equals to the offset in request).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.limit",
+            "description": "长度, 取值范围[1,100], 如果超出范围, 则返回失败;\n在某些接口中limit范围可能会重新定义, 请以其接口的补充说明为准. [EN] Length,\ndefault value range [1,100], if it is out of the range, error will be\nreturned; as the limit range may be redefined in some APIs, please refer to\nthe supplementary description of these APIs.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.total",
+            "description": "可选, 总数, 请求无须填此参数, 响应时填写.\n[EN] Optional, this parameter is not required for request, but will be\nfilled in response.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/policygroups": {
+      "get": {
+        "summary": "系统工具 超级管理员策略组列表\nroute: prefix=console-internal action=AdminListPolicyGroup version=v1",
+        "operationId": "ConsoleInternalAuthService_AdminListPolicyGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userAdminListPolicyGroupRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/user/policygroups": {
+      "get": {
+        "summary": "系统工具 超级管理员根据user_id获取策略组列表\nroute: prefix=console-internal action=AdminGetAllPolicyGroupsByUserID version=v1",
+        "operationId": "ConsoleInternalAuthService_AdminGetAllPolicyGroupsByUserID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userAdminGetAllPolicyGroupsByUserIDRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_id",
+            "description": "权限组名称.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/user_accounts": {
+      "post": {
+        "summary": "运营后台主用户注册\nroute: prefix=console action=CreateInternalUserWithAccount version=v1",
+        "operationId": "ConsoleInternalAuthService_CreateInternalUserWithAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userCreateInternalUserWithAccountRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userCreateInternalUserWithAccountReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/users/base_info": {
+      "get": {
+        "summary": "超级管理员获取用户基本信息\nroute: prefix=console-internal action=AdminGetUserBaseInfo version=v1",
+        "operationId": "ConsoleInternalAuthService_AdminGetUserBaseInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userAdminGetUserBaseInfoRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/users/cellphone_set": {
+      "post": {
+        "summary": "运营后台手机号码修改\nroute: prefix=console action=ConsoleInternalUpdateUserCellphone version=v1",
+        "operationId": "ConsoleInternalAuthService_ConsoleInternalUpdateUserCellphone",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userConsoleInternalUpdateUserCellphoneRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userConsoleInternalUpdateUserCellphoneReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/users/code": {
+      "get": {
+        "summary": "运营后台申请验证码需要填写手机号或者邮箱账号\nroute: prefix=console action=AdminSendSmsCode version=v1",
+        "operationId": "ConsoleInternalAuthService_AdminSendSmsCode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userAdminSendSmsCodeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mode",
+            "description": "模式 0：邮箱 1：手机 必选.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "description": "邮箱/手机号 必选.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/users/code/verify": {
+      "get": {
+        "summary": "运营后台验证验证码需要填写手机号或者邮箱账号\nroute: prefix=console action=AdminVerifySmsCode version=v1",
+        "operationId": "ConsoleInternalAuthService_AdminVerifySmsCode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userAdminVerifySmsCodeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mode",
+            "description": "模式 0：邮箱 1：手机 必选.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "description": "邮箱/手机号 必选.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "code",
+            "description": "验证码 必选.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/users/current_user/code": {
+      "get": {
+        "summary": "申请验证码用当前超级管理员用户user_id的手机号或者邮箱账号\nroute: prefix=console action=SendCurrentAdminUserSmsCode version=v1",
+        "operationId": "ConsoleInternalAuthService_SendCurrentAdminUserSmsCode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userSendCurrentAdminUserSmsCodeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mode",
+            "description": "模式 0：邮箱 1：手机 必选.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/users/current_user/code/verify": {
+      "get": {
+        "summary": "运营后台验证验证码用当前用户user_id的手机号或者邮箱账号\nroute: prefix=console action=VerifyCurrentAdminUserSmsCode version=v1",
+        "operationId": "ConsoleInternalAuthService_VerifyCurrentAdminUserSmsCode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userVerifyCurrentAdminUserSmsCodeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mode",
+            "description": "模式 0：邮箱 1：手机 必选.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "code",
+            "description": "验证码 必选.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/users/user_id/batch_policygroups": {
+      "post": {
+        "summary": "系统工具 超级管理员批量授权子用户权限组\nroute: prefix=console-internal action=AdminBatchAddPolicyGroupToUser version=v1",
+        "operationId": "ConsoleInternalAuthService_AdminBatchAddPolicyGroupToUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userAdminBatchAddPolicyGroupToUserRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userAdminBatchAddPolicyGroupToUserReq"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/white_list_accounts": {
+      "get": {
+        "summary": "运营后台查询白名单账户列表\nroute: prefix=console-internal action=GetWhitelistAccounts version=v1",
+        "operationId": "ConsoleInternalAuthService_GetWhitelistAccounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userGetWhitelistAccountsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page_request.offset",
+            "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条; 默认值为0.\n返回本次请求返回的第一条记录实际位置(一般与输入一致).\n[EN] Optional, start position, value: \u003e = 0, 0 is the first line; the\ndefault value is 0. In response, actual offset of the first returned record\nis returned (generally equals to the offset in request).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.limit",
+            "description": "长度, 取值范围[1,100], 如果超出范围, 则返回失败;\n在某些接口中limit范围可能会重新定义, 请以其接口的补充说明为准. [EN] Length,\ndefault value range [1,100], if it is out of the range, error will be\nreturned; as the limit range may be redefined in some APIs, please refer to\nthe supplementary description of these APIs.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_request.total",
+            "description": "可选, 总数, 请求无须填此参数, 响应时填写.\n[EN] Optional, this parameter is not required for request, but will be\nfilled in response.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      },
+      "post": {
+        "summary": "运营后台创建白名单账户\nroute: prefix=console-internal action=CreateWhitelistAccount version=v1",
+        "operationId": "ConsoleInternalAuthService_CreateWhitelistAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userCreateWhitelistAccountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userCreateWhitelistAccountRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    },
+    "/console-internal/v1/white_list_accounts/delete": {
+      "post": {
+        "summary": "运营后台移除白名单账户\nroute: prefix=console-internal action=DeleteWhitelistAccount version=v1",
+        "operationId": "ConsoleInternalAuthService_DeleteWhitelistAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userDeleteWhitelistAccountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userDeleteWhitelistAccountRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConsoleInternalAuthService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string",
+          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+        },
+        "value": {
+          "type": "string",
+          "format": "byte",
+          "description": "Must be a valid serialized protocol buffer of the above specified type."
+        }
+      },
+      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\nExample 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\nExample 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := \u0026pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "userAccountInfo": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户id"
+        },
+        "account_name": {
+          "type": "string",
+          "title": "账户名称"
+        },
+        "enterprise_name": {
+          "type": "string",
+          "title": "认证主体"
+        },
+        "submit_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "提交认证时间"
+        },
+        "status": {
+          "$ref": "#/definitions/userAccountStatus",
+          "title": "认证状态"
+        },
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "主账号id 已经弃用"
+        },
+        "user_name": {
+          "type": "string",
+          "title": "user_name 主账号id"
+        },
+        "enterprise_card_name": {
+          "type": "string",
+          "title": "联系人"
+        },
+        "cellphone": {
+          "type": "string",
+          "title": "联系电话"
+        },
+        "email": {
+          "type": "string",
+          "title": "联系邮箱"
+        },
+        "business_department": {
+          "type": "string",
+          "title": "部门"
+        },
+        "business_name": {
+          "type": "string",
+          "title": "姓名"
+        },
+        "business_code": {
+          "type": "string",
+          "title": "工号"
+        },
+        "business_assigned": {
+          "type": "string",
+          "title": "商务分配标记"
+        },
+        "account_used_status": {
+          "$ref": "#/definitions/userAccountUsedStatus",
+          "title": "账户启用状态"
+        },
+        "payment_type": {
+          "$ref": "#/definitions/userAccountPaymentType",
+          "title": "付费类型"
+        },
+        "account_type": {
+          "$ref": "#/definitions/userAccountType",
+          "title": "账户类型"
+        },
+        "audit_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "审核结束时间"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "创建时间"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "最后修改时间"
+        },
+        "the_last_three_months_bill_amount": {
+          "type": "string",
+          "format": "uint64",
+          "title": "最近三个月的账单金额"
+        },
+        "empty_status": {
+          "type": "integer",
+          "format": "int64",
+          "title": "最近三月账单金额记录是否为空 0:不为空 1:为空"
+        },
+        "submit_recharge_time": {
+          "type": "string",
+          "format": "int64",
+          "title": "提交充值申请时间"
+        },
+        "recharge_log_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "recharge_log_id 充值申请记录id"
+        },
+        "have_unprocessed_recharge_log": {
+          "type": "integer",
+          "format": "int32",
+          "title": "是否有未处理完成的申请记录 0:没有  1:有"
+        },
+        "have_second_confirm_recharge_log": {
+          "type": "integer",
+          "format": "int32",
+          "title": "是否有有待更余额的申请记录(也就是待二次确认的充值申请记录) 0:没有  1:有"
+        },
+        "account_level": {
+          "$ref": "#/definitions/userAccountLevel",
+          "description": "账户等级."
+        }
+      }
+    },
+    "userAccountLevel": {
+      "type": "string",
+      "enum": [
+        "ACCOUNT_LEVEL_UNDEFINED",
+        "ACCOUNT_LEVEL_A",
+        "ACCOUNT_LEVEL_C",
+        "ACCOUNT_LEVEL_D",
+        "ACCOUNT_LEVEL_N"
+      ],
+      "default": "ACCOUNT_LEVEL_UNDEFINED",
+      "description": "- ACCOUNT_LEVEL_A: A级客户 合作超过一年（含），无超过90天（含）逾期应收的公司现有全部客户\n - ACCOUNT_LEVEL_C: C级客户 合作超过一年（含），有超过90天（不含含）逾期、但未超过360天（含）的客户\n - ACCOUNT_LEVEL_D: D级客户 合作超过一年（含），有超过360天（不含）逾期的客户\n - ACCOUNT_LEVEL_N: N级客户 合作不到一年的新客户",
+      "title": "账户等级定义,具体定义见注释.\n[since] 2023-03-06,应crd需求添加.enum\nhttps://ones.ainewera.com/project/#/team/JNwe8qUX/task/BSFvCGGdbDSADlv8"
+    },
+    "userAccountPaymentType": {
+      "type": "string",
+      "enum": [
+        "ACCOUNT_PAYMENT_UNSPECIFIED",
+        "ACCOUNT_PAYMENT_POSTPAID",
+        "ACCOUNT_PAYMENT_UNPOSTPAID"
+      ],
+      "default": "ACCOUNT_PAYMENT_UNSPECIFIED",
+      "title": "- ACCOUNT_PAYMENT_UNSPECIFIED: 未指定\n - ACCOUNT_PAYMENT_POSTPAID: 允许后付费\n - ACCOUNT_PAYMENT_UNPOSTPAID: 不允许后付费"
+    },
+    "userAccountStatus": {
+      "type": "string",
+      "enum": [
+        "ACCOUNT_STATUS_UNSPECIFIED",
+        "ACCOUNT_STATUS_BERINGCERTIFIED",
+        "ACCOUNT_STATUS_SUCCEEDED",
+        "ACCOUNT_STATUS_FAILED",
+        "ACCOUNT_STATUS_CHANGED",
+        "ACCOUNT_STATUS_CHANGED_FAILED",
+        "ACCOUNT_AUDIT_STATUS_UNCERTIFIED"
+      ],
+      "default": "ACCOUNT_STATUS_UNSPECIFIED",
+      "title": "- ACCOUNT_STATUS_UNSPECIFIED: 未指定\n - ACCOUNT_STATUS_BERINGCERTIFIED: 认证中\n - ACCOUNT_STATUS_SUCCEEDED: 认证成功\n - ACCOUNT_STATUS_FAILED: 认证失败\n - ACCOUNT_STATUS_CHANGED: 认证变更待审核\n - ACCOUNT_STATUS_CHANGED_FAILED: 认证变更失败\n - ACCOUNT_AUDIT_STATUS_UNCERTIFIED: 未认证审核"
+    },
+    "userAccountType": {
+      "type": "string",
+      "enum": [
+        "ACCOUNT_TYPE_UNSPECIFIED",
+        "ACCOUNT_TYPE_PERSON",
+        "ACCOUNT_TYPE_ENTERPRISE",
+        "ACCOUNT_TYPE_UNKNOW"
+      ],
+      "default": "ACCOUNT_TYPE_UNSPECIFIED",
+      "title": "- ACCOUNT_TYPE_UNSPECIFIED: 未指定\n - ACCOUNT_TYPE_PERSON: 个人账户\n - ACCOUNT_TYPE_ENTERPRISE: 企业账户\n - ACCOUNT_TYPE_UNKNOW: 未知类型"
+    },
+    "userAccountUsedStatus": {
+      "type": "string",
+      "enum": [
+        "ACCOUNT_USED_STATUS_UNSPECIFIED",
+        "ACCOUNT_USED_STATUS_UNBLOCKED",
+        "ACCOUNT_USED_STATUS_BLOCKED"
+      ],
+      "default": "ACCOUNT_USED_STATUS_UNSPECIFIED",
+      "title": "- ACCOUNT_USED_STATUS_UNSPECIFIED: 未指定\n - ACCOUNT_USED_STATUS_UNBLOCKED: 启用\n - ACCOUNT_USED_STATUS_BLOCKED: 停用"
+    },
+    "userAccountUserInfo": {
+      "type": "object",
+      "properties": {
+        "user_name": {
+          "type": "string",
+          "title": "用户 user_name"
+        },
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户 ID"
+        },
+        "nick_name": {
+          "type": "string",
+          "title": "显示用名称"
+        },
+        "last_login_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "上次登录时间"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "创建时间"
+        }
+      }
+    },
+    "userAdminBatchAddPolicyGroupToUserReq": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户ID 必选"
+        },
+        "group_id_list": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uint64"
+          },
+          "title": "策略组ID 必选"
+        }
+      }
+    },
+    "userAdminBatchAddPolicyGroupToUserRes": {
+      "type": "object"
+    },
+    "userAdminBusinessAssignmentReq": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户ID"
+        },
+        "business_department": {
+          "type": "string",
+          "title": "部门"
+        },
+        "business_name": {
+          "type": "string",
+          "title": "姓名"
+        },
+        "business_code": {
+          "type": "string",
+          "title": "工号"
+        }
+      }
+    },
+    "userAdminBusinessAssignmentRes": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户ID"
+        },
+        "business_department": {
+          "type": "string",
+          "title": "部门"
+        },
+        "business_name": {
+          "type": "string",
+          "title": "姓名"
+        },
+        "business_code": {
+          "type": "string",
+          "title": "工号"
+        }
+      }
+    },
+    "userAdminGetAccountListResponse": {
+      "type": "object",
+      "properties": {
+        "account_info": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/userAccountInfo"
+          },
+          "title": "账户信息"
+        },
+        "page_response": {
+          "$ref": "#/definitions/userListPage",
+          "title": "list返回对应的翻页：offset, total"
+        }
+      }
+    },
+    "userAdminGetAccountUserListResponse": {
+      "type": "object",
+      "properties": {
+        "account_user_info": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/userAccountUserInfo"
+          },
+          "title": "账户用户信息"
+        },
+        "page_response": {
+          "$ref": "#/definitions/userListPage",
+          "title": "list返回对应的翻页：offset, total"
+        }
+      }
+    },
+    "userAdminGetAllPolicyGroupsByUserIDRes": {
+      "type": "object",
+      "properties": {
+        "group_id_list": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uint64"
+          },
+          "title": "策略组ID列表"
+        }
+      }
+    },
+    "userAdminGetCostManagementAccountListResponse": {
+      "type": "object",
+      "properties": {
+        "account_info": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/userAccountInfo"
+          },
+          "title": "账户信息"
+        },
+        "page_response": {
+          "$ref": "#/definitions/userListPage",
+          "title": "list返回对应的翻页：offset, total"
+        }
+      }
+    },
+    "userAdminGetEnterpriseAccountRes": {
+      "type": "object",
+      "properties": {
+        "enterprise_account": {
+          "$ref": "#/definitions/userEnterpriseAccountInfo",
+          "title": "已认证的企业信息"
+        },
+        "new_enterprise_account": {
+          "$ref": "#/definitions/userEnterpriseAccountInfo",
+          "title": "变更中的企业信息"
+        },
+        "status": {
+          "$ref": "#/definitions/userAccountStatus",
+          "title": "认证状态 根据认证状态显示数据 \n未指定状态下 没有显示数据\n认证中 显示一条数据\n认证成功 显示一条数据\n认证失败 显示一条数据\n认证变更待审核 显示两条数据\n认证变更失败 显示两条数据"
+        }
+      }
+    },
+    "userAdminGetEnterpriseAccountUnRedactedInfoRes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "已认证的企业信息中的用户真实姓名"
+        },
+        "new_name": {
+          "type": "string",
+          "title": "变更中的企业信息中的用户真实姓名"
+        },
+        "phone": {
+          "type": "string",
+          "title": "用户真实联系电话"
+        }
+      }
+    },
+    "userAdminGetIndustryInfoRes": {
+      "type": "object",
+      "properties": {
+        "industry_info": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "行业信息"
+        }
+      }
+    },
+    "userAdminGetInquiryAccountListResponse": {
+      "type": "object",
+      "properties": {
+        "account_info": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/userAccountInfo"
+          },
+          "title": "账户信息"
+        },
+        "page_response": {
+          "$ref": "#/definitions/userListPage",
+          "title": "list返回对应的翻页：offset, total"
+        }
+      }
+    },
+    "userAdminGetPhoneOrEmailByAccountIDResponse": {
+      "type": "object",
+      "properties": {
+        "phone": {
+          "type": "string",
+          "title": "用户新的联系电话号码"
+        },
+        "email": {
+          "type": "string",
+          "title": "用户新的联系电话号码"
+        },
+        "need_code_check": {
+          "type": "integer",
+          "format": "int32",
+          "title": "首次登录需要 0:不需要 1:需要"
+        }
+      }
+    },
+    "userAdminGetUserBaseInfoRes": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户ID"
+        },
+        "user_name": {
+          "type": "string",
+          "title": "用户user_name"
+        },
+        "email": {
+          "type": "string",
+          "title": "用户邮箱, 全局唯一"
+        },
+        "phone": {
+          "type": "string",
+          "title": "用于联系电话, 全局唯一"
+        },
+        "nick_name": {
+          "type": "string",
+          "title": "显示用名称"
+        },
+        "user_photo": {
+          "type": "string",
+          "title": "用户头像"
+        },
+        "master_user": {
+          "type": "integer",
+          "format": "int32",
+          "title": "是不是主用户(1:是   0:不是)"
+        },
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户ID"
+        },
+        "account_type": {
+          "$ref": "#/definitions/userAccountType",
+          "title": "账户类型"
+        },
+        "account_used_status": {
+          "$ref": "#/definitions/userAccountUsedStatus",
+          "title": "账户启用状态"
+        },
+        "payment_type": {
+          "$ref": "#/definitions/userAccountPaymentType",
+          "title": "付费类型"
+        },
+        "account_level": {
+          "$ref": "#/definitions/userAccountLevel",
+          "description": "账户等级."
+        }
+      }
+    },
+    "userAdminListPolicyGroupRes": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/userPolicyGroupInfo"
+          }
+        },
+        "page_response": {
+          "$ref": "#/definitions/userListPage",
+          "title": "list返回对应的翻页：offset, total"
+        }
+      }
+    },
+    "userAdminSendSmsCodeResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/userSendResult",
+          "description": "短信验证码枚举."
+        },
+        "cooling_interval": {
+          "type": "integer",
+          "format": "int64",
+          "description": "冷却时间,单位[s]."
+        }
+      }
+    },
+    "userAdminUpdateAccountReq": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户id"
+        },
+        "update_mode": {
+          "type": "integer",
+          "format": "int32",
+          "title": "更新模式 0:更新账户启用状态  1:更新付费类型 必选"
+        },
+        "account_used_status": {
+          "$ref": "#/definitions/userAccountUsedStatus",
+          "title": "账户启用状态"
+        },
+        "payment_type": {
+          "$ref": "#/definitions/userAccountPaymentType",
+          "title": "付费类型"
+        }
+      }
+    },
+    "userAdminUpdateAccountRes": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户ID"
+        },
+        "account_used_status": {
+          "$ref": "#/definitions/userAccountUsedStatus",
+          "title": "账户启用状态"
+        },
+        "payment_type": {
+          "$ref": "#/definitions/userAccountPaymentType",
+          "title": "付费类型"
+        }
+      }
+    },
+    "userAdminUpdateAccountStatusReq": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户id"
+        },
+        "audit_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "审核时间"
+        },
+        "status": {
+          "$ref": "#/definitions/userAccountStatus",
+          "title": "认证状态"
+        },
+        "audit_desc": {
+          "type": "string",
+          "title": "审核原因描述（包括审核通过的原因描述或者审核驳回的原因描述）"
+        }
+      }
+    },
+    "userAdminUpdateAccountStatusRes": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户ID"
+        },
+        "status": {
+          "$ref": "#/definitions/userAccountStatus",
+          "title": "认证状态"
+        }
+      }
+    },
+    "userAdminVerifySmsCodeResponse": {
+      "type": "object"
+    },
+    "userConsoleInternalUpdateUserCellphoneReq": {
+      "type": "object",
+      "properties": {
+        "phone": {
+          "type": "string",
+          "title": "用户新的联系电话号码 必选"
+        },
+        "code": {
+          "type": "string",
+          "title": "用户新的联系电话验证码 必选"
+        }
+      }
+    },
+    "userConsoleInternalUpdateUserCellphoneRes": {
+      "type": "object"
+    },
+    "userCreateInternalUserWithAccountReq": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "title": "邮箱 必选"
+        },
+        "phone": {
+          "type": "string",
+          "title": "手机号 必选"
+        }
+      }
+    },
+    "userCreateInternalUserWithAccountRes": {
+      "type": "object",
+      "properties": {
+        "user_info": {
+          "$ref": "#/definitions/userInternalUserInfo",
+          "title": "用户信息"
+        },
+        "account_info": {
+          "$ref": "#/definitions/userInternalAccountInfo",
+          "title": "账户信息"
+        }
+      }
+    },
+    "userCreateWhitelistAccountRequest": {
+      "type": "object"
+    },
+    "userCreateWhitelistAccountResponse": {
+      "type": "object",
+      "properties": {
+        "user_name": {
+          "type": "string",
+          "title": "主账号id"
+        },
+        "password": {
+          "type": "string",
+          "title": "登录密码"
+        }
+      }
+    },
+    "userDeleteWhitelistAccountRequest": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户id"
+        }
+      }
+    },
+    "userDeleteWhitelistAccountResponse": {
+      "type": "object"
+    },
+    "userEnterpriseAccountInfo": {
+      "type": "object",
+      "properties": {
+        "enterprise_name": {
+          "type": "string",
+          "title": "企业全称 必填"
+        },
+        "enterprise_number": {
+          "type": "string",
+          "title": "企业社会统一信用代码 必填"
+        },
+        "enterprise_photo": {
+          "type": "string",
+          "title": "企业营业执照图片信息 必填\n获取account信息默认不返回，需要从GetAccountPhoto接口获取\n如果为空，则不更新; 如果不为空，则更新图片信息"
+        },
+        "enterprise_card_name": {
+          "type": "string",
+          "title": "企业授权人姓名 必填"
+        },
+        "enterprise_card_type": {
+          "$ref": "#/definitions/userIDCredentialType",
+          "title": "企业授权人证件类型"
+        },
+        "enterprise_card_number": {
+          "type": "string",
+          "title": "企业授权人证件号码"
+        },
+        "enterprise_card_photo1": {
+          "type": "string",
+          "title": "企业授权人证件正面图片信息\n获取account信息默认不返回，需要从GetAccountPhoto接口获取\n如果为空，则不更新; 如果不为空，则更新图片信息"
+        },
+        "enterprise_card_photo2": {
+          "type": "string",
+          "title": "企业授权人证件背面面图片信息\n获取account信息默认不返回，需要从GetAccountPhoto接口获取\n如果为空，则不更新; 如果不为空，则更新图片信息"
+        },
+        "enterprise_card_start_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "企业授权人证件开始时间"
+        },
+        "enterprise_card_end_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "企业授权人证件过期时间"
+        },
+        "position": {
+          "type": "string",
+          "title": "职位 必填"
+        },
+        "industry": {
+          "$ref": "#/definitions/userIndustryType",
+          "title": "所属行业类型 必填"
+        },
+        "area_name": {
+          "type": "string",
+          "title": "所在地区名称 必填"
+        },
+        "scenario": {
+          "type": "string",
+          "title": "业务场景描述 必填"
+        },
+        "end_user": {
+          "type": "string",
+          "title": "最终用户 必填"
+        },
+        "cellphone": {
+          "type": "string",
+          "title": "用于联系电话"
+        },
+        "audit_desc": {
+          "type": "string",
+          "title": "审核原因描述（包括审核通过的原因描述或者审核驳回的原因描述）"
+        },
+        "audit_user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "审核人user_id"
+        },
+        "status": {
+          "$ref": "#/definitions/userAccountStatus",
+          "title": "认证状态"
+        },
+        "audit_nick_name": {
+          "type": "string",
+          "title": "审核人nick_name"
+        },
+        "audit_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "审核结束时间"
+        },
+        "business_inviter": {
+          "type": "string",
+          "title": "商务邀请人"
+        }
+      }
+    },
+    "userGetWhitelistAccountsResponse": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/userWhitelistAccountInfo"
+          }
+        },
+        "page_response": {
+          "$ref": "#/definitions/userListPage"
+        }
+      }
+    },
+    "userIDCredentialType": {
+      "type": "string",
+      "enum": [
+        "IDCREDENTIAL_TYPE_UNSPECIFIED",
+        "IDCREDENTIAL_TYPE_IDCARD",
+        "IDCREDENTIAL_TYPE_PASSPORT",
+        "IDCREDENTIAL_TYPE_HKMOCER",
+        "IDCREDENTIAL_TYPE_TWCER",
+        "IDCREDENTIAL_TYPE_FOREIGNERS",
+        "IDCREDENTIAL_TYPE_HKMORP"
+      ],
+      "default": "IDCREDENTIAL_TYPE_UNSPECIFIED",
+      "title": "- IDCREDENTIAL_TYPE_UNSPECIFIED: 未指定\n - IDCREDENTIAL_TYPE_IDCARD: 身份证\n - IDCREDENTIAL_TYPE_PASSPORT: 护照\n - IDCREDENTIAL_TYPE_HKMOCER: 港澳居民来往内地通行证\n - IDCREDENTIAL_TYPE_TWCER: 台湾居民来往大陆通行证\n - IDCREDENTIAL_TYPE_FOREIGNERS: 外国人永久居留身份证 permanent residence permit\n - IDCREDENTIAL_TYPE_HKMORP: 港澳台居民居住证 residence permit"
+    },
+    "userIndustryType": {
+      "type": "string",
+      "enum": [
+        "INDUSTRY_TYPE_OTHERS",
+        "INDUSTRY_TYPE_SECURITY_PROTECTION",
+        "INDUSTRY_TYPE_MUTUAL_ENTERTAINMENT",
+        "INDUSTRY_TYPE_CELLPHONE",
+        "INDUSTRY_TYPE_ON_BOARD",
+        "INDUSTRY_TYPE_FINANCIAL",
+        "INDUSTRY_TYPE_ESTATE",
+        "INDUSTRY_TYPE_OPERATOR",
+        "INDUSTRY_TYPE_SMART_TRANSPORTATION",
+        "INDUSTRY_TYPE_RETAIL",
+        "INDUSTRY_TYPE_EDUCATE",
+        "INDUSTRY_TYPE_MEDICAL",
+        "INDUSTRY_TYPE_ADVERTISE",
+        "INDUSTRY_TYPE_REMOTE_SENSING",
+        "INDUSTRY_TYPE_VIDEO_ANALYSIS",
+        "INDUSTRY_TYPE_SMART_CAMERA",
+        "INDUSTRY_TYPE_SMART_DEVICE",
+        "INDUSTRY_TYPE_CHIP",
+        "INDUSTRY_TYPE_INTEGRATORS",
+        "INDUSTRY_TYPE_NET_FINANCIAL",
+        "INDUSTRY_TYPE_CULTURAL_TOURISM",
+        "INDUSTRY_TYPE_EXPRESS_DELIVERY",
+        "INDUSTRY_TYPE_GAME",
+        "INDUSTRY_TYPE_CAR",
+        "INDUSTRY_TYPE_VEHICLE_ROAD_COORDINATION",
+        "INDUSTRY_TYPE_RESEARCH"
+      ],
+      "default": "INDUSTRY_TYPE_OTHERS",
+      "title": "- INDUSTRY_TYPE_OTHERS: 其他\n - INDUSTRY_TYPE_SECURITY_PROTECTION: 安全保护\n - INDUSTRY_TYPE_MUTUAL_ENTERTAINMENT: 互娱\n - INDUSTRY_TYPE_CELLPHONE: 手机\n - INDUSTRY_TYPE_ON_BOARD: 车载\n - INDUSTRY_TYPE_FINANCIAL: 金融\n - INDUSTRY_TYPE_ESTATE: 地产与楼宇\n - INDUSTRY_TYPE_OPERATOR: 运营商\n - INDUSTRY_TYPE_SMART_TRANSPORTATION: 智慧交通\n - INDUSTRY_TYPE_RETAIL: 零售\n - INDUSTRY_TYPE_EDUCATE: 教育\n - INDUSTRY_TYPE_MEDICAL: 医疗\n - INDUSTRY_TYPE_ADVERTISE: 线上线下广告平台\n - INDUSTRY_TYPE_REMOTE_SENSING: 遥感\n - INDUSTRY_TYPE_VIDEO_ANALYSIS: 视频分析\n - INDUSTRY_TYPE_SMART_CAMERA: 智能相机\n - INDUSTRY_TYPE_SMART_DEVICE: 智能设备\n - INDUSTRY_TYPE_CHIP: 芯片\n - INDUSTRY_TYPE_INTEGRATORS: 集成商\n - INDUSTRY_TYPE_NET_FINANCIAL: 互联网金融\n - INDUSTRY_TYPE_CULTURAL_TOURISM: 文旅\n - INDUSTRY_TYPE_EXPRESS_DELIVERY: 快递\n - INDUSTRY_TYPE_GAME: 游戏\n - INDUSTRY_TYPE_CAR: 汽车行业\n - INDUSTRY_TYPE_VEHICLE_ROAD_COORDINATION: 车路协同\n - INDUSTRY_TYPE_RESEARCH: 科研院所＆研究机构"
+    },
+    "userInternalAccountInfo": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户id"
+        },
+        "account_name": {
+          "type": "string",
+          "title": "账户名称"
+        },
+        "enterprise_name": {
+          "type": "string",
+          "title": "认证主体"
+        },
+        "submit_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "提交认证时间"
+        },
+        "status": {
+          "$ref": "#/definitions/userAccountStatus",
+          "title": "认证状态"
+        },
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "主账号id 已经弃用"
+        },
+        "user_name": {
+          "type": "string",
+          "title": "user_name 主账号id"
+        },
+        "enterprise_card_name": {
+          "type": "string",
+          "title": "联系人"
+        },
+        "cellphone": {
+          "type": "string",
+          "title": "联系电话"
+        },
+        "email": {
+          "type": "string",
+          "title": "联系邮箱"
+        },
+        "business_department": {
+          "type": "string",
+          "title": "部门"
+        },
+        "business_name": {
+          "type": "string",
+          "title": "姓名"
+        },
+        "business_code": {
+          "type": "string",
+          "title": "工号"
+        },
+        "business_assigned": {
+          "type": "string",
+          "title": "商务分配标记"
+        },
+        "account_used_status": {
+          "$ref": "#/definitions/userAccountUsedStatus",
+          "title": "账户启用状态"
+        },
+        "payment_type": {
+          "$ref": "#/definitions/userAccountPaymentType",
+          "title": "付费类型"
+        },
+        "account_type": {
+          "$ref": "#/definitions/userAccountType",
+          "title": "账户类型"
+        },
+        "audit_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "审核结束时间"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "创建时间"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "最后修改时间"
+        }
+      }
+    },
+    "userInternalUserInfo": {
+      "type": "object",
+      "properties": {
+        "user_name": {
+          "type": "string",
+          "title": "用户ID"
+        },
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户ID"
+        },
+        "nick_name": {
+          "type": "string",
+          "title": "显示用名称，必填"
+        },
+        "password": {
+          "type": "string",
+          "title": "密码 必选"
+        },
+        "description": {
+          "type": "string",
+          "title": "描述"
+        },
+        "blocked": {
+          "type": "boolean",
+          "title": "状态 true：停用 false：启用"
+        },
+        "last_login_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "上次登录时间"
+        },
+        "create_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "创建时间"
+        },
+        "email": {
+          "type": "string",
+          "title": "用户邮箱, 全局唯一"
+        },
+        "cellphone": {
+          "type": "string",
+          "title": "用于联系电话, 全局唯一"
+        },
+        "profile_photo_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户头像，图片id"
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "自定义属性值"
+        }
+      }
+    },
+    "userListOrder": {
+      "type": "string",
+      "enum": [
+        "LIST_ORDER_UNSPECIFIED",
+        "LIST_ORDER_CREATED_TIME_ASC",
+        "LIST_ORDER_CREATED_TIME_DESC",
+        "LIST_ORDER_NAME_ASC",
+        "LIST_ORDER_NAME_DESC",
+        "LIST_ORDER_SUBMIT_AT_ASC",
+        "LIST_ORDER_SUBMIT_AT_DESC",
+        "LIST_ORDER_RECHARGE_AT_ASC",
+        "LIST_ORDER_RECHARGE_AT_DESC"
+      ],
+      "default": "LIST_ORDER_UNSPECIFIED",
+      "description": "- LIST_ORDER_UNSPECIFIED: 未指定\n - LIST_ORDER_CREATED_TIME_ASC: 创建时间升序排列\n - LIST_ORDER_CREATED_TIME_DESC: 创建时间降序排列\n - LIST_ORDER_NAME_ASC: 名称升序排列\n - LIST_ORDER_NAME_DESC: 名称降序排列\n - LIST_ORDER_SUBMIT_AT_ASC: 提交时间升序排列\n - LIST_ORDER_SUBMIT_AT_DESC: 提交时间降序排列\n - LIST_ORDER_RECHARGE_AT_ASC: 提交充值申请时间升序排列\n - LIST_ORDER_RECHARGE_AT_DESC: 提交充值申请时间降序排列",
+      "title": "列表顺序"
+    },
+    "userListPage": {
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "description": "可选, 开始位置, 取值:\u003e=0, 0为第一条; 默认值为0.\n返回本次请求返回的第一条记录实际位置(一般与输入一致).\n[EN] Optional, start position, value: \u003e = 0, 0 is the first line; the\ndefault value is 0. In response, actual offset of the first returned record\nis returned (generally equals to the offset in request)."
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "description": "长度, 取值范围[1,100], 如果超出范围, 则返回失败;\n在某些接口中limit范围可能会重新定义, 请以其接口的补充说明为准. [EN] Length,\ndefault value range [1,100], if it is out of the range, error will be\nreturned; as the limit range may be redefined in some APIs, please refer to\nthe supplementary description of these APIs."
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32",
+          "description": "可选, 总数, 请求无须填此参数, 响应时填写.\n[EN] Optional, this parameter is not required for request, but will be\nfilled in response."
+        }
+      }
+    },
+    "userPolicyGroupInfo": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "策略组ID"
+        },
+        "group_name": {
+          "type": "string",
+          "title": "策略组名称"
+        },
+        "nick_name": {
+          "type": "string",
+          "title": "策略组显示名称"
+        },
+        "used_num": {
+          "type": "string",
+          "format": "int64",
+          "title": "拥有该策略组的用户数"
+        },
+        "description": {
+          "type": "string",
+          "title": "描述"
+        },
+        "create_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "创建时间"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int32",
+          "title": "策略组类型"
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "自定义属性值"
+        }
+      }
+    },
+    "userSendCurrentAdminUserSmsCodeResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/userSendResult",
+          "description": "短信验证码枚举."
+        },
+        "cooling_interval": {
+          "type": "integer",
+          "format": "int64",
+          "description": "冷却时间,单位[s]."
+        }
+      }
+    },
+    "userSendResult": {
+      "type": "string",
+      "enum": [
+        "Send_Result_Success",
+        "Send_Result_TryAgainLater"
+      ],
+      "default": "Send_Result_Success",
+      "description": " - Send_Result_Success: 0:成功.\n - Send_Result_TryAgainLater: 1:稍后从试."
+    },
+    "userVerifyCurrentAdminUserSmsCodeResponse": {
+      "type": "object"
+    },
+    "userWhitelistAccountInfo": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "账户id"
+        },
+        "user_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "用户id"
+        },
+        "user_name": {
+          "type": "string",
+          "title": "主账号id"
+        },
+        "mobile": {
+          "type": "string",
+          "title": "手机号"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+    "InteractiveLiveness_detect": [
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605497969000000.jpg"
+        },
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605498168000000.jpg"
+        },
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605498367000000.jpg"
+        },
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605498599000000.jpg"
+        },
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605498829000000.jpg"
+        },
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605499094000000.jpg"
+        },
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605500230000000.jpg"
+        },
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605500465000000.jpg"
+        },
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605500696000000.jpg"
+        },
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605500927000000.jpg"
+        }
+    ],
+    "InteractiveLiveness_open_mouth": [
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605499360000000.jpg"
+        },
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605499560000000.jpg"
+        },
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605499827000000.jpg"
+        },
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605500022000000.jpg"
+        }
+    ],
+    "InteractiveLiveness_colorful": [
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605501511000000.jpg",
+            "color": "black"
+        },
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605502024000000.jpg",
+            "color": "red"
+        },
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605502092000000.jpg",
+            "color": "red"
+        },
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605502641000000.jpg",
+            "color": "green"
+        },
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605502705000000.jpg",
+            "color": "green"
+        },
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605503249000000.jpg",
+            "color": "blue"
+        },
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605503293000000.jpg",
+            "color": "blue"
+        },
+        {
+            "image": "2023-08-21/image/HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj/1692605503801000000.jpg",
+            "color": "yellow"
+        }
+    ],
+    "ws_result": {
+        "score": 0.9949402,
+        "is_liveness": true
+    },
+    "session_id": "HLI2UHniAz7LDHW90tNviN6IIUxjxuMk9Yaj",
+    "InteractiveLiveness_detect_maxIndex": 6,
+    "name": "罗春能",
+    "id_card_number": "130202198112048025",
+    "verify_result": "INVALID_IDCARD_INFO"
+}

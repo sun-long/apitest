@@ -1,0 +1,387 @@
+[ConfigMap]
+    user_info = [
+#         'Console.User.newUser',
+#    'Console.User.testUser',
+      'Console.User.Regression',
+#     'Console.User.testUserZr',
+      #'Console.User.testUserFang'
+    ]
+
+    model_info = [
+        "Models.base1",
+    ]
+
+    chat_model_info = [
+#        "Models.base1",
+        "Models.base2",
+#        "Models.yue",
+#        "Models.yueWritten",
+    ]
+    common_completions_model_info = [
+        "Models.commonCompletions",
+        "Models.commonYiLiao"
+    ]
+
+    common_chat_model_info = [
+        "Models.commonmodel",
+        "Models.commonYiLiao"
+    ]
+
+    chat_code_model_info = [
+        "Models.code1",
+#        "Models.code2",
+    ]
+
+    img_generation_model_info = [
+        "Models.base1",
+    ]
+    miaohua_model_info = [
+         "Models.miaohua",
+         "Models.miaohuaFinetuneModel1" # finetune model
+    ]
+    miaohua_finetune_model_info = [
+        "Models.miaohua00004", # 公开
+        "Models.miaohua119057", # 白名单
+    ]
+    embedding_model_info = [
+        "Models.embeddingStable",
+        "Models.embeddingInternal",
+    ]
+
+    role_play_model_info = [
+        "Models.rolePlay1",
+    ]
+    multichat_model_info = [
+        "Models.base4",
+        "Models.base5"
+    ]
+
+    user_info_console = [
+        'Console.User.testUserFang',
+    ]
+
+    user_info_internal_console = [
+        'Console.User.testUserInternal',
+    ]
+
+[ConfigExtra]
+    test_data = []
+
+[EnvInfo]
+    [EnvInfo.Services]
+        openApiService = "https://api.stage.sensenova.cn"
+        openApiFileService = "https://file.stage.sensenova.cn"
+        consoleService = "https://console.stage.sensenova.cn"
+        consoleInternalService = "https://console-internal.stage.sensenova.cn"
+        iamService = ""
+    [EnvInfo.Kibana]
+        service = "https://kibana.stage.sensenova.cn"
+        username = "llm"
+        password = "sensenova"
+[Console]
+    [Console.User.newUser]
+        username = "484023956550984353 "
+        password = ""
+        account_id = "201651331675540425"
+        ak = "2X9N29KMPkHB0cjFHRDlTZtDLGx" # 跑200M文件
+        sk = "9koOvcwGpWyKBxg01fEVUXKioo3Qcj7G"
+        userToken = ""
+        [Console.User.newUser.Files]
+            dataset_file_id1 = "020b7837-ba60-48a6-a0f0-c488285256e1"
+            dataset_file_id2 = "355a454b-c83f-46a4-92c6-f079b7e5319d"
+            kbs_file_id1 = "efba9258-9ec1-4848-9fc5-6940c6ddbaeb"
+            kbs_file_id2 = "766a46df-064e-49cc-a043-1a08070f03b9"
+            img_file_id1 = "83c0826c-8f00-490d-b6c9-0aef838f7246"
+            img_file_id2 = "97cfb09b-dc30-4e93-af41-36395b02a054"
+            pdf_file_id1 = "e46710db-afc8-456b-b898-d94d2f18f86b"
+            pdf_file_id2 = "1fdbd504-a960-4b77-8d62-f7659728b850"
+        [Console.User.newUser.Datasets]
+            id1 = "75b6aad0-febc-4870-99da-e12c7dd6114a"
+            img_id1 = "2d50c1e8-8608-43f9-9aca-377f73fc908c"
+        [Console.User.newUser.Kbs]
+            id1 = "s6da4d2d961774efd80f353c7e0d16bac"
+            pdf_id1 = ""
+        [Console.User.newUser.Models]
+            [Console.User.newUser.Models.finetuneModel1]
+                name = ""
+        [Console.User.newUser.ImgModels]
+            [Console.User.newUser.ImgModels.finetuneModel1]
+                name = ""
+                otherAccountName = "" # 用于测试与其他测试同名model
+    [Console.User.testUser] # cn
+        username = "467991169817667533"
+        password = "wangan1234"
+        account_id = "185618544942192866"
+        ak = "2S6k7RPi8e5goZwNBCu3su2UeYm" # 跑200M文件
+        sk = "G9nWEGXmsiix9WBy5dUOGKlK2nx7dhAr"
+        userToken = ""
+        [Console.User.testUser.Files]
+            dataset_file_id1 = "fa1e6918-be93-4fd1-9e88-f5d9774a6e92"
+            dataset_file_id2 = "391e2509-39f9-45fc-aa16-9733cf3edef2"
+            kbs_file_id1 = "afb7c64e-7f41-4bcc-856f-c657d6a48e57"
+            kbs_file_id2 = "989c4219-86b2-48ff-b606-1cb7434c9821"
+            img_file_id1 = "accfc986-6384-4e08-8269-4fd389153bde"
+            img_file_id2 = "f9779b90-94d2-4824-9c70-a127e8027298"
+            pdf_file_id1 = "1ab4b124-5ea2-419a-aeea-eb79ea47411e"
+            pdf_file_id2 = "3d118234-2ca4-44d9-b056-afd46cdaf1c0"
+        [Console.User.testUser.Datasets]
+            id1 = "e49bfa8d-6e80-4411-a8c0-56b1a5633d3f"
+            img_id1 = ""
+        [Console.User.testUser.Kbs]
+            id1 = "sc39eab8c8bec4a6d8e0fbfed1a32bf7a"
+        [Console.User.testUser.Models]
+            [Console.User.testUser.Models.finetuneModel1]
+                name = "nova-ptc-xs-v1:v11691048139"
+        [Console.User.testUser.ImgModels]
+            [Console.User.testUser.ImgModels.finetuneModel1]
+                name = ""
+                otherAccountName = ""
+    [Console.User.zhanghao]
+        username = ""
+        password = ""
+        account_id = ""
+        ak = "2WW65wL1bSXMHh6wWWZgdSbOtbN"
+        sk = "K42HJxErH0YR3jTXnFWmSS2L8Wngpzrh"
+        userToken = ""
+    [Console.User.waiwang]
+        username = "469266922895075272"
+        password = "wangan1234"
+        account_id = "186894298036435036"
+        user_id = "186894298036369500"
+        email = "5411755931@qq.com"
+        ak = "2SVeTHIQWyhDRKnn46syNdfpDTH"
+        sk = "PBlSgwDyKbYy5ta0HPeTtd8qy3FaoaSG"
+        userToken = ""
+        [Console.User.waiwang.Files]
+            dataset_file_id1 = ""
+            dataset_file_id2 = ""
+            kbs_file_id1 = ""
+            kbs_file_id2 = ""
+        [Console.User.waiwang.Datasets]
+                id1 = "faeceb6d-2857-4dae-b1ef-1dc89990aa43"
+        [Console.User.waiwang.Models]
+            [Console.User.waiwang.Models.finetuneModel1]
+                name = ""
+    [Console.User.Regression]
+        username = "468970796476303142"
+        password = "wangan1234"
+        account_id = "186598171600826868"
+        user_id = "186598171600761332"
+        ak = "2SPpp1CD6Zm74gmXYtVO3ZkycV8" # 跑200M文件
+        sk = "3seXLMTlqyOfawtuszbNCHoleplcFklL"
+        userToken = ""
+        [Console.User.Regression.Files]
+            dataset_file_id1 = "6d018394-fa3a-444d-b8af-29fc719d89cb"
+            dataset_file_id2 = "2ee2c15b-4beb-446e-90f6-b135f882b2e8"
+            kbs_file_id1 = "2acc0cc6-3a51-4278-b010-e4eeeb5e1e99"
+            kbs_file_id2 = "e514d6e9-9a88-4286-87bf-a3b44de1d758"
+            img_file_id1 = "aef35934-1fa1-4d95-ba80-343f4a366fe5"
+            img_file_id2 = "1bb5ef04-dbf4-4cf5-a5f3-723790611bd9"
+            pdf_file_id1 = "37249a9e-2cfb-4207-a180-d270293c2d93"
+            pdf_file_id2 = "888f8143-dfd7-4e2c-920c-b70638414835"
+        [Console.User.Regression.Datasets]
+            id1 = "fc0558ce-b816-4932-b3b2-8209e178b1ba"
+            img_id1 = "dc8077ba-a13d-4d32-86c3-34e6531b843c"
+        [Console.User.Regression.Kbs]
+#            id1 = "s47c2eea07c3b44c395817de0a22fc118" # 底层变更前的知识库，目前无法命中
+            id1 = "s577d71690eb94a48a5deb6b4b9c7d829" # 变更后创建的知识库
+            pdf_id1 = ""
+        [Console.User.Regression.Models]
+            [Console.User.Regression.Models.finetuneModel1]
+                name = "nova-ptc-xs-v1:v11691051265"
+        [Console.User.Regression.ImgModels]
+            [Console.User.Regression.ImgModels.finetuneModel1]
+                name = "00004:test-1697612074-wsh-1234567890test-wsh-1234567890test"
+                otherAccountName = "00004:test-1697612074-wsh-1234567890test-wsh-1234567890test"
+    [Console.User.kbs100]
+        username = ""
+        password = ""
+        account_id = ""
+        ak = "2SpI9FihFtK7xKwqezg4qtOA6PE" # 跑200M文件
+        sk = "4pWdittU6jfabopLRR32SXoUvXTy9vvt"
+        userToken = ""
+
+    [Console.User.MiaoHua]
+        username = ""
+        password = ""
+        account_id = ""
+        ak = "2UbmRcDdmKaXHUFv1ltZK2gYOJ1"
+        sk = "RHp6eO4TzA3WF5Uluojilv2QIhbpVr3j"
+        userToken = "189069828424827299"
+
+    [Console.User.delete]
+        username = "468252977887471577"
+        password = "wangan1234"
+        account_id = ""
+        ak = "2SBqnzkS0R1n8roioyAzrZqFYIa" # 跑200M文件
+        sk = "yQOQ7dwXMbjjfusPNFzX3FSGlvQ3MuTe"
+        userToken = ""
+
+    [Console.User.wufei]
+        username = "467991153074013965"
+        password = "test1234"
+        account_id = ""
+        ak = "2S6lCYnC4U8KYKTQ4oMMVbDTlIh"
+        sk = "7ccXTBSRKUZ1i4v0TdzqPDMJ2qOgSrnO"
+        userToken = ""
+
+    [Console.User.wufei2]
+        username = "468131967485896669"
+        password = "test1234"
+        account_id = "185759342610425501"
+        user_id = "185759342610359965"
+        ak = "2S9U47dxPPnGZjqDtxRVptXmkTQ"
+        sk = "W4iUE6lvWPCNVeZQQbIdZVOf9mnzxyNL"
+        userToken = ""
+
+    [Console.User.MaxStep]
+        username = ""
+        password = ""
+        account_id = ""
+        ak = "2Rm5pR87TLPS1fgxUNpyPMGKiT0" # 跑maxstep的号
+        sk = "I8zpMRgZdpQRAuGr33lSS2iXfxha4goH"
+        userToken = ""
+
+    [Console.User.testUserFang]
+        username = ""
+        password = ""
+        account_id = "186609267128782245"
+        user_id = "468981892004218674"
+        id = "468981891987441444"
+        ak = "2SQ2nSh1pNA6BknubW6x9yGzXbt"
+        sk = "ACJLSqVjsttKkcu6hW8XIc5LTYu3e0zm"
+        userToken = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTc0NTQzODgsImp0aSI6IjY1MWRhYzI1LWFhZDMtNDlkMC04ODAwLTQ5Y2MyZGFhMDFlYyIsImlhdCI6MTY5NzQyNTU4OCwiaXNzIjoic3NvLnNlbnNlbm92YS5jb20iLCJuYmYiOjE2OTc0MjU1ODgsInN1YiI6IjE4NjYwOTI2NzEyODcxNjcwOSIsInR5cGUiOiJwYXNzd29yZCIsInNvdXJjZSI6Im5vdmEiLCJlbWFpbCI6ImZhbmdydXh1ZUBzZW5zZXRpbWUuY29tIiwiZ3R5cGUiOiJhY2Nlc3MifQ.COuDtmc06wpPfhzcnfwFe_LoS0wWaa627IgEZDVdv51aKy2UKVYbGFnXrNDhxI1u-y1Rpu4emmoiJCUf1VyDtdwUH6Z7JmmpGc8VoWWdPr24M5cWeon-jKbr9yKcoX_4oVogQjKKzmakQu1QVugy6cp2knLpvPgwTmUVVqwplTXGbtKgzpqmwuihfBlU-TGKMtmLENWzQoMFrva1p3G0bBctr04iEwAIqZ0oJIAvWq1cObDyeQ84B3jGKBvI-VOPbExT6VLdBRiOGCXPQL6DIkb6eRbxtcuODeRSlM40yzbImP1iig4r5yqs2ZDC2tTi5f0JvMMwJPFdrZzySFIZeQ"                          # 登录token 测试环境userToken = ""，会根据username/password自动生成token
+
+        [Console.User.testUserFang.Files]
+            dataset_file_id1 = "18daae0d-31aa-41c0-9fdb-1439047bfcd6"
+            dataset_file_id2 = "656511ed-43e4-4cfe-b685-32e42a4b777b"
+            kbs_file_id1 = "a76ee416-4956-4523-90d1-e265d3fb3926"
+            kbs_file_id2 = "47bdbfb6-a12f-4a83-b008-574e5118e4cb"
+            img_file_id1 = "4895dec1-ce0f-42f8-8540-17f89b75e386"
+            img_file_id2 = "a4809259-b387-41cb-b3ea-1fff7c26e492"
+        [Console.User.testUserFang.Datasets]
+            id1 = "ce46bff0-5d99-4cd3-8ac9-521a7e9e5534"
+            img_id1 = "d13cdcce-abcb-4baf-a2aa-478447cda83d"
+        [Console.User.testUserFang.Kbs]
+            id1 = "s1163797290854f8eb60999fbcc3bf804"
+        [Console.User.testUserFang.Models]
+            [Console.User.testUserFang.Models.finetuneModel1]
+                name = "nova-ptc-xs-v1:v11697448254"
+        [Console.User.testUserFang.ImgModels]
+            [Console.User.testUserFang.ImgModels.finetuneModel1]
+                name = "119057:test-1697534310-wsh-1234567890test-wsh-1234567890test_allow_image"
+                otherAccountName = ""
+    [Console.User.testUserInternal]
+        username = ""
+        password = ""
+        account_id = ""
+        ak = ""
+        sk = ""
+        userToken = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTc0NTAyMjksImp0aSI6IjY4NTA2ZjAzLTZhYTAtNDJjZC05MjM2LTZlZDUwNmVhZGZmZSIsImlhdCI6MTY5NzQyMTQyOSwiaXNzIjoic3NvLnNlbnNlbm92YS5jb20iLCJuYmYiOjE2OTc0MjE0MjksInN1YiI6IjE4NTg4NTE2MjM1MTg5NjIyMSIsInR5cGUiOiJwYXNzd29yZCIsInNvdXJjZSI6Im5vdmEtaW50ZXJuYWwiLCJlbWFpbCI6ImZhbmdydXh1ZUBzZW5zZXRpbWUuY29tIiwiZ3R5cGUiOiJhY2Nlc3MifQ.IPBBNYtNyUuy1cyenUIff3ONqOJQVc0fELS1A7bKJgRA2jJzPNT2bUSUrHCLpFArwp1I66KgYb1ezOyW7s0vjBD06AbD_nFNZe5heNJCD6d0JzdYPlriFH5MMZeDz5GwhmSi0pBb1RRH6h1mB8n6zXwe3MzKQVX2VHWgakiFwiMMNarrGfHxBPhzZ1oRzClqKFv8lQTtJtJr8b0BP1SH-slcD3I0kmsjWoolQPKcbFtCT39Ap2r7u534jLOdJ_jFXhoc8Ql2acA8HpLXVHZPYvm3Bza9AvG9O-sGhogH-Hk5gKVfxajbQIAoxFWzvkBOG9WatgGVTW3Oz2NFn4CmYA"                          # 登录token 测试环境userToken = ""，会根据username/password自动生成token
+
+    [Console.User.testUserZr]
+        username = "467991293599949387"
+        password = "Admin12345@"
+        account_id = "185618668741269730"
+        ak = "2S6kK4VBIUErzRTlTVyIbg1519N"
+        sk = "m1zqBVWSMaz4GjMDFkZqsHZszKvOG1bq"
+        [Console.User.testUserZr.Files]
+            dataset_file_id1 = ""
+            dataset_file_id2 = ""
+            kbs_file_id1 = ""
+            kbs_file_id2 = ""
+        [Console.User.testUserZr.Datasets]
+                id1 = ""
+        [Console.User.testUserZr.Models]
+            [Console.User.testUserZr.Models.finetuneModel1]
+                name = ""
+
+    [Console.User.testChat]
+        # 只订阅chat
+        username = "467993120320022477"
+        password = "Admin12345@"
+        account_id = "185620495444547810"
+        ak = "2S6mQEWrjT7jG82sa04FvQavuDh"
+        sk = "MfU6B7kdrcv4LlYI1o51PGPE4cW892YG" 
+
+    [Console.User.testFineturn]
+        #只订阅fineturn
+        username = "467993553222534925"
+        password = "Admin12345@"
+        account_id = "185620928347052258"
+        ak = "2S6msf9QiGU5PqBNC30lIXhVJcA"
+        sk = "sb2YY0h2YCJDhILiSehGNz3YRqy3X03E"       
+
+    [Console.User.testKbs]
+        #只订阅知识库
+        username = "467993952906125899"
+        password = "Admin12345@"
+        account_id = ""
+        ak = "2S6nXbncP8uNLhAzMopbH4jdeJj"
+        sk = "TBkkpCtqaZKzxLCehG2JpQPIDuuC5pQ0"
+    [Console.User.ruxue1]
+        #只订阅知识库
+        username = ""
+        password = ""
+        account_id = ""
+        ak = "2SQ2nSh1pNA6BknubW6x9yGzXbt"
+        sk = "ACJLSqVjsttKkcu6hW8XIc5LTYu3e0zm"
+[Models]
+    [Models.base1]
+        name = "nova-ptc-xs-v1" # 小模型，可以微调
+    [Models.base2]
+        name = "nova-ptc-xl-v1" # 大模型， 不可以微调
+    [Models.yue]
+        name = "nova-ptc-yue-xl-v1" # 粤语
+    [Models.base4]
+        name = "tgi-husky-13b-v0" # 多模态模型
+    [Models.base5]
+        name = "nova-pli-s-v1-1" # 新多模态模型        
+    [Models.Xiaomi]
+        name = "nova-ptc-xl-v1-xiaomi"
+    [Models.luka]
+        name = "nova-ptc-xl-v1-2-1-test-luka" #0814新增模型
+    [Models.8kTest]
+        name = "nova-ptc-xl-v1-0-8k-test" #0814新增模型
+    [Models.yueWritten]
+        name = "nova-ptc-yue-written-xl-v1" # 书面语模型
+    [Models.rolePlay1]
+        name = "nova-ptc-s-v1-roleplay-internal"
+    [Models.code1]
+        name = "novs-ptc-s-v1-code"
+    [Models.code2]
+        name = "penrose"
+    [Models.code3]
+        name = "novs-ptc-s-v1-code-xiaomi"
+    [Models.miaohua]
+        name = "00006"
+    [Models.miaohuaFinetuneModel1]
+        name = "$ImgModels.finetuneModel1" # 指代每个用户下的finetune模型
+    [Models.novaPtcXlV2security]
+        name = "nova-ptc-xl-v2-security-internal-test"
+    [Models.novaPtcXlV2security2]
+        name = "nova-ptc-xl-v2-2-0-security-internal"
+    [Models.novaPtcXlV28K]
+        name = "nova-ptc-xl-v2-2-0-8k-security-internal"
+    [Models.embeddingStable]
+        id = "stable"
+        name = "nova-embedding-stable"
+    [Models.embeddingInternal]
+        id = "internal"
+        name = "nova-embedding-internal"
+    [Models.miaohua00004]
+        name = "00004"
+    [Models.miaohua9470]
+        name = "9470"
+    [Models.miaohua32988]
+        name = "32988"
+    [Models.miaohua38042]
+        name = "38042"
+    [Models.miaohua119057]
+        name = "119057"
+    [Models.commonYiLiao] # commonchat 和 completions
+        name= "sensecare-chat"
+    [Models.commonmodel]
+        name= "nova-ptc-m-v1-code"
+    [Models.commonCompletions]
+        name= "nova-ptc-s-v1-codecompletion"

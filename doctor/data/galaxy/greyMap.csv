@@ -1,0 +1,17 @@
+﻿租户,设备,待测接口组,配置一,配置二,配置三,配置四,配置五,配置六,配置七,配置八
+tenant1,device1,static_device,CP,CP,CP,MV,MV,MV,MV,CP
+tenant1,device2,static_device,CP,NONE,CP,MV,NONE,MV,CP,MV
+tenant1,device3,static_device,CP,NONE,CP,MV,NONE,MV,CP,NONE
+tenant1,noDevice,static_no_device,CP,NONE,CP,MV,NONE,MV,CP,NONE
+tenant2,device1,dynamic_deivce,CP,CP,CP,MV,MV,MV,MV,CP
+tenant2,device2,dynamic_deivce,CP,NONE,CP,MV,NONE,MV,CP,MV
+tenant2,device3,dynamic_deivce,CP,NONE,CP,MV,NONE,MV,CP,NONE
+tenant2,noDevice,dynamic_no_deivce,CP,NONE,CP,MV,NONE,MV,CP,NONE
+tenant3,device1,static_device,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+tenant3,device2,static_device,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+tenant3,device3,static_device,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+tenant3,noDevice,static_no_device,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+tenant4,device1,dynamic_deivce,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+tenant4,device2,dynamic_deivce,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+tenant4,device3,dynamic_deivce,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+tenant4,noDevice,dynamic_no_deivce,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE

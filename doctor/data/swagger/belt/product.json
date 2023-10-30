@@ -1,0 +1,636 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "console-subscribe-service",
+    "version": "v1.0.0"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/console/v1/product": {
+      "get": {
+        "summary": "获取商品的可购买选项列表信息\nroute: prefix=console action=ListProductByCode version=v1",
+        "operationId": "ConsoleProductService_ListProductByCode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeListProductResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "spu_code",
+            "description": "spu或者spugroup的唯一码.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ConsoleProductService"
+        ]
+      }
+    },
+    "/console/v1/product/order": {
+      "get": {
+        "summary": "获取所有订阅商品信息\nroute: prefix=console action=ListOrderedProduct version=v1",
+        "operationId": "ConsoleProductService_ListOrderedProduct",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeListOrderProductResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "ConsoleProductService"
+        ]
+      }
+    },
+    "/console/v1/product/realtime_usage": {
+      "get": {
+        "summary": "获取某个商品的实时用量信息\nroute: prefix=console action=ListRealtimeUsageByCode version=v1",
+        "operationId": "ConsoleProductService_ListRealtimeUsageByCode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeListRealtimeUsageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "spu_code",
+            "description": "spu或者spugroup的唯一码.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ConsoleProductService"
+        ]
+      }
+    },
+    "/console/v1/product/site": {
+      "get": {
+        "summary": "获取所有计算节点\nroute: prefix=console action=ListAllSite version=v1",
+        "operationId": "ConsoleProductService_ListAllSite",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/subscribeListAllSiteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "ConsoleProductService"
+        ]
+      }
+    },
+    "/console/v1/product/usage": {
+      "get": {
+        "summary": "获取某个商品的用量信息\nroute: prefix=console action=ListUsageByCode version=v1",
+        "operationId": "ConsoleProductService_ListUsageByCode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/consolesubscribeListUsageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "spu_code",
+            "description": "spu或者spugroup的唯一码.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "date_request.start_at",
+            "description": "过滤起始时间.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "date_request.end_at",
+            "description": "过滤结束时间.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "tags": [
+          "ConsoleProductService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "PriceRule": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "integer",
+          "format": "int64",
+          "title": "该阶梯开始量"
+        },
+        "end": {
+          "type": "integer",
+          "format": "int64",
+          "title": "该阶梯结束量  //如果end=0则没有阶梯，单价固定，不随使用量变化,资源包价格用"
+        },
+        "unit_price": {
+          "type": "string",
+          "format": "uint64",
+          "title": "该阶梯单价"
+        },
+        "unit_discount": {
+          "type": "number",
+          "format": "double",
+          "title": "该阶梯的折扣；不能为负数"
+        },
+        "description": {
+          "type": "string",
+          "title": "阶梯价格的描述"
+        }
+      },
+      "title": "阶梯定价项"
+    },
+    "PriceUnit": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "价格描述"
+        },
+        "factor": {
+          "type": "string",
+          "format": "uint64",
+          "title": "价格单位系数，比如图片是以千张为单位计费，那么系数就是1000；\n资源包是按个卖的，个的大小在SKU规格里定义"
+        }
+      },
+      "title": "价格单位描述"
+    },
+    "ProductSKUGroupInfoProductSKUGroupUnit": {
+      "type": "object",
+      "properties": {
+        "spu_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "商品SPU id"
+        },
+        "sku_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "商品SKU id"
+        }
+      }
+    },
+    "commonPayType": {
+      "type": "string",
+      "enum": [
+        "PAY_TYPE_UNKNOWN",
+        "PAY_TYPE_PRE",
+        "PAY_TYPE_POST",
+        "PAY_TYPE_PRE_FREE"
+      ],
+      "default": "PAY_TYPE_UNKNOWN",
+      "title": "- PAY_TYPE_UNKNOWN: 未知模式\n - PAY_TYPE_PRE: 预付费(前向付费)模式\n - PAY_TYPE_POST: 后付费模式\n - PAY_TYPE_PRE_FREE: 预付费(免费/赠送)模式"
+    },
+    "commonbillUsage": {
+      "type": "object",
+      "properties": {
+        "usage_time": {
+          "type": "string",
+          "format": "date-time",
+          "title": "用量时间（统计周期的起始时间，比如以天为周期则为当天00:00:00）"
+        },
+        "total_count": {
+          "type": "string",
+          "format": "uint64",
+          "title": "周期内Count（比如API调用次数、流量使用量）使用总量"
+        },
+        "max_gauge": {
+          "type": "string",
+          "format": "uint64",
+          "title": "周期内Gauge（比如QPS值、视频路数、带宽峰值）最大值"
+        }
+      },
+      "title": "单个统计周期的用量统计信息"
+    },
+    "consolesubscribeListUsageResponse": {
+      "type": "object",
+      "properties": {
+        "all_usages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonbillUsage"
+          },
+          "title": "所有用量数据"
+        }
+      }
+    },
+    "productPrice": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "价格编号"
+        },
+        "sku_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "SKU编号"
+        },
+        "site_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "地区编号"
+        },
+        "scale": {
+          "type": "integer",
+          "format": "int64",
+          "title": "针对这种商品：按设备接入路数*循环保存时间*使用时长计费 来算费用，这里的scale是循环保存时间，普通商品默认这个值就是1"
+        },
+        "type": {
+          "$ref": "#/definitions/productPriceType",
+          "title": "价格类型"
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PriceRule"
+          },
+          "title": "阶梯定价规则"
+        },
+        "status": {
+          "$ref": "#/definitions/productPriceStatus",
+          "title": "price 状态"
+        },
+        "unit": {
+          "$ref": "#/definitions/PriceUnit",
+          "title": "价格单位描述"
+        },
+        "start_time": {
+          "type": "string",
+          "format": "date-time",
+          "title": "计费项开始时间"
+        },
+        "end_time": {
+          "type": "string",
+          "format": "date-time",
+          "title": "计费项结束时间"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间, 系统自动生成.\n[EN] Creation time, automatically generated by system."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "修改时间, 系统自动生成.\n[EN] Updated time, automatically generated by system."
+        }
+      },
+      "title": "Discount在价格模型和order都需要\n价格信息"
+    },
+    "productPriceStatus": {
+      "type": "string",
+      "enum": [
+        "STATUS_UNLIMITED",
+        "STATUS_VALID",
+        "STATUS_DELETED",
+        "STATUS_NONE"
+      ],
+      "default": "STATUS_UNLIMITED",
+      "description": "- STATUS_UNLIMITED: 不限制，只是用来筛选状态用\n - STATUS_VALID: 有效\n - STATUS_DELETED: 删除\n - STATUS_NONE: 占位符，用于判断最大值，这个值会随时间改变",
+      "title": "price 的状态枚举"
+    },
+    "productPriceType": {
+      "type": "string",
+      "enum": [
+        "TYPE_TIERED",
+        "TYPE_VOLUME",
+        "TYPE_STAIR_STEP"
+      ],
+      "default": "TYPE_TIERED",
+      "description": "- TYPE_TIERED: Tiered分层定价 // 总价为 unit_price1 * end1 + unit_price2 * end2 + unit_price3 * (total - end2)\n - TYPE_VOLUME: Volume（批量定价）计价 // 在(star, end]区间，单价固定为 unit_price,总价为 unit_price * total\n - TYPE_STAIR_STEP: Stair-Step阶梯定价 // 在(star, end]区间，一口价, 总价就是这个区间的 unit_price",
+      "title": "价格类型"
+    },
+    "productopProductBaseInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "商品ID"
+        },
+        "code": {
+          "type": "string",
+          "title": "产品定义的商品编号"
+        },
+        "name": {
+          "type": "string",
+          "title": "商品名称"
+        },
+        "descriptoin": {
+          "type": "string",
+          "title": "商品具体描述"
+        },
+        "notice": {
+          "type": "string",
+          "title": "商品购买须知"
+        },
+        "detailed_charging": {
+          "type": "string",
+          "title": "计费详情特殊描述"
+        }
+      }
+    },
+    "productopProductSKUGroupInfo": {
+      "type": "object",
+      "properties": {
+        "all_units": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductSKUGroupInfoProductSKUGroupUnit"
+          },
+          "title": "商品SKU Group组合"
+        }
+      }
+    },
+    "productopProductSPUGroupInfo": {
+      "type": "object",
+      "properties": {
+        "info": {
+          "$ref": "#/definitions/productopProductBaseInfo",
+          "title": "商品基础信息"
+        },
+        "all_sku_groups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/productopProductSKUGroupInfo"
+          },
+          "title": "商品附带的SKU Group列表数据"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string",
+          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+        },
+        "value": {
+          "type": "string",
+          "format": "byte",
+          "description": "Must be a valid serialized protocol buffer of the above specified type."
+        }
+      },
+      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\nExample 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\nExample 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := \u0026pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "subscribeDateFilter": {
+      "type": "object",
+      "properties": {
+        "start_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "过滤起始时间"
+        },
+        "end_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "过滤结束时间"
+        }
+      }
+    },
+    "subscribeListAllSiteResponse": {
+      "type": "object",
+      "properties": {
+        "sites": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/subscribeProductSite"
+          },
+          "title": "所有计算节点信息"
+        }
+      }
+    },
+    "subscribeListOrderProductResponse": {
+      "type": "object",
+      "properties": {
+        "all_products": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/productopProductBaseInfo"
+          },
+          "title": "所有商品基本信息"
+        }
+      }
+    },
+    "subscribeListProductResponse": {
+      "type": "object",
+      "properties": {
+        "spu_group": {
+          "$ref": "#/definitions/productopProductSPUGroupInfo",
+          "title": "商品对应的SPU Group信息，如果该商品不是SPU Group，则此项为空"
+        },
+        "all_spus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/subscribeProductSPUInfo"
+          },
+          "title": "商品对应的SPU信息，如果该商品是SPU Group，这里则是其关联SPU的列表，否则就是一个单独的SPU"
+        }
+      }
+    },
+    "subscribeListRealtimeUsageResponse": {
+      "type": "object",
+      "properties": {
+        "total_count": {
+          "type": "string",
+          "format": "uint64",
+          "title": "当日（比如API调用次数、流量使用量）使用总量"
+        },
+        "max_gauge": {
+          "type": "string",
+          "format": "uint64",
+          "title": "当日（比如QPS值、视频路数、带宽峰值）最大值"
+        },
+        "left_count": {
+          "type": "string",
+          "format": "uint64",
+          "title": "相关资源包剩余使用量"
+        }
+      }
+    },
+    "subscribeProductSKUInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "商品SKU id"
+        },
+        "count": {
+          "type": "string",
+          "format": "int64",
+          "title": "SKU数量"
+        },
+        "bill_mode": {
+          "$ref": "#/definitions/commonPayType",
+          "title": "付费模式"
+        },
+        "free_trial": {
+          "type": "boolean",
+          "title": "是否免费试用"
+        },
+        "spec_values": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "SKU规格列表，e.g. {计费模式：按调用量}"
+        },
+        "sites": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/subscribeProductSite"
+          },
+          "title": "商品所属的计算节点"
+        },
+        "start_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "生效起始时间"
+        },
+        "end_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "生效结束时间"
+        },
+        "status": {
+          "$ref": "#/definitions/subscribeProductSKUInfoStatus",
+          "title": "生效状态"
+        },
+        "all_prices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/productPrice"
+          },
+          "title": "价格列表，同一个SKU，不同计算节点Site，价格可能不同，价格信息只有在ListProduct时会带下去，查看订单时不会有价格信息"
+        }
+      }
+    },
+    "subscribeProductSKUInfoStatus": {
+      "type": "string",
+      "enum": [
+        "UNLIMITED",
+        "TO_BE_VALID",
+        "VALID",
+        "UNVALID",
+        "DELETED"
+      ],
+      "default": "UNLIMITED",
+      "title": "- UNLIMITED: 不限制，只是用来筛选状态用\n - TO_BE_VALID: 未生效\n - VALID: 生效中\n - UNVALID: 已失效invalid\n - DELETED: 订单item已删除（内部用）"
+    },
+    "subscribeProductSPUInfo": {
+      "type": "object",
+      "properties": {
+        "info": {
+          "$ref": "#/definitions/productopProductBaseInfo",
+          "title": "商品基础信息"
+        },
+        "all_skus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/subscribeProductSKUInfo"
+          },
+          "title": "商品附带的SKU列表数据"
+        }
+      }
+    },
+    "subscribeProductSite": {
+      "type": "object",
+      "properties": {
+        "site_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "计算节点ID"
+        },
+        "name": {
+          "type": "string",
+          "title": "计算节点名称"
+        }
+      }
+    }
+  }
+}
